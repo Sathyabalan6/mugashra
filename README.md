@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚜️ Mugashra Bridal Artistry
 
-## Getting Started
+A luxury bridal atelier web application inspired by high-end South Indian editorial aesthetics. Built with **Next.js 16 (App Router)**, **Tailwind CSS v4**, and **Payload CMS 3.0**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🏛️ Architecture & Features
+
+- **Editorial Luxury Aesthetics**: Hallmark & Impeccable design system with quiet luxury typography (`Inter` display + `Lora` editorial serif) and warm champagne gold accents (`#B58A69`).
+- **Responsive Dual-Hero Media**: High-definition wide cover on desktop and dedicated vertical portrait framing on mobile (`< 768px`) with unobstructed facial focal point.
+- **Interactive Vision & Mission**: Dynamic expanding bracket animations (`{ VISION }` & `{ MISSION }`) with rotating diamond watermark line-art.
+- **Feedback Speech Bubble Cloud**: Staggered quote pills with floating hover physics, glowing quotation marks, and client attributions.
+- **Framed Star-Cornered Pricing**: High Definition, Bridal Ceremony/Reception, Outstation Wedding suites, Additional Drape charges, and Groom/Crew pricing breakdowns.
+- **Stacked Category Portfolio**: Full-width interactive accordion category strips (`BRIDAL ↗`, `FASHION ↗`, `COMMERCIALS ↗`) with full-screen lightbox modal.
+- **Adaptive Database Architecture**:
+  - **Local Development**: Uses `@payloadcms/db-sqlite` with zero credential setup (`DATABASE_URI=file:./mugashra.db`).
+  - **Production Deployment**: Automatically switches to `@payloadcms/db-postgres` when a PostgreSQL connection string (`postgresql://...`) is provided.
+- **Resilient Seed Fallbacks**: 100% reliable rendering with fallback seed data for instant preview even if the database is unseeded.
+
+---
+
+## 📂 Project Structure
+
+```
+├── app/
+│   ├── (frontend)/           # Public Next.js App Router routes
+│   │   ├── page.tsx          # Homepage with Full-Bleed Hero, Vision/Mission, Feedback
+│   │   ├── services/         # Pricing & Service Packages
+│   │   ├── portfolio/        # Editorial Portfolio Showcase
+│   │   ├── about/            # Founder Story & Atelier Team Specialists
+│   │   ├── testimonials/     # Client Feedback Cloud
+│   │   ├── contact/          # Date Reservation & Atelier Details
+│   │   ├── layout.tsx        # Root HTML Shell & Font Configuration
+│   │   └── globals.css       # Hallmark tokens & luxury keyframes
+│   ├── (payload)/            # Payload CMS Admin & API routes
+│   │   ├── admin/            # CMS Dashboard (/admin)
+│   │   └── api/              # GraphQL & REST Endpoints
+│   └── actions/              # Server Actions (e.g. submitEnquiry)
+├── collections/              # Payload CMS Content Schemas
+│   ├── Enquiries.ts          # Client Lead Submissions
+│   ├── PortfolioItems.ts     # Portfolio Looks & Details
+│   ├── ServicePackages.ts    # Service Packages & Pricing
+│   ├── TeamMembers.ts        # Senior Specialists & Roles
+│   ├── Testimonials.ts       # Verified Client Reviews
+│   ├── Media.ts              # Uploaded Media Assets
+│   └── Users.ts              # CMS Admin Users
+├── components/               # Modular UI Components
+│   ├── Header.tsx            # Floating Transparent Masthead & Slideover Menu
+│   ├── Footer.tsx            # 3-Column Editorial Newsletter & Studio Bio
+│   ├── VisionMissionSection.tsx # Animated Bracket Section
+│   ├── FeedbackSection.tsx   # Animated Speech Bubble Cloud
+│   ├── PricingSection.tsx    # Framed Star Cards & Ceremony Packages
+│   ├── PortfolioGallery.tsx  # Gallery with Lightbox Modal
+│   ├── EnquiryForm.tsx       # 8-State Underline Booking Form
+│   └── WhatsAppButton.tsx    # Minimalist Booking Float Button
+├── data/
+│   └── seedData.ts           # Fallback Content & Initial Studio Seed Data
+├── globals/
+│   └── SiteSettings.ts       # Global Studio Atelier Settings
+├── lib/
+│   └── payload.ts            # Local Payload Client Helper
+├── public/
+│   └── images/               # High-res Optimized Bridal Photography
+├── payload.config.ts         # Dual SQLite / PostgreSQL Payload Config
+└── .env                      # Environment Variables
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Install Dependencies
+```powershell
+npm install
+```
 
-## Learn More
+### 2. Run the Development Server
+```powershell
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+- **Frontend Website**: [http://localhost:3000](http://localhost:3000)
+- **Payload Admin Panel**: [http://localhost:3000/admin](http://localhost:3000/admin)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Production Build
+```powershell
+npm run build
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ⚙️ Environment Variables
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Copy `.env.example` to `.env`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```env
+# Local SQLite (Default)
+DATABASE_URI=file:./mugashra.db
+
+# Production PostgreSQL (e.g. Neon, Supabase, Vercel Postgres)
+# DATABASE_URI=postgresql://user:password@host:5432/database
+
+PAYLOAD_SECRET=your-secret-payload-key-here
+NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+```

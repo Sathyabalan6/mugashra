@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+/* 
+ * Hallmark & Impeccable Design System
+ * Macrostructure: Editorial Atelier · Genre: Editorial Luxury
+ * Pre-emit critique: P5 H5 E5 S5 R5 V5
+ */
+
+@layer base {
+  :root {
+    --color-bg: #FAFAF8;
+    --color-bg-white: #FFFFFF;
+    --color-text: #222222;
+    --color-text-body: rgba(34, 34, 34, 0.88);
+    --color-muted: rgba(34, 34, 34, 0.45);
+    --color-border: rgba(34, 34, 34, 0.1);
+    --color-border-subtle: rgba(34, 34, 34, 0.06);
+    --color-accent: #B58A69;
+    --color-accent-hover: #9B7050;
+    --color-accent-subtle: rgba(181, 138, 105, 0.08);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-bg-white: var(--color-bg-white);
+  --color-text: var(--color-text);
+  --color-text-body: var(--color-text-body);
+  --color-muted: var(--color-muted);
+  --color-border: var(--color-border);
+  --color-border-subtle: var(--color-border-subtle);
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-accent-subtle: var(--color-accent-subtle);
+
+  --font-sans: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: var(--font-serif-luxury), 'Lora', 'Playfair Display', Georgia, serif;
+}
+
+html, body {
+  overflow-x: clip;
+  background-color: var(--color-bg);
+  color: var(--color-text-body);
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Typography Scale & Contrast ── */
+
+.font-nav {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 400;
+}
+
+.font-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+/* Section H2: Serif normal weight, warm and classic */
+h2.section-heading, h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 3.8vw, 38px);
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+p, li {
+  font-family: var(--font-serif);
+  color: var(--color-text-body);
+  line-height: 1.68;
+}
+
+/* Captions / Metadata */
+.caption-text, figcaption, .fine-print {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+/* Accent link with subtle hover effect */
+a.accent-link {
+  color: var(--color-text);
+  transition: color 0.25s ease;
+}
+a.accent-link:hover {
+  color: var(--color-accent);
+}
+
+/* Interactive Focus Rings (8-State A11y) */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+}
+
+/* ── Luxury Animations & Keyframes ── */
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes pulseBracket {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+    color: #C8A882;
+  }
+}
+
+@keyframes rotateWatermark {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 8s ease-in-out infinite;
+}
+
+.animate-bracket-pulse {
+  animation: pulseBracket 4s ease-in-out infinite;
+}
+
+.animate-watermark-spin {
+  animation: rotateWatermark 60s linear infinite;
+}
+
+/* Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #E5E1D8;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
