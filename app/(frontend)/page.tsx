@@ -66,10 +66,10 @@ export default async function HomePage() {
   const heroMobileImage = homePageData?.heroMobileImage || '/images/hero-bride-mobile.png'
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#FAFAF8] text-[#222222]">
-      {/* ── 1. Full-Bleed Cinematic Hero Section (Responsive Mobile & Desktop Media) ── */}
+    <div className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+      {/* ── 1. Full-Bleed Cinematic Hero Section ── */}
       <section className="relative min-h-[100svh] sm:min-h-screen w-full flex items-start sm:items-center justify-start px-6 sm:px-12 lg:px-16 pt-24 sm:pt-24 pb-12 sm:pb-16 overflow-hidden bg-[#181514]">
-        {/* Background Visual (Responsive: Portrait on Mobile, Wide on Desktop) */}
+        {/* Background Visual (Responsive) */}
         <div className="absolute inset-0 z-0">
           {/* Mobile Dedicated Portrait */}
           <div className="block md:hidden absolute inset-0">
@@ -78,7 +78,7 @@ export default async function HomePage() {
               alt="Mugashra South Indian Bride"
               fill
               priority
-              quality={95}
+              quality={85}
               sizes="100vw"
               className="object-cover object-[center_78%]"
             />
@@ -93,7 +93,7 @@ export default async function HomePage() {
               alt="Mugashra Bridal Artistry Visual"
               fill
               priority
-              quality={90}
+              quality={85}
               sizes="100vw"
               className="object-cover object-center"
             />
@@ -106,10 +106,10 @@ export default async function HomePage() {
         <div className="relative z-10 max-w-[1400px] w-full mx-auto flex items-center pt-2 sm:pt-0">
           <div className="max-w-2xl space-y-4 sm:space-y-8 text-left">
             <div className="space-y-1">
-              <span className="font-sans text-[10px] sm:text-xs uppercase tracking-[3px] text-[#B58A69] font-medium block">
+              <span className="font-sans text-[10px] sm:text-xs uppercase tracking-[3px] text-[var(--color-accent)] font-medium block">
                 {heroEyebrow}
               </span>
-              <h1 className="font-serif text-3xl sm:text-7xl lg:text-[92px] leading-[1.04] tracking-[0.04em] uppercase text-[#B58A69] font-normal drop-shadow-md whitespace-pre-line">
+              <h1 className="font-serif text-3xl sm:text-7xl lg:text-[92px] leading-[1.04] tracking-[0.04em] uppercase text-[var(--color-accent)] font-normal drop-shadow-md whitespace-pre-line">
                 {heroTitle.includes(' ') ? (
                   <>
                     {heroTitle.split(' ')[0]}<br />
@@ -126,13 +126,13 @@ export default async function HomePage() {
             <div className="pt-1 sm:pt-4 flex flex-wrap gap-2.5 sm:gap-4 items-center justify-start">
               <Link
                 href="/contact"
-                className="px-5 sm:px-8 py-2.5 sm:py-3.5 bg-[#B58A69] hover:bg-[#9B7050] text-[#181514] font-sans text-[10px] sm:text-[12px] uppercase tracking-[2px] font-semibold transition-all duration-300 shadow-lg"
+                className="px-5 sm:px-8 py-2.5 sm:py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[10px] sm:text-[12px] uppercase tracking-[2px] font-semibold transition-colors duration-300 shadow-lg min-h-[44px] flex items-center"
               >
                 Reserve Your Date ↗
               </Link>
               <Link
                 href="/services"
-                className="px-5 sm:px-8 py-2.5 sm:py-3.5 bg-transparent hover:bg-white/10 border border-white/40 text-white font-sans text-[10px] sm:text-[12px] uppercase tracking-[2px] font-medium transition-all duration-300 backdrop-blur-xs"
+                className="px-5 sm:px-8 py-2.5 sm:py-3.5 bg-transparent hover:bg-white/10 border border-white/40 text-white font-sans text-[10px] sm:text-[12px] uppercase tracking-[2px] font-medium transition-colors duration-300 backdrop-blur-xs min-h-[44px] flex items-center"
               >
                 View Price List
               </Link>
@@ -141,7 +141,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── 2. Animated Vision & Mission Section ── */}
+      {/* ── 2. Vision & Mission Section ── */}
       <VisionMissionSection
         visionTitle={homePageData?.visionTitle}
         visionText={homePageData?.visionText}
@@ -149,7 +149,7 @@ export default async function HomePage() {
         missionText={homePageData?.missionText}
       />
 
-      {/* ── 3. Animated Feedback Section ── */}
+      {/* ── 3. Feedback Section ── */}
       <FeedbackSection testimonials={testimonials} />
     </div>
   )

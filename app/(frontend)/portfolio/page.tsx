@@ -1,19 +1,31 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function PortfolioPage() {
   const [activeCategory, setActiveCategory] = useState<string | null>('bridal')
   const [lightboxImage, setLightboxImage] = useState<{ url: string; title: string; desc: string } | null>(null)
+  const closeBtnRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxImage(null)
+    }
+    if (lightboxImage) {
+      window.addEventListener('keydown', handleKeyDown)
+      closeBtnRef.current?.focus()
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [lightboxImage])
 
   const categories = [
     {
       id: 'bridal',
       title: 'B R I D A L',
       bgClass: 'bg-[#DFD5CD]',
-      textClass: 'text-[#8E6E53]',
+      textClass: 'text-[#6F4E37]',
       items: [
         {
           title: 'The Sacred Muhurtham in Crimson Silk',
@@ -36,7 +48,7 @@ export default function PortfolioPage() {
       id: 'fashion',
       title: 'F A S H I O N',
       bgClass: 'bg-[#E5DCD6]',
-      textClass: 'text-[#A07A5E]',
+      textClass: 'text-[#6F4E37]',
       items: [
         {
           title: 'Couture Editorial in Emerald Velvet',
@@ -54,7 +66,7 @@ export default function PortfolioPage() {
       id: 'commercials',
       title: 'C O M M E R C I A L S',
       bgClass: 'bg-[#EAE4DF]',
-      textClass: 'text-[#B58A69]',
+      textClass: 'text-[#6F4E37]',
       items: [
         {
           title: 'Luxury Jewellery Campaign',
@@ -66,8 +78,8 @@ export default function PortfolioPage() {
   ]
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#FAFAF8] text-[#222222]">
-      {/* ── 1. Editorial Master Banner (Exact Reference Layout) ── */}
+    <div className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+      {/* ── 1. Editorial Master Banner ── */}
       <section className="relative w-full min-h-[60vh] sm:min-h-[75vh] flex items-center justify-start px-8 sm:px-16 pt-24 bg-[#E0D8D0] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
@@ -82,7 +94,7 @@ export default function PortfolioPage() {
         </div>
 
         <div className="relative z-10 max-w-xl text-left space-y-4">
-          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl leading-[1.08] tracking-[0.05em] uppercase text-[#222222] font-normal">
+          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl leading-[1.08] tracking-[0.05em] uppercase text-[var(--color-text)] font-normal">
             A GLIMPSE<br />
             OF WHAT<br />
             I LOVE<br />
@@ -91,7 +103,7 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* ── 2. Full-Width Stacked Category Strips (Exact Reference Layout) ── */}
+      {/* ── 2. Full-Width Stacked Category Strips ── */}
       <section className="w-full flex flex-col">
         {categories.map((cat) => {
           const isOpen = activeCategory === cat.id
@@ -101,6 +113,7 @@ export default function PortfolioPage() {
               <button
                 onClick={() => setActiveCategory(isOpen ? null : cat.id)}
                 className={`w-full py-10 sm:py-14 px-8 sm:px-16 flex items-center justify-between transition-all duration-300 ${cat.bgClass} hover:brightness-95`}
+                aria-expanded={isOpen}
               >
                 <span className={`font-serif text-3xl sm:text-5xl lg:text-6xl tracking-[0.2em] uppercase font-normal ${cat.textClass}`}>
                   {cat.title}
@@ -112,32 +125,34 @@ export default function PortfolioPage() {
 
               {/* Expandable Looks Grid */}
               {isOpen && (
-                <div className="bg-[#FFFFFF] p-8 sm:p-16 animate-fade-in">
+                <div className="bg-[var(--color-bg-white)] p-8 sm:p-16">
                   <div className="max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
                     {cat.items.map((item, idx) => (
-                      <div
+                      <button
                         key={idx}
+                        type="button"
                         onClick={() => setLightboxImage({ url: item.url, title: item.title, desc: item.desc })}
-                        className="group cursor-pointer space-y-4"
+                        className="group cursor-pointer space-y-4 text-left w-full focus-visible:outline-2 focus-visible:outline-[var(--color-accent-text)]"
+                        aria-label={`Inspect look: ${item.title}`}
                       >
-                        <div className="relative aspect-[3/4] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
+                        <div className="relative aspect-[3/4] w-full bg-[#EAE1D5] overflow-hidden shadow-xs">
                           <Image
                             src={item.url}
                             alt={item.title}
                             fill
                             sizes="(max-width: 768px) 100vw, 33vw"
-                            className="object-cover group-hover:scale-103 transition-transform duration-700"
+                            className="object-cover group-hover:scale-102 transition-transform duration-500"
                           />
                         </div>
                         <div className="space-y-1 text-left">
-                          <h3 className="font-serif text-lg text-[#222222] group-hover:text-[#B58A69] transition-colors">
+                          <h3 className="font-serif text-lg text-[var(--color-text)] group-hover:text-[var(--color-accent-text)] transition-colors">
                             {item.title}
                           </h3>
                           <p className="caption-text text-xs line-clamp-2">
                             {item.desc}
                           </p>
                         </div>
-                      </div>
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -150,16 +165,21 @@ export default function PortfolioPage() {
       {/* Lightbox Modal */}
       {lightboxImage && (
         <div
-          className="fixed inset-0 z-50 bg-[#222222]/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
+          className="fixed inset-0 z-50 bg-[#181514]/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
           onClick={() => setLightboxImage(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="portfolio-modal-title"
         >
           <div
-            className="relative max-w-3xl w-full bg-[#FAFAF8] p-8 shadow-2xl flex flex-col md:flex-row gap-6 max-h-[90vh] overflow-y-auto"
+            className="relative max-w-3xl w-full bg-[var(--color-bg)] p-8 shadow-2xl flex flex-col md:flex-row gap-6 max-h-[90vh] overflow-y-auto border border-[var(--color-border)]"
             onClick={(e) => e.stopPropagation()}
           >
             <button
+              ref={closeBtnRef}
               onClick={() => setLightboxImage(null)}
-              className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-[#222222] text-white flex items-center justify-center text-xs"
+              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-[var(--color-text)] text-white hover:bg-[var(--color-accent)] flex items-center justify-center text-xs transition-colors"
+              aria-label="Close dialog"
             >
               ✕
             </button>
@@ -174,16 +194,16 @@ export default function PortfolioPage() {
             </div>
             <div className="w-full md:w-1/2 flex flex-col justify-between space-y-4 text-left">
               <div className="space-y-2">
-                <h3 className="font-serif text-2xl text-[#222222]">
+                <h3 id="portfolio-modal-title" className="font-serif text-2xl text-[var(--color-text)]">
                   {lightboxImage.title}
                 </h3>
-                <p className="font-serif text-sm text-[#222222]/80 leading-relaxed">
+                <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed">
                   {lightboxImage.desc}
                 </p>
               </div>
               <Link
                 href="/contact"
-                className="block w-full text-center py-3 bg-[#222222] hover:bg-[#B58A69] text-white font-sans text-xs uppercase tracking-[2px] transition-colors"
+                className="block w-full text-center py-3.5 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors font-medium"
               >
                 Enquire for Date ↗
               </Link>

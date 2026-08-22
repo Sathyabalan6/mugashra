@@ -11,11 +11,12 @@
     --color-bg: #FAFAF8;
     --color-bg-white: #FFFFFF;
     --color-text: #222222;
-    --color-text-body: rgba(34, 34, 34, 0.88);
-    --color-muted: rgba(34, 34, 34, 0.45);
-    --color-border: rgba(34, 34, 34, 0.1);
+    --color-text-body: rgba(34, 34, 34, 0.90);
+    --color-muted: rgba(34, 34, 34, 0.70);
+    --color-border: rgba(34, 34, 34, 0.12);
     --color-border-subtle: rgba(34, 34, 34, 0.06);
     --color-accent: #B58A69;
+    --color-accent-text: #8C5E3A;
     --color-accent-hover: #9B7050;
     --color-accent-subtle: rgba(181, 138, 105, 0.08);
   }
@@ -30,6 +31,7 @@
   --color-border: var(--color-border);
   --color-border-subtle: var(--color-border-subtle);
   --color-accent: var(--color-accent);
+  --color-accent-text: var(--color-accent-text);
   --color-accent-hover: var(--color-accent-hover);
   --color-accent-subtle: var(--color-accent-subtle);
 
@@ -55,7 +57,7 @@ html, body {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2.5px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .font-eyebrow {
@@ -63,8 +65,8 @@ html, body {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 2.5px;
-  font-weight: 500;
-  color: var(--color-accent);
+  font-weight: 600;
+  color: var(--color-accent-text);
 }
 
 /* Section H2: Serif normal weight, warm and classic */
@@ -89,7 +91,7 @@ p, li {
   line-height: 1.68;
 }
 
-/* Captions / Metadata */
+/* Captions / Metadata with WCAG AA compliant contrast */
 .caption-text, figcaption, .fine-print {
   font-family: var(--font-serif);
   font-style: italic;
@@ -104,12 +106,12 @@ a.accent-link {
   transition: color 0.25s ease;
 }
 a.accent-link:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
 }
 
 /* Interactive Focus Rings (8-State A11y) */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-accent-text);
   outline-offset: 2px;
 }
 
@@ -117,50 +119,6 @@ a.accent-link:hover {
 ::selection {
   background-color: var(--color-accent);
   color: #FFFFFF;
-}
-
-/* ── Luxury Animations & Keyframes ── */
-
-@keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-8px) rotate(1deg);
-  }
-}
-
-@keyframes pulseBracket {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.85;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-    color: #C8A882;
-  }
-}
-
-@keyframes rotateWatermark {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-float-slow {
-  animation: floatSlow 8s ease-in-out infinite;
-}
-
-.animate-bracket-pulse {
-  animation: pulseBracket 4s ease-in-out infinite;
-}
-
-.animate-watermark-spin {
-  animation: rotateWatermark 60s linear infinite;
 }
 
 /* Minimalist Scrollbar */
@@ -175,4 +133,16 @@ a.accent-link:hover {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent);
+}
+
+/* ── Motion Sensitivity & Reduced Motion Support ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

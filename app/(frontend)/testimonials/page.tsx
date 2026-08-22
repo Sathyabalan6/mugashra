@@ -54,13 +54,13 @@ export default async function TestimonialsPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#FAFAF8] text-[#222222] pt-12">
+    <div className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] pt-12">
       <FeedbackSection testimonials={testimonials} />
 
       <div className="text-center pb-24">
         <Link
           href="/contact"
-          className="inline-block px-8 py-3.5 bg-[#B58A69] hover:bg-[#9B7050] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-colors shadow-sm"
+          className="inline-block px-8 py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-colors shadow-xs min-h-[44px]"
         >
           Reserve Your Wedding Date ↗
         </Link>
