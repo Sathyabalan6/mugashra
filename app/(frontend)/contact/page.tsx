@@ -1,10 +1,11 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import { EnquiryForm } from '@/components/EnquiryForm'
+import { DateChecker } from '@/components/DateChecker'
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Mugashra Bridal Artistry',
-  description: 'Feel free to contact us for your wedding date availability.',
+  title: 'Contact & Date Availability | Mugashra Bridal Artistry',
+  description: 'Check Muhurtham wedding date availability and contact our Chennai bridal atelier.',
 }
 
 export default function ContactPage() {
@@ -15,9 +16,12 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           {/* Left Column: Heading & Studio Details */}
           <div className="lg:col-span-6 space-y-10 text-left">
-            <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl tracking-[0.1em] uppercase text-[var(--color-accent-text)] font-normal leading-[1.05]">
-              CONTACT US
-            </h1>
+            <div className="space-y-2">
+              <span className="font-eyebrow block">Bridal Atelier • Chennai</span>
+              <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl tracking-[0.1em] uppercase text-[var(--color-accent-text)] font-normal leading-[1.05]">
+                CONTACT US
+              </h1>
+            </div>
 
             {/* Opening Hours */}
             <div className="space-y-2">
@@ -53,13 +57,18 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right Column: Form & Intro */}
+          {/* Right Column: Date Checker + Form */}
           <div className="lg:col-span-6 space-y-8 text-left">
-            <p className="font-serif text-lg sm:text-xl text-[var(--color-text-body)] leading-relaxed font-light">
-              Feel free to contact us and we&apos;ll get back to you as soon as we can.
-            </p>
+            {/* Interactive Availability Tool */}
+            <DateChecker />
 
-            <EnquiryForm />
+            <div className="space-y-6 pt-4 border-t border-[var(--color-border)]">
+              <p className="font-serif text-lg sm:text-xl text-[var(--color-text-body)] leading-relaxed font-light">
+                Feel free to contact us and we&apos;ll get back to you as soon as we can.
+              </p>
+
+              <EnquiryForm />
+            </div>
           </div>
         </div>
       </section>
