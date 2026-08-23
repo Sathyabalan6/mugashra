@@ -19,6 +19,24 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const [prevPathname, setPrevPathname] = useState(pathname)
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname)
+    setMobileMenuOpen(false)
+  }
+
+  // Body scroll lock when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileMenuOpen])
+
   // Close drawer on Escape
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -107,15 +125,19 @@ export function Header() {
         </button>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu Overlay */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 z-50 md:hidden bg-[#181514]/90 backdrop-blur-md"
+          className="fixed inset-0 z-[60] md:hidden bg-[#181514]/90 backdrop-blur-md transition-opacity duration-300"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation drawer"
+          onClick={() => setMobileMenuOpen(false)}
         >
-          <div className="fixed right-0 top-0 bottom-0 w-[85%] max-w-sm bg-[#181514] p-8 shadow-2xl flex flex-col justify-between overflow-y-auto border-l border-white/10">
+          <div
+            className="fixed right-0 top-0 bottom-0 w-[85%] max-w-sm bg-[#181514] p-8 shadow-2xl flex flex-col justify-between overflow-y-auto border-l border-white/10"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div>
               <div className="flex items-center justify-between pb-6 border-b border-white/10">
                 <span className="font-sans text-sm font-medium tracking-[0.2em] text-white uppercase">
@@ -132,17 +154,24 @@ export function Header() {
                 </button>
               </div>
 
-              <nav className="flex flex-col gap-4 mt-8">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="font-sans text-[13px] uppercase tracking-[2.5px] text-[var(--color-accent)] hover:text-white transition-colors py-2 min-h-[44px] flex items-center"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+              <nav className="flex flex-col gap-4 mt-8" aria-label="Mobile Navigation Links">
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href
+                  return (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`font-sans text-[13px] uppercase tracking-[2.5px] transition-colors py-2 min-h-[44px] flex items-center ${
+                        isActive
+                          ? 'text-[var(--color-accent)] font-semibold'
+                          : 'text-[#E0D8D0] hover:text-white font-normal'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                })}
               </nav>
             </div>
 
@@ -150,7 +179,7 @@ export function Header() {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-center py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[12px] uppercase tracking-[2px] font-semibold transition-colors"
+                className="block w-full text-center py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[12px] uppercase tracking-[2px] font-semibold transition-colors shadow-lg"
               >
                 Reserve Wedding Date ↗
               </Link>

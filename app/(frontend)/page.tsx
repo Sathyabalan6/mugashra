@@ -7,9 +7,26 @@ import { FeedbackSection } from '@/components/FeedbackSection'
 
 export const revalidate = 3600
 
+interface TestimonialItem {
+  clientName: string
+  quote: string
+}
+
+interface HomePageData {
+  heroEyebrow?: string
+  heroTitle?: string
+  heroSubtitle?: string
+  heroDesktopImage?: string
+  heroMobileImage?: string
+  visionTitle?: string
+  visionText?: string
+  missionTitle?: string
+  missionText?: string
+}
+
 export default async function HomePage() {
-  let testimonials: any[] = []
-  let homePageData: any = null
+  let testimonials: TestimonialItem[] = []
+  let homePageData: HomePageData | null = null
 
   try {
     const payload = await getPayloadClient()
@@ -19,13 +36,16 @@ export default async function HomePage() {
       payload.findGlobal({ slug: 'home-page' }).catch(() => null),
     ])
     const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 800))
-    const [testRes, homeRes] = (await Promise.race([dbPromise, timeoutPromise])) as any
+    const [testRes, homeRes] = (await Promise.race([dbPromise, timeoutPromise])) as [
+      { docs?: TestimonialItem[] },
+      HomePageData | null,
+    ]
 
     if (testRes?.docs?.length) {
       testimonials = testRes.docs
     }
     homePageData = homeRes
-  } catch (error) {
+  } catch {
     // Instant fallback if database is locked or slow
   }
 

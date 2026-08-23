@@ -4,7 +4,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export function PricingSection({ packages = [] }: { packages?: any[] } = {}) {
+export function PricingSection() {
   return (
     <div className="space-y-24">
       {/* ── 1. Card 1: HIGH DEFINITION / AIRBRUSH ── */}

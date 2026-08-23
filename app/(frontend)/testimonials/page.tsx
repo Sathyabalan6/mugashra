@@ -11,16 +11,21 @@ export const metadata: Metadata = {
 
 export const revalidate = 60
 
+interface TestimonialItem {
+  clientName: string
+  quote: string
+}
+
 export default async function TestimonialsPage() {
-  let testimonials: any[] = []
+  let testimonials: TestimonialItem[] = []
 
   try {
     const payload = await getPayloadClient()
     const res = await payload.find({ collection: 'testimonials', sort: 'order' })
     if (res?.docs?.length) {
-      testimonials = res.docs
+      testimonials = res.docs as TestimonialItem[]
     }
-  } catch (error) {
+  } catch {
     // Fallback
   }
 

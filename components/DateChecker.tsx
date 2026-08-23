@@ -9,7 +9,6 @@ interface DateStatus {
 }
 
 export function DateChecker() {
-  const [selectedMonth, setSelectedMonth] = useState<string>('2026-11')
   const [checkedDate, setCheckedDate] = useState<string>('')
   const [result, setResult] = useState<DateStatus | null>(null)
 

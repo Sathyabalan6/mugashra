@@ -1,7 +1,11 @@
 import configPromise from '@payload-config'
 import { getPayload as getPayloadInstance, type Payload } from 'payload'
 
-let cachedPayload: Payload | null = (globalThis as any).payloadClient || null
+declare global {
+  var payloadClient: Payload | undefined
+}
+
+let cachedPayload: Payload | null = globalThis.payloadClient || null
 
 export const getPayloadClient = async (): Promise<Payload> => {
   if (cachedPayload) {
@@ -13,7 +17,7 @@ export const getPayloadClient = async (): Promise<Payload> => {
   })
 
   cachedPayload = client
-  ;(globalThis as any).payloadClient = client
+  globalThis.payloadClient = client
 
   return client
 }
