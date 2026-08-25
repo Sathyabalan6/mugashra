@@ -26,22 +26,33 @@ const isPostgres = databaseUri.startsWith('postgres://') || databaseUri.startsWi
 export default buildConfig({
   admin: {
     user: Users.slug,
+    meta: {
+      titleSuffix: '— Mugashra Bridal Atelier CMS',
+    },
+    components: {
+      graphics: {
+        Logo: '/components/payload/Logo#Logo',
+        Icon: '/components/payload/Icon#Icon',
+      },
+      beforeDashboard: ['/components/payload/DashboardWelcome#DashboardWelcome'],
+      afterNavLinks: ['/components/payload/NavFooter#NavFooter'],
+    },
     importMap: {
       baseDir: path.resolve(dirname),
     },
   },
   collections: [
-    Users,
-    Media,
-    ServicePackages,
-    PortfolioItems,
-    TeamMembers,
-    Testimonials,
     Enquiries,
+    PortfolioItems,
+    ServicePackages,
+    Testimonials,
+    TeamMembers,
+    Media,
+    Users,
   ],
   globals: [
-    SiteSettings,
     HomePage,
+    SiteSettings,
   ],
   editor: lexicalEditor(),
   sharp,

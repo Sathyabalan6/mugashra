@@ -2,9 +2,15 @@ import type { CollectionConfig } from 'payload'
 
 export const Enquiries: CollectionConfig = {
   slug: 'enquiries',
+  labels: {
+    singular: 'Bridal Inquiry',
+    plural: 'Bridal Inquiries',
+  },
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'phone', 'eventDate', 'serviceTier', 'venueLocation', 'status', 'createdAt'],
+    group: '💍 Bridal Inquiries',
+    description: 'Track client wedding dates, WhatsApp leads, ceremony requirements, and booking statuses.',
   },
   access: {
     create: () => true,
@@ -18,12 +24,18 @@ export const Enquiries: CollectionConfig = {
       type: 'text',
       required: true,
       label: 'Bride / Client Name',
+      admin: {
+        description: 'Full name of the bride or contact person.',
+      },
     },
     {
       name: 'phone',
       type: 'text',
       required: true,
       label: 'WhatsApp / Phone Number',
+      admin: {
+        description: 'Direct mobile or WhatsApp number for wedding consultation.',
+      },
     },
     {
       name: 'email',
@@ -36,6 +48,9 @@ export const Enquiries: CollectionConfig = {
       type: 'text',
       required: true,
       label: 'Wedding / Event Date',
+      admin: {
+        description: 'Primary Muhurtham, Reception, or ceremony date (e.g. "Nov 24, 2026").',
+      },
     },
     {
       name: 'eventTypes',
@@ -68,6 +83,9 @@ export const Enquiries: CollectionConfig = {
       type: 'text',
       required: true,
       label: 'Wedding City & Hall / Resort Name',
+      admin: {
+        description: 'e.g. Mayor Ramanathan Hall, Chennai or InterContinental Resort, Mahabalipuram',
+      },
     },
     {
       name: 'budgetRange',
@@ -83,19 +101,24 @@ export const Enquiries: CollectionConfig = {
       name: 'message',
       type: 'textarea',
       label: 'Special Requests, Saree Details, or Timing Notes',
+      admin: {
+        description: 'Specific saree draping requests, muhurtham morning time, or skin concerns.',
+      },
     },
     {
       name: 'status',
       type: 'select',
       defaultValue: 'new',
       options: [
-        { label: 'New Lead', value: 'new' },
-        { label: 'Contacted via WhatsApp', value: 'contacted' },
-        { label: 'Date Blocked / Advanced Paid', value: 'booked' },
-        { label: 'Archived / Unavailable', value: 'archived' },
+        { label: '⚡ New Lead (Pending Review)', value: 'new' },
+        { label: '💬 Contacted via WhatsApp', value: 'contacted' },
+        { label: '💍 Date Blocked / Advance Paid', value: 'booked' },
+        { label: '📁 Archived / Unavailable', value: 'archived' },
       ],
+      label: 'Inquiry Status',
       admin: {
         position: 'sidebar',
+        description: 'Update the pipeline status as you communicate with the bride.',
       },
     },
   ],

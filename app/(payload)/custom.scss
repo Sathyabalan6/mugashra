@@ -1,1 +1,623 @@
-// Custom SCSS overrides for Payload admin panel
+/* ==========================================================================
+   MUGASHRA ARTISTRY — LUXURY EDITORIAL ATELIER CMS DESIGN SYSTEM
+   Bespoke UI/UX Theme for Payload CMS 3.x Admin Panel
+   ========================================================================== */
+
+/* ── Typography & Global Variable Overrides ── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-serif: 'Playfair Display', 'Lora', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --style-radius-s: 6px;
+  --style-radius-m: 10px;
+  --style-radius-l: 14px;
+  --mugashra-gold: #B58A69;
+  --mugashra-gold-dark: #8C5E3A;
+  --mugashra-gold-light: #DFCAAE;
+  --mugashra-gold-subtle: rgba(181, 138, 105, 0.12);
+  --mugashra-gold-border: rgba(181, 138, 105, 0.28);
+}
+
+/* Light Theme Variables */
+html[data-theme='light'] {
+  --theme-bg: #F9F8F5;
+  --theme-input-bg: #FFFFFF;
+  --theme-border-color: rgba(42, 33, 24, 0.10);
+  
+  --theme-elevation-0: #FFFFFF;
+  --theme-elevation-50: #FAF8F5;
+  --theme-elevation-100: #F3EFEA;
+  --theme-elevation-150: #EAE3DC;
+  --theme-elevation-200: #DDD5CB;
+  --theme-elevation-250: #CF8A69;
+  --theme-elevation-300: #B58A69;
+  --theme-elevation-400: #8C735D;
+  --theme-elevation-500: #6B5645;
+  --theme-elevation-600: #4D3D30;
+  --theme-elevation-700: #33281F;
+  --theme-elevation-800: #221A14;
+  --theme-elevation-900: #15100B;
+  --theme-elevation-950: #0A0805;
+  --theme-elevation-1000: #000000;
+
+  --theme-text: #221A14;
+  --theme-text-secondary: #6B5645;
+  --theme-accent-500: #B58A69;
+  --theme-accent-600: #8C5E3A;
+
+  --theme-success-100: #EBF7EE;
+  --theme-success-500: #2E7D32;
+  --theme-warning-100: #FFF8E1;
+  --theme-warning-500: #D97706;
+  --theme-error-100: #FDF2F2;
+  --theme-error-500: #DC2626;
+}
+
+/* Dark Theme Variables */
+html[data-theme='dark'] {
+  --theme-bg: #0F0D0B;
+  --theme-input-bg: #1A1613;
+  --theme-border-color: rgba(223, 202, 174, 0.12);
+
+  --theme-elevation-0: #15120F;
+  --theme-elevation-50: #1C1814;
+  --theme-elevation-100: #25201B;
+  --theme-elevation-150: #322B24;
+  --theme-elevation-200: #423930;
+  --theme-elevation-250: #574B3F;
+  --theme-elevation-300: #736454;
+  --theme-elevation-400: #948270;
+  --theme-elevation-500: #B58A69;
+  --theme-elevation-600: #CBB096;
+  --theme-elevation-700: #DFCAAE;
+  --theme-elevation-800: #EFE4D6;
+  --theme-elevation-900: #F7F3EE;
+  --theme-elevation-950: #FAF8F6;
+  --theme-elevation-1000: #FFFFFF;
+
+  --theme-text: #F7F3EE;
+  --theme-text-secondary: #DFCAAE;
+  --theme-accent-500: #DFCAAE;
+  --theme-accent-600: #B58A69;
+}
+
+/* ── Global Layout Polish ── */
+body {
+  font-family: var(--font-body);
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--theme-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--theme-elevation-200);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mugashra-gold);
+}
+
+/* ── Top Header Bar ── */
+.app-header {
+  border-bottom: 1px solid var(--theme-border-color);
+  background: var(--theme-elevation-0);
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
+}
+
+/* ── Sidebar Navigation Polish ── */
+.nav {
+  background-color: var(--theme-elevation-50);
+  border-right: 1px solid var(--theme-border-color);
+}
+
+.nav__wrap {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+/* Nav Group Headings */
+.nav__group-label,
+.nav-group__label {
+  font-family: var(--font-body);
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+  color: var(--mugashra-gold-dark) !important;
+  margin-top: 24px !important;
+  margin-bottom: 8px !important;
+  padding-left: 14px !important;
+  opacity: 0.9;
+}
+
+html[data-theme='dark'] .nav__group-label,
+html[data-theme='dark'] .nav-group__label {
+  color: var(--mugashra-gold-light) !important;
+}
+
+/* Nav Links */
+.nav__link,
+.nav a {
+  border-radius: var(--style-radius-s);
+  margin-inline: 8px;
+  padding: 8px 12px;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.nav__link:hover,
+.nav a:hover {
+  background-color: var(--theme-elevation-100);
+  color: var(--theme-text);
+  transform: translateX(2px);
+}
+
+.nav__link--active,
+.nav a[aria-current='page'] {
+  background: var(--mugashra-gold-subtle) !important;
+  color: var(--theme-text) !important;
+  font-weight: 600 !important;
+  border-left: 3px solid var(--mugashra-gold);
+}
+
+/* ── Dashboard & Welcome Card Components ── */
+.mugashra-dashboard-root {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* Hero Banner Card */
+.mugashra-hero-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--style-radius-l);
+  padding: 36px 40px;
+  background: linear-gradient(135deg, #221A14 0%, #15100B 60%, #2A1F16 100%);
+  border: 1px solid rgba(181, 138, 105, 0.35);
+  box-shadow: 0 12px 36px -8px rgba(21, 16, 11, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  color: #FFFFFF;
+}
+
+.mugashra-hero-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(181, 138, 105, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.mugashra-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+}
+
+.mugashra-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: rgba(181, 138, 105, 0.18);
+  border: 1px solid rgba(181, 138, 105, 0.4);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #E8D8C8;
+  margin-bottom: 14px;
+}
+
+.mugashra-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ADE80;
+  box-shadow: 0 0 8px #4ADE80;
+  animation: mugashraPulse 2s infinite;
+}
+
+@keyframes mugashraPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.mugashra-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 3.2vw, 38px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin: 0 0 10px 0;
+  letter-spacing: 0.5px;
+}
+
+.mugashra-hero-title em {
+  font-style: italic;
+  color: #DFCAAE;
+  font-weight: 300;
+}
+
+.mugashra-hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 24px 0;
+  letter-spacing: 0.5px;
+}
+
+.mugashra-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.mugashra-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--style-radius-s);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.mugashra-btn-primary {
+  background: linear-gradient(135deg, #B58A69 0%, #8C5E3A 100%);
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 14px rgba(140, 94, 58, 0.35);
+}
+
+.mugashra-btn-primary:hover {
+  background: linear-gradient(135deg, #C59A79 0%, #9C6E4A 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(140, 94, 58, 0.45);
+}
+
+.mugashra-btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+}
+
+.mugashra-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.mugashra-hero-crest {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.mugashra-crest-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(181, 138, 105, 0.25) 0%, rgba(26, 20, 15, 0.6) 100%);
+  border: 1px solid rgba(181, 138, 105, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 24px rgba(181, 138, 105, 0.2);
+}
+
+@media (max-width: 768px) {
+  .mugashra-hero-card {
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .mugashra-hero-crest {
+    display: none;
+  }
+}
+
+/* ── Launchpad Grid Cards ── */
+.mugashra-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.mugashra-card {
+  background: var(--theme-elevation-0);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--style-radius-m);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.mugashra-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--mugashra-gold-border);
+  box-shadow: 0 8px 24px rgba(181, 138, 105, 0.12);
+  background: var(--theme-elevation-50);
+}
+
+.mugashra-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--style-radius-s);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.mugashra-card-body {
+  flex-grow: 1;
+}
+
+.mugashra-card-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mugashra-gold);
+  margin-bottom: 4px;
+}
+
+.mugashra-card-title {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--theme-text);
+  margin: 0 0 6px 0;
+  line-height: 1.25;
+}
+
+.mugashra-card-desc {
+  font-size: 12.5px;
+  color: var(--theme-text-secondary);
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+}
+
+.mugashra-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--theme-border-color);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mugashra-gold-dark);
+}
+
+html[data-theme='dark'] .mugashra-card-footer {
+  color: var(--mugashra-gold-light);
+}
+
+.mugashra-card-arrow {
+  transition: transform 0.2s ease;
+}
+
+.mugashra-card:hover .mugashra-card-arrow {
+  transform: translateX(4px);
+}
+
+/* ── Concierge Workflow Bar ── */
+.mugashra-concierge-bar {
+  background: var(--theme-elevation-50);
+  border: 1px solid var(--theme-border-color);
+  border-left: 3px solid var(--mugashra-gold);
+  border-radius: var(--style-radius-m);
+  padding: 16px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.mugashra-concierge-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--theme-text);
+}
+
+.mugashra-concierge-steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--theme-text-secondary);
+}
+
+.mugashra-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--theme-elevation-0);
+  padding: 4px 10px;
+  border-radius: var(--style-radius-s);
+  border: 1px solid var(--theme-border-color);
+  font-weight: 500;
+}
+
+.mugashra-step-num {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--mugashra-gold);
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mugashra-step-divider {
+  color: var(--mugashra-gold);
+  font-weight: bold;
+}
+
+/* ── Nav Footer Component ── */
+.mugashra-nav-footer {
+  margin-top: auto;
+  padding: 16px;
+  border-top: 1px solid var(--theme-border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mugashra-nav-live-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--style-radius-s);
+  background: var(--theme-elevation-100);
+  border: 1px solid var(--theme-border-color);
+  color: var(--theme-text) !important;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.mugashra-nav-live-btn:hover {
+  background: var(--mugashra-gold-subtle);
+  border-color: var(--mugashra-gold-border);
+  color: var(--mugashra-gold-dark) !important;
+}
+
+.mugashra-nav-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--theme-text-secondary);
+}
+
+.mugashra-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mugashra-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22C55E;
+}
+
+.mugashra-version {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  opacity: 0.6;
+}
+
+/* ── Enhanced Payload Cards & Lists ── */
+.card {
+  border-radius: var(--style-radius-m) !important;
+  border: 1px solid var(--theme-border-color) !important;
+  transition: all 0.2s ease !important;
+}
+
+.card:hover {
+  border-color: var(--mugashra-gold-border) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Table Polish */
+.table {
+  border-radius: var(--style-radius-m) !important;
+  overflow: hidden;
+}
+
+.table th {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  color: var(--theme-text-secondary) !important;
+  background: var(--theme-elevation-50) !important;
+}
+
+.table tr:hover td {
+  background-color: var(--mugashra-gold-subtle) !important;
+}
+
+/* Buttons */
+.btn--style-primary {
+  background: linear-gradient(135deg, #B58A69 0%, #8C5E3A 100%) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: var(--style-radius-s) !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 8px rgba(140, 94, 58, 0.25) !important;
+}
+
+.btn--style-primary:hover {
+  background: linear-gradient(135deg, #C59A79 0%, #9C6E4A 100%) !important;
+  box-shadow: 0 4px 14px rgba(140, 94, 58, 0.35) !important;
+}
+
+/* Status Badges */
+.pill--style-success {
+  background: rgba(34, 197, 94, 0.12) !important;
+  color: #16A34A !important;
+  border: 1px solid rgba(34, 197, 94, 0.25) !important;
+}
+
+.pill--style-warning {
+  background: rgba(245, 158, 11, 0.12) !important;
+  color: #D97706 !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+}
+
+/* Inputs & Form Fields */
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--mugashra-gold) !important;
+  box-shadow: 0 0 0 3px var(--mugashra-gold-subtle) !important;
+}

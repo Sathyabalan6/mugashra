@@ -2,9 +2,15 @@ import type { CollectionConfig } from 'payload'
 
 export const TeamMembers: CollectionConfig = {
   slug: 'team-members',
+  labels: {
+    singular: 'Team Member',
+    plural: 'Studio Team & Artists',
+  },
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'role', 'specialization', 'yearsExperience', 'order'],
+    group: '🏛️ Studio & Atelier',
+    description: 'Master artists, senior stylists, biographies, and experience credentials.',
   },
   access: {
     read: () => true,

@@ -2,9 +2,15 @@ import type { CollectionConfig } from 'payload'
 
 export const Testimonials: CollectionConfig = {
   slug: 'testimonials',
+  labels: {
+    singular: 'Testimonial',
+    plural: 'Bride Testimonials',
+  },
   admin: {
     useAsTitle: 'clientName',
     defaultColumns: ['clientName', 'eventType', 'location', 'rating', 'featured', 'order'],
+    group: '💄 Artistry & Portfolio',
+    description: 'Curate client love notes, 5-star bridal reviews, wedding venues, and testimonials.',
   },
   access: {
     read: () => true,
@@ -15,6 +21,9 @@ export const Testimonials: CollectionConfig = {
       type: 'text',
       required: true,
       label: 'Bride & Groom / Client Name',
+      admin: {
+        description: 'e.g. "Dr. Sneha & Ashwin" or "Pooja Ramanathan"',
+      },
     },
     {
       name: 'eventType',

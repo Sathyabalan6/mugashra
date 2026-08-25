@@ -2,8 +2,10 @@ import type { GlobalConfig } from 'payload'
 
 export const HomePage: GlobalConfig = {
   slug: 'home-page',
+  label: 'Homepage Content',
   admin: {
-    group: 'Site Content',
+    group: '🌐 Site Content',
+    description: 'Manage homepage hero typography, high-res bridal imagery, and Studio Vision & Mission copy.',
   },
   access: {
     read: () => true,

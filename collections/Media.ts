@@ -2,9 +2,15 @@ import type { CollectionConfig } from 'payload'
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  labels: {
+    singular: 'Media Asset',
+    plural: 'Media Library',
+  },
   admin: {
     useAsTitle: 'alt',
     defaultColumns: ['filename', 'alt', 'mimeType', 'filesize', 'updatedAt'],
+    group: '🏛️ Studio & Atelier',
+    description: 'High-resolution bridal photography, portfolio imagery, and media uploads.',
   },
   access: {
     read: () => true,

@@ -2,8 +2,10 @@ import type { GlobalConfig } from 'payload'
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
+  label: 'Studio & Atelier Settings',
   admin: {
-    group: 'Site Content',
+    group: '🌐 Site Content',
+    description: 'Studio contact details, Chennai address, Instagram / Facebook links, and bridal appointment hours.',
   },
   access: {
     read: () => true,

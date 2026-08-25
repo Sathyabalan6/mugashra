@@ -2,9 +2,15 @@ import type { CollectionConfig } from 'payload'
 
 export const ServicePackages: CollectionConfig = {
   slug: 'service-packages',
+  labels: {
+    singular: 'Service Package',
+    plural: 'Service Packages',
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'tier', 'category', 'startingPrice', 'badge', 'order'],
+    group: '💄 Artistry & Portfolio',
+    description: 'Configure bespoke bridal pricing tiers, session durations, inclusions, and highlight badges.',
   },
   access: {
     read: () => true,
@@ -15,6 +21,9 @@ export const ServicePackages: CollectionConfig = {
       type: 'text',
       required: true,
       label: 'Package Name',
+      admin: {
+        description: 'e.g. "Muhurtham Master Artistry", "The Complete Royal Bridal Suite"',
+      },
     },
     {
       name: 'tier',
@@ -22,10 +31,13 @@ export const ServicePackages: CollectionConfig = {
       required: true,
       defaultValue: 'founder',
       options: [
-        { label: 'Signature Master Artist (Founder Tier)', value: 'founder' },
-        { label: 'Senior Studio Team (Atelier Tier)', value: 'team' },
+        { label: '👑 Signature Master Artist (Founder Tier)', value: 'founder' },
+        { label: '✨ Senior Studio Team (Atelier Tier)', value: 'team' },
       ],
       label: 'Artistry Tier',
+      admin: {
+        description: 'Select whether this package is styled personally by the Founder or Senior Studio Stylists.',
+      },
     },
     {
       name: 'category',
@@ -46,17 +58,26 @@ export const ServicePackages: CollectionConfig = {
       name: 'tagline',
       type: 'text',
       label: 'Short Tagline / Highlight',
+      admin: {
+        description: 'A brief luxury phrase summarizing the experience.',
+      },
     },
     {
       name: 'description',
       type: 'textarea',
       label: 'Detailed Description',
+      admin: {
+        description: 'Describe the makeup base, skin prep ritual, draping, and jewelry setting involved.',
+      },
     },
     {
       name: 'startingPrice',
       type: 'number',
       required: true,
       label: 'Starting Price (INR ₹)',
+      admin: {
+        description: 'Base pricing in INR (e.g. 45000).',
+      },
     },
     {
       name: 'duration',
@@ -72,12 +93,16 @@ export const ServicePackages: CollectionConfig = {
     {
       name: 'inclusions',
       type: 'array',
-      label: 'Package Inclusions',
+      label: 'Package Inclusions & Deliverables',
+      admin: {
+        description: 'Bullet points detailing what is included in this bridal service package.',
+      },
       fields: [
         {
           name: 'item',
           type: 'text',
           required: true,
+          label: 'Inclusion Item (e.g. "Hydra-prep luxury skin ritual", "Premium HD Airbrush Foundation")',
         },
       ],
     },
@@ -85,6 +110,9 @@ export const ServicePackages: CollectionConfig = {
       name: 'termsNote',
       type: 'text',
       label: 'Travel / Booking Terms Note',
+      admin: {
+        description: 'e.g. "Travel & accommodation for outstation weddings billed separately at actuals."',
+      },
     },
     {
       name: 'order',
