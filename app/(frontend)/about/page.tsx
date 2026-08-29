@@ -37,7 +37,7 @@ export default function AboutPage() {
             PHILOSOPHY
           </h1>
           <p className="font-serif text-sm sm:text-base text-white/80 leading-relaxed pt-2">
-            A sanctuary of bridal beauty nestled in Chennai, dedicated to curating transcendent South Indian wedding looks.
+            Founded by Lead Master Artist <span className="text-white font-medium">Shwetha Mohan</span>, Mugashra Artistry is a sanctuary of bridal beauty nestled in Chennai, dedicated to curating transcendent South Indian wedding looks.
           </p>
         </div>
       </section>
@@ -84,19 +84,42 @@ export default function AboutPage() {
               THE ATELIER TEAM
             </h2>
             <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)] max-w-xl mx-auto leading-relaxed">
-              Every specialist in our studio is personally trained in our signature techniques to ensure flawless consistency across your bridal party.
+              Led by Founder &amp; Master Artist Shwetha Mohan, every specialist in our studio is personally trained in our signature techniques to ensure flawless consistency across your bridal party.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Founder Card */}
+            <div className="border border-[var(--color-border)] bg-[var(--color-bg)] p-8 space-y-6">
+              <div className="relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
+                <Image
+                  src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80"
+                  alt="Shwetha Mohan - Founder & Master Bridal Artist"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover object-center grayscale contrast-110"
+                />
+              </div>
+
+              <div className="space-y-2 text-left">
+                <span className="font-eyebrow block">Founder &amp; Lead Master Artist</span>
+                <h3 className="font-serif text-2xl text-[var(--color-text)] font-normal">
+                  Shwetha Mohan
+                </h3>
+                <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed">
+                  Over 9 years of luxury bridal styling across South India, specialized in high-definition skin realism, Temptu airbrush artistry, and bespoke Muhurtham elegance.
+                </p>
+              </div>
+            </div>
+
             {/* Team Member 1 */}
-            <div className="border border-[var(--color-border)] bg-[var(--color-bg)] p-8 sm:p-12 space-y-6">
+            <div className="border border-[var(--color-border)] bg-[var(--color-bg)] p-8 space-y-6">
               <div className="relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
                 <Image
                   src="https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=800&q=80"
                   alt="Senior Bridal Hair Specialist"
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -113,13 +136,13 @@ export default function AboutPage() {
             </div>
 
             {/* Team Member 2 */}
-            <div className="border border-[var(--color-border)] bg-[var(--color-bg)] p-8 sm:p-12 space-y-6">
+            <div className="border border-[var(--color-border)] bg-[var(--color-bg)] p-8 space-y-6">
               <div className="relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
                 <Image
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
                   alt="Senior Saree Draping Specialist"
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>

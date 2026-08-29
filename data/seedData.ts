@@ -264,7 +264,7 @@ export const INITIAL_PORTFOLIO: PortfolioItem[] = [
 export const INITIAL_TEAM: TeamMember[] = [
   {
     id: 'team-1',
-    name: 'Lead Master Artist',
+    name: 'Shwetha Mohan',
     role: 'Founder & Master Bridal Artist',
     specialization: 'High-Definition Bridal Complexion, Airbrush & Heritage South Indian Artistry',
     bio: 'With over 9 years of luxury wedding experience across South India and destination weddings, our Lead Artist has styled over 650+ brides. Trained in London and Mumbai, the signature aesthetic honors sacred Tamil bridal customs with modern editorial sophistication.',

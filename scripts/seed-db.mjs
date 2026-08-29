@@ -254,7 +254,7 @@ async function seed() {
     console.log('Seeding team members...')
     const teamData = [
       {
-        name: 'Lead Master Artist',
+        name: 'Shwetha Mohan',
         role: 'Founder & Master Bridal Artist',
         specialization: 'High-Definition Bridal Complexion, Airbrush & Heritage South Indian Artistry',
         bio: 'With over 9 years of luxury wedding experience across South India, our Lead Artist has styled over 650+ brides with signature skin-realism.',

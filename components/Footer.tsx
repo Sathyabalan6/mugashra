@@ -59,15 +59,15 @@ export function Footer() {
 
           {/* Center: Brand Name & Studio Information */}
           <div className="lg:col-span-5 space-y-5 text-left">
-            <h2 className="font-serif text-sm tracking-[0.3em] uppercase text-[var(--color-text)] font-medium">
-              M U G A S H R A &nbsp;&nbsp; A R T I S T R Y
+            <h2 className="font-serif text-sm sm:text-base tracking-[0.24em] uppercase text-[var(--color-text)] font-medium whitespace-nowrap">
+              MUGASHRA ARTISTRY
             </h2>
             <p className="font-sans text-xs uppercase tracking-[2px] text-[var(--color-muted)] leading-relaxed">
-              ATELIER STUDIO<br />
+              ATELIER STUDIO • FOUNDED BY SHWETHA MOHAN<br />
               CHENNAI, TAMIL NADU, INDIA
             </p>
             <p className="font-serif text-xs text-[var(--color-text-body)] leading-relaxed pt-2">
-              A pioneer in luxury South Indian bridal styling, known for championing radiant, skin-realism looks. Dedicated to providing an unmatched bridal experience with a master product kit.
+              Founded by Lead Master Artist Shwetha Mohan, Mugashra Artistry is a pioneer in luxury South Indian bridal styling, known for championing radiant, skin-realism looks and personalized bridal experiences with a master product kit.
             </p>
             <p className="caption-text text-xs pt-1">
               Exalted for signature high-definition glow, heritage Kanjeevaram draping, and architectural hair design.
