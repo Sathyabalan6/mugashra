@@ -130,7 +130,7 @@ export default async function HomePage() {
               <span className="font-sans text-[10px] sm:text-xs uppercase tracking-[3px] text-[var(--color-accent)] font-medium block">
                 {heroEyebrow}
               </span>
-              <h1 className="font-serif text-3xl sm:text-7xl lg:text-[92px] leading-[1.04] tracking-[0.04em] uppercase text-[var(--color-accent)] font-normal drop-shadow-md whitespace-pre-line">
+              <h1 className="display-heading text-[var(--color-accent)] drop-shadow-md whitespace-pre-line">
                 {heroTitle.includes(' ') ? (
                   <>
                     {heroTitle.split(' ')[0]}<br />

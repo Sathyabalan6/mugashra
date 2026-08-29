@@ -56,7 +56,20 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Typography Scale & Contrast ── */
+/* ── Mathematical Fluid Scale System (frontend-math-precision) ── */
+:root {
+  /* Fluid Typography Clamps: y = mx + c (Viewport Range: 375px -> 1440px) */
+  --fluid-display: clamp(2.25rem, 1.37rem + 3.76vw, 4.75rem);   /* 36px -> 76px */
+  --fluid-h1:      clamp(2.00rem, 1.296rem + 3.00vw, 4.00rem);   /* 32px -> 64px */
+  --fluid-h2:      clamp(1.625rem, 1.141rem + 2.066vw, 3.00rem); /* 26px -> 48px */
+  --fluid-h3:      clamp(1.25rem, 1.039rem + 0.901vw, 1.85rem);  /* 20px -> 29.6px */
+  --fluid-body:    clamp(0.9375rem, 0.893rem + 0.188vw, 1.0625rem); /* 15px -> 17px */
+  --fluid-eyebrow: clamp(0.625rem, 0.559rem + 0.282vw, 0.8125rem);  /* 10px -> 13px */
+
+  /* Fluid Spacing & Section Paddings: y = mx + c */
+  --fluid-space-section: clamp(4.00rem, 2.24rem + 7.51vw, 9.00rem); /* 64px -> 144px */
+  --fluid-space-gutter:  clamp(1.50rem, 0.97rem + 2.25vw, 3.00rem); /* 24px -> 48px */
+}
 
 .font-nav {
   font-family: var(--font-sans);
@@ -68,33 +81,45 @@ html, body {
 
 .font-eyebrow {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: var(--fluid-eyebrow);
   text-transform: uppercase;
   letter-spacing: 2.5px;
   font-weight: 600;
   color: var(--color-accent-text);
 }
 
+/* Master Display Heading */
+.display-heading {
+  font-family: var(--font-serif);
+  font-size: var(--fluid-display);
+  line-height: 1.06;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+
 /* Section H2: Serif normal weight, warm and classic */
 h2.section-heading, h2 {
   font-family: var(--font-serif);
-  font-size: clamp(28px, 3.8vw, 38px);
+  font-size: var(--fluid-h2);
   font-weight: 400;
   color: var(--color-text);
-  line-height: 1.25;
+  line-height: 1.22;
   letter-spacing: -0.015em;
 }
 
 h3 {
   font-family: var(--font-serif);
+  font-size: var(--fluid-h3);
   font-weight: 400;
   color: var(--color-text);
+  line-height: 1.35;
 }
 
 p, li {
   font-family: var(--font-serif);
   color: var(--color-text-body);
-  line-height: 1.68;
+  font-size: var(--fluid-body);
+  line-height: 1.75;
 }
 
 /* Captions / Metadata with WCAG AA compliant contrast */
