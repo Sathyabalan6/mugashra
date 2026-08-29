@@ -75,7 +75,43 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── 3. The Atelier Team ── */}
+      {/* ── 3. The Master Product Kit & Standards ── */}
+      <section className="py-20 sm:py-28 px-6 sm:px-12 bg-[#181514] text-white border-t border-white/10">
+        <div className="max-w-[1300px] mx-auto space-y-12">
+          <div className="text-center space-y-3 max-w-2xl mx-auto">
+            <span className="font-sans text-[11px] uppercase tracking-[3px] text-[var(--color-accent)] font-medium block">
+              Pure Luxury Formulations
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.15em] uppercase text-white font-normal">
+              THE MASTER PRODUCT KIT
+            </h2>
+            <p className="font-serif text-sm sm:text-base text-white/70 leading-relaxed">
+              We exclusively deploy globally celebrated skincare and makeup houses, vetted for high-humidity resistance and 4K cinema resolution.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+            <div className="p-6 border border-white/10 bg-white/5 space-y-2">
+              <span className="font-serif text-lg text-[var(--color-accent)]">Temptu Pro HD</span>
+              <p className="font-sans text-[11px] uppercase tracking-[1.5px] text-white/60">Airbrush Complexion</p>
+            </div>
+            <div className="p-6 border border-white/10 bg-white/5 space-y-2">
+              <span className="font-serif text-lg text-[var(--color-accent)]">Charlotte Tilbury</span>
+              <p className="font-sans text-[11px] uppercase tracking-[1.5px] text-white/60">Pillow Talk &amp; Flawless Filter</p>
+            </div>
+            <div className="p-6 border border-white/10 bg-white/5 space-y-2">
+              <span className="font-serif text-lg text-[var(--color-accent)]">Dior Backstage</span>
+              <p className="font-sans text-[11px] uppercase tracking-[1.5px] text-white/60">Radiant Glow Primers</p>
+            </div>
+            <div className="p-6 border border-white/10 bg-white/5 space-y-2">
+              <span className="font-serif text-lg text-[var(--color-accent)]">NARS &amp; Huda</span>
+              <p className="font-sans text-[11px] uppercase tracking-[1.5px] text-white/60">16-Hour Transferproof</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4. The Atelier Team ── */}
       <section id="team" className="py-24 md:py-36 px-6 sm:px-12 bg-[var(--color-bg-white)] border-t border-[var(--color-border)]">
         <div className="max-w-[1300px] mx-auto space-y-16">
           <div className="text-center space-y-3">

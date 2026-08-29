@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { getPayloadClient } from '@/lib/payload'
 import { VisionMissionSection } from '@/components/VisionMissionSection'
 import { FeedbackSection } from '@/components/FeedbackSection'
+import { DateChecker } from '@/components/DateChecker'
 import { PageTransition } from '@/components/PageTransition'
 
 export const revalidate = 3600
@@ -163,7 +164,111 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── 2. Vision & Mission Section ── */}
+      {/* ── 2. Date Availability Strip ── */}
+      <section className="py-12 sm:py-16 px-6 sm:px-12 bg-[var(--color-bg-white)] border-b border-[var(--color-border)]">
+        <div className="max-w-[1000px] mx-auto">
+          <DateChecker />
+        </div>
+      </section>
+
+      {/* ── 3. The Ceremonial Chronicle: Dual Look Transformation ── */}
+      <section className="py-20 sm:py-32 px-6 sm:px-12 max-w-[1300px] mx-auto">
+        <div className="space-y-16">
+          <div className="text-center space-y-3 max-w-2xl mx-auto">
+            <span className="font-eyebrow block">Signature Dual-Event Transformation</span>
+            <h2 className="section-heading">
+              THE SACRED RITUAL &amp; THE RED CARPET
+            </h2>
+            <p className="caption-text text-sm sm:text-base">
+              Every South Indian celebration demands a master balance: sacred purity under morning temple lights, and high-wattage glamour under evening reception chandeliers.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
+            {/* Look 1: Sacred Muhurtham */}
+            <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-8 sm:p-10 space-y-6 flex flex-col justify-between group">
+              <div className="space-y-6">
+                <div className="relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-xs">
+                  <Image
+                    src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=85"
+                    alt="The Sacred Muhurtham in Crimson Silk"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover group-hover:scale-102 transition-transform duration-700"
+                  />
+                  <div className="absolute top-4 left-4 px-3.5 py-1.5 bg-black/80 backdrop-blur-xs text-white text-[10px] uppercase font-sans tracking-[2px]">
+                    04:30 AM • Sacred Rituals
+                  </div>
+                </div>
+
+                <div className="space-y-3 text-left">
+                  <span className="font-eyebrow block">Traditional Heritage</span>
+                  <h3 className="font-serif text-2xl text-[var(--color-text)]">
+                    The Sacred Muhurtham
+                  </h3>
+                  <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed">
+                    Sweat-resistant, waterproof HD complexion designed to stay radiant through sacred homams. Paired with 48-hour pre-pleated Kanjeevaram silks, antique temple gold, and fresh Madurai Malli poola jada.
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-[var(--color-border)] flex items-center justify-between">
+                <span className="font-sans text-xs uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-medium">
+                  HD Waterproof Complexion
+                </span>
+                <Link
+                  href="/portfolio"
+                  className="font-sans text-xs uppercase tracking-[2px] text-[var(--color-text)] hover:text-[var(--color-accent-text)] transition-colors"
+                >
+                  Explore Look ↗
+                </Link>
+              </div>
+            </div>
+
+            {/* Look 2: Contemporary Reception */}
+            <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-8 sm:p-10 space-y-6 flex flex-col justify-between group">
+              <div className="space-y-6">
+                <div className="relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-xs">
+                  <Image
+                    src="https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=1000&q=85"
+                    alt="Contemporary Glass-Skin Reception"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover group-hover:scale-102 transition-transform duration-700"
+                  />
+                  <div className="absolute top-4 left-4 px-3.5 py-1.5 bg-black/80 backdrop-blur-xs text-white text-[10px] uppercase font-sans tracking-[2px]">
+                    07:00 PM • Evening Glamour
+                  </div>
+                </div>
+
+                <div className="space-y-3 text-left">
+                  <span className="font-eyebrow block">Editorial Red Carpet</span>
+                  <h3 className="font-serif text-2xl text-[var(--color-text)]">
+                    The Modern Reception
+                  </h3>
+                  <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed">
+                    Sculpted Temptu airbrush base with glass-skin glow, champagne shimmer lids, voluminous textured Hollywood waves, and modern lehenga silhouette draping.
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-[var(--color-border)] flex items-center justify-between">
+                <span className="font-sans text-xs uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-medium">
+                  Temptu Airbrush Artistry
+                </span>
+                <Link
+                  href="/portfolio"
+                  className="font-sans text-xs uppercase tracking-[2px] text-[var(--color-text)] hover:text-[var(--color-accent-text)] transition-colors"
+                >
+                  Explore Look ↗
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4. Vision & Mission Section ── */}
       <VisionMissionSection
         visionTitle={homePageData?.visionTitle}
         visionText={homePageData?.visionText}
@@ -171,7 +276,7 @@ export default async function HomePage() {
         missionText={homePageData?.missionText}
       />
 
-      {/* ── 3. Feedback Section ── */}
+      {/* ── 5. Feedback Section ── */}
       <FeedbackSection testimonials={testimonials} />
     </PageTransition>
   )
