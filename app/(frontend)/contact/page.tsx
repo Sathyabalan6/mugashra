@@ -2,6 +2,7 @@ import React from 'react'
 import type { Metadata } from 'next'
 import { EnquiryForm } from '@/components/EnquiryForm'
 import { DateChecker } from '@/components/DateChecker'
+import { PageTransition } from '@/components/PageTransition'
 
 export const metadata: Metadata = {
   title: 'Contact & Date Availability | Mugashra Bridal Artistry',
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+    <PageTransition className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
       {/* ── Main Contact Section ── */}
       <section className="py-24 md:py-36 px-6 sm:px-12 max-w-[1300px] mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
@@ -88,6 +89,6 @@ export default function ContactPage() {
           </p>
         </div>
       </section>
-    </div>
+    </PageTransition>
   )
 }

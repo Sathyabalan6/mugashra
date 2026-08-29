@@ -38,7 +38,7 @@ export const SiteSettings: GlobalConfig = {
     {
       name: 'instagramUrl',
       type: 'text',
-      defaultValue: 'https://instagram.com/mugashra',
+      defaultValue: 'https://www.instagram.com/mugaashra_makeover',
       label: 'Instagram URL',
     },
     {

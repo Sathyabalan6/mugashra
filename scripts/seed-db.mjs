@@ -300,7 +300,7 @@ async function seed() {
         phone: '+91 (0) 73388 38669',
         email: 'appointments@mugashra.com',
         address: 'Atelier Studio • Chennai, Tamil Nadu, India',
-        instagram: 'https://instagram.com/mugashra',
+        instagram: 'https://www.instagram.com/mugaashra_makeover',
         openingHours: 'Mon - Sat: 10:00 AM - 6:00 PM • Sunday by Bridal Appointment Only',
       },
     })

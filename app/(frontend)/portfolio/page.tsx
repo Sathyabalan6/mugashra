@@ -1,24 +1,14 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, ViewTransition } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { PageTransition } from '@/components/PageTransition'
 
 export default function PortfolioPage() {
   const [activeCategory, setActiveCategory] = useState<string | null>('bridal')
   const [lightboxImage, setLightboxImage] = useState<{ url: string; title: string; desc: string } | null>(null)
   const closeBtnRef = useRef<HTMLButtonElement>(null)
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setLightboxImage(null)
-    }
-    if (lightboxImage) {
-      window.addEventListener('keydown', handleKeyDown)
-      closeBtnRef.current?.focus()
-    }
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [lightboxImage])
 
   const categories = [
     {
@@ -77,8 +67,41 @@ export default function PortfolioPage() {
     },
   ]
 
+  const allItems = categories.flatMap((cat) => cat.items)
+  const currentCategoryItems = categories.find((c) => c.id === activeCategory)?.items || allItems
+  const currentIndex = currentCategoryItems.findIndex((item) => item.url === lightboxImage?.url)
+
+  const handlePrev = () => {
+    if (currentIndex <= 0) {
+      setLightboxImage(currentCategoryItems[currentCategoryItems.length - 1])
+    } else {
+      setLightboxImage(currentCategoryItems[currentIndex - 1])
+    }
+  }
+
+  const handleNext = () => {
+    if (currentIndex >= currentCategoryItems.length - 1 || currentIndex === -1) {
+      setLightboxImage(currentCategoryItems[0])
+    } else {
+      setLightboxImage(currentCategoryItems[currentIndex + 1])
+    }
+  }
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxImage(null)
+      if (e.key === 'ArrowLeft') handlePrev()
+      if (e.key === 'ArrowRight') handleNext()
+    }
+    if (lightboxImage) {
+      window.addEventListener('keydown', handleKeyDown)
+      closeBtnRef.current?.focus()
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [lightboxImage, activeCategory, currentIndex])
+
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+    <PageTransition className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
       {/* ── 1. Editorial Master Banner ── */}
       <section className="relative w-full min-h-[60vh] sm:min-h-[75vh] flex items-center justify-start px-8 sm:px-16 pt-24 bg-[#E0D8D0] overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -125,37 +148,40 @@ export default function PortfolioPage() {
 
               {/* Expandable Looks Grid */}
               {isOpen && (
-                <div className="bg-[var(--color-bg-white)] p-8 sm:p-16">
-                  <div className="max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
-                    {cat.items.map((item, idx) => (
-                      <button
-                        key={idx}
-                        type="button"
-                        onClick={() => setLightboxImage({ url: item.url, title: item.title, desc: item.desc })}
-                        className="group cursor-pointer space-y-4 text-left w-full focus-visible:outline-2 focus-visible:outline-[var(--color-accent-text)]"
-                        aria-label={`Inspect look: ${item.title}`}
-                      >
-                        <div className="relative aspect-[3/4] w-full bg-[#EAE1D5] overflow-hidden shadow-xs">
-                          <Image
-                            src={item.url}
-                            alt={item.title}
-                            fill
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                            className="object-cover group-hover:scale-102 transition-transform duration-500"
-                          />
-                        </div>
-                        <div className="space-y-1 text-left">
-                          <h3 className="font-serif text-lg text-[var(--color-text)] group-hover:text-[var(--color-accent-text)] transition-colors">
-                            {item.title}
-                          </h3>
-                          <p className="caption-text text-xs line-clamp-2">
-                            {item.desc}
-                          </p>
-                        </div>
-                      </button>
-                    ))}
+                <ViewTransition enter="slide-up" default="none">
+                  <div className="bg-[var(--color-bg-white)] p-8 sm:p-16">
+                    <div className="max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+                      {cat.items.map((item, idx) => (
+                        <ViewTransition key={idx}>
+                          <button
+                            type="button"
+                            onClick={() => setLightboxImage({ url: item.url, title: item.title, desc: item.desc })}
+                            className="group cursor-pointer space-y-4 text-left w-full focus-visible:outline-2 focus-visible:outline-[var(--color-accent-text)]"
+                            aria-label={`Inspect look: ${item.title}`}
+                          >
+                            <div className="relative aspect-[3/4] w-full bg-[#EAE1D5] overflow-hidden shadow-xs">
+                              <Image
+                                src={item.url}
+                                alt={item.title}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 33vw"
+                                className="object-cover group-hover:scale-102 transition-transform duration-500"
+                              />
+                            </div>
+                            <div className="space-y-1 text-left">
+                              <h3 className="font-serif text-lg text-[var(--color-text)] group-hover:text-[var(--color-accent-text)] transition-colors">
+                                {item.title}
+                              </h3>
+                              <p className="caption-text text-xs line-clamp-2">
+                                {item.desc}
+                              </p>
+                            </div>
+                          </button>
+                        </ViewTransition>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </ViewTransition>
               )}
             </div>
           )
@@ -164,53 +190,79 @@ export default function PortfolioPage() {
 
       {/* Lightbox Modal */}
       {lightboxImage && (
-        <div
-          className="fixed inset-0 z-50 bg-[#181514]/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
-          onClick={() => setLightboxImage(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="portfolio-modal-title"
-        >
+        <ViewTransition enter="fade-in" exit="fade-out">
           <div
-            className="relative max-w-3xl w-full bg-[var(--color-bg)] p-8 shadow-2xl flex flex-col md:flex-row gap-6 max-h-[90vh] overflow-y-auto border border-[var(--color-border)]"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-50 bg-[#181514]/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
+            onClick={() => setLightboxImage(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="portfolio-modal-title"
           >
-            <button
-              ref={closeBtnRef}
-              onClick={() => setLightboxImage(null)}
-              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-[var(--color-text)] text-white hover:bg-[var(--color-accent)] flex items-center justify-center text-xs transition-colors"
-              aria-label="Close dialog"
-            >
-              ✕
-            </button>
-            <div className="relative aspect-[3/4] w-full md:w-1/2 min-h-[300px] overflow-hidden bg-[#222222]">
-              <Image
-                src={lightboxImage.url}
-                alt={lightboxImage.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="w-full md:w-1/2 flex flex-col justify-between space-y-4 text-left">
-              <div className="space-y-2">
-                <h3 id="portfolio-modal-title" className="font-serif text-2xl text-[var(--color-text)]">
-                  {lightboxImage.title}
-                </h3>
-                <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed">
-                  {lightboxImage.desc}
-                </p>
-              </div>
-              <Link
-                href="/contact"
-                className="block w-full text-center py-3.5 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors font-medium"
+            <ViewTransition enter="scale-in" exit="scale-out">
+              <div
+                className="relative max-w-3xl w-full bg-[var(--color-bg)] p-8 shadow-2xl flex flex-col md:flex-row gap-6 max-h-[90vh] overflow-y-auto border border-[var(--color-border)]"
+                onClick={(e) => e.stopPropagation()}
               >
-                Enquire for Date ↗
-              </Link>
-            </div>
+                {/* Navigation Buttons */}
+                <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+                  <button
+                    onClick={handlePrev}
+                    className="w-9 h-9 rounded-full bg-[var(--color-text)] text-white hover:bg-[var(--color-accent)] flex items-center justify-center text-sm transition-colors"
+                    aria-label="Previous look (Left arrow key)"
+                  >
+                    ←
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    className="w-9 h-9 rounded-full bg-[var(--color-text)] text-white hover:bg-[var(--color-accent)] flex items-center justify-center text-sm transition-colors"
+                    aria-label="Next look (Right arrow key)"
+                  >
+                    →
+                  </button>
+                  <button
+                    ref={closeBtnRef}
+                    onClick={() => setLightboxImage(null)}
+                    className="w-9 h-9 rounded-full bg-[var(--color-text)] text-white hover:bg-[var(--color-accent)] flex items-center justify-center text-xs transition-colors"
+                    aria-label="Close dialog (Escape key)"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <div className="relative aspect-[3/4] w-full md:w-1/2 min-h-[300px] overflow-hidden bg-[#222222]">
+                  <Image
+                    src={lightboxImage.url}
+                    alt={lightboxImage.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="w-full md:w-1/2 flex flex-col justify-between space-y-4 text-left pt-6 md:pt-0">
+                  <div className="space-y-2">
+                    <span className="font-sans text-[10px] uppercase tracking-[2px] text-[var(--color-accent-text)]">
+                      Look {currentIndex + 1} of {currentCategoryItems.length}
+                    </span>
+                    <h3 id="portfolio-modal-title" className="font-serif text-2xl text-[var(--color-text)]">
+                      {lightboxImage.title}
+                    </h3>
+                    <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed">
+                      {lightboxImage.desc}
+                    </p>
+                  </div>
+                  <Link
+                    href={`/contact?look=${encodeURIComponent(lightboxImage.title)}`}
+                    transitionTypes={['nav-forward']}
+                    className="block w-full text-center py-3.5 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors font-medium"
+                  >
+                    Enquire for this Look ↗
+                  </Link>
+                </div>
+              </div>
+            </ViewTransition>
           </div>
-        </div>
+        </ViewTransition>
       )}
-    </div>
+    </PageTransition>
   )
 }

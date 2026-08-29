@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { getPayloadClient } from '@/lib/payload'
 import { VisionMissionSection } from '@/components/VisionMissionSection'
 import { FeedbackSection } from '@/components/FeedbackSection'
+import { PageTransition } from '@/components/PageTransition'
 
 export const revalidate = 3600
 
@@ -86,7 +87,7 @@ export default async function HomePage() {
   const heroMobileImage = homePageData?.heroMobileImage || '/images/hero-bride-mobile.png'
 
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+    <PageTransition className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
       {/* ── 1. Full-Bleed Cinematic Hero Section ── */}
       <section className="relative min-h-[100svh] sm:min-h-screen w-full flex items-start sm:items-center justify-start px-6 sm:px-12 lg:px-16 pt-24 sm:pt-24 pb-12 sm:pb-16 overflow-hidden bg-[#181514]">
         {/* Background Visual (Responsive) */}
@@ -146,6 +147,7 @@ export default async function HomePage() {
             <div className="pt-1 sm:pt-4 flex flex-wrap gap-2.5 sm:gap-4 items-center justify-start">
               <Link
                 href="/contact"
+                transitionTypes={['nav-forward']}
                 className="px-5 sm:px-8 py-2.5 sm:py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[10px] sm:text-[12px] uppercase tracking-[2px] font-semibold transition-colors duration-300 shadow-lg min-h-[44px] flex items-center"
               >
                 Reserve Your Date ↗
@@ -171,6 +173,6 @@ export default async function HomePage() {
 
       {/* ── 3. Feedback Section ── */}
       <FeedbackSection testimonials={testimonials} />
-    </div>
+    </PageTransition>
   )
 }

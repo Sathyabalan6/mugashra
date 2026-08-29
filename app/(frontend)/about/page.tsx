@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { PageTransition } from '@/components/PageTransition'
 
 export const metadata: Metadata = {
   title: 'Founder & Atelier Team | Mugashra Bridal Artistry',
@@ -12,7 +13,7 @@ export const revalidate = 60
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+    <PageTransition className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
       {/* ── 1. Editorial Hero Banner ── */}
       <section className="relative w-full min-h-[60vh] sm:min-h-[75vh] flex items-center justify-start px-8 sm:px-16 pt-24 bg-[#181514] overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -138,6 +139,7 @@ export default function AboutPage() {
           <div className="text-center pt-6">
             <Link
               href="/contact"
+              transitionTypes={['nav-forward']}
               className="inline-block px-8 py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white font-sans text-xs uppercase tracking-[2px] font-semibold transition-colors shadow-sm"
             >
               Enquire About Team Availability ↗
@@ -145,6 +147,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </div>
+    </PageTransition>
   )
 }

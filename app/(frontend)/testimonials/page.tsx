@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getPayloadClient } from '@/lib/payload'
 import { FeedbackSection } from '@/components/FeedbackSection'
+import { PageTransition } from '@/components/PageTransition'
 
 export const metadata: Metadata = {
   title: 'Client Feedback & Reviews | Mugashra Bridal Artistry',
@@ -59,17 +60,18 @@ export default async function TestimonialsPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] pt-12">
+    <PageTransition className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] pt-12">
       <FeedbackSection testimonials={testimonials} />
 
       <div className="text-center pb-24">
         <Link
           href="/contact"
+          transitionTypes={['nav-forward']}
           className="inline-block px-8 py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-colors shadow-xs min-h-[44px]"
         >
           Reserve Your Wedding Date ↗
         </Link>
       </div>
-    </div>
+    </PageTransition>
   )
 }

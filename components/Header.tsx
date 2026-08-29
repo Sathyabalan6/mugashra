@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, ViewTransition } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -61,7 +61,10 @@ export function Header() {
     : 'bg-[#181514]/95 backdrop-blur-md border-b border-white/10 text-[#FAFAF8] shadow-[0_4px_20px_rgba(0,0,0,0.15)]'
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${headerBg}`}>
+    <header
+      style={{ viewTransitionName: 'site-header' }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${headerBg}`}
+    >
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
         {/* Brand Wordmark (Left) */}
         <Link
@@ -88,7 +91,9 @@ export function Header() {
               >
                 {link.label}
                 {isActive && (
-                  <span className="absolute bottom-1 left-0 right-0 h-[1.5px] bg-[var(--color-accent)]" />
+                  <ViewTransition name="header-active-indicator" share="tab-underline">
+                    <span className="absolute bottom-1 left-0 right-0 h-[1.5px] bg-[var(--color-accent)]" />
+                  </ViewTransition>
                 )}
               </Link>
             )
@@ -96,7 +101,7 @@ export function Header() {
 
           {/* Social Icon */}
           <a
-            href="https://www.instagram.com/mugashra_artistry/"
+            href="https://www.instagram.com/mugaashra_makeover"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[var(--color-accent)] hover:text-white transition-colors w-11 h-11 flex items-center justify-center"

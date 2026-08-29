@@ -67,13 +67,13 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    users: User;
-    media: Media;
-    'service-packages': ServicePackage;
-    'portfolio-items': PortfolioItem;
-    'team-members': TeamMember;
-    testimonials: Testimonial;
     enquiries: Enquiry;
+    'portfolio-items': PortfolioItem;
+    'service-packages': ServicePackage;
+    testimonials: Testimonial;
+    'team-members': TeamMember;
+    media: Media;
+    users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -81,13 +81,13 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
-    users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
-    'service-packages': ServicePackagesSelect<false> | ServicePackagesSelect<true>;
-    'portfolio-items': PortfolioItemsSelect<false> | PortfolioItemsSelect<true>;
-    'team-members': TeamMembersSelect<false> | TeamMembersSelect<true>;
-    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
+    'portfolio-items': PortfolioItemsSelect<false> | PortfolioItemsSelect<true>;
+    'service-packages': ServicePackagesSelect<false> | ServicePackagesSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    'team-members': TeamMembersSelect<false> | TeamMembersSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -98,12 +98,12 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
-    'site-settings': SiteSetting;
     'home-page': HomePage;
+    'site-settings': SiteSetting;
   };
   globalsSelect: {
-    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'home-page': HomePageSelect<false> | HomePageSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
   locale: null;
   widgets: {
@@ -134,33 +134,91 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Track client wedding dates, WhatsApp leads, ceremony requirements, and booking statuses.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "enquiries".
  */
-export interface User {
+export interface Enquiry {
   id: number;
+  /**
+   * Full name of the bride or contact person.
+   */
   name: string;
-  roles?: ('admin' | 'editor')[] | null;
+  /**
+   * Direct mobile or WhatsApp number for wedding consultation.
+   */
+  phone: string;
+  email: string;
+  /**
+   * Primary Muhurtham, Reception, or ceremony date (e.g. "Nov 24, 2026").
+   */
+  eventDate: string;
+  eventTypes?: ('muhurtham' | 'reception' | 'engagement' | 'haldi_mehendi' | 'sangeet' | 'family' | 'groom')[] | null;
+  serviceTier?: ('founder' | 'team' | 'consultation') | null;
+  /**
+   * e.g. Mayor Ramanathan Hall, Chennai or InterContinental Resort, Mahabalipuram
+   */
+  venueLocation: string;
+  budgetRange?: ('35k-60k' | '60k-100k' | '100k+') | null;
+  /**
+   * Specific saree draping requests, muhurtham morning time, or skin concerns.
+   */
+  message?: string | null;
+  /**
+   * Update the pipeline status as you communicate with the bride.
+   */
+  status?: ('new' | 'contacted' | 'booked' | 'archived') | null;
   updatedAt: string;
   createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-  collection: 'users';
 }
 /**
+ * Curate bespoke bridal looks across Muhurtham, Reception, Haldi, and Editorial masterclasses.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolio-items".
+ */
+export interface PortfolioItem {
+  id: number;
+  /**
+   * e.g. "Heritage Kanjeevaram & Antique Temple Gold" or "Contemporary Dewy Glass-Skin Reception"
+   */
+  title: string;
+  /**
+   * Optional name for editorial attribution.
+   */
+  brideName?: string | null;
+  category: 'muhurtham' | 'reception' | 'engagement' | 'haldi' | 'editorial';
+  /**
+   * Upload high-resolution photography showcasing makeup base, eyes, and hair styling.
+   */
+  coverImage?: (number | null) | Media;
+  /**
+   * Direct image path if hosting outside Payload uploads (e.g. /images/portfolio-1.png).
+   */
+  imageUrlFallback?: string | null;
+  /**
+   * e.g. Chennai, Mahabalipuram, Bangalore, Coimbatore.
+   */
+  location?: string | null;
+  /**
+   * e.g. "Dewy HD base, smoked copper eyes, fresh jasmine braid, traditional Madisar draping"
+   */
+  artistryDetails?: string | null;
+  /**
+   * Showcase this look prominently in the curated homepage atelier showcase.
+   */
+  featured?: boolean | null;
+  /**
+   * Lower numbers display first (0, 1, 2...).
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * High-resolution bridal photography, portfolio imagery, and media uploads.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
@@ -207,49 +265,78 @@ export interface Media {
   };
 }
 /**
+ * Configure bespoke bridal pricing tiers, session durations, inclusions, and highlight badges.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "service-packages".
  */
 export interface ServicePackage {
   id: number;
+  /**
+   * e.g. "Muhurtham Master Artistry", "The Complete Royal Bridal Suite"
+   */
   title: string;
+  /**
+   * Select whether this package is styled personally by the Founder or Senior Studio Stylists.
+   */
   tier: 'founder' | 'team';
   category: 'muhurtham' | 'reception' | 'engagement' | 'haldi_sangeet' | 'complete_bridal' | 'groom_family';
+  /**
+   * A brief luxury phrase summarizing the experience.
+   */
   tagline?: string | null;
+  /**
+   * Describe the makeup base, skin prep ritual, draping, and jewelry setting involved.
+   */
   description?: string | null;
+  /**
+   * Base pricing in INR (e.g. 45000).
+   */
   startingPrice: number;
   duration?: string | null;
   badge?: string | null;
+  /**
+   * Bullet points detailing what is included in this bridal service package.
+   */
   inclusions?:
     | {
         item: string;
         id?: string | null;
       }[]
     | null;
+  /**
+   * e.g. "Travel & accommodation for outstation weddings billed separately at actuals."
+   */
   termsNote?: string | null;
   order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Curate client love notes, 5-star bridal reviews, wedding venues, and testimonials.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "portfolio-items".
+ * via the `definition` "testimonials".
  */
-export interface PortfolioItem {
+export interface Testimonial {
   id: number;
-  title: string;
-  brideName?: string | null;
-  category: 'muhurtham' | 'reception' | 'engagement' | 'haldi' | 'editorial';
-  coverImage?: (number | null) | Media;
-  imageUrlFallback?: string | null;
+  /**
+   * e.g. "Dr. Sneha & Ashwin" or "Pooja Ramanathan"
+   */
+  clientName: string;
+  eventType: string;
   location?: string | null;
-  artistryDetails?: string | null;
+  quote: string;
+  rating?: number | null;
+  photoUrl?: string | null;
   featured?: boolean | null;
   order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Master artists, senior stylists, biographies, and experience credentials.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "team-members".
  */
@@ -266,40 +353,33 @@ export interface TeamMember {
   createdAt: string;
 }
 /**
+ * Manage admin accounts, studio coordinators, and authentication credentials.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials".
+ * via the `definition` "users".
  */
-export interface Testimonial {
-  id: number;
-  clientName: string;
-  eventType: string;
-  location?: string | null;
-  quote: string;
-  rating?: number | null;
-  photoUrl?: string | null;
-  featured?: boolean | null;
-  order?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "enquiries".
- */
-export interface Enquiry {
+export interface User {
   id: number;
   name: string;
-  phone: string;
-  email: string;
-  eventDate: string;
-  eventTypes?: ('muhurtham' | 'reception' | 'engagement' | 'haldi_mehendi' | 'sangeet' | 'family' | 'groom')[] | null;
-  serviceTier?: ('founder' | 'team' | 'consultation') | null;
-  venueLocation: string;
-  budgetRange?: ('35k-60k' | '60k-100k' | '100k+') | null;
-  message?: string | null;
-  status?: ('new' | 'contacted' | 'booked' | 'archived') | null;
+  roles?: ('admin' | 'editor')[] | null;
   updatedAt: string;
   createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'users';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -326,32 +406,32 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
-        relationTo: 'users';
-        value: number | User;
-      } | null)
-    | ({
-        relationTo: 'media';
-        value: number | Media;
-      } | null)
-    | ({
-        relationTo: 'service-packages';
-        value: number | ServicePackage;
+        relationTo: 'enquiries';
+        value: number | Enquiry;
       } | null)
     | ({
         relationTo: 'portfolio-items';
         value: number | PortfolioItem;
       } | null)
     | ({
-        relationTo: 'team-members';
-        value: number | TeamMember;
+        relationTo: 'service-packages';
+        value: number | ServicePackage;
       } | null)
     | ({
         relationTo: 'testimonials';
         value: number | Testimonial;
       } | null)
     | ({
-        relationTo: 'enquiries';
-        value: number | Enquiry;
+        relationTo: 'team-members';
+        value: number | TeamMember;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -397,27 +477,93 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
+ * via the `definition` "enquiries_select".
  */
-export interface UsersSelect<T extends boolean = true> {
+export interface EnquiriesSelect<T extends boolean = true> {
   name?: T;
-  roles?: T;
+  phone?: T;
+  email?: T;
+  eventDate?: T;
+  eventTypes?: T;
+  serviceTier?: T;
+  venueLocation?: T;
+  budgetRange?: T;
+  message?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolio-items_select".
+ */
+export interface PortfolioItemsSelect<T extends boolean = true> {
+  title?: T;
+  brideName?: T;
+  category?: T;
+  coverImage?: T;
+  imageUrlFallback?: T;
+  location?: T;
+  artistryDetails?: T;
+  featured?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "service-packages_select".
+ */
+export interface ServicePackagesSelect<T extends boolean = true> {
+  title?: T;
+  tier?: T;
+  category?: T;
+  tagline?: T;
+  description?: T;
+  startingPrice?: T;
+  duration?: T;
+  badge?: T;
+  inclusions?:
     | T
     | {
+        item?: T;
         id?: T;
-        createdAt?: T;
-        expiresAt?: T;
       };
+  termsNote?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  clientName?: T;
+  eventType?: T;
+  location?: T;
+  quote?: T;
+  rating?: T;
+  photoUrl?: T;
+  featured?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team-members_select".
+ */
+export interface TeamMembersSelect<T extends boolean = true> {
+  name?: T;
+  role?: T;
+  specialization?: T;
+  bio?: T;
+  yearsExperience?: T;
+  photoUrlFallback?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -474,93 +620,27 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "service-packages_select".
+ * via the `definition` "users_select".
  */
-export interface ServicePackagesSelect<T extends boolean = true> {
-  title?: T;
-  tier?: T;
-  category?: T;
-  tagline?: T;
-  description?: T;
-  startingPrice?: T;
-  duration?: T;
-  badge?: T;
-  inclusions?:
+export interface UsersSelect<T extends boolean = true> {
+  name?: T;
+  roles?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
     | T
     | {
-        item?: T;
         id?: T;
+        createdAt?: T;
+        expiresAt?: T;
       };
-  termsNote?: T;
-  order?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "portfolio-items_select".
- */
-export interface PortfolioItemsSelect<T extends boolean = true> {
-  title?: T;
-  brideName?: T;
-  category?: T;
-  coverImage?: T;
-  imageUrlFallback?: T;
-  location?: T;
-  artistryDetails?: T;
-  featured?: T;
-  order?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "team-members_select".
- */
-export interface TeamMembersSelect<T extends boolean = true> {
-  name?: T;
-  role?: T;
-  specialization?: T;
-  bio?: T;
-  yearsExperience?: T;
-  photoUrlFallback?: T;
-  order?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials_select".
- */
-export interface TestimonialsSelect<T extends boolean = true> {
-  clientName?: T;
-  eventType?: T;
-  location?: T;
-  quote?: T;
-  rating?: T;
-  photoUrl?: T;
-  featured?: T;
-  order?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "enquiries_select".
- */
-export interface EnquiriesSelect<T extends boolean = true> {
-  name?: T;
-  phone?: T;
-  email?: T;
-  eventDate?: T;
-  eventTypes?: T;
-  serviceTier?: T;
-  venueLocation?: T;
-  budgetRange?: T;
-  message?: T;
-  status?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -603,21 +683,8 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "site-settings".
- */
-export interface SiteSetting {
-  id: number;
-  studioName?: string | null;
-  studioAddress?: string | null;
-  openingHours?: string | null;
-  contactEmail?: string | null;
-  instagramUrl?: string | null;
-  facebookUrl?: string | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
+ * Manage homepage hero typography, high-res bridal imagery, and Studio Vision & Mission copy.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home-page".
  */
@@ -636,19 +703,21 @@ export interface HomePage {
   createdAt?: string | null;
 }
 /**
+ * Studio contact details, Chennai address, Instagram / Facebook links, and bridal appointment hours.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "site-settings_select".
+ * via the `definition` "site-settings".
  */
-export interface SiteSettingsSelect<T extends boolean = true> {
-  studioName?: T;
-  studioAddress?: T;
-  openingHours?: T;
-  contactEmail?: T;
-  instagramUrl?: T;
-  facebookUrl?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
+export interface SiteSetting {
+  id: number;
+  studioName?: string | null;
+  studioAddress?: string | null;
+  openingHours?: string | null;
+  contactEmail?: string | null;
+  instagramUrl?: string | null;
+  facebookUrl?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -664,6 +733,21 @@ export interface HomePageSelect<T extends boolean = true> {
   visionText?: T;
   missionTitle?: T;
   missionText?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  studioName?: T;
+  studioAddress?: T;
+  openingHours?: T;
+  contactEmail?: T;
+  instagramUrl?: T;
+  facebookUrl?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

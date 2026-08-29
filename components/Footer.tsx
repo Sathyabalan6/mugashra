@@ -79,7 +79,7 @@ export function Footer() {
             <div className="space-y-2 text-sm text-[var(--color-text-body)]">
               <p>
                 <a
-                  href="https://www.instagram.com/mugashra_artistry/"
+                  href="https://www.instagram.com/mugaashra_makeover"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[var(--color-accent-text)] transition-colors inline-block py-1"

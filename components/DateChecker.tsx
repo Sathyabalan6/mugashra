@@ -66,7 +66,7 @@ export function DateChecker() {
               setCheckedDate(e.target.value)
               setResult(null)
             }}
-            className="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent)] transition-colors rounded-none text-[var(--color-text)] min-h-[44px]"
+            className="w-full px-4 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none text-[var(--color-text)] min-h-[44px]"
           />
         </div>
         <button

@@ -300,7 +300,7 @@ async function seed() {
         primaryPhone: '+91 (0) 73388 38669',
         primaryEmail: 'appointments@mugashra.com',
         studioAddress: 'Atelier Studio • Chennai, Tamil Nadu, India',
-        instagramHandle: '@mugashra',
+        instagramHandle: '@mugaashra_makeover',
       } as any,
     })
   } catch (e) {
