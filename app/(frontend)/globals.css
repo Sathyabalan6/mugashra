@@ -39,8 +39,14 @@
   --font-serif: var(--font-serif-luxury), 'Lora', 'Playfair Display', Georgia, serif;
 }
 
+html {
+  background-color: #181514;
+  overscroll-behavior-y: none;
+}
+
 html, body {
   overflow-x: clip;
+  overscroll-behavior-y: none;
   background-color: var(--color-bg);
   color: var(--color-text-body);
   font-family: var(--font-serif);
