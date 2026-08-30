@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { getPayloadClient } from '@/lib/payload'
 import { VisionMissionSection } from '@/components/VisionMissionSection'
 import { FeedbackSection } from '@/components/FeedbackSection'
-import { DateChecker } from '@/components/DateChecker'
 import { PageTransition } from '@/components/PageTransition'
 
 export const revalidate = 3600
@@ -90,7 +89,7 @@ export default async function HomePage() {
   return (
     <PageTransition className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
       {/* ── 1. Full-Bleed Cinematic Hero Section ── */}
-      <section className="relative min-h-[100svh] sm:min-h-screen w-full flex items-start sm:items-center justify-start px-6 sm:px-12 lg:px-16 pt-24 sm:pt-24 pb-12 sm:pb-16 overflow-hidden bg-[#181514]">
+      <section className="relative min-h-[100svh] sm:min-h-screen w-full flex items-start sm:items-center justify-start px-6 sm:px-12 lg:px-16 pt-24 sm:pt-24 pb-12 sm:pb-16 bg-[#181514]">
         {/* Background Visual (Responsive) */}
         <div className="absolute inset-0 z-0">
           {/* Mobile Dedicated Portrait */}
@@ -110,15 +109,31 @@ export default async function HomePage() {
 
           {/* Desktop Wide Cinematic Cover */}
           <div className="hidden md:block absolute inset-0">
-            <Image
-              src={heroDesktopImage}
-              alt="Mugashra Bridal Artistry Visual"
-              fill
-              priority
-              quality={85}
-              sizes="100vw"
-              className="object-cover object-center"
-            />
+            {/* Exact structure from reference HTML: natural-ratio wrapper so % positioning tracks image width */}
+            <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+              <img
+                src="/images/header-bg.png"
+                alt="Mugashra Bridal Artistry Visual"
+                style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'right top' }}
+              />
+              <img
+                src="/images/bells-overlay.png"
+                aria-hidden="true"
+                alt=""
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  width: '14vw',
+                  height: 'auto',
+                  transformOrigin: '50% 6%',
+                  animationName: 'bell-swing',
+                  animationDuration: '3.2s',
+                  animationTimingFunction: 'ease-in-out',
+                  animationIterationCount: 'infinite',
+                }}
+              />
+            </div>
             <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/30 to-black/75" />
             <div className="absolute inset-0 bg-black/15" />
           </div>
@@ -128,10 +143,10 @@ export default async function HomePage() {
         <div className="relative z-10 max-w-[1400px] w-full mx-auto flex items-center pt-2 sm:pt-0">
           <div className="max-w-2xl space-y-4 sm:space-y-8 text-left">
             <div className="space-y-1">
-              <span className="font-sans text-[10px] sm:text-xs uppercase tracking-[3px] text-[var(--color-accent)] font-medium block">
+              <span className="font-sans text-[10px] sm:text-xs uppercase tracking-[3px] text-[var(--color-accent)] font-medium block animate-hero-eyebrow">
                 {heroEyebrow}
               </span>
-              <h1 className="display-heading text-[var(--color-accent)] drop-shadow-md whitespace-pre-line">
+              <h1 className="display-heading text-[var(--color-accent)] drop-shadow-md whitespace-pre-line animate-hero-title">
                 {heroTitle.includes(' ') ? (
                   <>
                     {heroTitle.split(' ')[0]}<br />
@@ -141,21 +156,22 @@ export default async function HomePage() {
               </h1>
             </div>
 
-            <p className="font-sans text-[9.5px] sm:text-[12px] uppercase tracking-[2px] sm:tracking-[2.5px] text-white/90 font-light max-w-sm sm:max-w-lg leading-relaxed">
+            <p className="font-sans text-[9.5px] sm:text-[12px] uppercase tracking-[2px] sm:tracking-[2.5px] text-white/90 font-light max-w-sm sm:max-w-lg leading-relaxed animate-hero-subtitle">
               {heroSubtitle}
             </p>
 
-            <div className="pt-1 sm:pt-4 flex flex-wrap gap-2.5 sm:gap-4 items-center justify-start">
+            <div className="pt-1 sm:pt-4 flex flex-wrap gap-2.5 sm:gap-4 items-center justify-start animate-hero-actions">
               <Link
                 href="/contact"
                 transitionTypes={['nav-forward']}
-                className="px-5 sm:px-8 py-2.5 sm:py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[10px] sm:text-[12px] uppercase tracking-[2px] font-semibold transition-colors duration-300 shadow-lg min-h-[44px] flex items-center"
+                className="group relative px-5 sm:px-8 py-2.5 sm:py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[10px] sm:text-[12px] uppercase tracking-[2px] font-semibold transition-all duration-300 shadow-lg min-h-[44px] flex items-center overflow-hidden active:scale-[0.98]"
               >
-                Reserve Your Date ↗
+                <span>Reserve Your Date</span>
+                <span className="inline-block ml-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">↗</span>
               </Link>
               <Link
                 href="/services"
-                className="px-5 sm:px-8 py-2.5 sm:py-3.5 bg-transparent hover:bg-white/10 border border-white/40 text-white font-sans text-[10px] sm:text-[12px] uppercase tracking-[2px] font-medium transition-colors duration-300 backdrop-blur-xs min-h-[44px] flex items-center"
+                className="px-5 sm:px-8 py-2.5 sm:py-3.5 bg-transparent hover:bg-white/10 border border-white/40 hover:border-white text-white font-sans text-[10px] sm:text-[12px] uppercase tracking-[2px] font-medium transition-all duration-300 backdrop-blur-xs min-h-[44px] flex items-center active:scale-[0.98]"
               >
                 View Price List
               </Link>
@@ -164,111 +180,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── 2. Date Availability Strip ── */}
-      <section className="py-12 sm:py-16 px-6 sm:px-12 bg-[var(--color-bg-white)] border-b border-[var(--color-border)]">
-        <div className="max-w-[1000px] mx-auto">
-          <DateChecker />
-        </div>
-      </section>
-
-      {/* ── 3. The Ceremonial Chronicle: Dual Look Transformation ── */}
-      <section className="py-20 sm:py-32 px-6 sm:px-12 max-w-[1300px] mx-auto">
-        <div className="space-y-16">
-          <div className="text-center space-y-3 max-w-2xl mx-auto">
-            <span className="font-eyebrow block">Signature Dual-Event Transformation</span>
-            <h2 className="section-heading">
-              THE SACRED RITUAL &amp; THE RED CARPET
-            </h2>
-            <p className="caption-text text-sm sm:text-base">
-              Every South Indian celebration demands a master balance: sacred purity under morning temple lights, and high-wattage glamour under evening reception chandeliers.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
-            {/* Look 1: Sacred Muhurtham */}
-            <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-8 sm:p-10 space-y-6 flex flex-col justify-between group">
-              <div className="space-y-6">
-                <div className="relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-xs">
-                  <Image
-                    src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=85"
-                    alt="The Sacred Muhurtham in Crimson Silk"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover group-hover:scale-102 transition-transform duration-700"
-                  />
-                  <div className="absolute top-4 left-4 px-3.5 py-1.5 bg-black/80 backdrop-blur-xs text-white text-[10px] uppercase font-sans tracking-[2px]">
-                    04:30 AM • Sacred Rituals
-                  </div>
-                </div>
-
-                <div className="space-y-3 text-left">
-                  <span className="font-eyebrow block">Traditional Heritage</span>
-                  <h3 className="font-serif text-2xl text-[var(--color-text)]">
-                    The Sacred Muhurtham
-                  </h3>
-                  <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed">
-                    Sweat-resistant, waterproof HD complexion designed to stay radiant through sacred homams. Paired with 48-hour pre-pleated Kanjeevaram silks, antique temple gold, and fresh Madurai Malli poola jada.
-                  </p>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-[var(--color-border)] flex items-center justify-between">
-                <span className="font-sans text-xs uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-medium">
-                  HD Waterproof Complexion
-                </span>
-                <Link
-                  href="/portfolio"
-                  className="font-sans text-xs uppercase tracking-[2px] text-[var(--color-text)] hover:text-[var(--color-accent-text)] transition-colors"
-                >
-                  Explore Look ↗
-                </Link>
-              </div>
-            </div>
-
-            {/* Look 2: Contemporary Reception */}
-            <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-8 sm:p-10 space-y-6 flex flex-col justify-between group">
-              <div className="space-y-6">
-                <div className="relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-xs">
-                  <Image
-                    src="https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=1000&q=85"
-                    alt="Contemporary Glass-Skin Reception"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover group-hover:scale-102 transition-transform duration-700"
-                  />
-                  <div className="absolute top-4 left-4 px-3.5 py-1.5 bg-black/80 backdrop-blur-xs text-white text-[10px] uppercase font-sans tracking-[2px]">
-                    07:00 PM • Evening Glamour
-                  </div>
-                </div>
-
-                <div className="space-y-3 text-left">
-                  <span className="font-eyebrow block">Editorial Red Carpet</span>
-                  <h3 className="font-serif text-2xl text-[var(--color-text)]">
-                    The Modern Reception
-                  </h3>
-                  <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed">
-                    Sculpted Temptu airbrush base with glass-skin glow, champagne shimmer lids, voluminous textured Hollywood waves, and modern lehenga silhouette draping.
-                  </p>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-[var(--color-border)] flex items-center justify-between">
-                <span className="font-sans text-xs uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-medium">
-                  Temptu Airbrush Artistry
-                </span>
-                <Link
-                  href="/portfolio"
-                  className="font-sans text-xs uppercase tracking-[2px] text-[var(--color-text)] hover:text-[var(--color-accent-text)] transition-colors"
-                >
-                  Explore Look ↗
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 4. Vision & Mission Section ── */}
+      {/* ── 2. Vision & Mission Section ── */}
       <VisionMissionSection
         visionTitle={homePageData?.visionTitle}
         visionText={homePageData?.visionText}
@@ -276,7 +188,7 @@ export default async function HomePage() {
         missionText={homePageData?.missionText}
       />
 
-      {/* ── 5. Feedback Section ── */}
+      {/* ── 6. Feedback Section ── */}
       <FeedbackSection testimonials={testimonials} />
     </PageTransition>
   )

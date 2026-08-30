@@ -1,11 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import type { Metadata } from 'next'
 import { PageTransition } from '@/components/PageTransition'
 
 export const metadata: Metadata = {
-  title: 'Founder & Atelier Team | Mugashra Bridal Artistry',
+  title: 'Founder | Mugashra Bridal Artistry',
   description: 'Meet our Lead Master Artist and senior bridal specialists in Chennai.',
 }
 
@@ -15,20 +14,36 @@ export default function AboutPage() {
   return (
     <PageTransition className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
       {/* ── 1. Editorial Hero Banner ── */}
-      <section className="relative w-full min-h-[60vh] sm:min-h-[75vh] flex items-center justify-start px-8 sm:px-16 pt-24 bg-[#181514] overflow-hidden">
+      <section className="relative w-full min-h-[60vh] sm:min-h-[75vh] flex items-center justify-center px-8 sm:px-16 pt-24 bg-[#181514] overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=85"
-            alt="Lead Master Artist at Work"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center grayscale contrast-125"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-black/80" />
+          {/* Mobile Dedicated Header */}
+          <div className="block md:hidden absolute inset-0">
+            <Image
+              src="/images/founder-mobile-header.png"
+              alt="Lead Master Artist at Work"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/60" />
+          </div>
+
+          {/* Desktop Hero */}
+          <div className="hidden md:block absolute inset-0">
+            <Image
+              src="/images/founder-hero.png"
+              alt="Lead Master Artist at Work"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-black/80" />
+          </div>
         </div>
 
-        <div className="relative z-10 max-w-xl text-left space-y-4">
+        <div className="relative z-10 max-w-xl text-center space-y-4">
           <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[3px] text-[#B58A69] font-medium block">
             THE ATELIER STORY
           </span>
@@ -36,8 +51,8 @@ export default function AboutPage() {
             THE ARTIST &<br />
             PHILOSOPHY
           </h1>
-          <p className="font-serif text-sm sm:text-base text-white/80 leading-relaxed pt-2">
-            Founded by Lead Master Artist <span className="text-white font-medium">Shwetha Mohan</span>, Mugashra Artistry is a sanctuary of bridal beauty nestled in Chennai, dedicated to curating transcendent South Indian wedding looks.
+          <p className="font-serif text-sm sm:text-base !text-white leading-relaxed pt-2">
+            Founded by Lead Master Artist <span className="text-white font-medium">Shwetha Mohan</span>, Mugashra Artistry is a sanctuary of bridal beauty nestled in Madurai, dedicated to curating transcendent South Indian wedding looks.
           </p>
         </div>
       </section>
@@ -111,98 +126,32 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── 4. The Atelier Team ── */}
-      <section id="team" className="py-24 md:py-36 px-6 sm:px-12 bg-[var(--color-bg-white)] border-t border-[var(--color-border)]">
-        <div className="max-w-[1300px] mx-auto space-y-16">
-          <div className="text-center space-y-3">
-            <span className="font-eyebrow block">Atelier Specialists</span>
-            <h2 className="font-serif text-3xl sm:text-5xl tracking-[0.15em] uppercase text-[var(--color-text)] font-normal">
-              THE ATELIER TEAM
-            </h2>
-            <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)] max-w-xl mx-auto leading-relaxed">
-              Led by Founder &amp; Master Artist Shwetha Mohan, every specialist in our studio is personally trained in our signature techniques to ensure flawless consistency across your bridal party.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Founder Card */}
-            <div className="border border-[var(--color-border)] bg-[var(--color-bg)] p-8 space-y-6">
-              <div className="relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
-                <Image
-                  src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80"
-                  alt="Shwetha Mohan - Founder & Master Bridal Artist"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover object-center grayscale contrast-110"
-                />
-              </div>
-
-              <div className="space-y-2 text-left">
-                <span className="font-eyebrow block">Founder &amp; Lead Master Artist</span>
-                <h3 className="font-serif text-2xl text-[var(--color-text)] font-normal">
-                  Shwetha Mohan
-                </h3>
-                <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed">
-                  Over 9 years of luxury bridal styling across South India, specialized in high-definition skin realism, Temptu airbrush artistry, and bespoke Muhurtham elegance.
-                </p>
-              </div>
+      {/* ── 4. Founder Card ── */}
+      <section className="py-24 md:py-36 px-6 sm:px-12 border-t border-[var(--color-border)]">
+        <div className="max-w-[900px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="relative aspect-[3/4] w-full overflow-hidden">
+              <Image
+                src="/images/shwetha-mohan.jpg"
+                alt="Shwetha Mohan - Founder & Master Bridal Artist"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover object-top"
+              />
             </div>
-
-            {/* Team Member 1 */}
-            <div className="border border-[var(--color-border)] bg-[var(--color-bg)] p-8 space-y-6">
-              <div className="relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
-                <Image
-                  src="https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=800&q=80"
-                  alt="Senior Bridal Hair Specialist"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover"
-                />
-              </div>
-
-              <div className="space-y-2 text-left">
-                <span className="font-eyebrow block">Senior Specialist</span>
-                <h3 className="font-serif text-2xl text-[var(--color-text)] font-normal">
-                  Senior Hair & Floral Architect
-                </h3>
-                <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed">
-                  Specializing in intricate South Indian bridal braids, poola jada floral settings, and voluminous Hollywood waves that remain immaculate through high-energy sangeets.
-                </p>
-              </div>
+            <div className="space-y-5">
+              <span className="font-eyebrow block">Founder & Lead Master Artist</span>
+              <h2 className="font-serif text-3xl sm:text-4xl tracking-[0.1em] uppercase text-[var(--color-text)] font-normal">
+                Shwetha Mohan
+              </h2>
+              <div className="w-10 h-[1px] bg-[var(--color-accent)]" />
+              <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)] leading-[1.85] font-light">
+                With over 9 years of luxury bridal artistry across South India, Shwetha Mohan founded Mugashra to bring a new standard of skin realism and editorial elegance to South Indian brides.
+              </p>
+              <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)] leading-[1.85] font-light">
+                Trained in Temptu Pro HD airbrush techniques and specializing in transferproof 16-hour muhurtham looks, she personally oversees every bridal booking at the atelier.
+              </p>
             </div>
-
-            {/* Team Member 2 */}
-            <div className="border border-[var(--color-border)] bg-[var(--color-bg)] p-8 space-y-6">
-              <div className="relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
-                <Image
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
-                  alt="Senior Saree Draping Specialist"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover"
-                />
-              </div>
-
-              <div className="space-y-2 text-left">
-                <span className="font-eyebrow block">Senior Specialist</span>
-                <h3 className="font-serif text-2xl text-[var(--color-text)] font-normal">
-                  Senior Saree & Silhouette Stylist
-                </h3>
-                <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed">
-                  Expert in razor-sharp Kanjeevaram box pleating, weight distribution pinning for heavy silk sarees, and contemporary lehenga draping.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center pt-6">
-            <Link
-              href="/contact"
-              transitionTypes={['nav-forward']}
-              className="inline-block px-8 py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white font-sans text-xs uppercase tracking-[2px] font-semibold transition-colors shadow-sm"
-            >
-              Enquire About Team Availability ↗
-            </Link>
           </div>
         </div>
       </section>

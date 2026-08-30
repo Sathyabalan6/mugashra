@@ -44,9 +44,12 @@ html {
   overscroll-behavior-y: none;
 }
 
-html, body {
-  overflow-x: clip;
+body {
+  overflow-x: hidden;
   overscroll-behavior-y: none;
+}
+
+html, body {
   background-color: var(--color-bg);
   color: var(--color-text-body);
   font-family: var(--font-serif);
@@ -178,40 +181,92 @@ a.accent-link:hover {
   }
 }
 
-/* ── React View Transitions Recipes ── */
+/* ── Motion & Animation System (Editorial Luxury & Craft Floor) ── */
 :root {
-  --duration-exit: 150ms;
-  --duration-enter: 210ms;
-  --duration-move: 380ms;
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-fast: cubic-bezier(0.4, 0, 1, 1);
 }
 
-@keyframes vt-fade {
-  from { filter: blur(2px); opacity: 0; }
-  to { filter: blur(0); opacity: 1; }
+@keyframes bell-swing {
+  0%, 100% { transform: rotate(-4deg); }
+  50%       { transform: rotate(4deg); }
 }
 
-@keyframes vt-slide {
-  from { translate: var(--slide-offset); }
-  to { translate: 0; }
+.animate-bell {
+  position: absolute;
+  left: 76.65%;
+  top: 0;
+  width: 13.62%;
+  transform-origin: 50% 6%;
+  animation: bell-swing 3.2s ease-in-out infinite;
 }
 
-@keyframes vt-slide-y {
-  from { transform: translateY(var(--slide-y-offset, 12px)); }
-  to { transform: translateY(0); }
+@keyframes luxury-hero-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
-@keyframes vt-scale-down {
-  from { transform: scale(1); opacity: 1; }
-  to { transform: scale(0.96); opacity: 0; }
+@keyframes luxury-image-reveal {
+  0% {
+    clip-path: inset(0 0 100% 0);
+    transform: scale(1.05);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+  }
 }
 
-@keyframes vt-scale-up {
-  from { transform: scale(0.96); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+@keyframes gold-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
-@keyframes vt-via-blur {
-  30% { filter: blur(2px); }
+.animate-hero-eyebrow {
+  animation: luxury-hero-fade 0.8s var(--ease-luxury) 0.1s both;
+}
+
+.animate-hero-title {
+  animation: luxury-hero-fade 1s var(--ease-luxury) 0.25s both;
+}
+
+.animate-hero-subtitle {
+  animation: luxury-hero-fade 0.9s var(--ease-luxury) 0.45s both;
+}
+
+.animate-hero-actions {
+  animation: luxury-hero-fade 0.9s var(--ease-luxury) 0.6s both;
+}
+
+/* ── Lookbook Gallery: signature reveal + copy cross-fade ── */
+.look-image {
+  clip-path: inset(0 0 100% 0);
+  transform: scale(1.04);
+}
+.look-image.is-revealed {
+  animation: luxury-image-reveal 1.1s var(--ease-luxury) both;
+}
+.look-copy-fade {
+  animation: luxury-hero-fade 0.6s var(--ease-luxury) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .look-image {
+    clip-path: none;
+    transform: none;
+  }
 }
 
 /* Cross-fade */
@@ -292,9 +347,7 @@ a.accent-link:hover {
 }
 
 /* Interactivity & Live Root */
-::view-transition {
-  pointer-events: none;
-}
+/* pointer-events: none removed — breaks touch on mobile fixed elements */
 ::view-transition-old(root) {
   display: none;
 }
@@ -306,12 +359,15 @@ a.accent-link:hover {
 ::view-transition-group(site-header) {
   animation: none;
   z-index: 100;
+  pointer-events: none;
 }
 ::view-transition-old(site-header) {
   display: none;
+  pointer-events: none;
 }
 ::view-transition-new(site-header) {
   animation: none;
+  pointer-events: none;
 }
 
 /* Floating CTA Isolation */
