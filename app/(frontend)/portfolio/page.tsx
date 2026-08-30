@@ -35,7 +35,7 @@ export default function PortfolioPage() {
           {/* Mobile Dedicated Header */}
           <div className="block md:hidden absolute inset-0">
             <Image
-              src="/images/portfolio-mobile-header.png"
+              src="/images/profolio_mobile_header.png"
               alt="A glimpse of what I love to do"
               fill
               priority

@@ -19,7 +19,7 @@ export default function AboutPage() {
           {/* Mobile Dedicated Header */}
           <div className="block md:hidden absolute inset-0">
             <Image
-              src="/images/founder-mobile-header.png"
+              src="/images/founder_header_mobile.png"
               alt="Lead Master Artist at Work"
               fill
               priority
