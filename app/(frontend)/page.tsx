@@ -109,12 +109,11 @@ export default async function HomePage() {
 
           {/* Desktop Wide Cinematic Cover */}
           <div className="hidden md:block absolute inset-0">
-            {/* Exact structure from reference HTML: natural-ratio wrapper so % positioning tracks image width */}
             <div style={{ position: 'relative', width: '100%', height: '100%' }}>
               <img
-                src="/images/header-bg.png"
+                src="/images/hero-bride.png"
                 alt="Mugashra Bridal Artistry Visual"
-                style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'right top' }}
+                style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'right center' }}
               />
               <img
                 src="/images/bells-overlay.png"
