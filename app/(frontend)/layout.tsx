@@ -1,24 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter, Lora } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { WhatsAppButton } from '@/components/WhatsAppButton'
-
-const inter = Inter({
-  variable: '--font-inter',
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-})
-
-const lora = Lora({
-  variable: '--font-serif-luxury',
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  style: ['normal', 'italic'],
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'Mugashra Bridal Artistry | Luxury Bridal & HD Makeup Studio Chennai',
@@ -37,7 +21,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BeautySalon',
   name: 'Mugashra Bridal Artistry',
-  image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=85',
+  image: '/images/shwetha-mohan.jpg',
   description: 'Luxury South Indian bridal makeup, High Definition and Temptu Airbrush artistry, sacred Muhurtham styling, and bespoke Kanjeevaram saree draping.',
   address: {
     '@type': 'PostalAddress',
@@ -75,7 +59,7 @@ export default function FrontendLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${lora.variable} scroll-smooth`}>
+    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
       <head>
         <script
           type="application/ld+json"

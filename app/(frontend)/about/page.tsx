@@ -23,10 +23,10 @@ export default function AboutPage() {
               alt="Lead Master Artist at Work"
               fill
               priority
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, 1px"
               className="object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/60" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/75" />
           </div>
 
           {/* Desktop Hero */}
@@ -36,23 +36,23 @@ export default function AboutPage() {
               alt="Lead Master Artist at Work"
               fill
               priority
-              sizes="100vw"
+              sizes="(min-width: 769px) 100vw, 1px"
               className="object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-black/80" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/85" />
           </div>
         </div>
 
         <div className="relative z-10 max-w-xl text-center space-y-4">
-          <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[3px] text-[#B58A69] font-medium block">
+          <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[3px] text-[#E2C4A8] font-semibold block">
             THE ATELIER STORY
           </span>
-          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-[0.05em] uppercase text-white font-normal">
+          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-[0.05em] uppercase text-white font-normal drop-shadow-md">
             THE ARTIST &<br />
             PHILOSOPHY
           </h1>
-          <p className="font-serif text-sm sm:text-base !text-white leading-relaxed pt-2">
-            Founded by Lead Master Artist <span className="text-white font-medium">Shwetha Mohan</span>, Mugashra Artistry is a sanctuary of bridal beauty nestled in Madurai, dedicated to curating transcendent South Indian wedding looks.
+          <p className="font-serif text-sm sm:text-base text-[#F0E8E1] leading-relaxed pt-2 font-light drop-shadow-xs">
+            Founded by Lead Master Artist <span className="text-white font-semibold underline underline-offset-4 decoration-[#E2C4A8]">Shwetha Mohan</span>, Mugashra Artistry is a sanctuary of bridal beauty nestled in Madurai, dedicated to curating transcendent South Indian wedding looks.
           </p>
         </div>
       </section>
@@ -63,64 +63,64 @@ export default function AboutPage() {
           {/* Left: Philosophy */}
           <div className="space-y-6 text-left">
             <div className="space-y-2">
-              <span className="font-eyebrow block">Our Approach</span>
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl tracking-[0.15em] uppercase text-[var(--color-text)] font-normal">
+              <span className="font-sans text-xs uppercase tracking-[2.5px] text-[#9E6D47] font-semibold block">Our Approach</span>
+              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl tracking-[0.15em] uppercase text-[#181514] font-normal">
                 PHILOSOPHY
               </h2>
             </div>
-            <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)] leading-[1.85] font-light">
+            <p className="font-serif text-sm sm:text-base text-[#332E2C] leading-[1.85] font-normal">
               Bridal makeup should never mask the bride. Our signature technique is built on skin realism — sculpting luminous, waterproof complexions that look breathtaking up-close during sacred 4:00 AM rituals, while standing up effortlessly to high-definition 4K cinematography.
             </p>
-            <div className="w-12 h-[1px] bg-[var(--color-accent)]" />
+            <div className="w-12 h-[1px] bg-[#9E6D47]" />
           </div>
 
           {/* Right: The Craft */}
           <div className="space-y-6 text-left">
             <div className="space-y-2">
-              <span className="font-eyebrow block">Atelier Technique</span>
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl tracking-[0.15em] uppercase text-[var(--color-text)] font-normal">
+              <span className="font-sans text-xs uppercase tracking-[2.5px] text-[#9E6D47] font-semibold block">Atelier Technique</span>
+              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl tracking-[0.15em] uppercase text-[#181514] font-normal">
                 THE CRAFT
               </h2>
             </div>
-            <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)] leading-[1.85] font-light">
+            <p className="font-serif text-sm sm:text-base text-[#332E2C] leading-[1.85] font-normal">
               From hand-steaming and 48-hour pre-pleating heirloom Kanjeevaram silks, to custom floral hair architecture with fresh Madurai Malli and rose petals, every single detail is executed with quiet perfection.
             </p>
-            <div className="w-12 h-[1px] bg-[var(--color-accent)]" />
+            <div className="w-12 h-[1px] bg-[#9E6D47]" />
           </div>
         </div>
       </section>
 
       {/* ── 3. The Master Product Kit & Standards ── */}
-      <section className="py-20 sm:py-28 px-6 sm:px-12 bg-[#181514] text-white border-t border-white/10">
+      <section className="py-20 sm:py-28 px-6 sm:px-12 bg-[#181514] !text-white border-t border-white/10">
         <div className="max-w-[1300px] mx-auto space-y-12">
           <div className="text-center space-y-3 max-w-2xl mx-auto">
-            <span className="font-sans text-[11px] uppercase tracking-[3px] text-[var(--color-accent)] font-medium block">
+            <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[3px] !text-[#E2C4A8] font-semibold block">
               Pure Luxury Formulations
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.15em] uppercase text-white font-normal">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.15em] uppercase !text-white font-normal drop-shadow-sm">
               THE MASTER PRODUCT KIT
             </h2>
-            <p className="font-serif text-sm sm:text-base text-white/70 leading-relaxed">
+            <p className="font-serif text-sm sm:text-base !text-[#E5DCD5] leading-relaxed font-light">
               We exclusively deploy globally celebrated skincare and makeup houses, vetted for high-humidity resistance and 4K cinema resolution.
             </p>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-            <div className="p-6 border border-white/10 bg-white/5 space-y-2">
-              <span className="font-serif text-lg text-[var(--color-accent)]">Temptu Pro HD</span>
-              <p className="font-sans text-[11px] uppercase tracking-[1.5px] text-white/60">Airbrush Complexion</p>
+            <div className="p-6 border border-[#443B37] bg-[#24201E] rounded-sm space-y-2.5 transition-colors hover:border-[#E2C4A8] hover:bg-[#2C2725]">
+              <span className="font-serif text-lg sm:text-xl !text-[#F5E6D8] font-medium block">Temptu Pro HD</span>
+              <p className="font-sans text-[11px] sm:text-xs uppercase tracking-[1.5px] !text-[#D8CBC0] font-medium">Airbrush Complexion</p>
             </div>
-            <div className="p-6 border border-white/10 bg-white/5 space-y-2">
-              <span className="font-serif text-lg text-[var(--color-accent)]">Charlotte Tilbury</span>
-              <p className="font-sans text-[11px] uppercase tracking-[1.5px] text-white/60">Pillow Talk &amp; Flawless Filter</p>
+            <div className="p-6 border border-[#443B37] bg-[#24201E] rounded-sm space-y-2.5 transition-colors hover:border-[#E2C4A8] hover:bg-[#2C2725]">
+              <span className="font-serif text-lg sm:text-xl !text-[#F5E6D8] font-medium block">Charlotte Tilbury</span>
+              <p className="font-sans text-[11px] sm:text-xs uppercase tracking-[1.5px] !text-[#D8CBC0] font-medium">Pillow Talk &amp; Flawless Filter</p>
             </div>
-            <div className="p-6 border border-white/10 bg-white/5 space-y-2">
-              <span className="font-serif text-lg text-[var(--color-accent)]">Dior Backstage</span>
-              <p className="font-sans text-[11px] uppercase tracking-[1.5px] text-white/60">Radiant Glow Primers</p>
+            <div className="p-6 border border-[#443B37] bg-[#24201E] rounded-sm space-y-2.5 transition-colors hover:border-[#E2C4A8] hover:bg-[#2C2725]">
+              <span className="font-serif text-lg sm:text-xl !text-[#F5E6D8] font-medium block">Dior Backstage</span>
+              <p className="font-sans text-[11px] sm:text-xs uppercase tracking-[1.5px] !text-[#D8CBC0] font-medium">Radiant Glow Primers</p>
             </div>
-            <div className="p-6 border border-white/10 bg-white/5 space-y-2">
-              <span className="font-serif text-lg text-[var(--color-accent)]">NARS &amp; Huda</span>
-              <p className="font-sans text-[11px] uppercase tracking-[1.5px] text-white/60">16-Hour Transferproof</p>
+            <div className="p-6 border border-[#443B37] bg-[#24201E] rounded-sm space-y-2.5 transition-colors hover:border-[#E2C4A8] hover:bg-[#2C2725]">
+              <span className="font-serif text-lg sm:text-xl !text-[#F5E6D8] font-medium block">NARS &amp; Huda</span>
+              <p className="font-sans text-[11px] sm:text-xs uppercase tracking-[1.5px] !text-[#D8CBC0] font-medium">16-Hour Transferproof</p>
             </div>
           </div>
         </div>
@@ -130,25 +130,25 @@ export default function AboutPage() {
       <section className="py-24 md:py-36 px-6 sm:px-12 border-t border-[var(--color-border)]">
         <div className="max-w-[900px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="relative aspect-[3/4] w-full overflow-hidden">
+            <div className="relative aspect-[3/4] w-full overflow-hidden shadow-sm">
               <Image
                 src="/images/shwetha-mohan.jpg"
                 alt="Shwetha Mohan - Founder & Master Bridal Artist"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-top"
+                className="object-cover object-center"
               />
             </div>
             <div className="space-y-5">
-              <span className="font-eyebrow block">Founder & Lead Master Artist</span>
-              <h2 className="font-serif text-3xl sm:text-4xl tracking-[0.1em] uppercase text-[var(--color-text)] font-normal">
+              <span className="font-sans text-xs uppercase tracking-[2.5px] text-[#9E6D47] font-semibold block">Founder & Lead Master Artist</span>
+              <h2 className="font-serif text-3xl sm:text-4xl tracking-[0.1em] uppercase text-[#181514] font-normal">
                 Shwetha Mohan
               </h2>
-              <div className="w-10 h-[1px] bg-[var(--color-accent)]" />
-              <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)] leading-[1.85] font-light">
+              <div className="w-10 h-[1px] bg-[#9E6D47]" />
+              <p className="font-serif text-sm sm:text-base text-[#332E2C] leading-[1.85] font-normal">
                 With over 9 years of luxury bridal artistry across South India, Shwetha Mohan founded Mugashra to bring a new standard of skin realism and editorial elegance to South Indian brides.
               </p>
-              <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)] leading-[1.85] font-light">
+              <p className="font-serif text-sm sm:text-base text-[#332E2C] leading-[1.85] font-normal">
                 Trained in Temptu Pro HD airbrush techniques and specializing in transferproof 16-hour muhurtham looks, she personally oversees every bridal booking at the atelier.
               </p>
             </div>

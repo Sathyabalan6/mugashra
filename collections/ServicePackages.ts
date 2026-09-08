@@ -9,7 +9,7 @@ export const ServicePackages: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'tier', 'category', 'startingPrice', 'badge', 'order'],
-    group: '💄 Artistry & Portfolio',
+    group: '💰 Pricing & Packages',
     description: 'Configure bespoke bridal pricing tiers, session durations, inclusions, and highlight badges.',
   },
   access: {

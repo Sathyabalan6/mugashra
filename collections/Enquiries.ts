@@ -9,11 +9,11 @@ export const Enquiries: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'phone', 'eventDate', 'serviceTier', 'venueLocation', 'status', 'createdAt'],
-    group: '💍 Bridal Inquiries',
+    group: '📥 Client Enquiries',
     description: 'Track client wedding dates, WhatsApp leads, ceremony requirements, and booking statuses.',
   },
   access: {
-    create: () => true,
+    create: () => false,
     read: ({ req: { user } }) => Boolean(user),
     update: ({ req: { user } }) => Boolean(user),
     delete: ({ req: { user } }) => Boolean(user),

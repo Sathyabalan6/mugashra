@@ -68,7 +68,7 @@ export function PricingSection() {
           {/* Right Column: Editorial Visual */}
           <div className="lg:col-span-6 relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
             <Image
-              src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=85"
+              src="/images/portfolio/bridal_story_1.webp"
               alt="High Definition Bridal Makeup"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -84,7 +84,7 @@ export function PricingSection() {
           {/* Left Visual */}
           <div className="lg:col-span-6 order-2 lg:order-1 relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
             <Image
-              src="https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=1000&q=85"
+              src="/images/portfolio/couple_photo_red_and_sandal_1.jpg"
               alt="Bridal Reception Styling"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -153,7 +153,7 @@ export function PricingSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           <div className="lg:col-span-6 relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
             <Image
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=85"
+              src="/images/portfolio/bridal_story_4.webp"
               alt="Destination Wedding Bridal Artistry"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"

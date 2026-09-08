@@ -9,7 +9,7 @@ export const Users: CollectionConfig = {
   admin: {
     useAsTitle: 'email',
     defaultColumns: ['name', 'email', 'roles', 'createdAt'],
-    group: '🏛️ Studio & Atelier',
+    group: '⚙️ Studio Settings & Admin',
     description: 'Manage admin accounts, studio coordinators, and authentication credentials.',
   },
   auth: true,

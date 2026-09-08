@@ -22,8 +22,8 @@ const slides = [
   { url: '/images/portfolio/bridal_story_3.webp', title: 'Bridal Story III', desc: 'Floral hair architecture — fresh Madurai Malli setting.',                            category: 'Bridal Story', focalPosition: 'center 10%' },
   { url: '/images/portfolio/bridal_story_4.webp', title: 'Bridal Story IV',  desc: 'Airbrush complexion under high-definition lighting.',                                category: 'Bridal Story', focalPosition: 'center 10%' },
   { url: '/images/portfolio/bridal_story_5.webp', title: 'Bridal Story V',   desc: 'The final reveal — bride ready for her sacred ceremony.',                            category: 'Bridal Story', focalPosition: 'center 10%' },
-  { url: '/images/portfolio/couple_photo_red _and _sandal_1.jpg', title: 'Red & Sandal Couple I',  desc: 'Couple portrait — red silk bride, sandal groom, perfect harmony.',          category: 'Couple',       focalPosition: 'center 15%' },
-  { url: '/images/portfolio/couple_photo_red _and _sandal_2.jpg', title: 'Red & Sandal Couple II', desc: 'Reception couple look — coordinated colour palette, editorial finish.',      category: 'Couple',       focalPosition: 'center 15%' },
+  { url: '/images/portfolio/couple_photo_red_and_sandal_1.jpg', title: 'Red & Sandal Couple I',  desc: 'Couple portrait — red silk bride, sandal groom, perfect harmony.',          category: 'Couple',       focalPosition: 'center 15%' },
+  { url: '/images/portfolio/couple_photo_red_and_sandal_2.jpg', title: 'Red & Sandal Couple II', desc: 'Reception couple look — coordinated colour palette, editorial finish.',      category: 'Couple',       focalPosition: 'center 15%' },
 ]
 
 export default function PortfolioPage() {
@@ -35,11 +35,11 @@ export default function PortfolioPage() {
           {/* Mobile Dedicated Header */}
           <div className="block md:hidden absolute inset-0">
             <Image
-              src="/images/profolio_mobile_header.png"
+              src="/images/portfolio-mobile-header.png"
               alt="A glimpse of what I love to do"
               fill
               priority
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, 1px"
               className="object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/60" />
@@ -52,7 +52,7 @@ export default function PortfolioPage() {
               alt="A glimpse of what I love to do"
               fill
               priority
-              sizes="100vw"
+              sizes="(min-width: 769px) 100vw, 1px"
               className="object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />

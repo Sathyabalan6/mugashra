@@ -68,6 +68,17 @@ export function EnquiryForm() {
         </div>
       )}
 
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="contact-website">Website</label>
+        <input
+          id="contact-website"
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       {/* Name */}
       <div>
         <label htmlFor="contact-name" className="block text-xs font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">

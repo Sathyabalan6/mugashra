@@ -5,6 +5,16 @@ async function seed() {
   console.log('Seeding Payload CMS database with live website content...')
   const payload = await getPayload({ config: configPromise })
 
+  // Force clean existing seeded collections to update with fresh local images
+  try {
+    await payload.delete({ collection: 'portfolio-items', where: {} })
+    await payload.delete({ collection: 'team-members', where: {} })
+    await payload.delete({ collection: 'testimonials', where: {} })
+    await payload.delete({ collection: 'service-packages', where: {} })
+  } catch (err) {
+    console.log('Clearing old collections error (ignoring if empty):', err)
+  }
+
   // 1. Seed Testimonials
   const existingTestimonials = await payload.find({ collection: 'testimonials', limit: 1 })
   if (existingTestimonials.totalDocs === 0) {
@@ -182,7 +192,7 @@ async function seed() {
         title: 'The Sacred Muhurtham in Crimson Silk',
         brideName: 'Editorial Look I',
         category: 'muhurtham',
-        imageUrl: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=85',
+        imageUrl: '/images/portfolio/bridal_story_1.webp',
         location: 'Wedding Ceremony, Chennai',
         artistryDetails: 'Waterproof HD complexion, antique gold temple jewellery, fresh Madurai Malli poola jada.',
         featured: true,
@@ -192,7 +202,7 @@ async function seed() {
         title: 'Contemporary Glass-Skin Reception',
         brideName: 'Editorial Look II',
         category: 'reception',
-        imageUrl: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=1000&q=85',
+        imageUrl: '/images/portfolio/couple_photo_red_and_sandal_1.jpg',
         location: 'Evening Reception, Chennai',
         artistryDetails: 'Sculpted airbrush base, champagne shimmer lids, voluminous Hollywood waves.',
         featured: true,
@@ -202,7 +212,7 @@ async function seed() {
         title: 'Pastel Organza Nichayathartham',
         brideName: 'Editorial Look III',
         category: 'engagement',
-        imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=85',
+        imageUrl: '/images/portfolio/bridal_story_4.webp',
         location: 'Engagement Ceremony, Chennai',
         artistryDetails: 'Soft peach monochromatic blush, fluttery lash clusters, romantic floral hair.',
         featured: true,
@@ -212,7 +222,7 @@ async function seed() {
         title: 'Couture Editorial in Emerald Velvet',
         brideName: 'Editorial Look IV',
         category: 'editorial',
-        imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1000&q=85',
+        imageUrl: '/images/portfolio/bridal_story_5.webp',
         location: 'Fashion Campaign',
         artistryDetails: 'Sculpted cheekbones, high-gloss nude pout, modern architectural low bun.',
         featured: true,
@@ -222,7 +232,7 @@ async function seed() {
         title: 'Minimalist Monochromatic Silk Campaign',
         brideName: 'Editorial Look V',
         category: 'editorial',
-        imageUrl: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1000&q=85',
+        imageUrl: '/images/portfolio/bridal_story_3.webp',
         location: 'Silk Saree Editorial',
         artistryDetails: 'Feathered natural brows, glass skin glaze, subtle earth tones.',
         featured: true,
@@ -232,7 +242,7 @@ async function seed() {
         title: 'Luxury Jewellery Campaign',
         brideName: 'Editorial Look VI',
         category: 'editorial',
-        imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1000&q=85',
+        imageUrl: '/images/portfolio/bridal_story_2.webp',
         location: 'Commercial Campaign',
         artistryDetails: 'High-contrast definition, camera-perfect skin setting under intense studio lighting.',
         featured: true,
@@ -259,7 +269,7 @@ async function seed() {
         specialization: 'High-Definition Bridal Complexion, Airbrush & Heritage South Indian Artistry',
         bio: 'With over 9 years of luxury wedding experience across South India, our Lead Artist has styled over 650+ brides with signature skin-realism.',
         yearsExperience: 9,
-        photoUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
+        photoUrl: '/images/shwetha-mohan.jpg',
         order: 1,
       },
       {
@@ -268,7 +278,7 @@ async function seed() {
         specialization: 'Traditional Poola Jada, Modern Textured Buns & Hollywood Waves',
         bio: 'Specializing in intricate South Indian bridal braids, poola jada floral settings, and voluminous Hollywood waves that remain immaculate.',
         yearsExperience: 7,
-        photoUrl: 'https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=800&q=80',
+        photoUrl: '/images/founder-hero.png',
         order: 2,
       },
       {
@@ -277,7 +287,7 @@ async function seed() {
         specialization: 'Kanjeevaram Box Pleating, Saree Pre-Draping & Precision Pleating',
         bio: 'Expert in razor-sharp Kanjeevaram box pleating, weight distribution pinning for heavy silk sarees, and contemporary lehenga draping.',
         yearsExperience: 8,
-        photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+        photoUrl: '/images/portfolio/bridal_story_3.webp',
         order: 3,
       },
     ]

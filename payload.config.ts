@@ -4,24 +4,23 @@ import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import sharp from 'sharp'
 
 import { Users } from './collections/Users'
-import { Media } from './collections/Media'
 import { ServicePackages } from './collections/ServicePackages'
-import { PortfolioItems } from './collections/PortfolioItems'
-import { TeamMembers } from './collections/TeamMembers'
-import { Testimonials } from './collections/Testimonials'
 import { Enquiries } from './collections/Enquiries'
 
 import { SiteSettings } from './globals/SiteSettings'
-import { HomePage } from './globals/HomePage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 const databaseUri = process.env.DATABASE_URI || process.env.POSTGRES_URL || ''
 const isPostgres = databaseUri.startsWith('postgres://') || databaseUri.startsWith('postgresql://')
+const payloadSecret = process.env.PAYLOAD_SECRET
+
+if (!payloadSecret) {
+  throw new Error('PAYLOAD_SECRET must be set before starting Mugashra.')
+}
 
 export default buildConfig({
   admin: {
@@ -43,20 +42,14 @@ export default buildConfig({
   },
   collections: [
     Enquiries,
-    PortfolioItems,
     ServicePackages,
-    Testimonials,
-    TeamMembers,
-    Media,
     Users,
   ],
   globals: [
-    HomePage,
     SiteSettings,
   ],
   editor: lexicalEditor(),
-  sharp,
-  secret: process.env.PAYLOAD_SECRET || 'mugashra-classic-luxury-bridal-artistry-secret-key-32chars',
+  secret: payloadSecret,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

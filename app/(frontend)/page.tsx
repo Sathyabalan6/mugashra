@@ -100,7 +100,7 @@ export default async function HomePage() {
               fill
               priority
               quality={85}
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, 1px"
               className="object-cover object-[center_78%]"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/30 to-transparent" />
@@ -110,15 +110,20 @@ export default async function HomePage() {
           {/* Desktop Wide Cinematic Cover */}
           <div className="hidden md:block absolute inset-0">
             <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-              <img
-                src="/images/hero-bride.png"
+              <Image
+                src={heroDesktopImage}
                 alt="Mugashra Bridal Artistry Visual"
-                style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'right center' }}
+                fill
+                priority
+                sizes="(min-width: 769px) 100vw, 1px"
+                className="object-cover object-[right_center]"
               />
-              <img
+              <Image
                 src="/images/bells-overlay.png"
                 aria-hidden="true"
                 alt=""
+                width={300}
+                height={300}
                 style={{
                   position: 'absolute',
                   top: 0,
