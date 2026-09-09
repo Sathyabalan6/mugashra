@@ -1,6 +1,5 @@
 // Root-level not-found — catches ALL unmatched URLs globally.
-// Must import globals.css itself since there is no root app/layout.tsx.
-import './(frontend)/globals.css'
+// Do NOT render <html>/<body> — Next.js DefaultLayout provides those.
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -11,31 +10,22 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <html lang="en">
-      <body
-        style={{
-          margin: 0,
-          padding: 0,
-          backgroundColor: '#181514',
-          color: '#FAFAF8',
-          fontFamily: 'system-ui, sans-serif',
-          minHeight: '100vh',
-        }}
-      >
-        <main
-          style={{
-            position: 'relative',
-            minHeight: '100vh',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '5rem 1.5rem',
-            overflow: 'hidden',
-            background:
-              'radial-gradient(ellipse 70% 55% at 50% 0%, rgba(181,138,105,0.10) 0%, transparent 65%), #181514',
-          }}
-        >
+    <main
+      style={{
+        position: 'relative',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '5rem 1.5rem',
+        overflow: 'hidden',
+        background:
+          'radial-gradient(ellipse 70% 55% at 50% 0%, rgba(181,138,105,0.10) 0%, transparent 65%), #181514',
+        color: '#FAFAF8',
+        fontFamily: 'system-ui, sans-serif',
+      }}
+    >
           {/* Top accent line */}
           <div
             aria-hidden="true"
@@ -343,7 +333,5 @@ export default function NotFound() {
             }}
           />
         </main>
-      </body>
-    </html>
   )
 }
