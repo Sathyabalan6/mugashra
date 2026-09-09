@@ -8,49 +8,25 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="relative min-h-screen w-full flex flex-col justify-between bg-[#181514] text-[#FAFAF8] overflow-hidden selection:bg-[var(--color-accent)] selection:text-[#181514]">
-      {/* ── 1. Ambient Luxury Radial Atmosphere & Subtle Grid ── */}
+    <div className="relative min-h-[80vh] w-full flex flex-col justify-center items-center bg-[#181514] text-[#FAFAF8] py-20 px-6 sm:px-12 selection:bg-[var(--color-accent)] selection:text-[#181514]">
+      {/* ── Ambient Luxury Radial Atmosphere & Subtle Grid ── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Soft Golden Glow in Top Center */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[var(--color-accent)]/20 via-[var(--color-accent)]/5 to-transparent blur-3xl" />
+        {/* Soft Golden Glow in Center */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[var(--color-accent)]/20 via-[var(--color-accent)]/5 to-transparent blur-3xl" />
         
         {/* Subtle Geometry Grid Overlay */}
         <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#B58A69_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
-        
-        {/* Bottom Ambient Vignette */}
-        <div className="absolute bottom-0 inset-x-0 h-64 bg-gradient-to-t from-[#181514] via-[#181514]/80 to-transparent" />
       </div>
 
-      {/* ── 2. Top Header Brand Strip ── */}
-      <header className="relative z-10 w-full max-w-[1200px] mx-auto px-6 sm:px-12 py-8 flex items-center justify-between border-b border-white/10">
-        <Link
-          href="/"
-          className="font-sans text-xs sm:text-sm uppercase tracking-[0.25em] text-white font-medium hover:text-[var(--color-accent)] transition-colors min-h-[44px] flex items-center"
-          aria-label="Mugashra Atelier Home"
-        >
-          <span>MUGASHRA ARTISTRY</span>
-        </Link>
-        
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-pulse" />
-          <span className="font-sans text-[10px] uppercase tracking-[2px] text-[var(--color-accent)] border border-[var(--color-accent)]/40 px-3 py-1 font-semibold">
-            Status 404 • Lookbook
-          </span>
-        </div>
-      </header>
-
-      {/* ── 3. Main Center Stage ── */}
-      <main
-        id="main-content"
-        className="relative z-10 max-w-[900px] mx-auto px-6 sm:px-12 py-12 sm:py-20 text-center space-y-8 my-auto"
-      >
+      {/* ── Main Center Stage ── */}
+      <div className="relative z-10 max-w-[850px] mx-auto text-center space-y-8 my-auto">
         {/* Giant Metallic Fluid 404 Numeral */}
         <div className="relative inline-block">
           <div
             aria-hidden="true"
             className="font-serif leading-none bg-gradient-to-b from-[#F5E6D8] via-[#B58A69] to-[#7A5032] bg-clip-text text-transparent drop-shadow-[0_10px_35px_rgba(181,138,105,0.2)] select-none animate-hero-eyebrow"
             style={{
-              fontSize: 'clamp(6rem, 4rem + 15vw, 15rem)',
+              fontSize: 'clamp(6rem, 4rem + 14vw, 13rem)',
               letterSpacing: '0.04em',
             }}
           >
@@ -160,13 +136,7 @@ export default function NotFound() {
             Get in touch with our desk ↗
           </Link>
         </p>
-      </main>
-
-      {/* ── 4. Bottom Footer Strip ── */}
-      <footer className="relative z-10 w-full max-w-[1200px] mx-auto px-6 sm:px-12 py-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-white/50 font-sans tracking-[1.5px] gap-2">
-        <span>MUGASHRA ARTISTRY • EDITORIAL BRIDAL ATELIER</span>
-        <span>CHENNAI • DESTINATION WEDDINGS WORLDWIDE</span>
-      </footer>
+      </div>
     </div>
   )
 }
