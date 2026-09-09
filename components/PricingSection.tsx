@@ -185,7 +185,7 @@ export function PricingSection() {
                 transitionTypes={['nav-forward']}
                 className="px-6 py-2.5 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors"
               >
-                Check Dates ↗
+                Book Package ↗
               </Link>
             </div>
           </div>

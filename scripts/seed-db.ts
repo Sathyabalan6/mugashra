@@ -3,7 +3,7 @@ import configPromise from '../payload.config'
 
 async function seed() {
   console.log('Seeding Payload CMS database with live website content...')
-  const payload = await getPayload({ config: configPromise })
+  const payload = (await getPayload({ config: configPromise })) as any
 
   // Force clean existing seeded collections to update with fresh local images
   try {

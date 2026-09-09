@@ -9,19 +9,18 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
 
+  // Track scroll position
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40)
-    // Sync on mount in case page loads already scrolled
     handleScroll()
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const [prevPathname, setPrevPathname] = useState(pathname)
-  if (prevPathname !== pathname) {
-    setPrevPathname(pathname)
+  // Close mobile menu on route change
+  useEffect(() => {
     setMobileMenuOpen(false)
-  }
+  }, [pathname])
 
   // Body scroll lock when mobile menu is open
   useEffect(() => {
@@ -53,9 +52,9 @@ export function Header() {
     { label: 'Contact', href: '/contact' },
   ]
 
-  const isHome = pathname === '/' || pathname === '/about' || pathname === '/portfolio'
+  const isDarkHeroPage = pathname === '/' || pathname === '/about' || pathname === '/portfolio'
 
-  const headerBg = isHome
+  const headerBg = isDarkHeroPage
     ? (!isScrolled
         ? 'bg-transparent border-b border-white/10 text-white'
         : 'bg-[#181514]/95 backdrop-blur-md border-b border-white/10 text-[#FAFAF8] shadow-[0_4px_20px_rgba(0,0,0,0.15)]')
@@ -70,14 +69,17 @@ export function Header() {
         className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${headerBg}`}
       >
         {/* Subtle gradient overlay for readability on light backgrounds */}
-        {isHome && !isScrolled && (
+        {isDarkHeroPage && !isScrolled && (
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-transparent pointer-events-none" />
         )}
-        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
+
+        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between relative z-10">
           {/* Brand Wordmark (Left) */}
           <Link
             href="/"
-            className={`group flex flex-col items-start py-2 tracking-[0.25em] uppercase font-sans text-xs sm:text-sm font-medium hover:text-[var(--color-accent)] transition-colors min-h-[44px] justify-center ${isHome ? 'text-white' : 'text-[#181514]'}`}
+            className={`group flex flex-col items-start py-2 tracking-[0.25em] uppercase font-sans text-xs sm:text-sm font-medium hover:text-[var(--color-accent)] transition-colors min-h-[44px] justify-center ${
+              isDarkHeroPage ? 'text-white' : 'text-[#181514]'
+            }`}
             aria-label="Mugashra Atelier Home"
           >
             <span>MUGASHRA ARTISTRY</span>
@@ -94,7 +96,7 @@ export function Header() {
                   className={`font-sans text-[12px] uppercase tracking-[2.5px] transition-colors relative py-2 min-h-[44px] flex items-center ${
                     isActive
                       ? 'text-[var(--color-accent)] font-semibold'
-                      : isHome
+                      : isDarkHeroPage
                         ? 'text-[#E0D8D0] hover:text-white font-normal'
                         : 'text-[#181514] hover:text-[var(--color-accent)] font-normal'
                   }`}
@@ -112,7 +114,9 @@ export function Header() {
               href="https://www.instagram.com/mugaashra_makeover"
               target="_blank"
               rel="noopener noreferrer"
-              className={`hover:text-[var(--color-accent)] transition-colors w-11 h-11 flex items-center justify-center ${isHome ? 'text-[var(--color-accent)]' : 'text-[#181514]'}`}
+              className={`hover:text-[var(--color-accent)] transition-colors w-11 h-11 flex items-center justify-center ${
+                isDarkHeroPage ? 'text-[var(--color-accent)]' : 'text-[#181514]'
+              }`}
               aria-label="Visit Mugashra Artistry on Instagram (opens in new window)"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -123,8 +127,11 @@ export function Header() {
 
           {/* Mobile Hamburger Trigger */}
           <button
+            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`md:hidden w-11 h-11 flex items-center justify-center hover:text-[var(--color-accent)] transition-colors ${isHome ? 'text-white' : 'text-[#181514]'} relative z-[60]`}
+            className={`md:hidden min-w-[44px] min-h-[44px] w-11 h-11 flex items-center justify-end hover:text-[var(--color-accent)] transition-colors ${
+              isDarkHeroPage ? 'text-white' : 'text-[#181514]'
+            }`}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
             style={{ touchAction: 'manipulation' }}
@@ -143,7 +150,7 @@ export function Header() {
       {/* Mobile Drawer Menu Overlay */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 z-[9999] md:hidden bg-[#181514]/90 backdrop-blur-md"
+          className="fixed inset-0 z-[100] md:hidden bg-[#181514]/90 backdrop-blur-md"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation drawer"
@@ -155,10 +162,11 @@ export function Header() {
           >
             <div>
               <div className="flex items-center justify-between pb-6 border-b border-white/10">
-                <span className="font-sans text-sm font-medium tracking-[0.2em] text-white uppercase">
+                <span className="font-sans text-xs sm:text-sm font-medium tracking-[0.2em] text-white uppercase">
                   MUGASHRA ARTISTRY
                 </span>
                 <button
+                  type="button"
                   onClick={() => setMobileMenuOpen(false)}
                   className="w-11 h-11 flex items-center justify-center text-white hover:text-[var(--color-accent)] transition-colors active:scale-95"
                   aria-label="Close menu"
@@ -195,12 +203,12 @@ export function Header() {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-center py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[12px] uppercase tracking-[2px] font-semibold transition-colors shadow-lg"
+                className="block w-full text-center py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[12px] uppercase tracking-[2px] font-semibold transition-colors shadow-lg active:scale-[0.98]"
               >
-                Reserve Wedding Date ↗
+                Book Bridal Consultation ↗
               </Link>
               <p className="caption-text text-center text-xs text-white/70">
-                Bridal Atelier • Dates by Appointment
+                Bridal Atelier • Consultations by Appointment
               </p>
             </div>
           </div>

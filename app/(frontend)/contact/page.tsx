@@ -1,15 +1,18 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import { EnquiryForm } from '@/components/EnquiryForm'
-import { DateChecker } from '@/components/DateChecker'
 import { PageTransition } from '@/components/PageTransition'
 
 export const metadata: Metadata = {
-  title: 'Contact & Date Availability | Mugashra Bridal Artistry',
-  description: 'Check Muhurtham wedding date availability and contact our Chennai bridal atelier.',
+  title: 'Contact & Bridal Enquiries | Mugashra Bridal Artistry',
+  description: 'Get in touch for bridal makeup consultation, availability, and bookings in Chennai and worldwide.',
 }
 
 export default function ContactPage() {
+  const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919840000000'
+  const defaultMessage = encodeURIComponent("Hi Mugashra Artistry, I'd like to enquire about bridal makeup availability.")
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${defaultMessage}`
+
   return (
     <PageTransition className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
       {/* ── Main Contact Section ── */}
@@ -53,19 +56,40 @@ export default function ContactPage() {
                 Enquiries Desk
               </span>
               <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)]">
-                Dates confirmed upon form enquiry
+                Dates confirmed upon form enquiry or WhatsApp
               </p>
             </div>
           </div>
 
-          {/* Right Column: Date Checker + Form */}
+          {/* Right Column: Direct WhatsApp Card + Form */}
           <div className="lg:col-span-6 space-y-8 text-left">
-            {/* Interactive Availability Tool */}
-            <DateChecker />
+            {/* Direct WhatsApp Callout Card */}
+            <div className="p-6 sm:p-8 bg-[#181514] text-white space-y-4 border border-white/10 shadow-lg">
+              <span className="font-sans text-[10px] uppercase tracking-[2.5px] text-[var(--color-accent)] font-semibold block">
+                Instant Bridal Support
+              </span>
+              <h2 className="font-serif text-2xl sm:text-3xl font-normal text-[#FAFAF8]">
+                Prefer Quick WhatsApp Chat?
+              </h2>
+              <p className="font-serif text-xs sm:text-sm text-white/80 leading-relaxed">
+                Connect directly with our atelier booking coordinator for instant date availability, custom package quotes, and lookbook details.
+              </p>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-[#25D366] hover:bg-[#20ba5a] text-white font-sans text-xs uppercase tracking-[2px] font-semibold transition-all duration-300 rounded-xs shadow-md min-h-[44px]"
+              >
+                <svg className="w-4 h-4 fill-current text-white" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.105 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                </svg>
+                <span>Chat Directly on WhatsApp ↗</span>
+              </a>
+            </div>
 
             <div className="space-y-6 pt-4 border-t border-[var(--color-border)]">
               <p className="font-serif text-lg sm:text-xl text-[var(--color-text-body)] leading-relaxed font-light">
-                Feel free to contact us and we&apos;ll get back to you as soon as we can.
+                Or send us your details below and we&apos;ll get back to you as soon as we can.
               </p>
 
               <EnquiryForm />

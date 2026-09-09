@@ -33,8 +33,8 @@ export default async function HomePage() {
     const payload = await getPayloadClient()
     // Fast non-blocking query with 800ms timeout to prevent SQLite lock hangs on Windows dev
     const dbPromise = Promise.all([
-      payload.find({ collection: 'testimonials', sort: 'order', limit: 10 }),
-      payload.findGlobal({ slug: 'home-page' }).catch(() => null),
+      (payload as any).find({ collection: 'testimonials', sort: 'order', limit: 10 }),
+      (payload as any).findGlobal({ slug: 'home-page' }).catch(() => null),
     ])
     const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 800))
     const [testRes, homeRes] = (await Promise.race([dbPromise, timeoutPromise])) as [
@@ -103,8 +103,7 @@ export default async function HomePage() {
               sizes="(max-width: 768px) 100vw, 1px"
               className="object-cover object-[center_78%]"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/30 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/20 to-transparent" />
           </div>
 
           {/* Desktop Wide Cinematic Cover */}
@@ -138,8 +137,8 @@ export default async function HomePage() {
                 }}
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/30 to-black/75" />
-            <div className="absolute inset-0 bg-black/15" />
+            {/* Scrim gradient: dark left for text contrast, fading out to transparent over the bride on the right */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/35 to-transparent pointer-events-none" />
           </div>
         </div>
 
@@ -164,18 +163,18 @@ export default async function HomePage() {
               {heroSubtitle}
             </p>
 
-            <div className="pt-1 sm:pt-4 flex flex-wrap gap-2.5 sm:gap-4 items-center justify-start animate-hero-actions">
+            <div className="pt-1 sm:pt-4 flex flex-col sm:flex-row gap-2 sm:gap-4 items-start sm:items-center justify-start animate-hero-actions">
               <Link
                 href="/contact"
                 transitionTypes={['nav-forward']}
-                className="group relative px-5 sm:px-8 py-2.5 sm:py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[10px] sm:text-[12px] uppercase tracking-[2px] font-semibold transition-all duration-300 shadow-lg min-h-[44px] flex items-center overflow-hidden active:scale-[0.98]"
+                className="group relative px-4 sm:px-8 py-2 sm:py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[9.5px] sm:text-[12px] uppercase tracking-[1.5px] sm:tracking-[2px] font-semibold transition-all duration-300 shadow-lg min-h-[38px] sm:min-h-[44px] flex items-center justify-start overflow-hidden active:scale-[0.98] w-fit sm:w-auto shrink-0"
               >
-                <span>Reserve Your Date</span>
+                <span>Book Consultation</span>
                 <span className="inline-block ml-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">↗</span>
               </Link>
               <Link
                 href="/services"
-                className="px-5 sm:px-8 py-2.5 sm:py-3.5 bg-transparent hover:bg-white/10 border border-white/40 hover:border-white text-white font-sans text-[10px] sm:text-[12px] uppercase tracking-[2px] font-medium transition-all duration-300 backdrop-blur-xs min-h-[44px] flex items-center active:scale-[0.98]"
+                className="px-4 sm:px-8 py-2 sm:py-3.5 bg-transparent hover:bg-white/10 border border-white/40 hover:border-white text-white font-sans text-[9.5px] sm:text-[12px] uppercase tracking-[1.5px] sm:tracking-[2px] font-medium transition-all duration-300 backdrop-blur-xs min-h-[38px] sm:min-h-[44px] flex items-center justify-start active:scale-[0.98] w-fit sm:w-auto shrink-0"
               >
                 View Price List
               </Link>

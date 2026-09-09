@@ -22,7 +22,7 @@ export default async function TestimonialsPage() {
 
   try {
     const payload = await getPayloadClient()
-    const res = await payload.find({ collection: 'testimonials', sort: 'order' })
+    const res = await (payload as any).find({ collection: 'testimonials', sort: 'order' })
     if (res?.docs?.length) {
       testimonials = res.docs as TestimonialItem[]
     }
@@ -69,7 +69,7 @@ export default async function TestimonialsPage() {
           transitionTypes={['nav-forward']}
           className="inline-block px-8 py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-colors shadow-xs min-h-[44px]"
         >
-          Reserve Your Wedding Date ↗
+          Book Bridal Consultation ↗
         </Link>
       </div>
     </PageTransition>

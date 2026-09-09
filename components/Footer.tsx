@@ -104,7 +104,7 @@ export function Footer() {
                 Enquiries &amp; Bookings
               </p>
               <Link href="/contact" className="font-serif text-sm hover:text-[var(--color-accent-text)] transition-colors block py-1">
-                Dates by Appointment ↗
+                Book Consultation ↗
               </Link>
             </div>
 

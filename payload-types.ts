@@ -68,10 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     enquiries: Enquiry;
-    'portfolio-items': PortfolioItem;
     'service-packages': ServicePackage;
-    testimonials: Testimonial;
-    'team-members': TeamMember;
     users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -81,10 +78,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
-    'portfolio-items': PortfolioItemsSelect<false> | PortfolioItemsSelect<true>;
     'service-packages': ServicePackagesSelect<false> | ServicePackagesSelect<true>;
-    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
-    'team-members': TeamMembersSelect<false> | TeamMembersSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -96,11 +90,9 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
-    'home-page': HomePage;
     'site-settings': SiteSetting;
   };
   globalsSelect: {
-    'home-page': HomePageSelect<false> | HomePageSelect<true>;
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
   locale: null;
@@ -171,46 +163,6 @@ export interface Enquiry {
   createdAt: string;
 }
 /**
- * Curate bespoke bridal looks across Muhurtham, Reception, Haldi, and Editorial masterclasses.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "portfolio-items".
- */
-export interface PortfolioItem {
-  id: number;
-  /**
-   * e.g. "Heritage Kanjeevaram & Antique Temple Gold" or "Contemporary Dewy Glass-Skin Reception"
-   */
-  title: string;
-  /**
-   * Optional name for editorial attribution.
-   */
-  brideName?: string | null;
-  category: 'muhurtham' | 'reception' | 'engagement' | 'haldi' | 'editorial';
-  /**
-   * Direct static image path from public/images (e.g. /images/portfolio/red.jpg).
-   */
-  imageUrl: string;
-  /**
-   * e.g. Chennai, Mahabalipuram, Bangalore, Coimbatore.
-   */
-  location?: string | null;
-  /**
-   * e.g. "Dewy HD base, smoked copper eyes, fresh jasmine braid, traditional Madisar draping"
-   */
-  artistryDetails?: string | null;
-  /**
-   * Showcase this look prominently in the curated homepage atelier showcase.
-   */
-  featured?: boolean | null;
-  /**
-   * Lower numbers display first (0, 1, 2...).
-   */
-  order?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
  * Configure bespoke bridal pricing tiers, session durations, inclusions, and highlight badges.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -254,46 +206,6 @@ export interface ServicePackage {
    * e.g. "Travel & accommodation for outstation weddings billed separately at actuals."
    */
   termsNote?: string | null;
-  order?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * Curate client love notes, 5-star bridal reviews, wedding venues, and testimonials.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials".
- */
-export interface Testimonial {
-  id: number;
-  /**
-   * e.g. "Dr. Sneha & Ashwin" or "Pooja Ramanathan"
-   */
-  clientName: string;
-  eventType: string;
-  location?: string | null;
-  quote: string;
-  rating?: number | null;
-  photoUrl?: string | null;
-  featured?: boolean | null;
-  order?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * Master artists, senior stylists, biographies, and experience credentials.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "team-members".
- */
-export interface TeamMember {
-  id: number;
-  name: string;
-  role: string;
-  specialization?: string | null;
-  bio?: string | null;
-  yearsExperience?: number | null;
-  photoUrlFallback?: string | null;
   order?: number | null;
   updatedAt: string;
   createdAt: string;
@@ -356,20 +268,8 @@ export interface PayloadLockedDocument {
         value: number | Enquiry;
       } | null)
     | ({
-        relationTo: 'portfolio-items';
-        value: number | PortfolioItem;
-      } | null)
-    | ({
         relationTo: 'service-packages';
         value: number | ServicePackage;
-      } | null)
-    | ({
-        relationTo: 'testimonials';
-        value: number | Testimonial;
-      } | null)
-    | ({
-        relationTo: 'team-members';
-        value: number | TeamMember;
       } | null)
     | ({
         relationTo: 'users';
@@ -437,22 +337,6 @@ export interface EnquiriesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "portfolio-items_select".
- */
-export interface PortfolioItemsSelect<T extends boolean = true> {
-  title?: T;
-  brideName?: T;
-  category?: T;
-  imageUrl?: T;
-  location?: T;
-  artistryDetails?: T;
-  featured?: T;
-  order?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "service-packages_select".
  */
 export interface ServicePackagesSelect<T extends boolean = true> {
@@ -471,37 +355,6 @@ export interface ServicePackagesSelect<T extends boolean = true> {
         id?: T;
       };
   termsNote?: T;
-  order?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials_select".
- */
-export interface TestimonialsSelect<T extends boolean = true> {
-  clientName?: T;
-  eventType?: T;
-  location?: T;
-  quote?: T;
-  rating?: T;
-  photoUrl?: T;
-  featured?: T;
-  order?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "team-members_select".
- */
-export interface TeamMembersSelect<T extends boolean = true> {
-  name?: T;
-  role?: T;
-  specialization?: T;
-  bio?: T;
-  yearsExperience?: T;
-  photoUrlFallback?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -571,26 +424,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
- * Manage homepage hero typography, high-res bridal imagery, and Studio Vision & Mission copy.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home-page".
- */
-export interface HomePage {
-  id: number;
-  heroEyebrow?: string | null;
-  heroTitle?: string | null;
-  heroSubtitle?: string | null;
-  heroDesktopImage?: string | null;
-  heroMobileImage?: string | null;
-  visionTitle?: string | null;
-  visionText?: string | null;
-  missionTitle?: string | null;
-  missionText?: string | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
  * Studio contact details, Chennai address, Instagram / Facebook links, and bridal appointment hours.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -606,24 +439,6 @@ export interface SiteSetting {
   facebookUrl?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home-page_select".
- */
-export interface HomePageSelect<T extends boolean = true> {
-  heroEyebrow?: T;
-  heroTitle?: T;
-  heroSubtitle?: T;
-  heroDesktopImage?: T;
-  heroMobileImage?: T;
-  visionTitle?: T;
-  visionText?: T;
-  missionTitle?: T;
-  missionText?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
