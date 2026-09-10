@@ -8,16 +8,27 @@ export function Footer() {
     <footer className="bg-[var(--color-bg-white)] text-[var(--color-text)] border-t border-[var(--color-border)] pt-20 pb-16">
       <div className="max-w-[1300px] mx-auto px-6 sm:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-16">
-          {/* Left: Brand tagline + Instagram */}
-          <div className="lg:col-span-4 space-y-6">
-            <h3 className="font-serif text-lg text-[var(--color-text)] font-normal leading-relaxed">
-              Luxury South Indian bridal artistry, by appointment only.
-            </h3>
+          {/* Left: Brand monogram + tagline + Instagram */}
+          <div className="lg:col-span-4 flex flex-col justify-between space-y-6">
+            {/* Decorative large serif monogram */}
+            <div>
+              <p
+                aria-hidden="true"
+                className="font-serif leading-none text-[var(--color-accent)] select-none"
+                style={{ fontSize: 'clamp(4rem, 6vw, 7rem)', opacity: 0.18, letterSpacing: '0.04em' }}
+              >
+                M
+              </p>
+              <div className="w-10 h-[1px] bg-[var(--color-accent)] mt-2 mb-6 opacity-40" />
+              <h3 className="font-serif text-lg text-[var(--color-text)] font-normal leading-relaxed max-w-xs">
+                Luxury South Indian bridal artistry, by appointment only.
+              </h3>
+            </div>
             <a
               href="https://www.instagram.com/mugaashra_makeover"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 font-sans text-[11px] uppercase tracking-[2px] text-[var(--color-accent-text)] hover:text-[var(--color-accent)] transition-colors"
+              className="inline-flex items-center gap-2.5 font-sans text-[11px] uppercase tracking-[2px] text-[var(--color-accent-text)] hover:text-[var(--color-accent)] transition-colors w-fit"
               aria-label="Follow Mugashra Artistry on Instagram (opens in new window)"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
