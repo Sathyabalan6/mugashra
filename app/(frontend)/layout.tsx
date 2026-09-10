@@ -1,11 +1,19 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { WhatsAppButton } from '@/components/WhatsAppButton'
 
+const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://mugashra.com'
+
+export const viewport: Viewport = {
+  themeColor: '#181514',
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || 'https://mugashra.com'),
+  metadataBase: new URL(baseUrl),
   title: 'Mugashra Bridal Artistry | Luxury Bridal & HD Makeup Studio Chennai',
   description: 'Classic luxury bridal editorial styling, sacred Tamil Muhurtham makeup, Reception airbrush artistry, and bespoke saree draping. Based in Chennai, traveling worldwide.',
   keywords: ['Bridal Makeup Chennai', 'Muhurtham Makeup Artist', 'South Indian Bridal Makeup', 'Airbrush Makeup Chennai', 'Mugashra Artistry'],
@@ -30,7 +38,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BeautySalon',
   name: 'Mugashra Bridal Artistry',
-  image: '/images/shwetha-mohan.jpg',
+  image: `${baseUrl}/images/shwetha-mohan.jpg`,
   description: 'Luxury South Indian bridal makeup, High Definition and Temptu Airbrush artistry, sacred Muhurtham styling, and bespoke Kanjeevaram saree draping.',
   address: {
     '@type': 'PostalAddress',

@@ -1,7 +1,14 @@
 import React from 'react'
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import { PageTransition } from '@/components/PageTransition'
 import { PortfolioScrollGallery } from '@/components/PortfolioScrollGallery'
+
+export const metadata: Metadata = {
+  title: 'Bridal Portfolio | Mugashra Artistry — South Indian Bridal Looks',
+  description: 'Browse editorial Tamil Muhurtham, airbrush bridal, and reception looks by Lead Master Artist Shwetha Mohan. Crimson silk, blue organza, and gold Kanjeevaram styles.',
+  alternates: { canonical: 'https://mugashra.com/portfolio' },
+}
 
 const slides = [
   { url: '/images/portfolio/red.jpg',    title: 'Crimson Silk Bridal',    desc: 'HD complexion, antique gold temple jewellery, fresh Madurai Malli poola jada.',          category: 'Bridal',       focalPosition: 'center 5%' },

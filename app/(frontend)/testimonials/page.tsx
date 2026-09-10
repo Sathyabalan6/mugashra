@@ -7,7 +7,8 @@ import { PageTransition } from '@/components/PageTransition'
 
 export const metadata: Metadata = {
   title: 'Client Feedback & Reviews | Mugashra Bridal Artistry',
-  description: 'Real testimonials and reviews from our cherished brides.',
+  description: 'Real testimonials and reviews from our cherished brides. See why South Indian brides trust Mugashra Artistry for their sacred Muhurtham and reception looks.',
+  alternates: { canonical: 'https://mugashra.com/testimonials' },
 }
 
 export const revalidate = 60
@@ -61,6 +62,7 @@ export default async function TestimonialsPage() {
 
   return (
     <PageTransition className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] pt-12">
+      <h1 className="sr-only">Client Reviews & Feedback — Mugashra Bridal Artistry</h1>
       <FeedbackSection testimonials={testimonials} />
 
       <div className="text-center pb-24">

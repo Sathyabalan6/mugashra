@@ -56,14 +56,14 @@ export function PortfolioScrollGallery({ slides }: Props) {
       <div className="w-full md:w-[62%]">
         {slides.map((slide, i) => (
           <div
-            key={i}
+            key={slide.url}
             ref={(el) => { slideRefs.current[i] = el }}
             className="relative w-full h-[78vh] md:h-screen overflow-hidden"
           >
             <div className={`look-image absolute inset-0 ${revealed[i] ? 'is-revealed' : ''}`}>
               <Image
                 src={slide.url}
-                alt={slide.title}
+                alt={`${slide.title} — ${slide.desc}`}
                 fill
                 sizes="(min-width: 768px) 62vw, 100vw"
                 className={slide.category === 'Bridal Story' ? 'object-contain' : 'object-cover'}

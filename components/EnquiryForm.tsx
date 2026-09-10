@@ -89,6 +89,7 @@ export function EnquiryForm() {
           type="text"
           name="name"
           required
+          autoComplete="name"
           placeholder="e.g. Priyadarshini"
           className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
         />
@@ -105,6 +106,7 @@ export function EnquiryForm() {
             type="tel"
             name="phone"
             required
+            autoComplete="tel"
             placeholder="+91 98765 43210"
             className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
           />
@@ -118,6 +120,7 @@ export function EnquiryForm() {
             id="contact-email"
             type="email"
             name="email"
+            autoComplete="email"
             placeholder="bride@example.com"
             className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
           />

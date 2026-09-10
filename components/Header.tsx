@@ -80,7 +80,7 @@ export function Header() {
             className={`group flex flex-col items-start py-2 tracking-[0.25em] uppercase font-sans text-xs sm:text-sm font-medium hover:text-[var(--color-accent)] transition-colors min-h-[44px] justify-center ${
               isDarkHeroPage ? 'text-white' : 'text-[#181514]'
             }`}
-            aria-label="Mugashra Atelier Home"
+            aria-label="Mugashra Artistry — Home"
           >
             <span>MUGASHRA ARTISTRY</span>
           </Link>
@@ -93,6 +93,7 @@ export function Header() {
                 <Link
                   key={link.label}
                   href={link.href}
+                  aria-current={isActive ? 'page' : undefined}
                   className={`font-sans text-[12px] uppercase tracking-[2.5px] transition-colors relative py-2 min-h-[44px] flex items-center ${
                     isActive
                       ? 'text-[var(--color-accent)] font-semibold'
@@ -186,6 +187,7 @@ export function Header() {
                       key={link.label}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
+                      aria-current={isActive ? 'page' : undefined}
                       className={`font-sans text-[13px] uppercase tracking-[2.5px] transition-colors py-2 min-h-[44px] flex items-center ${
                         isActive
                           ? 'text-[var(--color-accent)] font-semibold'
