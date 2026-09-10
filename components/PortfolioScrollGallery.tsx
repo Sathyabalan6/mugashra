@@ -60,13 +60,13 @@ export function PortfolioScrollGallery({ slides }: Props) {
             ref={(el) => { slideRefs.current[i] = el }}
             className="relative w-full h-[78vh] md:h-screen overflow-hidden"
           >
-            <div className={`look-image absolute inset-0 ${revealed[i] ? 'is-revealed' : ''}`}>
+            <div className={`look-image absolute inset-0 p-4 sm:p-8 flex items-center justify-center ${revealed[i] ? 'is-revealed' : ''}`}>
               <Image
                 src={slide.url}
                 alt={`${slide.title} — ${slide.desc}`}
                 fill
                 sizes="(min-width: 768px) 62vw, 100vw"
-                className={slide.category === 'Bridal Story' ? 'object-contain' : 'object-cover'}
+                className="object-contain"
                 style={{ objectPosition: slide.focalPosition ?? 'center center' }}
                 priority={i < 2}
               />
