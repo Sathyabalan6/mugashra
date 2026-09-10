@@ -67,7 +67,7 @@ export function PortfolioScrollGallery({ slides }: Props) {
                 fill
                 sizes="(min-width: 768px) 62vw, 100vw"
                 className={slide.category === 'Bridal Story' ? 'object-contain' : 'object-cover'}
-                style={{ objectPosition: slide.focalPosition ?? 'center 10%' }}
+                style={{ objectPosition: slide.focalPosition ?? 'center center' }}
                 priority={i < 2}
               />
             </div>
