@@ -37,6 +37,7 @@ export function PortfolioScrollGallery({ slides }: Props) {
 
   const [revealed, setRevealed] = useState<boolean[]>(() => slides.map(() => false))
   const slideRefs = useRef<(HTMLDivElement | null)[]>([])
+  const touchStartX = useRef<number | null>(null)
 
   useEffect(() => {
     setActiveIndex(0)
@@ -165,24 +166,24 @@ export function PortfolioScrollGallery({ slides }: Props) {
               </button>
 
               {/* Mobile overlay copy */}
-              <div className="md:hidden absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent pointer-events-none" />
-              <div className="md:hidden absolute bottom-0 left-0 right-0 px-6 pb-10 space-y-2 z-10">
-                <span className="font-sans text-[10px] uppercase tracking-[3px] text-[var(--color-accent)] block">
+              <div className="md:hidden absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+              <div className="md:hidden absolute bottom-0 left-0 right-0 px-6 pb-8 space-y-1.5 z-10">
+                <span className="font-sans text-[10px] uppercase tracking-[3px] text-[var(--color-accent)] block font-semibold">
                   {slide.category}
                 </span>
                 <h2 className="font-serif text-2xl text-white font-normal leading-snug">{slide.title}</h2>
-                <p className="font-serif text-sm text-white/70 leading-relaxed max-w-md">{slide.desc}</p>
+                <p className="font-serif text-xs sm:text-sm text-white/70 leading-relaxed max-w-md line-clamp-2">{slide.desc}</p>
                 <div className="flex items-center gap-4 pt-1">
                   <Link
                     href={`/contact?look=${encodeURIComponent(slide.title)}`}
-                    className="inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[2px] text-white border-b border-white/40 pb-0.5"
+                    className="inline-flex items-center gap-1.5 font-sans text-[11px] uppercase tracking-[2px] text-white border-b border-white/40 pb-0.5 min-h-[44px]"
                   >
                     Enquire for this Look ↗
                   </Link>
                   <button
                     type="button"
                     onClick={() => setLightboxIndex(i)}
-                    className="font-sans text-[11px] uppercase tracking-[2px] text-[var(--color-accent)] border-b border-[var(--color-accent)]/40 pb-0.5"
+                    className="font-sans text-[11px] uppercase tracking-[2px] text-[var(--color-accent)] border-b border-[var(--color-accent)]/40 pb-0.5 min-h-[44px] flex items-center cursor-pointer"
                   >
                     View HD ⛶
                   </button>
@@ -304,9 +305,26 @@ export function PortfolioScrollGallery({ slides }: Props) {
           role="dialog"
           aria-modal="true"
           aria-label={`${displaySlides[lightboxIndex].title} — High Resolution View`}
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-8 select-none animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-8 select-none animate-in fade-in duration-200 overflow-y-auto pb-[calc(1.5rem+env(safe-area-inset-bottom))]"
           onClick={(e) => {
             if (e.target === e.currentTarget) setLightboxIndex(null)
+          }}
+          onTouchStart={(e) => {
+            touchStartX.current = e.touches[0].clientX
+          }}
+          onTouchEnd={(e) => {
+            if (touchStartX.current === null) return
+            const diff = touchStartX.current - e.changedTouches[0].clientX
+            if (Math.abs(diff) > 45) {
+              if (diff > 0) {
+                // Swipe left -> next slide
+                setLightboxIndex((prev) => (prev !== null ? (prev + 1) % displaySlides.length : null))
+              } else {
+                // Swipe right -> prev slide
+                setLightboxIndex((prev) => (prev !== null ? (prev - 1 + displaySlides.length) % displaySlides.length : null))
+              }
+            }
+            touchStartX.current = null
           }}
         >
           {/* Top Bar */}
@@ -323,14 +341,14 @@ export function PortfolioScrollGallery({ slides }: Props) {
               type="button"
               onClick={() => setLightboxIndex(null)}
               aria-label="Close high-resolution lightbox"
-              className="w-10 h-10 rounded-full border border-white/20 hover:border-white text-white/80 hover:text-white flex items-center justify-center transition-colors bg-white/5 cursor-pointer text-lg"
+              className="w-11 h-11 rounded-full border border-white/20 hover:border-white text-white/80 hover:text-white flex items-center justify-center transition-colors bg-white/5 cursor-pointer text-lg active:scale-95"
             >
               ✕
             </button>
           </div>
 
           {/* Center Image Area with Nav Controls */}
-          <div className="relative flex-1 w-full max-w-6xl mx-auto flex items-center justify-center my-4 overflow-hidden">
+          <div className="relative flex-1 w-full max-w-6xl mx-auto flex items-center justify-center my-3 sm:my-4">
             <button
               type="button"
               onClick={(e) => {
@@ -338,17 +356,17 @@ export function PortfolioScrollGallery({ slides }: Props) {
                 setLightboxIndex((prev) => (prev !== null ? (prev - 1 + displaySlides.length) % displaySlides.length : null))
               }}
               aria-label="Previous bridal look"
-              className="absolute left-2 sm:left-4 z-20 w-12 h-12 rounded-full bg-black/60 hover:bg-[var(--color-accent)] text-white hover:text-[#181514] border border-white/20 flex items-center justify-center transition-all cursor-pointer text-2xl shadow-lg"
+              className="absolute left-1 sm:left-4 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-[var(--color-accent)] text-white hover:text-[#181514] border border-white/20 flex items-center justify-center transition-all cursor-pointer text-xl sm:text-2xl shadow-lg active:scale-95"
             >
               ‹
             </button>
 
-            <div className="relative w-full h-[65vh] sm:h-[75vh]">
+            <div className="relative w-full h-[46vh] sm:h-[65vh]">
               <Image
                 src={displaySlides[lightboxIndex].url}
                 alt={displaySlides[lightboxIndex].title}
                 fill
-                sizes="90vw"
+                sizes="(max-width: 768px) 100vw, 90vw"
                 className="object-contain"
                 priority
               />
@@ -361,28 +379,28 @@ export function PortfolioScrollGallery({ slides }: Props) {
                 setLightboxIndex((prev) => (prev !== null ? (prev + 1) % displaySlides.length : null))
               }}
               aria-label="Next bridal look"
-              className="absolute right-2 sm:right-4 z-20 w-12 h-12 rounded-full bg-black/60 hover:bg-[var(--color-accent)] text-white hover:text-[#181514] border border-white/20 flex items-center justify-center transition-all cursor-pointer text-2xl shadow-lg"
+              className="absolute right-1 sm:right-4 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-[var(--color-accent)] text-white hover:text-[#181514] border border-white/20 flex items-center justify-center transition-all cursor-pointer text-xl sm:text-2xl shadow-lg active:scale-95"
             >
               ›
             </button>
           </div>
 
           {/* Bottom Bar: Title, Description & Action Buttons */}
-          <div className="w-full max-w-5xl mx-auto bg-black/70 border border-white/15 rounded-xs p-4 sm:p-6 backdrop-blur-md flex flex-col md:flex-row md:items-center justify-between gap-4 z-10">
+          <div className="w-full max-w-5xl mx-auto bg-black/80 border border-white/15 rounded-xs p-4 sm:p-6 backdrop-blur-md flex flex-col md:flex-row md:items-center justify-between gap-4 z-10">
             <div className="space-y-1 text-left">
-              <h3 className="font-serif text-xl sm:text-2xl text-white font-normal">
+              <h3 className="font-serif text-lg sm:text-2xl text-white font-normal">
                 {displaySlides[lightboxIndex].title}
               </h3>
-              <p className="font-serif text-xs sm:text-sm text-white/70 max-w-xl">
+              <p className="font-serif text-xs sm:text-sm text-white/70 max-w-xl line-clamp-2 sm:line-clamp-none">
                 {displaySlides[lightboxIndex].desc}
               </p>
             </div>
 
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 shrink-0 w-full sm:w-auto">
               <Link
                 href={`/contact?look=${encodeURIComponent(displaySlides[lightboxIndex].title)}`}
                 onClick={() => setLightboxIndex(null)}
-                className="px-5 py-2.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-colors rounded-xs text-center"
+                className="w-full sm:w-auto px-5 py-3 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-colors rounded-xs text-center min-h-[44px] flex items-center justify-center"
               >
                 Enquire for this Look ↗
               </Link>
@@ -392,7 +410,7 @@ export function PortfolioScrollGallery({ slides }: Props) {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2.5 border border-white/25 hover:border-white text-white font-sans text-xs uppercase tracking-[2px] transition-colors rounded-xs text-center"
+                className="w-full sm:w-auto px-5 py-3 border border-white/25 hover:border-white text-white font-sans text-xs uppercase tracking-[2px] transition-colors rounded-xs text-center min-h-[44px] flex items-center justify-center"
               >
                 WhatsApp ↗
               </a>

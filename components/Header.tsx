@@ -50,7 +50,7 @@ export function Header() {
   const navLinks = [
     { label: 'Founder', href: '/about' },
     { label: 'Portfolio', href: '/portfolio' },
-    { label: 'Pricing', href: '/services' },
+    { label: 'Packages', href: '/services' },
     { label: 'Contact', href: '/contact' },
   ]
 
@@ -75,11 +75,11 @@ export function Header() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-transparent pointer-events-none" />
         )}
 
-        <div className="max-w-[1100px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between relative z-10">
+        <div className="max-w-[1100px] mx-auto px-4 sm:px-10 h-16 sm:h-20 flex items-center justify-between relative z-10">
           {/* Brand Wordmark (Left) */}
           <Link
             href="/"
-            className={`group flex flex-col items-start py-2 tracking-[0.22em] uppercase font-sans text-sm sm:text-base font-semibold hover:text-[var(--color-accent)] transition-colors min-h-[44px] justify-center ${
+            className={`group flex flex-col items-start py-2 tracking-[0.14em] sm:tracking-[0.22em] uppercase font-sans text-xs sm:text-sm md:text-base font-semibold hover:text-[var(--color-accent)] transition-colors min-h-[44px] justify-center whitespace-nowrap ${
               isDarkHeroPage ? 'text-white' : 'text-[#181514]'
             }`}
             aria-label="Mugaashra Bridal Studio — Home"
@@ -150,74 +150,96 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile Drawer Menu Overlay */}
-      {mobileMenuOpen && (
+      {/* Mobile Drawer Menu Overlay with smooth backdrop & slide transition */}
+      <div
+        className={`fixed inset-0 z-[100] md:hidden transition-all duration-300 ${
+          mobileMenuOpen
+            ? 'opacity-100 pointer-events-auto bg-[#181514]/90 backdrop-blur-md'
+            : 'opacity-0 pointer-events-none'
+        }`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation drawer"
+        onClick={() => setMobileMenuOpen(false)}
+      >
         <div
-          className="fixed inset-0 z-[100] md:hidden bg-[#181514]/90 backdrop-blur-md"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile navigation drawer"
-          onClick={() => setMobileMenuOpen(false)}
+          className={`fixed right-0 top-0 bottom-0 w-[85%] max-w-sm bg-[#181514] p-6 sm:p-8 shadow-2xl flex flex-col justify-between overflow-y-auto border-l border-white/10 transition-transform duration-300 ease-out pb-[calc(1.5rem+env(safe-area-inset-bottom))] ${
+            mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+          onClick={(e) => e.stopPropagation()}
         >
-          <div
-            className="fixed right-0 top-0 bottom-0 w-[85%] max-w-sm bg-[#181514] p-8 shadow-2xl flex flex-col justify-between overflow-y-auto border-l border-white/10"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div>
-              <div className="flex items-center justify-between pb-6 border-b border-white/10">
-                <span className="font-sans text-sm sm:text-base font-semibold tracking-[0.2em] text-white uppercase">
-                  MUGAASHRA BRIDAL STUDIO
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-11 h-11 flex items-center justify-center text-white hover:text-[var(--color-accent)] transition-colors active:scale-95"
-                  aria-label="Close menu"
-                  style={{ touchAction: 'manipulation' }}
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-
-              <nav className="flex flex-col gap-4 mt-8" aria-label="Mobile Navigation Links">
-                {navLinks.map((link) => {
-                  const isActive = pathname === link.href
-                  return (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      aria-current={isActive ? 'page' : undefined}
-                      className={`font-sans text-[15px] sm:text-base uppercase tracking-[2px] transition-colors py-2 min-h-[44px] flex items-center ${
-                        isActive
-                          ? 'text-[var(--color-accent)] font-semibold'
-                          : 'text-[#E0D8D0] hover:text-white font-normal'
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  )
-                })}
-              </nav>
-            </div>
-
-            <div className="pt-8 border-t border-white/10 space-y-4">
-              <Link
-                href="/contact"
+          <div>
+            <div className="flex items-center justify-between pb-5 border-b border-white/10">
+              <span className="font-sans text-xs sm:text-sm font-semibold tracking-[0.14em] sm:tracking-[0.2em] text-white uppercase whitespace-nowrap">
+                MUGAASHRA BRIDAL STUDIO
+              </span>
+              <button
+                type="button"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-center py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[13px] uppercase tracking-[2px] font-semibold transition-colors shadow-lg active:scale-[0.98]"
+                className="w-11 h-11 flex items-center justify-center text-white hover:text-[var(--color-accent)] transition-colors active:scale-95"
+                aria-label="Close menu"
+                style={{ touchAction: 'manipulation' }}
               >
-                Book Bridal Consultation ↗
-              </Link>
-              <p className="caption-text text-center text-xs text-white/70">
-                Bridal Atelier • Consultations by Appointment
-              </p>
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
+
+            <nav className="flex flex-col gap-2 mt-6" aria-label="Mobile Navigation Links">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`font-sans text-[15px] sm:text-base uppercase tracking-[2px] transition-colors py-2.5 min-h-[44px] flex items-center border-b border-white/5 ${
+                      isActive
+                        ? 'text-[var(--color-accent)] font-semibold'
+                        : 'text-[#E0D8D0] hover:text-white font-normal'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              })}
+            </nav>
+          </div>
+
+          <div className="pt-6 border-t border-white/10 space-y-4">
+            {/* Quick 1-Tap Mobile Actions */}
+            <div className="grid grid-cols-2 gap-2">
+              <a
+                href="https://wa.me/918610597490?text=Hi%20Mugaashra%20Bridal%20Studio%2C%20I'd%20like%20to%20enquire%20about%20bridal%20makeup%20availability."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-3 px-2 text-center bg-white/10 hover:bg-white/15 text-white font-sans text-[11px] uppercase tracking-[1.5px] font-medium border border-white/20 active:scale-95 transition-all flex items-center justify-center gap-1.5 min-h-[44px]"
+              >
+                <span>WhatsApp ↗</span>
+              </a>
+              <a
+                href="tel:+918610597490"
+                className="py-3 px-2 text-center bg-white/10 hover:bg-white/15 text-white font-sans text-[11px] uppercase tracking-[1.5px] font-medium border border-white/20 active:scale-95 transition-all flex items-center justify-center gap-1.5 min-h-[44px]"
+              >
+                <span>Call Studio ✆</span>
+              </a>
+            </div>
+
+            <Link
+              href="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block w-full text-center py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[12px] uppercase tracking-[2px] font-semibold transition-colors shadow-lg active:scale-[0.98] min-h-[44px] flex items-center justify-center"
+            >
+              Book Bridal Consultation ↗
+            </Link>
+            <p className="caption-text text-center text-[11px] text-white/70">
+              Bridal Atelier • Madurai &amp; Worldwide Travel
+            </p>
           </div>
         </div>
-      )}
+      </div>
     </>
   )
 }

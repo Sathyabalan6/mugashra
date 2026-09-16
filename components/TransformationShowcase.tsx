@@ -124,14 +124,14 @@ export function TransformationShowcase() {
         </p>
       </div>
 
-      {/* Look Selector Tabs */}
-      <div className="flex items-center justify-center gap-2 sm:gap-4 mb-12 overflow-x-auto no-scrollbar pb-2">
+      {/* Look Selector Tabs (scrolls smoothly from start on mobile without cutoff) */}
+      <div className="flex items-center justify-start sm:justify-center gap-2 sm:gap-4 mb-10 sm:mb-12 overflow-x-auto no-scrollbar pb-2 px-4 sm:px-0">
         {TRANSFORMATION_LOOKS.map((look) => (
           <button
             key={look.id}
             type="button"
             onClick={() => setActiveLookId(look.id)}
-            className={`px-5 py-2.5 rounded-full font-sans text-xs uppercase tracking-[2px] transition-all cursor-pointer whitespace-nowrap min-h-[42px] ${
+            className={`px-4 sm:px-5 py-2.5 rounded-full font-sans text-xs uppercase tracking-[1.5px] sm:tracking-[2px] transition-all cursor-pointer whitespace-nowrap min-h-[44px] shrink-0 ${
               activeLookId === look.id
                 ? 'bg-[var(--color-accent)] text-[#181514] font-semibold shadow-md'
                 : 'bg-transparent text-[var(--color-text-body)] border border-[var(--color-border)] hover:border-[var(--color-accent)]'
@@ -143,8 +143,8 @@ export function TransformationShowcase() {
       </div>
 
       {/* Main Spotlight Card */}
-      <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-6 sm:p-10 lg:p-12 rounded-xs shadow-xs">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-4 sm:p-8 lg:p-12 rounded-xs shadow-xs">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           {/* Left Column: Image Showcase */}
           <div className="lg:col-span-5 relative">
             <div className="relative aspect-[3/4] w-full rounded-xs overflow-hidden shadow-md bg-[#181514]">
@@ -179,11 +179,11 @@ export function TransformationShowcase() {
             </div>
 
             {/* 4 Key Pillar Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-1 sm:pt-2">
               {current.features.map((feat) => (
                 <div
                   key={feat.label}
-                  className="p-4 border border-[var(--color-border)] bg-[var(--color-bg-alt)]/30 rounded-xs space-y-1"
+                  className="p-3.5 sm:p-4 border border-[var(--color-border)] bg-[var(--color-bg-alt)]/30 rounded-xs space-y-1"
                 >
                   <h4 className="font-sans text-xs font-semibold text-[var(--color-text)] tracking-wide uppercase">
                     ✓ {feat.label}
@@ -201,16 +201,16 @@ export function TransformationShowcase() {
             </div>
 
             {/* Actions */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
               <Link
                 href={`/contact?look=${encodeURIComponent(current.title)}`}
-                className="px-6 py-3 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-colors rounded-xs"
+                className="px-6 py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-colors rounded-xs text-center min-h-[44px] flex items-center justify-center"
               >
                 Inquire for this Look ↗
               </Link>
               <Link
                 href="/portfolio"
-                className="px-6 py-3 border border-[var(--color-border)] hover:border-[var(--color-text)] text-[var(--color-text)] font-sans text-xs uppercase tracking-[2px] transition-colors rounded-xs"
+                className="px-6 py-3.5 border border-[var(--color-border)] hover:border-[var(--color-text)] text-[var(--color-text)] font-sans text-xs uppercase tracking-[2px] transition-colors rounded-xs text-center min-h-[44px] flex items-center justify-center"
               >
                 View Full Gallery ↗
               </Link>

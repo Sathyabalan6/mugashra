@@ -7,11 +7,35 @@ import Link from 'next/link'
 export function PricingSection() {
   return (
     <div className="space-y-24">
+      {/* ── Atelier Consultation & Pricing Policy Banner ── */}
+      <div className="border border-[var(--color-accent)]/40 bg-[var(--color-bg-white)] p-6 sm:p-8 rounded-xs text-center space-y-3 shadow-xs">
+        <span className="font-sans text-[10px] uppercase tracking-[3px] text-[var(--color-accent-text)] font-semibold block">
+          Bespoke Atelier Policy
+        </span>
+        <h2 className="font-serif text-xl sm:text-2xl text-[var(--color-text)] font-normal uppercase tracking-wide">
+          Bespoke Bridal Inclusions • Pricing on Consultation
+        </h2>
+        <p className="font-serif text-xs sm:text-sm text-[var(--color-text-body)] max-w-2xl mx-auto leading-relaxed">
+          Every celebration is an individual artistic commission. With our strict single-bride-per-date policy, quotes are tailored directly to your wedding date, auspicious muhurtham schedule, and venue logistics. Our atelier pricing is fixed, transparent, and strictly non-negotiable.
+        </p>
+      </div>
+
       {/* ── 1. Card 1: SIGNATURE AIRBRUSH ── */}
-      <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-8 sm:p-12 lg:p-16">
+      <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-5 sm:p-10 lg:p-16 rounded-xs">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Column: Heading & Details */}
-          <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
+          {/* Visual on top on mobile, right on desktop */}
+          <div className="lg:col-span-6 order-1 lg:order-2 relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
+            <Image
+              src="/images/portfolio/bridal_story_1.webp"
+              alt="Signature Airbrush Bridal Makeup"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+
+          {/* Details below on mobile, left on desktop */}
+          <div className="lg:col-span-6 order-2 lg:order-1 space-y-6 text-center lg:text-left">
             <div className="space-y-2">
               <span className="font-eyebrow block">Founder Signature Package</span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.15em] uppercase text-[var(--color-text)] font-normal">
@@ -27,26 +51,26 @@ export function PricingSection() {
             </p>
 
             {/* Feature Highlights */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2 text-center">
-              <div className="flex flex-col items-center gap-1.5 p-3 border border-[var(--color-border)]">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-2 text-center">
+              <div className="flex flex-col items-center gap-1.5 p-3 border border-[var(--color-border)] bg-[var(--color-bg-alt)]/20">
                 <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-text)] font-semibold">
                   Airbrush
                 </span>
                 <span className="font-sans text-[10px] text-[var(--color-muted)]">Skin-Like HD</span>
               </div>
-              <div className="flex flex-col items-center gap-1.5 p-3 border border-[var(--color-border)]">
+              <div className="flex flex-col items-center gap-1.5 p-3 border border-[var(--color-border)] bg-[var(--color-bg-alt)]/20">
                 <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-text)] font-semibold">
                   Lenses &amp; Lashes
                 </span>
                 <span className="font-sans text-[10px] text-[var(--color-muted)]">Premium Silk</span>
               </div>
-              <div className="flex flex-col items-center gap-1.5 p-3 border border-[var(--color-border)]">
+              <div className="flex flex-col items-center gap-1.5 p-3 border border-[var(--color-border)] bg-[var(--color-bg-alt)]/20">
                 <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-text)] font-semibold">
                   Hairstyling
                 </span>
                 <span className="font-sans text-[10px] text-[var(--color-muted)]">Floral Design</span>
               </div>
-              <div className="flex flex-col items-center gap-1.5 p-3 border border-[var(--color-border)]">
+              <div className="flex flex-col items-center gap-1.5 p-3 border border-[var(--color-border)] bg-[var(--color-bg-alt)]/20">
                 <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-text)] font-semibold">
                   Saree Draping
                 </span>
@@ -54,38 +78,32 @@ export function PricingSection() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-center justify-between gap-4">
-              <span className="font-serif text-2xl sm:text-3xl text-[var(--color-accent-text)] font-normal">
-                INR 35,000/- <span className="text-xs text-[var(--color-muted)] font-sans">+ 5% GST</span>
-              </span>
+            <div className="pt-4 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-center justify-between gap-4 w-full">
+              <div className="space-y-0.5 text-center sm:text-left">
+                <span className="font-serif text-xl sm:text-2xl text-[var(--color-accent-text)] font-normal block">
+                  Pricing on Consultation
+                </span>
+                <p className="font-sans text-[10.5px] uppercase tracking-[1px] text-[var(--color-muted)]">
+                  Strictly Non-Negotiable • Single-Bride Exclusivity
+                </p>
+              </div>
               <Link
                 href="/contact?package=Signature%20Airbrush"
                 transitionTypes={['nav-forward']}
-                className="px-6 py-2.5 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors"
+                className="w-full sm:w-auto px-7 py-3 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors text-center min-h-[44px] flex items-center justify-center font-semibold"
               >
-                Book Package ↗
+                Enquire Package ↗
               </Link>
             </div>
-          </div>
-
-          {/* Right Column: Editorial Visual */}
-          <div className="lg:col-span-6 relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
-            <Image
-              src="/images/portfolio/bridal_story_1.webp"
-              alt="Signature Airbrush Bridal Makeup"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-            />
           </div>
         </div>
       </div>
 
       {/* ── 2. Card 2: MUHURTHAM + RECEPTION ── */}
-      <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-8 sm:p-12 lg:p-16">
+      <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-5 sm:p-10 lg:p-16 rounded-xs">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Visual */}
-          <div className="lg:col-span-6 order-2 lg:order-1 relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
+          {/* Left Visual on top on mobile */}
+          <div className="lg:col-span-6 order-1 lg:order-1 relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
             <Image
               src="/images/portfolio/couple_photo_red_and_sandal_1.jpg"
               alt="Muhurtham and Reception Bridal Styling"
@@ -95,8 +113,8 @@ export function PricingSection() {
             />
           </div>
 
-          {/* Right Details */}
-          <div className="lg:col-span-6 order-1 lg:order-2 space-y-6 text-center lg:text-left">
+          {/* Right Details below on mobile */}
+          <div className="lg:col-span-6 order-2 lg:order-2 space-y-6 text-center lg:text-left">
             <div className="space-y-2">
               <span className="font-eyebrow block">Dual Event Suite</span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.15em] uppercase text-[var(--color-text)] font-normal">
@@ -135,16 +153,21 @@ export function PricingSection() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-center justify-between gap-4">
-              <span className="font-serif text-2xl sm:text-3xl text-[var(--color-accent-text)] font-normal">
-                INR 70,000/- <span className="text-xs text-[var(--color-muted)] font-sans">+ 5% GST</span>
-              </span>
+            <div className="pt-4 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-center justify-between gap-4 w-full">
+              <div className="space-y-0.5 text-center sm:text-left">
+                <span className="font-serif text-xl sm:text-2xl text-[var(--color-accent-text)] font-normal block">
+                  Pricing on Consultation
+                </span>
+                <p className="font-sans text-[10.5px] uppercase tracking-[1px] text-[var(--color-muted)]">
+                  Dual-Ceremony Suite • Strictly Non-Negotiable
+                </p>
+              </div>
               <Link
                 href="/contact?package=Muhurtham%20%2B%20Reception"
                 transitionTypes={['nav-forward']}
-                className="px-6 py-2.5 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors"
+                className="w-full sm:w-auto px-7 py-3 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors text-center min-h-[44px] flex items-center justify-center font-semibold"
               >
-                Book Package ↗
+                Enquire Package ↗
               </Link>
             </div>
           </div>
@@ -152,7 +175,7 @@ export function PricingSection() {
       </div>
 
       {/* ── 3. Card 3: OUTSTATION & DESTINATION WEDDINGS ── */}
-      <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-8 sm:p-12 lg:p-16">
+      <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-5 sm:p-10 lg:p-16 rounded-xs">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           <div className="lg:col-span-6 relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
             <Image
@@ -179,16 +202,21 @@ export function PricingSection() {
               For outstation weddings, we dedicate our team solely to your event, ensuring undivided personal attention and the highest level of luxury service. Travel and hotel accommodations are billed at actuals.
             </p>
 
-            <div className="pt-4 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-center justify-between gap-4">
-              <span className="font-serif text-2xl sm:text-3xl text-[var(--color-accent-text)] font-normal">
-                INR 1,00,000/- <span className="text-xs text-[var(--color-muted)] font-sans">+ 5% GST</span>
-              </span>
+            <div className="pt-4 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-center justify-between gap-4 w-full">
+              <div className="space-y-0.5 text-center sm:text-left">
+                <span className="font-serif text-xl sm:text-2xl text-[var(--color-accent-text)] font-normal block">
+                  Pricing on Consultation
+                </span>
+                <p className="font-sans text-[10.5px] uppercase tracking-[1px] text-[var(--color-muted)]">
+                  Worldwide &amp; Destination • Single-Date Reservation
+                </p>
+              </div>
               <Link
                 href="/contact?package=Outstation%20Wedding"
                 transitionTypes={['nav-forward']}
-                className="px-6 py-2.5 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors"
+                className="w-full sm:w-auto px-7 py-3 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors text-center min-h-[44px] flex items-center justify-center font-semibold"
               >
-                Book Package ↗
+                Enquire Package ↗
               </Link>
             </div>
           </div>
@@ -200,26 +228,26 @@ export function PricingSection() {
         <h3 className="font-serif text-2xl sm:text-3xl tracking-[0.15em] uppercase text-[var(--color-text)] font-normal">
           A LA CARTE ADD-ONS &amp; EXTRA SERVICES
         </h3>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 font-serif text-sm text-[var(--color-text-body)]">
-          <p>
-            Party &amp; Event Makeup &nbsp;
-            <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 7,500/-</span>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-14 font-serif text-sm text-[var(--color-text-body)]">
+          <p className="flex items-center gap-2">
+            <span>Party &amp; Event Makeup</span>
+            <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-accent-text)] font-semibold">(Upon Request)</span>
           </p>
-          <p>
-            Groom Luxury Makeup &nbsp;
-            <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 8,000/-</span>
+          <p className="flex items-center gap-2">
+            <span>Groom Luxury Styling</span>
+            <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-accent-text)] font-semibold">(Upon Request)</span>
           </p>
-          <p>
-            Saree Pre-Pleating Service &nbsp;
-            <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 1,500/-</span>
+          <p className="flex items-center gap-2">
+            <span>Saree Pre-Pleating &amp; Box Draping</span>
+            <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-accent-text)] font-semibold">(Upon Request)</span>
           </p>
         </div>
-        <p className="caption-text text-xs">+ 5% GST apply • Available alongside bridal bookings</p>
+        <p className="caption-text text-xs">Available alongside bridal bookings • Non-negotiable fixed rates confirmed on date consultation</p>
       </div>
 
       {/* ── 5. THE GROOM COVERED & WEDDING CREW (Split Frame) ── */}
-      <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-8 sm:p-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 divide-y md:divide-y-0 md:divide-x divide-[var(--color-border)]">
+      <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-5 sm:p-10 lg:p-12 rounded-xs">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 divide-y md:divide-y-0 md:divide-x divide-[var(--color-border)]">
           {/* Left: The Groom Covered */}
           <div className="space-y-6 text-center pb-8 md:pb-0">
             <span className="caption-text text-xs text-[var(--color-muted)]">Groom Styling Suite</span>
@@ -230,14 +258,14 @@ export function PricingSection() {
             <div className="space-y-3 font-serif text-sm text-[var(--color-text-body)] max-w-xs mx-auto">
               <div className="flex justify-between border-b border-[var(--color-border)] pb-1">
                 <span>Groom HD Makeup &amp; Prep</span>
-                <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 8,000/-</span>
+                <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-accent-text)] font-semibold">Upon Request</span>
               </div>
               <div className="flex justify-between border-b border-[var(--color-border)] pb-1">
                 <span>Hairstyling &amp; Beard Setting</span>
-                <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 4,000/-</span>
+                <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-accent-text)] font-semibold">Upon Request</span>
               </div>
             </div>
-            <p className="caption-text text-[11px]">additional 5% GST apply</p>
+            <p className="caption-text text-[11px]">Bespoke groom grooming • Scheduled alongside bridal timing</p>
           </div>
 
           {/* Right: Wedding Crew */}
@@ -250,18 +278,18 @@ export function PricingSection() {
             <div className="space-y-3 font-serif text-sm text-[var(--color-text-body)] max-w-xs mx-auto">
               <div className="flex justify-between border-b border-[var(--color-border)] pb-1">
                 <span>Party Makeup</span>
-                <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 7,500/-</span>
+                <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-accent-text)] font-semibold">Upon Request</span>
               </div>
               <div className="flex justify-between border-b border-[var(--color-border)] pb-1">
                 <span>Hairstyling</span>
-                <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 3,500/-</span>
+                <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-accent-text)] font-semibold">Upon Request</span>
               </div>
               <div className="flex justify-between border-b border-[var(--color-border)] pb-1">
                 <span>Saree Pre-Pleating &amp; Draping</span>
-                <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 1,500/-</span>
+                <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-accent-text)] font-semibold">Upon Request</span>
               </div>
             </div>
-            <p className="caption-text text-[11px]">rates per person • additional 5% GST apply</p>
+            <p className="caption-text text-[11px]">Senior atelier team services • Quotation provided upon consultation</p>
           </div>
         </div>
       </div>
@@ -277,6 +305,7 @@ export function PricingSection() {
           <li>Adherence to time slots mentioned during the time of booking is paramount.</li>
           <li>We require 2.5–3 hours to get our brides ready to ensure uncompromised quality of artistry.</li>
           <li>Bookings are confirmed on a 50% advance basis. This is a non-refundable, non-transferable amount.</li>
+          <li>All quoted rates are fixed, transparent, and strictly non-negotiable to maintain our master artistry standards.</li>
           <li>Hair &amp; makeup consultation can be done at our studio or opted over a video call.</li>
           <li>Payment of the final amount is mandatory 7 days prior to the wedding date.</li>
           <li>Any fresh flowers for hairstyling and hair jewellery required needs to be arranged by the client.</li>

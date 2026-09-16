@@ -221,8 +221,8 @@ export default function NotFound() {
                 },
                 {
                   num: '02',
-                  label: 'Pricing',
-                  title: 'Packages & Rates',
+                  label: 'Packages',
+                  title: 'Bridal Packages',
                   desc: 'Master Artist & Atelier packages.',
                   href: '/services',
                 },

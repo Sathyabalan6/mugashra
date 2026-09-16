@@ -40,10 +40,10 @@ export function Footer() {
 
           {/* Center: Brand Name & Studio Information */}
           <div className="lg:col-span-5 space-y-5 text-left">
-            <h2 className="font-serif text-sm sm:text-base tracking-[0.24em] uppercase text-[var(--color-text)] font-medium whitespace-nowrap">
+            <h2 className="font-serif text-sm sm:text-base tracking-[0.14em] sm:tracking-[0.24em] uppercase text-[var(--color-text)] font-medium">
               MUGAASHRA BRIDAL STUDIO
             </h2>
-            <p className="font-sans text-xs uppercase tracking-[2px] text-[var(--color-muted)] leading-relaxed">
+            <p className="font-sans text-xs uppercase tracking-[1.5px] sm:tracking-[2px] text-[var(--color-muted)] leading-relaxed">
               ATELIER STUDIO • FOUNDED BY SHWETHA MOHAN<br />
               5/ANNA FIRST CROSS STREET, 2ND FLOOR, PETHANIYAPURAM, MADURAI - 625016
             </p>
@@ -57,25 +57,25 @@ export function Footer() {
 
           {/* Right: Navigation & Contact Links */}
           <div className="lg:col-span-3 space-y-6 flex flex-col justify-between text-left lg:text-right">
-            <div className="space-y-2 text-sm text-[var(--color-text-body)]">
+            <div className="space-y-1 text-sm text-[var(--color-text-body)]">
               <p>
                 <a
                   href="https://www.instagram.com/mugaashra_makeover"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[var(--color-accent-text)] transition-colors inline-block py-1"
+                  className="hover:text-[var(--color-accent-text)] transition-colors inline-flex items-center min-h-[40px] py-1"
                 >
                   Instagram ↗
                 </a>
               </p>
               <p>
-                <Link href="/portfolio" className="hover:text-[var(--color-accent-text)] transition-colors inline-block py-1">
+                <Link href="/portfolio" className="hover:text-[var(--color-accent-text)] transition-colors inline-flex items-center min-h-[40px] py-1">
                   Bridal Portfolio
                 </Link>
               </p>
               <p>
-                <Link href="/services" className="hover:text-[var(--color-accent-text)] transition-colors inline-block py-1">
-                  Packages &amp; Pricing
+                <Link href="/services" className="hover:text-[var(--color-accent-text)] transition-colors inline-flex items-center min-h-[40px] py-1">
+                  Bridal Packages
                 </Link>
               </p>
             </div>

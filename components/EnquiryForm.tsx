@@ -168,7 +168,7 @@ export function EnquiryForm() {
           required
           autoComplete="name"
           placeholder="e.g. Priyadarshini"
-          className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
+          className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
         />
       </div>
 
@@ -185,7 +185,7 @@ export function EnquiryForm() {
             required
             autoComplete="tel"
             placeholder="+91 98765 43210"
-            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
+            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
           />
         </div>
 
@@ -199,7 +199,7 @@ export function EnquiryForm() {
             name="email"
             autoComplete="email"
             placeholder="bride@example.com"
-            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
+            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
           />
         </div>
       </div>
@@ -216,7 +216,7 @@ export function EnquiryForm() {
             name="eventDate"
             required
             min={new Date().toISOString().split('T')[0]}
-            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none text-[var(--color-text)] min-h-[44px]"
+            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none text-[var(--color-text)] min-h-[44px]"
           />
         </div>
 
@@ -230,7 +230,7 @@ export function EnquiryForm() {
             name="venueLocation"
             required
             placeholder="e.g. Madurai / Chennai / Destination"
-            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
+            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
           />
         </div>
       </div>
@@ -246,7 +246,7 @@ export function EnquiryForm() {
             name="serviceTier"
             value={selectedTier}
             onChange={(e) => setSelectedTier(e.target.value)}
-            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none text-[var(--color-text)] cursor-pointer min-h-[44px]"
+            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none text-[var(--color-text)] cursor-pointer min-h-[44px] [&>option]:bg-[#FAFAF8] [&>option]:text-[#181514]"
           >
             <option value="founder">Signature Master Artist (Shwetha Mohan)</option>
             <option value="team">Senior Studio Atelier Team</option>
@@ -263,7 +263,7 @@ export function EnquiryForm() {
             name="budgetRange"
             value={budgetRange}
             onChange={(e) => setBudgetRange(e.target.value)}
-            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none text-[var(--color-text)] cursor-pointer min-h-[44px]"
+            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none text-[var(--color-text)] cursor-pointer min-h-[44px] [&>option]:bg-[#FAFAF8] [&>option]:text-[#181514]"
           >
             <option value="">Flexible / To Be Discussed</option>
             <option value="35k-60k">₹35,000 – ₹60,000 (Single Ceremony / Airbrush)</option>
@@ -284,7 +284,7 @@ export function EnquiryForm() {
           rows={3}
           defaultValue={defaultMessage}
           placeholder="e.g. Saree pre-pleating required, travel accommodations, timing schedule..."
-          className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)]"
+          className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)]"
         />
       </div>
 
@@ -292,7 +292,7 @@ export function EnquiryForm() {
         <button
           type="submit"
           disabled={isPending}
-          className="w-full py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white font-sans text-[12px] uppercase tracking-[2.5px] font-medium transition-colors duration-300 rounded-xs shadow-xs disabled:opacity-50 min-h-[44px]"
+          className="w-full py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-all duration-300 rounded-xs shadow-md disabled:opacity-50 min-h-[48px] active:scale-[0.98] cursor-pointer flex items-center justify-center"
         >
           {isPending ? 'Submitting Bridal Enquiry…' : 'Submit Bridal Enquiry ↗'}
         </button>

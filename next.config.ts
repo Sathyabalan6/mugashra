@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
     '10.168.181.223:3000',
     'localhost:3000',
     '127.0.0.1:3000',
+    '10.21.216.223',
     '*.local',
   ],
   images: {

@@ -27,7 +27,7 @@ const FAQS = [
   {
     question: 'Can the mother of the bride, bridesmaids, and the groom also be styled?',
     answer:
-      'Yes. Our Senior Studio Atelier Team can cater to family members and bridesmaids with Party Makeup (₹7,500) and Saree Pre-Pleating (₹1,500). We also offer Groom Styling (₹8,000) for subtle matte complexion prep and neat grooming, scheduled seamlessly alongside the bride.',
+      'Yes. Our Senior Studio Atelier Team can cater to family members and bridesmaids with Party Makeup and Saree Pre-Pleating. We also offer Groom Styling for subtle matte complexion prep and neat grooming, scheduled seamlessly alongside the bride. Rates for family and groom styling are tailored and provided upon private bridal consultation.',
   },
   {
     question: 'What luxury makeup and skincare brands are in your master bridal kit?',

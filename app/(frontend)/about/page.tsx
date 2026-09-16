@@ -105,22 +105,22 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-            <div className="p-6 border border-[#443B37] bg-[#24201E] rounded-sm space-y-2.5 transition-colors hover:border-[#E2C4A8] hover:bg-[#2C2725]">
-              <span className="font-serif text-lg sm:text-xl !text-[#F5E6D8] font-medium block">Temptu Pro HD</span>
-              <p className="font-sans text-[11px] sm:text-xs uppercase tracking-[1.5px] !text-[#D8CBC0] font-medium">Airbrush Complexion</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 text-center">
+            <div className="p-4 sm:p-6 border border-[#443B37] bg-[#24201E] rounded-sm space-y-2 transition-colors hover:border-[#E2C4A8] hover:bg-[#2C2725]">
+              <span className="font-serif text-base sm:text-xl !text-[#F5E6D8] font-medium block">Temptu Pro HD</span>
+              <p className="font-sans text-[10px] sm:text-xs uppercase tracking-[1px] sm:tracking-[1.5px] !text-[#D8CBC0] font-medium">Airbrush Complexion</p>
             </div>
-            <div className="p-6 border border-[#443B37] bg-[#24201E] rounded-sm space-y-2.5 transition-colors hover:border-[#E2C4A8] hover:bg-[#2C2725]">
-              <span className="font-serif text-lg sm:text-xl !text-[#F5E6D8] font-medium block">Charlotte Tilbury</span>
-              <p className="font-sans text-[11px] sm:text-xs uppercase tracking-[1.5px] !text-[#D8CBC0] font-medium">Pillow Talk &amp; Flawless Filter</p>
+            <div className="p-4 sm:p-6 border border-[#443B37] bg-[#24201E] rounded-sm space-y-2 transition-colors hover:border-[#E2C4A8] hover:bg-[#2C2725]">
+              <span className="font-serif text-base sm:text-xl !text-[#F5E6D8] font-medium block">Charlotte Tilbury</span>
+              <p className="font-sans text-[10px] sm:text-xs uppercase tracking-[1px] sm:tracking-[1.5px] !text-[#D8CBC0] font-medium">Pillow Talk &amp; Filter</p>
             </div>
-            <div className="p-6 border border-[#443B37] bg-[#24201E] rounded-sm space-y-2.5 transition-colors hover:border-[#E2C4A8] hover:bg-[#2C2725]">
-              <span className="font-serif text-lg sm:text-xl !text-[#F5E6D8] font-medium block">Dior Backstage</span>
-              <p className="font-sans text-[11px] sm:text-xs uppercase tracking-[1.5px] !text-[#D8CBC0] font-medium">Radiant Glow Primers</p>
+            <div className="p-4 sm:p-6 border border-[#443B37] bg-[#24201E] rounded-sm space-y-2 transition-colors hover:border-[#E2C4A8] hover:bg-[#2C2725]">
+              <span className="font-serif text-base sm:text-xl !text-[#F5E6D8] font-medium block">Dior Backstage</span>
+              <p className="font-sans text-[10px] sm:text-xs uppercase tracking-[1px] sm:tracking-[1.5px] !text-[#D8CBC0] font-medium">Radiant Glow Primers</p>
             </div>
-            <div className="p-6 border border-[#443B37] bg-[#24201E] rounded-sm space-y-2.5 transition-colors hover:border-[#E2C4A8] hover:bg-[#2C2725]">
-              <span className="font-serif text-lg sm:text-xl !text-[#F5E6D8] font-medium block">NARS &amp; Huda</span>
-              <p className="font-sans text-[11px] sm:text-xs uppercase tracking-[1.5px] !text-[#D8CBC0] font-medium">16-Hour Transferproof</p>
+            <div className="p-4 sm:p-6 border border-[#443B37] bg-[#24201E] rounded-sm space-y-2 transition-colors hover:border-[#E2C4A8] hover:bg-[#2C2725]">
+              <span className="font-serif text-base sm:text-xl !text-[#F5E6D8] font-medium block">NARS &amp; Huda</span>
+              <p className="font-sans text-[10px] sm:text-xs uppercase tracking-[1px] sm:tracking-[1.5px] !text-[#D8CBC0] font-medium">16-Hour Transferproof</p>
             </div>
           </div>
         </div>

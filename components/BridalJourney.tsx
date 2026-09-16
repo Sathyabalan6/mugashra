@@ -102,7 +102,7 @@ export function BridalJourney() {
       <div className="mt-12 text-center">
         <Link
           href="/contact"
-          className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-all duration-300 rounded-xs shadow-md min-h-[44px]"
+          className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-all duration-300 rounded-xs shadow-md min-h-[44px] w-full sm:w-auto active:scale-[0.98]"
         >
           <span>Reserve Your Auspicious Date ↗</span>
         </Link>

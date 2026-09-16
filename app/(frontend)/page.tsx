@@ -27,7 +27,7 @@ export default async function HomePage() {
   return (
     <PageTransition className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
       {/* ── 1. Full-Bleed Cinematic Hero Section ── */}
-      <section className="relative min-h-[100svh] sm:min-h-screen w-full flex items-start sm:items-center justify-start px-6 sm:px-12 lg:px-16 pt-24 sm:pt-24 pb-12 sm:pb-16 bg-[#181514]">
+      <section className="relative min-h-[100svh] sm:min-h-screen w-full flex items-start sm:items-center justify-start px-4 sm:px-12 lg:px-16 pt-20 sm:pt-24 pb-12 sm:pb-16 bg-[#181514]">
         {/* Background Visual (Responsive) */}
         <div className="absolute inset-0 z-0">
           {/* Mobile Dedicated Portrait */}
@@ -39,9 +39,11 @@ export default async function HomePage() {
               priority
               quality={85}
               sizes="(max-width: 768px) 100vw, 1px"
-              className="object-cover object-[center_78%]"
+              className="object-cover object-[75%_32%]"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/20 to-transparent" />
+            {/* Scrim: dark left for text, completely transparent on right over model's head */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-transparent to-transparent pointer-events-none" />
           </div>
 
           {/* Desktop Wide Cinematic Cover */}
@@ -82,9 +84,9 @@ export default async function HomePage() {
 
         {/* Content Container */}
         <div className="relative z-10 max-w-[1400px] w-full mx-auto flex items-center pt-2 sm:pt-0">
-          <div className="max-w-2xl space-y-4 sm:space-y-8 text-left">
+          <div className="max-w-[240px] sm:max-w-2xl space-y-3 sm:space-y-8 text-left">
             <div className="space-y-1">
-              <span className="font-sans text-[10px] sm:text-xs uppercase tracking-[3px] text-[var(--color-accent)] font-medium block animate-hero-eyebrow">
+              <span className="font-sans text-[10px] sm:text-xs uppercase tracking-[2.5px] sm:tracking-[3px] text-[var(--color-accent)] font-medium block animate-hero-eyebrow">
                 {heroEyebrow}
               </span>
               <h1 className="display-heading text-[var(--color-accent)] drop-shadow-md whitespace-pre-line animate-hero-title">
@@ -97,24 +99,24 @@ export default async function HomePage() {
               </h1>
             </div>
 
-            <p className="font-sans text-[9.5px] sm:text-[12px] uppercase tracking-[2px] sm:tracking-[2.5px] text-white/90 font-light max-w-sm sm:max-w-lg leading-relaxed animate-hero-subtitle">
+            <p className="font-sans text-[10.5px] sm:text-[12px] uppercase tracking-[1.5px] sm:tracking-[2.5px] text-white/90 font-normal sm:font-light max-w-[220px] sm:max-w-lg leading-relaxed animate-hero-subtitle">
               {heroSubtitle}
             </p>
 
-            <div className="pt-1 sm:pt-4 flex flex-col sm:flex-row gap-2 sm:gap-4 items-start sm:items-center justify-start animate-hero-actions">
+            <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row gap-2 sm:gap-4 items-start justify-start animate-hero-actions w-fit">
               <Link
                 href="/contact"
                 transitionTypes={['nav-forward']}
-                className="group relative px-4 sm:px-8 py-2 sm:py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[9.5px] sm:text-[12px] uppercase tracking-[1.5px] sm:tracking-[2px] font-semibold transition-all duration-300 shadow-lg min-h-[38px] sm:min-h-[44px] flex items-center justify-start overflow-hidden active:scale-[0.98] w-fit sm:w-auto shrink-0"
+                className="group relative px-3.5 sm:px-8 py-2 sm:py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[10.5px] sm:text-[12px] uppercase tracking-[1.2px] sm:tracking-[2px] font-semibold transition-all duration-300 shadow-lg min-h-[40px] sm:min-h-[44px] flex items-center justify-start overflow-hidden active:scale-[0.98] w-fit shrink-0"
               >
                 <span>Book Consultation</span>
                 <span className="inline-block ml-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">↗</span>
               </Link>
               <Link
                 href="/services"
-                className="px-4 sm:px-8 py-2 sm:py-3.5 bg-transparent hover:bg-white/10 border border-white/40 hover:border-white text-white font-sans text-[9.5px] sm:text-[12px] uppercase tracking-[1.5px] sm:tracking-[2px] font-medium transition-all duration-300 backdrop-blur-xs min-h-[38px] sm:min-h-[44px] flex items-center justify-start active:scale-[0.98] w-fit sm:w-auto shrink-0"
+                className="px-3.5 sm:px-8 py-2 sm:py-3.5 bg-transparent hover:bg-white/10 border border-white/40 hover:border-white text-white font-sans text-[10.5px] sm:text-[12px] uppercase tracking-[1.2px] sm:tracking-[2px] font-medium transition-all duration-300 backdrop-blur-xs min-h-[40px] sm:min-h-[44px] flex items-center justify-start active:scale-[0.98] w-fit shrink-0"
               >
-                View Price List
+                Explore Packages
               </Link>
             </div>
           </div>
@@ -166,7 +168,7 @@ export default async function HomePage() {
               <div className="pt-2">
                 <Link
                   href="/contact?look=The%20Royal%20Crimson%20Muhurtham"
-                  className="font-sans text-[11px] uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline"
+                  className="font-sans text-[11px] uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline min-h-[44px] py-1"
                 >
                   Enquire This Look ↗
                 </Link>
@@ -198,7 +200,7 @@ export default async function HomePage() {
               <div className="pt-2">
                 <Link
                   href="/contact?look=Glass-Skin%20Airbrush%20Glamour"
-                  className="font-sans text-[11px] uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline"
+                  className="font-sans text-[11px] uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline min-h-[44px] py-1"
                 >
                   Enquire This Look ↗
                 </Link>
@@ -230,7 +232,7 @@ export default async function HomePage() {
               <div className="pt-2">
                 <Link
                   href="/contact?look=Pastel%20Organza%20Soft%20Glam"
-                  className="font-sans text-[11px] uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline"
+                  className="font-sans text-[11px] uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline min-h-[44px] py-1"
                 >
                   Enquire This Look ↗
                 </Link>
