@@ -29,6 +29,7 @@ const CATEGORIES = [
 export function PortfolioScrollGallery({ slides }: Props) {
   const [selectedCategory, setSelectedCategory] = useState('All Looks')
   const [activeIndex, setActiveIndex] = useState(0)
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   const displaySlides = selectedCategory === 'All Looks'
     ? slides
@@ -62,6 +63,30 @@ export function PortfolioScrollGallery({ slides }: Props) {
     })
     return () => observers.forEach((o) => o.disconnect())
   }, [displaySlides.length, selectedCategory])
+
+  // Keyboard navigation & body scroll locking for Lightbox
+  useEffect(() => {
+    if (lightboxIndex === null) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setLightboxIndex(null)
+      } else if (e.key === 'ArrowRight') {
+        setLightboxIndex((prev) => (prev !== null ? (prev + 1) % displaySlides.length : null))
+      } else if (e.key === 'ArrowLeft') {
+        setLightboxIndex((prev) => (prev !== null ? (prev - 1 + displaySlides.length) % displaySlides.length : null))
+      }
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [lightboxIndex, displaySlides.length])
 
   const scrollTo = (i: number) => {
     slideRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -97,138 +122,284 @@ export function PortfolioScrollGallery({ slides }: Props) {
         {/* ── Image column ── */}
         <div className="w-full md:w-[62%]">
           {displaySlides.map((slide, i) => (
-          <div
-            key={slide.url}
-            ref={(el) => { slideRefs.current[i] = el }}
-            className="relative w-full h-[78vh] md:h-screen overflow-hidden"
-          >
-            <div className={`look-image absolute inset-0 p-4 sm:p-8 flex items-center justify-center ${revealed[i] ? 'is-revealed' : ''}`}>
-              <Image
-                src={slide.url}
-                alt={`${slide.title} — ${slide.desc}`}
-                fill
-                sizes="(min-width: 768px) 62vw, 100vw"
-                className="object-contain"
-                style={{ objectPosition: slide.focalPosition ?? 'center center' }}
-                priority={i < 2}
-              />
-            </div>
+            <div
+              key={slide.url}
+              ref={(el) => { slideRefs.current[i] = el }}
+              className="relative w-full h-[78vh] md:h-screen overflow-hidden group"
+            >
+              <div
+                onClick={() => setLightboxIndex(i)}
+                className={`look-image absolute inset-0 p-4 sm:p-8 flex items-center justify-center cursor-zoom-in ${revealed[i] ? 'is-revealed' : ''}`}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    setLightboxIndex(i)
+                  }
+                }}
+                aria-label={`Open high-resolution inspection for ${slide.title}`}
+              >
+                <Image
+                  src={slide.url}
+                  alt={`${slide.title} — ${slide.desc}`}
+                  fill
+                  sizes="(min-width: 768px) 62vw, 100vw"
+                  className="object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                  style={{ objectPosition: slide.focalPosition ?? 'center center' }}
+                  priority={i < 2}
+                />
+              </div>
 
-            {/* Mobile overlay copy */}
-            <div className="md:hidden absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
-            <div className="md:hidden absolute bottom-0 left-0 right-0 px-6 pb-10 space-y-2">
-              <span className="font-sans text-[10px] uppercase tracking-[3px] text-[var(--color-accent)] block">
-                {slide.category}
-              </span>
-              <h2 className="font-serif text-2xl text-white font-normal leading-snug">{slide.title}</h2>
-              <p className="font-serif text-sm text-white/70 leading-relaxed max-w-md">{slide.desc}</p>
+              {/* Desktop Hover Inspect Button */}
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(i)}
+                aria-label={`Inspect high-res details of ${slide.title}`}
+                className="absolute bottom-8 right-8 z-20 hidden md:flex items-center gap-2 px-3.5 py-2 rounded-full bg-black/70 hover:bg-[var(--color-accent)] text-white hover:text-[#181514] font-sans text-[10px] uppercase tracking-[2px] backdrop-blur-md border border-white/20 transition-all duration-300 shadow-md cursor-pointer opacity-70 group-hover:opacity-100"
+              >
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                </svg>
+                <span>Inspect HD ⛶</span>
+              </button>
+
+              {/* Mobile overlay copy */}
+              <div className="md:hidden absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent pointer-events-none" />
+              <div className="md:hidden absolute bottom-0 left-0 right-0 px-6 pb-10 space-y-2 z-10">
+                <span className="font-sans text-[10px] uppercase tracking-[3px] text-[var(--color-accent)] block">
+                  {slide.category}
+                </span>
+                <h2 className="font-serif text-2xl text-white font-normal leading-snug">{slide.title}</h2>
+                <p className="font-serif text-sm text-white/70 leading-relaxed max-w-md">{slide.desc}</p>
+                <div className="flex items-center gap-4 pt-1">
+                  <Link
+                    href={`/contact?look=${encodeURIComponent(slide.title)}`}
+                    className="inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[2px] text-white border-b border-white/40 pb-0.5"
+                  >
+                    Enquire for this Look ↗
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => setLightboxIndex(i)}
+                    className="font-sans text-[11px] uppercase tracking-[2px] text-[var(--color-accent)] border-b border-[var(--color-accent)]/40 pb-0.5"
+                  >
+                    View HD ⛶
+                  </button>
+                </div>
+              </div>
+
+              {/* Slide counter */}
+              <div className="absolute top-8 right-6 md:right-10 z-10">
+                <span className="font-sans text-[11px] uppercase tracking-[2px] text-white/50">
+                  {String(i + 1).padStart(2, '0')} / {total}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Sticky editorial panel — desktop only ── */}
+        <div className="hidden md:flex md:w-[38%] sticky top-0 h-screen flex-col justify-between bg-[var(--color-bg)] border-l border-[var(--color-border)] px-12 lg:px-14 py-16">
+          <div className="flex-1 flex flex-col justify-center">
+            {/* Ghost numeral */}
+            <span
+              key={`num-${activeIndex}`}
+              className="look-copy-fade font-serif select-none block leading-none mb-6"
+              style={{
+                fontSize: 'clamp(4.5rem, 7vw, 7.5rem)',
+                WebkitTextStroke: '1px var(--color-accent)',
+                color: 'transparent',
+              }}
+              aria-hidden="true"
+            >
+              {String(activeIndex + 1).padStart(2, '0')}
+            </span>
+
+            <span
+              key={`cat-${activeIndex}`}
+              className="look-copy-fade font-sans text-[10px] uppercase tracking-[3px] text-[var(--color-accent-text)] font-medium block mb-3"
+            >
+              {active.category}
+            </span>
+            <h2
+              key={`title-${activeIndex}`}
+              className="look-copy-fade font-serif text-[var(--fluid-h3)] text-[var(--color-text)] font-normal leading-snug mb-4 max-w-sm"
+            >
+              {active.title}
+            </h2>
+            <p
+              key={`desc-${activeIndex}`}
+              className="look-copy-fade font-serif text-sm text-[var(--color-muted)] leading-relaxed max-w-sm mb-6"
+            >
+              {active.desc}
+            </p>
+
+            <div className="flex items-center gap-5 pt-1">
               <Link
-                href={`/contact?look=${encodeURIComponent(slide.title)}`}
-                className="inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[2px] text-white border-b border-white/40 pb-0.5"
+                key={`cta-${activeIndex}`}
+                href={`/contact?look=${encodeURIComponent(active.title)}`}
+                className="look-copy-fade inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[2px] text-[var(--color-text)] border-b border-[var(--color-border)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent-text)] transition-colors pb-0.5 w-fit"
               >
                 Enquire for this Look ↗
               </Link>
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(activeIndex)}
+                className="inline-flex items-center gap-1.5 font-sans text-[11px] uppercase tracking-[2px] text-[var(--color-accent-text)] hover:text-[var(--color-text)] transition-colors cursor-pointer"
+              >
+                <span>Inspect HD</span>
+                <span aria-hidden="true">⛶</span>
+              </button>
             </div>
+          </div>
 
-            {/* Slide counter */}
-            <div className="absolute top-8 right-6 md:right-10">
-              <span className="font-sans text-[11px] uppercase tracking-[2px] text-white/50">
-                {String(i + 1).padStart(2, '0')} / {total}
+          {/* Thumbnail carousel */}
+          <div className="h-40 w-full shrink-0">
+            <PerspectiveCarousel
+              items={displaySlides.map((s) => ({ src: s.url, title: s.title }))}
+              activeIndex={activeIndex}
+              onActiveIndexChange={scrollTo}
+              loop
+              slideWidth={100}
+              rotationStep={55}
+              inactiveScale={0.8}
+              showDots={false}
+              imageClassName="rounded-none"
+              labelClassName="hidden"
+              controlsClassName="border-[var(--color-border)] bg-[var(--color-bg)]/80 text-[var(--color-text)] backdrop-blur-sm"
+            />
+          </div>
+
+          {/* Progress rail */}
+          <div className="flex items-center gap-3 pt-8 border-t border-[var(--color-border-subtle)]">
+            <span className="font-sans text-[10px] tracking-[1.5px] text-[var(--color-muted)]">
+              {String(activeIndex + 1).padStart(2, '0')}
+            </span>
+            <div className="flex-1 flex items-center gap-1.5">
+              {displaySlides.map((slide, i) => (
+                <button
+                  key={i}
+                  onClick={() => scrollTo(i)}
+                  aria-label={`Go to ${slide.title}`}
+                  aria-current={activeIndex === i}
+                  className="group relative flex-1 h-[3px] rounded-full bg-[var(--color-border)] overflow-hidden"
+                >
+                  <span
+                    className={`absolute inset-y-0 left-0 bg-[var(--color-accent)] transition-all duration-500 ${
+                      activeIndex === i ? 'w-full' : activeIndex > i ? 'w-full opacity-40' : 'w-0'
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
+            <span className="font-sans text-[10px] tracking-[1.5px] text-[var(--color-muted)]">{total}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* ── High-Definition Lightbox Modal ── */}
+      {lightboxIndex !== null && displaySlides[lightboxIndex] && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${displaySlides[lightboxIndex].title} — High Resolution View`}
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-8 select-none animate-in fade-in duration-200"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setLightboxIndex(null)
+          }}
+        >
+          {/* Top Bar */}
+          <div className="flex items-center justify-between z-10 w-full max-w-7xl mx-auto">
+            <div className="flex items-center gap-3">
+              <span className="font-sans text-[10px] uppercase tracking-[3px] text-[var(--color-accent)] font-semibold px-3 py-1 rounded-full border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/10">
+                {displaySlides[lightboxIndex].category}
+              </span>
+              <span className="font-sans text-xs tracking-[2px] text-white/60">
+                {String(lightboxIndex + 1).padStart(2, '0')} / {String(displaySlides.length).padStart(2, '0')}
               </span>
             </div>
+            <button
+              type="button"
+              onClick={() => setLightboxIndex(null)}
+              aria-label="Close high-resolution lightbox"
+              className="w-10 h-10 rounded-full border border-white/20 hover:border-white text-white/80 hover:text-white flex items-center justify-center transition-colors bg-white/5 cursor-pointer text-lg"
+            >
+              ✕
+            </button>
           </div>
-        ))}
-      </div>
 
-      {/* ── Sticky editorial panel — desktop only ── */}
-      <div className="hidden md:flex md:w-[38%] sticky top-0 h-screen flex-col justify-between bg-[var(--color-bg)] border-l border-[var(--color-border)] px-12 lg:px-14 py-16">
-        <div className="flex-1 flex flex-col justify-center">
-          {/* Ghost numeral */}
-          <span
-            key={`num-${activeIndex}`}
-            className="look-copy-fade font-serif select-none block leading-none mb-6"
-            style={{
-              fontSize: 'clamp(4.5rem, 7vw, 7.5rem)',
-              WebkitTextStroke: '1px var(--color-accent)',
-              color: 'transparent',
-            }}
-            aria-hidden="true"
-          >
-            {String(activeIndex + 1).padStart(2, '0')}
-          </span>
+          {/* Center Image Area with Nav Controls */}
+          <div className="relative flex-1 w-full max-w-6xl mx-auto flex items-center justify-center my-4 overflow-hidden">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                setLightboxIndex((prev) => (prev !== null ? (prev - 1 + displaySlides.length) % displaySlides.length : null))
+              }}
+              aria-label="Previous bridal look"
+              className="absolute left-2 sm:left-4 z-20 w-12 h-12 rounded-full bg-black/60 hover:bg-[var(--color-accent)] text-white hover:text-[#181514] border border-white/20 flex items-center justify-center transition-all cursor-pointer text-2xl shadow-lg"
+            >
+              ‹
+            </button>
 
-          <span
-            key={`cat-${activeIndex}`}
-            className="look-copy-fade font-sans text-[10px] uppercase tracking-[3px] text-[var(--color-accent-text)] font-medium block mb-3"
-          >
-            {active.category}
-          </span>
-          <h2
-            key={`title-${activeIndex}`}
-            className="look-copy-fade font-serif text-[var(--fluid-h3)] text-[var(--color-text)] font-normal leading-snug mb-4 max-w-sm"
-          >
-            {active.title}
-          </h2>
-          <p
-            key={`desc-${activeIndex}`}
-            className="look-copy-fade font-serif text-sm text-[var(--color-muted)] leading-relaxed max-w-sm mb-8"
-          >
-            {active.desc}
-          </p>
+            <div className="relative w-full h-[65vh] sm:h-[75vh]">
+              <Image
+                src={displaySlides[lightboxIndex].url}
+                alt={displaySlides[lightboxIndex].title}
+                fill
+                sizes="90vw"
+                className="object-contain"
+                priority
+              />
+            </div>
 
-          <Link
-            key={`cta-${activeIndex}`}
-            href={`/contact?look=${encodeURIComponent(active.title)}`}
-            className="look-copy-fade inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[2px] text-[var(--color-text)] border-b border-[var(--color-border)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent-text)] transition-colors pb-0.5 w-fit"
-          >
-            Enquire for this Look ↗
-          </Link>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                setLightboxIndex((prev) => (prev !== null ? (prev + 1) % displaySlides.length : null))
+              }}
+              aria-label="Next bridal look"
+              className="absolute right-2 sm:right-4 z-20 w-12 h-12 rounded-full bg-black/60 hover:bg-[var(--color-accent)] text-white hover:text-[#181514] border border-white/20 flex items-center justify-center transition-all cursor-pointer text-2xl shadow-lg"
+            >
+              ›
+            </button>
+          </div>
 
-        </div>
+          {/* Bottom Bar: Title, Description & Action Buttons */}
+          <div className="w-full max-w-5xl mx-auto bg-black/70 border border-white/15 rounded-xs p-4 sm:p-6 backdrop-blur-md flex flex-col md:flex-row md:items-center justify-between gap-4 z-10">
+            <div className="space-y-1 text-left">
+              <h3 className="font-serif text-xl sm:text-2xl text-white font-normal">
+                {displaySlides[lightboxIndex].title}
+              </h3>
+              <p className="font-serif text-xs sm:text-sm text-white/70 max-w-xl">
+                {displaySlides[lightboxIndex].desc}
+              </p>
+            </div>
 
-        {/* Thumbnail carousel */}
-        <div className="h-40 w-full shrink-0">
-          <PerspectiveCarousel
-            items={displaySlides.map((s) => ({ src: s.url, title: s.title }))}
-            activeIndex={activeIndex}
-            onActiveIndexChange={scrollTo}
-            loop
-            slideWidth={100}
-            rotationStep={55}
-            inactiveScale={0.8}
-            showDots={false}
-            imageClassName="rounded-none"
-            labelClassName="hidden"
-            controlsClassName="border-[var(--color-border)] bg-[var(--color-bg)]/80 text-[var(--color-text)] backdrop-blur-sm"
-          />
-        </div>
-
-        {/* Progress rail */}
-        <div className="flex items-center gap-3 pt-8 border-t border-[var(--color-border-subtle)]">
-          <span className="font-sans text-[10px] tracking-[1.5px] text-[var(--color-muted)]">
-            {String(activeIndex + 1).padStart(2, '0')}
-          </span>
-          <div className="flex-1 flex items-center gap-1.5">
-            {displaySlides.map((slide, i) => (
-              <button
-                key={i}
-                onClick={() => scrollTo(i)}
-                aria-label={`Go to ${slide.title}`}
-                aria-current={activeIndex === i}
-                className="group relative flex-1 h-[3px] rounded-full bg-[var(--color-border)] overflow-hidden"
+            <div className="flex items-center gap-3 shrink-0">
+              <Link
+                href={`/contact?look=${encodeURIComponent(displaySlides[lightboxIndex].title)}`}
+                onClick={() => setLightboxIndex(null)}
+                className="px-5 py-2.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-colors rounded-xs text-center"
               >
-                <span
-                  className={`absolute inset-y-0 left-0 bg-[var(--color-accent)] transition-all duration-500 ${
-                    activeIndex === i ? 'w-full' : activeIndex > i ? 'w-full opacity-40' : 'w-0'
-                  }`}
-                />
-              </button>
-            ))}
+                Enquire for this Look ↗
+              </Link>
+              <a
+                href={`https://wa.me/918610597490?text=${encodeURIComponent(
+                  `Hello Shwetha, I am viewing the ${displaySlides[lightboxIndex].title} in your portfolio. Is this look available for my wedding date?`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 border border-white/25 hover:border-white text-white font-sans text-xs uppercase tracking-[2px] transition-colors rounded-xs text-center"
+              >
+                WhatsApp ↗
+              </a>
+            </div>
           </div>
-          <span className="font-sans text-[10px] tracking-[1.5px] text-[var(--color-muted)]">{total}</span>
         </div>
-      </div>
+      )}
     </div>
-  </div>
   )
 }
