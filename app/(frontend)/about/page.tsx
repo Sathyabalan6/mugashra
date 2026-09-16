@@ -4,8 +4,8 @@ import type { Metadata } from 'next'
 import { PageTransition } from '@/components/PageTransition'
 
 export const metadata: Metadata = {
-  title: 'Founder | Mugashra Bridal Artistry',
-  description: 'Meet our Lead Master Artist and senior bridal specialists in Chennai.',
+  title: 'Founder & Artist | Mugaashra Bridal Studio',
+  description: 'Meet Lead Master Artist Shwetha Mohan and explore our airbrush & HD bridal styling in Madurai.',
 }
 
 export const revalidate = 60
@@ -52,7 +52,7 @@ export default function AboutPage() {
             PHILOSOPHY
           </h1>
           <p className="font-serif text-sm sm:text-base text-[#F0E8E1] leading-relaxed pt-2 font-light drop-shadow-xs">
-            Founded by Lead Master Artist <span className="text-white font-semibold underline underline-offset-4 decoration-[#E2C4A8]">Shwetha Mohan</span>, Mugashra Artistry is a sanctuary of bridal beauty nestled in Madurai, dedicated to curating transcendent South Indian wedding looks.
+            Founded by Lead Master Artist <span className="text-white font-semibold underline underline-offset-4 decoration-[#E2C4A8]">Shwetha Mohan</span>, Mugaashra Bridal Studio is a sanctuary of bridal beauty nestled in Madurai, dedicated to curating transcendent South Indian wedding looks.
           </p>
         </div>
       </section>
@@ -146,10 +146,10 @@ export default function AboutPage() {
               </h2>
               <div className="w-10 h-[1px] bg-[#9E6D47]" />
               <p className="font-serif text-sm sm:text-base text-[#332E2C] leading-[1.85] font-normal">
-                With over 9 years of luxury bridal artistry across South India, Shwetha Mohan founded Mugashra to bring a new standard of skin realism and editorial elegance to South Indian brides.
+                With over 10 years of luxury bridal artistry across South India, Shwetha Mohan founded Mugaashra Bridal Studio to bring a new standard of skin realism and editorial elegance to South Indian and North Indian brides.
               </p>
               <p className="font-serif text-sm sm:text-base text-[#332E2C] leading-[1.85] font-normal">
-                Trained in Temptu Pro HD airbrush techniques and specializing in transferproof 16-hour muhurtham looks, she personally oversees every bridal booking at the atelier.
+                Specializing in flawless airbrush makeup, HD &amp; HD ultra complexions, skin-like transfer-proof finishes, soft-glam looks, and full-glam makeovers, she personally oversees every bridal booking at the atelier.
               </p>
             </div>
           </div>

@@ -7,56 +7,59 @@ import Link from 'next/link'
 export function PricingSection() {
   return (
     <div className="space-y-24">
-      {/* ── 1. Card 1: HIGH DEFINITION / AIRBRUSH ── */}
+      {/* ── 1. Card 1: SIGNATURE AIRBRUSH ── */}
       <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-8 sm:p-12 lg:p-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Heading & Details */}
           <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
             <div className="space-y-2">
-              <span className="font-eyebrow block">Signature Package</span>
+              <span className="font-eyebrow block">Founder Signature Package</span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.15em] uppercase text-[var(--color-text)] font-normal">
-                HIGH DEFINITION
+                SIGNATURE AIRBRUSH
               </h2>
               <p className="font-sans text-xs tracking-[1.5px] uppercase text-[var(--color-accent-text)]">
-                Master Kit: Marc Jacobs • Giorgio Armani • Chanel • Dior
+                Artistry by Lead Master Artist Shwetha Mohan
               </p>
             </div>
 
             <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed max-w-md mx-auto lg:mx-0">
-              Our High Definition and Airbrush package delivers a lush, weightless finish that leaves your skin feeling like it has a &lsquo;faux filter&rsquo; effect. Flawless on camera and water-resistant for all sacred rituals.
+              Our Signature Airbrush package delivers a lush, weightless, skin-like finish that leaves your complexion luminous, photo-ready, and completely transfer-proof for all sacred rituals. Includes custom skin prep, eye enhancement lenses, premium lashes, hair styling, couture saree draping, and personal styling.
             </p>
 
             {/* Feature Highlights */}
-            <div className="flex items-center justify-center lg:justify-start gap-8 pt-2">
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 rounded-full border border-[var(--color-border)] flex items-center justify-center text-[var(--color-accent-text)]">
-                  <svg className="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-                  </svg>
-                </div>
-                <span className="font-sans text-[10px] uppercase tracking-[1.5px] text-[var(--color-muted)]">
-                  Makeup + Hair
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2 text-center">
+              <div className="flex flex-col items-center gap-1.5 p-3 border border-[var(--color-border)]">
+                <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-text)] font-semibold">
+                  Airbrush
                 </span>
+                <span className="font-sans text-[10px] text-[var(--color-muted)]">Skin-Like HD</span>
               </div>
-
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 rounded-full border border-[var(--color-border)] flex items-center justify-center text-[var(--color-accent-text)]">
-                  <svg className="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <span className="font-sans text-[10px] uppercase tracking-[1.5px] text-[var(--color-muted)]">
+              <div className="flex flex-col items-center gap-1.5 p-3 border border-[var(--color-border)]">
+                <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-text)] font-semibold">
+                  Lenses &amp; Lashes
+                </span>
+                <span className="font-sans text-[10px] text-[var(--color-muted)]">Premium Silk</span>
+              </div>
+              <div className="flex flex-col items-center gap-1.5 p-3 border border-[var(--color-border)]">
+                <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-text)] font-semibold">
+                  Hairstyling
+                </span>
+                <span className="font-sans text-[10px] text-[var(--color-muted)]">Floral Design</span>
+              </div>
+              <div className="flex flex-col items-center gap-1.5 p-3 border border-[var(--color-border)]">
+                <span className="font-sans text-[11px] uppercase tracking-[1px] text-[var(--color-text)] font-semibold">
                   Saree Draping
                 </span>
+                <span className="font-sans text-[10px] text-[var(--color-muted)]">Personal Styling</span>
               </div>
             </div>
 
             <div className="pt-4 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-center justify-between gap-4">
               <span className="font-serif text-2xl sm:text-3xl text-[var(--color-accent-text)] font-normal">
-                INR 65,000/- <span className="text-xs text-[var(--color-muted)] font-sans">+ 5% GST</span>
+                INR 35,000/- <span className="text-xs text-[var(--color-muted)] font-sans">+ 5% GST</span>
               </span>
               <Link
-                href="/contact?package=High%20Definition"
+                href="/contact?package=Signature%20Airbrush"
                 transitionTypes={['nav-forward']}
                 className="px-6 py-2.5 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors"
               >
@@ -69,7 +72,7 @@ export function PricingSection() {
           <div className="lg:col-span-6 relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
             <Image
               src="/images/portfolio/bridal_story_1.webp"
-              alt="High Definition Bridal Makeup"
+              alt="Signature Airbrush Bridal Makeup"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
@@ -78,14 +81,14 @@ export function PricingSection() {
         </div>
       </div>
 
-      {/* ── 2. Card 2: BRIDAL CEREMONY & RECEPTION ── */}
+      {/* ── 2. Card 2: MUHURTHAM + RECEPTION ── */}
       <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-8 sm:p-12 lg:p-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Visual */}
           <div className="lg:col-span-6 order-2 lg:order-1 relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
             <Image
               src="/images/portfolio/couple_photo_red_and_sandal_1.jpg"
-              alt="Bridal Reception Styling"
+              alt="Muhurtham and Reception Bridal Styling"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
@@ -97,15 +100,15 @@ export function PricingSection() {
             <div className="space-y-2">
               <span className="font-eyebrow block">Dual Event Suite</span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.15em] uppercase text-[var(--color-text)] font-normal">
-                BRIDAL CEREMONY
+                MUHURTHAM + RECEPTION
               </h2>
               <p className="font-sans text-xs tracking-[1.5px] uppercase text-[var(--color-accent-text)]">
-                HD Products + Temptu Airbrush Architecture
+                End-to-End Luxury Ceremonial Experience
               </p>
             </div>
 
             <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed max-w-md mx-auto lg:mx-0">
-              For our brides with a multi-event celebration spanning the traditional morning ceremony and evening reception, we create tailored looks to ensure you look fresh and camera-ready at every moment.
+              For our brides with a multi-event celebration spanning the traditional morning Muhurtham ceremony and evening Reception, we create tailored distinct looks ensuring you look fresh, transcendent, and camera-ready at every sacred moment.
             </p>
 
             <div className="flex items-center justify-center lg:justify-start gap-8 pt-2">
@@ -116,7 +119,7 @@ export function PricingSection() {
                   </svg>
                 </div>
                 <span className="font-sans text-[10px] uppercase tracking-[1.5px] text-[var(--color-muted)]">
-                  Airbrush Artistry
+                  Dual Looks
                 </span>
               </div>
 
@@ -137,7 +140,7 @@ export function PricingSection() {
                 INR 70,000/- <span className="text-xs text-[var(--color-muted)] font-sans">+ 5% GST</span>
               </span>
               <Link
-                href="/contact?package=Bridal%20Ceremony"
+                href="/contact?package=Muhurtham%20%2B%20Reception"
                 transitionTypes={['nav-forward']}
                 className="px-6 py-2.5 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors"
               >
@@ -192,22 +195,26 @@ export function PricingSection() {
         </div>
       </div>
 
-      {/* ── 4. ADDITIONAL CHARGES STRIP ── */}
+      {/* ── 4. A LA CARTE ADD-ONS & EXTRA SERVICES STRIP ── */}
       <div className="py-12 border-t border-b border-[var(--color-border)] text-center space-y-6">
         <h3 className="font-serif text-2xl sm:text-3xl tracking-[0.15em] uppercase text-[var(--color-text)] font-normal">
-          ADDITIONAL CHARGES
+          A LA CARTE ADD-ONS &amp; EXTRA SERVICES
         </h3>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 font-serif text-sm text-[var(--color-text-body)]">
           <p>
-            Extra Bridal Saree Drape &nbsp;
-            <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 3,000/-</span>
+            Party &amp; Event Makeup &nbsp;
+            <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 7,500/-</span>
           </p>
           <p>
-            Extra Bridal Lehenga Drape &nbsp;
-            <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 1,000/-</span>
+            Groom Luxury Makeup &nbsp;
+            <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 8,000/-</span>
+          </p>
+          <p>
+            Saree Pre-Pleating Service &nbsp;
+            <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 1,500/-</span>
           </p>
         </div>
-        <p className="caption-text text-xs">additional 5% GST apply</p>
+        <p className="caption-text text-xs">+ 5% GST apply • Available alongside bridal bookings</p>
       </div>
 
       {/* ── 5. THE GROOM COVERED & WEDDING CREW (Split Frame) ── */}
@@ -222,12 +229,12 @@ export function PricingSection() {
 
             <div className="space-y-3 font-serif text-sm text-[var(--color-text-body)] max-w-xs mx-auto">
               <div className="flex justify-between border-b border-[var(--color-border)] pb-1">
-                <span>Makeup</span>
-                <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 10,000/-</span>
+                <span>Groom HD Makeup &amp; Prep</span>
+                <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 8,000/-</span>
               </div>
               <div className="flex justify-between border-b border-[var(--color-border)] pb-1">
-                <span>Hairstyling</span>
-                <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 5,000/-</span>
+                <span>Hairstyling &amp; Beard Setting</span>
+                <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 4,000/-</span>
               </div>
             </div>
             <p className="caption-text text-[11px]">additional 5% GST apply</p>
@@ -242,7 +249,7 @@ export function PricingSection() {
 
             <div className="space-y-3 font-serif text-sm text-[var(--color-text-body)] max-w-xs mx-auto">
               <div className="flex justify-between border-b border-[var(--color-border)] pb-1">
-                <span>Makeup</span>
+                <span>Party Makeup</span>
                 <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 7,500/-</span>
               </div>
               <div className="flex justify-between border-b border-[var(--color-border)] pb-1">
@@ -250,8 +257,8 @@ export function PricingSection() {
                 <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 3,500/-</span>
               </div>
               <div className="flex justify-between border-b border-[var(--color-border)] pb-1">
-                <span>Saree / Lehenga Draping</span>
-                <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 1,000/-</span>
+                <span>Saree Pre-Pleating &amp; Draping</span>
+                <span className="font-sans text-xs text-[var(--color-accent-text)] font-semibold">INR 1,500/-</span>
               </div>
             </div>
             <p className="caption-text text-[11px]">rates per person • additional 5% GST apply</p>

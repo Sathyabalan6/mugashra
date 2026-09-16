@@ -38,27 +38,31 @@ A luxury bridal atelier web application inspired by high-end South Indian editor
 │   └── actions/              # Server Actions (e.g. submitEnquiry)
 ├── collections/              # Payload CMS Content Schemas
 │   ├── Enquiries.ts          # Client Lead Submissions
-│   ├── PortfolioItems.ts     # Portfolio Looks & Details
 │   ├── ServicePackages.ts    # Service Packages & Pricing
-│   ├── TeamMembers.ts        # Senior Specialists & Roles
-│   ├── Testimonials.ts       # Verified Client Reviews
-│   ├── Media.ts              # Uploaded Media Assets
 │   └── Users.ts              # CMS Admin Users
 ├── components/               # Modular UI Components
-│   ├── Header.tsx            # Floating Transparent Masthead & Slideover Menu
-│   ├── Footer.tsx            # 3-Column Editorial Newsletter & Studio Bio
-│   ├── VisionMissionSection.tsx # Animated Bracket Section
-│   ├── FeedbackSection.tsx   # Animated Speech Bubble Cloud
-│   ├── PricingSection.tsx    # Framed Star Cards & Ceremony Packages
-│   ├── PortfolioGallery.tsx  # Gallery with Lightbox Modal
-│   ├── EnquiryForm.tsx       # 8-State Underline Booking Form
-│   └── WhatsAppButton.tsx    # Minimalist Booking Float Button
+│   ├── Header.tsx            # Floating Transparent Masthead & Responsive Navigation
+│   ├── Footer.tsx            # Editorial 3-Column Studio Footer & Links
+│   ├── VisionMissionSection.tsx # Animated Expanding Brackets Section
+│   ├── FeedbackSection.tsx   # Interactive Client Review Bubble Cloud
+│   ├── PricingSection.tsx    # Framed Luxury Ceremony Packages
+│   ├── PortfolioScrollGallery.tsx # Editorial Image Scroll & Lightbox Gallery
+│   ├── EnquiryForm.tsx       # Underline Lead Booking Form
+│   ├── PageTransition.tsx    # Page Fade & Motion Transitions
+│   ├── WhatsAppButton.tsx    # Minimalist Floating Booking Action
+│   ├── payload/              # Custom Payload CMS Dashboard Components
+│   └── ui/                   # Reusable Interactive UI Components
 ├── data/
-│   └── seedData.ts           # Fallback Content & Initial Studio Seed Data
+│   └── seedData.ts           # Centralized Content, Verified Reviews & Fallback Data
 ├── globals/
 │   └── SiteSettings.ts       # Global Studio Atelier Settings
 ├── lib/
-│   └── payload.ts            # Local Payload Client Helper
+│   ├── payload.ts            # Local Payload Client Helper
+│   └── utils.ts              # Tailwind & Class Merging Utilities
+├── scripts/
+│   └── seed-db.ts            # Payload CMS Database Seeder
+├── types/
+│   └── index.ts              # Centralized TypeScript Type Definitions
 ├── public/
 │   └── images/               # High-res Optimized Bridal Photography
 ├── payload.config.ts         # Dual SQLite / PostgreSQL Payload Config

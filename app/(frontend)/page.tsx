@@ -1,90 +1,28 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getPayloadClient } from '@/lib/payload'
 import { VisionMissionSection } from '@/components/VisionMissionSection'
 import { FeedbackSection } from '@/components/FeedbackSection'
 import { PageTransition } from '@/components/PageTransition'
+import { CLIENT_REVIEWS } from '@/data/seedData'
+
+const DEFAULT_HERO = {
+  eyebrow: 'Editorial Bridal Atelier • Madurai',
+  title: 'MUGAASHRA BRIDAL STUDIO',
+  subtitle: 'WHERE A DECADE OF EXCELLENCE MEETS THE ARTISTRY OF YOUR DREAMS.',
+  desktopImage: '/images/hero-bride.png',
+  mobileImage: '/images/hero-bride-mobile.png',
+}
 
 export const revalidate = 3600
 
-interface TestimonialItem {
-  clientName: string
-  quote: string
-}
-
-interface HomePageData {
-  heroEyebrow?: string
-  heroTitle?: string
-  heroSubtitle?: string
-  heroDesktopImage?: string
-  heroMobileImage?: string
-  visionTitle?: string
-  visionText?: string
-  missionTitle?: string
-  missionText?: string
-}
-
 export default async function HomePage() {
-  let testimonials: TestimonialItem[] = []
-  let homePageData: HomePageData | null = null
-
-  try {
-    const payload = await getPayloadClient()
-    // Fast non-blocking query with 800ms timeout to prevent SQLite lock hangs on Windows dev
-    const dbPromise = Promise.all([
-      (payload as any).find({ collection: 'testimonials', sort: 'order', limit: 10 }),
-      (payload as any).findGlobal({ slug: 'home-page' }).catch(() => null),
-    ])
-    const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 800))
-    const [testRes, homeRes] = (await Promise.race([dbPromise, timeoutPromise])) as [
-      { docs?: TestimonialItem[] },
-      HomePageData | null,
-    ]
-
-    if (testRes?.docs?.length) {
-      testimonials = testRes.docs
-    }
-    homePageData = homeRes
-  } catch {
-    // Instant fallback if database is locked or slow
-  }
-
-  // Fallback defaults
-  if (!testimonials.length) {
-    testimonials = [
-      {
-        clientName: 'PREETHA LAWRENCE',
-        quote: "I've been following her work for a long time and I wanted her to do my makeup on my big day. What can I say... Class is the only word we need to say. Not too much, not too less, just Perfect! Her makeup was flawless and long lasting, it stood for more than 8 hours. Her calm and caring personality keeps all her brides cool.",
-      },
-      {
-        clientName: 'SWEATHA BALA',
-        quote: "Absolutely recommended for bridal makeup! The team exactly delivered what I wanted on my big day! From a person who wears no more than a kajal to someone who wore professional makeup for the first time, I don’t think I have felt so confident about myself. The best part: you look extremely natural post makeup!",
-      },
-      {
-        clientName: 'SUZANNE',
-        quote: "I cannot say enough about Mugashra and her very talented atelier team! Everything she did was FLAWLESS. She worked quickly but efficiently. I had booked her AIRBRUSH package and it was worth EVERY penny. Everything stayed pristine on camera and under the sacred morning lights.",
-      },
-      {
-        clientName: 'DAMINI CHATRANI',
-        quote: "She works with the client's preference and really makes the client comfortable and at ease. She's a perfectionist when it comes to her work. Her makeup did not budge and is very creative. I really loved getting dolled up by her!",
-      },
-      {
-        clientName: 'PRIYA & SANGEETHA',
-        quote: "We never regretted choosing the atelier for my sister's wedding. They were on time to the venue, very professional and friendly. The bride looked like a model with the hair & makeup in her reception look. Everyone in the family appreciated the looks!",
-      },
-      {
-        clientName: 'PRIYANKA SURESH',
-        quote: "I'm a person who wears no makeup at all and I was overwhelmed with the idea of bridal makeup. On my wedding day, I mentioned all my concerns to the artist. She did her magic. I was so happy with the fact that I looked like myself. She kept it so natural and minimal.",
-      },
-    ]
-  }
-
-  const heroEyebrow = homePageData?.heroEyebrow || 'Editorial Bridal Atelier • Chennai'
-  const heroTitle = homePageData?.heroTitle || 'MUGASHRA ARTISTRY'
-  const heroSubtitle = homePageData?.heroSubtitle || 'WHERE A DECADE OF EXCELLENCE MEETS THE ARTISTRY OF YOUR DREAMS.'
-  const heroDesktopImage = homePageData?.heroDesktopImage || '/images/hero-bride.png'
-  const heroMobileImage = homePageData?.heroMobileImage || '/images/hero-bride-mobile.png'
+  const testimonials = CLIENT_REVIEWS
+  const heroEyebrow = DEFAULT_HERO.eyebrow
+  const heroTitle = DEFAULT_HERO.title
+  const heroSubtitle = DEFAULT_HERO.subtitle
+  const heroDesktopImage = DEFAULT_HERO.desktopImage
+  const heroMobileImage = DEFAULT_HERO.mobileImage
 
   return (
     <PageTransition className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
@@ -184,12 +122,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── 2. Vision & Mission Section ── */}
-      <VisionMissionSection
-        visionTitle={homePageData?.visionTitle}
-        visionText={homePageData?.visionText}
-        missionTitle={homePageData?.missionTitle}
-        missionText={homePageData?.missionText}
-      />
+      <VisionMissionSection />
 
       {/* ── 6. Feedback Section ── */}
       <FeedbackSection testimonials={testimonials} />

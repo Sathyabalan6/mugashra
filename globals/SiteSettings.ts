@@ -5,7 +5,7 @@ export const SiteSettings: GlobalConfig = {
   label: 'Studio & Atelier Settings',
   admin: {
     group: '⚙️ Studio Settings & Admin',
-    description: 'Studio contact details, Chennai address, Instagram / Facebook links, and bridal appointment hours.',
+    description: 'Studio contact details, Madurai address, Instagram / Facebook links, and bridal appointment hours.',
   },
   access: {
     read: () => true,
@@ -14,26 +14,32 @@ export const SiteSettings: GlobalConfig = {
     {
       name: 'studioName',
       type: 'text',
-      defaultValue: 'MUGASHRA ARTISTRY',
+      defaultValue: 'Mugaashra Bridal Studio',
       label: 'Studio Brand Name',
     },
     {
       name: 'studioAddress',
       type: 'text',
-      defaultValue: 'Atelier Studio • Chennai, Tamil Nadu, India',
+      defaultValue: '5/Anna first cross street, 2nd floor, Pethaniyapuram, Madurai - 625016, Tamil Nadu, India',
       label: 'Studio Base Location / City',
     },
     {
       name: 'openingHours',
       type: 'textarea',
-      defaultValue: 'Monday - Friday: 10:00 AM - 6:00 PM\nSaturday: 10:00 AM - 2:00 PM\nSunday: By Bridal Appointment Only',
+      defaultValue: 'Monday - Sunday: 11:00 AM - 8:00 PM (By Appointment)',
       label: 'Studio Opening Hours',
     },
     {
       name: 'contactEmail',
       type: 'email',
-      defaultValue: 'appointments@mugashra.com',
+      defaultValue: 'Mugaashra@gmail.com',
       label: 'Studio Email',
+    },
+    {
+      name: 'contactPhone',
+      type: 'text',
+      defaultValue: '+91 8610597490',
+      label: 'Primary WhatsApp & Booking Number',
     },
     {
       name: 'instagramUrl',

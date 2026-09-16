@@ -18,9 +18,11 @@ export function Header() {
   }, [])
 
   // Close mobile menu on route change
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname)
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname)
     setMobileMenuOpen(false)
-  }, [pathname])
+  }
 
   // Body scroll lock when mobile menu is open
   useEffect(() => {
@@ -77,12 +79,12 @@ export function Header() {
           {/* Brand Wordmark (Left) */}
           <Link
             href="/"
-            className={`group flex flex-col items-start py-2 tracking-[0.25em] uppercase font-sans text-xs sm:text-sm font-medium hover:text-[var(--color-accent)] transition-colors min-h-[44px] justify-center ${
+            className={`group flex flex-col items-start py-2 tracking-[0.22em] uppercase font-sans text-sm sm:text-base font-semibold hover:text-[var(--color-accent)] transition-colors min-h-[44px] justify-center ${
               isDarkHeroPage ? 'text-white' : 'text-[#181514]'
             }`}
-            aria-label="Mugashra Artistry — Home"
+            aria-label="Mugaashra Bridal Studio — Home"
           >
-            <span>MUGASHRA ARTISTRY</span>
+            <span>MUGAASHRA BRIDAL STUDIO</span>
           </Link>
 
           {/* Desktop Navigation (Right Aligned Minimalist Links) */}
@@ -94,12 +96,12 @@ export function Header() {
                   key={link.label}
                   href={link.href}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`font-sans text-[12px] uppercase tracking-[2.5px] transition-colors relative py-2 min-h-[44px] flex items-center ${
+                  className={`font-sans text-[14px] lg:text-[15px] uppercase tracking-[2px] transition-colors relative py-2 min-h-[44px] flex items-center ${
                     isActive
                       ? 'text-[var(--color-accent)] font-semibold'
                       : isDarkHeroPage
-                        ? 'text-[#E0D8D0] hover:text-white font-normal'
-                        : 'text-[#181514] hover:text-[var(--color-accent)] font-normal'
+                        ? 'text-[#E0D8D0] hover:text-white font-medium'
+                        : 'text-[#181514] hover:text-[var(--color-accent)] font-medium'
                   }`}
                 >
                   {link.label}
@@ -163,8 +165,8 @@ export function Header() {
           >
             <div>
               <div className="flex items-center justify-between pb-6 border-b border-white/10">
-                <span className="font-sans text-xs sm:text-sm font-medium tracking-[0.2em] text-white uppercase">
-                  MUGASHRA ARTISTRY
+                <span className="font-sans text-sm sm:text-base font-semibold tracking-[0.2em] text-white uppercase">
+                  MUGAASHRA BRIDAL STUDIO
                 </span>
                 <button
                   type="button"
@@ -188,7 +190,7 @@ export function Header() {
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
                       aria-current={isActive ? 'page' : undefined}
-                      className={`font-sans text-[13px] uppercase tracking-[2.5px] transition-colors py-2 min-h-[44px] flex items-center ${
+                      className={`font-sans text-[15px] sm:text-base uppercase tracking-[2px] transition-colors py-2 min-h-[44px] flex items-center ${
                         isActive
                           ? 'text-[var(--color-accent)] font-semibold'
                           : 'text-[#E0D8D0] hover:text-white font-normal'
@@ -205,7 +207,7 @@ export function Header() {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-center py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[12px] uppercase tracking-[2px] font-semibold transition-colors shadow-lg active:scale-[0.98]"
+                className="block w-full text-center py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[13px] uppercase tracking-[2px] font-semibold transition-colors shadow-lg active:scale-[0.98]"
               >
                 Book Bridal Consultation ↗
               </Link>

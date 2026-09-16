@@ -147,7 +147,7 @@ export interface Enquiry {
   eventTypes?: ('muhurtham' | 'reception' | 'engagement' | 'haldi_mehendi' | 'sangeet' | 'family' | 'groom')[] | null;
   serviceTier?: ('founder' | 'team' | 'consultation') | null;
   /**
-   * e.g. Mayor Ramanathan Hall, Chennai or InterContinental Resort, Mahabalipuram
+   * e.g. Madurai, Chennai, or Destination Resort
    */
   venueLocation: string;
   budgetRange?: ('35k-60k' | '60k-100k' | '100k+') | null;
@@ -424,7 +424,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
- * Studio contact details, Chennai address, Instagram / Facebook links, and bridal appointment hours.
+ * Studio contact details, Madurai address, Instagram / Facebook links, and bridal appointment hours.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings".
@@ -435,6 +435,7 @@ export interface SiteSetting {
   studioAddress?: string | null;
   openingHours?: string | null;
   contactEmail?: string | null;
+  contactPhone?: string | null;
   instagramUrl?: string | null;
   facebookUrl?: string | null;
   updatedAt?: string | null;
@@ -449,6 +450,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   studioAddress?: T;
   openingHours?: T;
   contactEmail?: T;
+  contactPhone?: T;
   instagramUrl?: T;
   facebookUrl?: T;
   updatedAt?: T;

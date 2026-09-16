@@ -16,10 +16,14 @@ const dirname = path.dirname(filename)
 
 const databaseUri = process.env.DATABASE_URI || process.env.POSTGRES_URL || ''
 const isPostgres = databaseUri.startsWith('postgres://') || databaseUri.startsWith('postgresql://')
-const payloadSecret = process.env.PAYLOAD_SECRET
+const payloadSecret =
+  process.env.PAYLOAD_SECRET ||
+  (process.env.NODE_ENV !== 'production'
+    ? 'mugashra-luxury-bridal-atelier-secret-key-32chars-dev'
+    : '')
 
 if (!payloadSecret) {
-  throw new Error('PAYLOAD_SECRET must be set before starting Mugashra.')
+  throw new Error('PAYLOAD_SECRET must be set before starting Mugashra in production.')
 }
 
 export default buildConfig({

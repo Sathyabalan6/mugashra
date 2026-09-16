@@ -41,17 +41,17 @@ export function Footer() {
           {/* Center: Brand Name & Studio Information */}
           <div className="lg:col-span-5 space-y-5 text-left">
             <h2 className="font-serif text-sm sm:text-base tracking-[0.24em] uppercase text-[var(--color-text)] font-medium whitespace-nowrap">
-              MUGASHRA ARTISTRY
+              MUGAASHRA BRIDAL STUDIO
             </h2>
             <p className="font-sans text-xs uppercase tracking-[2px] text-[var(--color-muted)] leading-relaxed">
               ATELIER STUDIO • FOUNDED BY SHWETHA MOHAN<br />
-              CHENNAI, TAMIL NADU, INDIA
+              5/ANNA FIRST CROSS STREET, 2ND FLOOR, PETHANIYAPURAM, MADURAI - 625016
             </p>
             <p className="font-serif text-xs text-[var(--color-text-body)] leading-relaxed pt-2">
-              Founded by Lead Master Artist Shwetha Mohan, Mugashra Artistry is a pioneer in luxury South Indian bridal styling, known for championing radiant, skin-realism looks and personalized bridal experiences with a master product kit.
+              Founded by Lead Master Artist Shwetha Mohan with 10 years of luxury bridal experience, Mugaashra Bridal Studio is celebrated for radiant skin-like airbrush complexions, transfer-proof finishes, and personalized bridal styling.
             </p>
             <p className="caption-text text-xs pt-1">
-              Exalted for signature high-definition glow, heritage Kanjeevaram draping, and architectural hair design.
+              Hours: 11:00 AM – 8:00 PM (By Appointment) • Madurai &amp; Worldwide Travel
             </p>
           </div>
 
@@ -82,16 +82,24 @@ export function Footer() {
 
             <div className="space-y-1">
               <p className="font-sans text-xs text-[var(--color-muted)] uppercase tracking-[1.5px]">
-                Enquiries &amp; Bookings
+                WhatsApp &amp; Bookings
               </p>
-              <Link href="/contact" className="font-serif text-sm hover:text-[var(--color-accent-text)] transition-colors block py-1">
-                Book Consultation ↗
-              </Link>
+              <a
+                href="https://wa.me/918610597490"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-serif text-sm hover:text-[var(--color-accent-text)] transition-colors block py-1"
+              >
+                +91 8610597490 ↗
+              </a>
+              <p className="font-serif text-xs text-[var(--color-muted)]">
+                Mugaashra@gmail.com
+              </p>
             </div>
 
             <div className="pt-4">
               <p className="caption-text text-xs text-[var(--color-muted)]">
-                Mugashra Artistry © 2026/27
+                Mugaashra Bridal Studio © 2026/27
               </p>
             </div>
           </div>

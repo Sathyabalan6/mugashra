@@ -152,7 +152,7 @@ export function EnquiryForm() {
             type="text"
             name="venueLocation"
             required
-            placeholder="e.g. Chennai - MRC Nagar / ECR"
+            placeholder="e.g. Madurai / Chennai / Destination"
             className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
           />
         </div>

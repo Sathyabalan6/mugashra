@@ -76,9 +76,9 @@ html, body {
 
 .font-nav {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   text-transform: uppercase;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   font-weight: 500;
 }
 

@@ -21,7 +21,7 @@ export const NavFooter: React.FC = () => {
       <div className="mugashra-nav-status">
         <div className="mugashra-status-indicator">
           <span className="mugashra-status-dot"></span>
-          <span>Chennai Atelier • Active</span>
+          <span>Madurai Atelier • Active</span>
         </div>
         <span className="mugashra-version">v1.0</span>
       </div>

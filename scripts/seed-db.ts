@@ -1,174 +1,115 @@
+import 'dotenv/config'
 import { getPayload } from 'payload'
 import configPromise from '../payload.config'
 
 async function seed() {
   console.log('Seeding Payload CMS database with live website content...')
-  const payload = (await getPayload({ config: configPromise })) as any
+  const payload = await getPayload({ config: configPromise })
 
-  // Force clean existing seeded collections to update with fresh local images
+  // 1. Clean and seed Service Packages
   try {
-    await payload.delete({ collection: 'portfolio-items', where: {} })
-    await payload.delete({ collection: 'team-members', where: {} })
-    await payload.delete({ collection: 'testimonials', where: {} })
-    await payload.delete({ collection: 'service-packages', where: {} })
-  } catch (err) {
-    console.log('Clearing old collections error (ignoring if empty):', err)
-  }
-
-  // 1. Seed Testimonials
-  const existingTestimonials = await payload.find({ collection: 'testimonials', limit: 1 })
-  if (existingTestimonials.totalDocs === 0) {
-    console.log('Seeding testimonials...')
-    const testimonialsData = [
-      {
-        clientName: 'PREETHA LAWRENCE',
-        eventType: 'Bridal Muhurtham',
-        location: 'Chennai',
-        quote: "I've been following her work for a long time and I wanted her to do my makeup on my big day. What can I say... Class is the only word we need to say. Not too much, not too less, just Perfect! Her makeup was flawless and long lasting, it stood for more than 8 hours. Her calm and caring personality keeps all her brides cool.",
-        rating: 5,
-        featured: true,
-        order: 1,
-      },
-      {
-        clientName: 'SWEATHA BALA',
-        eventType: 'Wedding Ceremony',
-        location: 'Chennai',
-        quote: "Absolutely recommended for bridal makeup! The team exactly delivered what I wanted on my big day! From a person who wears no more than a kajal to someone who wore professional makeup for the first time, I don’t think I have felt so confident about myself. The best part: you look extremely natural post makeup!",
-        rating: 5,
-        featured: true,
-        order: 2,
-      },
-      {
-        clientName: 'SUZANNE',
-        eventType: 'Airbrush Bridal Suite',
-        location: 'Chennai',
-        quote: "I cannot say enough about Mugashra and her very talented atelier team! Everything she did was FLAWLESS. She worked quickly but efficiently. I had booked her AIRBRUSH package and it was worth EVERY penny. Everything stayed pristine on camera and under the sacred morning lights.",
-        rating: 5,
-        featured: true,
-        order: 3,
-      },
-      {
-        clientName: 'DAMINI CHATRANI',
-        eventType: 'Reception Glam',
-        location: 'Chennai',
-        quote: "She works with the client's preference and really makes the client comfortable and at ease. She's a perfectionist when it comes to her work. Her makeup did not budge and is very creative. I really loved getting dolled up by her!",
-        rating: 5,
-        featured: true,
-        order: 4,
-      },
-      {
-        clientName: 'PRIYA & SANGEETHA',
-        eventType: 'Sister & Bride Styling',
-        location: 'Chennai',
-        quote: "We never regretted choosing the atelier for my sister's wedding. They were on time to the venue, very professional and friendly. The bride looked like a model with the hair & makeup in her reception look. Everyone in the family appreciated the looks!",
-        rating: 5,
-        featured: true,
-        order: 5,
-      },
-      {
-        clientName: 'PRIYANKA SURESH',
-        eventType: 'Minimalist Bridal Glow',
-        location: 'Chennai',
-        quote: "I'm a person who wears no makeup at all and I was overwhelmed with the idea of bridal makeup. On my wedding day, I mentioned all my concerns to the artist. She did her magic. I was so happy with the fact that I looked like myself. She kept it so natural and minimal.",
-        rating: 5,
-        featured: true,
-        order: 6,
-      },
-    ]
-
-    for (const item of testimonialsData) {
-      await payload.create({
-        collection: 'testimonials',
-        data: item,
-      })
+    const existing = await payload.find({ collection: 'service-packages', limit: 100 })
+    for (const doc of existing.docs) {
+      await payload.delete({ collection: 'service-packages', id: doc.id })
     }
+    console.log(`Cleared ${existing.docs.length} old service packages.`)
+  } catch (err) {
+    console.log('Clearing old service packages notice:', err)
   }
-
-  // 2. Seed Service Packages
-  const existingPackages = await payload.find({ collection: 'service-packages', limit: 1 })
-  if (existingPackages.totalDocs === 0) {
     console.log('Seeding service packages...')
     const packagesData = [
       {
-        title: 'HIGH DEFINITION',
-        tier: 'founder',
-        category: 'muhurtham',
-        tagline: 'Product Used: Marc Jacobs • Giorgio Armani • Chanel • Dior',
-        description: 'Our High Definition and Airbrush package delivers a lush, weightless finish that leaves your skin feeling like it has a faux filter effect. Flawless on camera and water-resistant for all sacred rituals.',
-        startingPrice: 65000,
-        duration: '3.5 - 4.0 Hours',
-        badge: 'Signature HD',
+        title: 'SIGNATURE AIRBRUSH',
+        tier: 'founder' as const,
+        category: 'muhurtham' as const,
+        tagline: 'Lush, skin-like, and transfer-proof airbrush perfection by Shwetha Mohan',
+        description:
+          'Our Signature Airbrush package delivers a weightless, skin-like finish that leaves your skin luminous, photo-ready, and completely transfer-proof. Flawless on camera and long-wearing for sacred rituals.',
+        startingPrice: 35000,
+        duration: '3.0 - 3.5 Hours',
+        badge: 'Founder Signature',
         inclusions: [
-          { item: 'Full HD & Waterproof Complexion' },
-          { item: 'Hairstyling of Choice (Traditional Braid or Bun)' },
-          { item: 'Lehenga / Saree Draping & Pinning' },
-          { item: 'Jewellery Styling & Placement' },
+          { item: 'Personal Artistry by Lead Master Artist Shwetha Mohan' },
+          { item: 'Hydrating Skin Prep & Barrier Complexion' },
+          { item: 'Contact Lenses & Premium False Lashes' },
+          { item: 'Hair Styling & Signature Floral Architecture' },
+          { item: 'Kanjeevaram Silk Saree Draping & Precision Box Pleating' },
+          { item: 'Personal Styling & Jewellery Placement' },
         ],
-        termsNote: '+ 5% GST apply. Travel outside Chennai billed at actuals.',
+        termsNote: '+ 5% GST apply. Travel outside Madurai billed at actuals.',
         order: 1,
       },
       {
-        title: 'BRIDAL CEREMONY & RECEPTION',
-        tier: 'founder',
-        category: 'reception',
-        tagline: 'Product Used: HD Products + Temptu Airbrush',
-        description: 'For our brides with a multi-event celebration spanning the traditional morning ceremony and evening reception, we create tailored looks to ensure you look fresh and camera-ready at every moment.',
+        title: 'MUHURTHAM + RECEPTION',
+        tier: 'founder' as const,
+        category: 'complete_bridal' as const,
+        tagline: 'Comprehensive dual-event luxury journey covering morning Muhurtham and evening Reception',
+        description:
+          'For brides with a multi-event celebration spanning the traditional morning ceremony and evening reception, Lead Master Artist Shwetha Mohan creates distinct tailored looks to ensure you look fresh and camera-ready at every moment.',
         startingPrice: 70000,
-        duration: 'Dual Event Experience',
+        duration: 'Dual Event Suite',
         badge: 'Airbrush Suite',
         inclusions: [
           { item: 'Morning Sacred Muhurtham HD Styling' },
           { item: 'Evening Reception Airbrush Transformation' },
-          { item: 'Floral Hair Architecture & Hollywood Waves' },
+          { item: 'Contact Lenses & 3D Silk Lashes for both events' },
+          { item: 'Floral Hair Architecture & Modern Reception Updo' },
           { item: 'Silk Saree & Reception Lehenga Draping' },
+          { item: 'Jewellery Pinning & Styling Support' },
         ],
         termsNote: '+ 5% GST apply. Includes look-board planning.',
         order: 2,
       },
       {
-        title: 'OUTSTATION & DESTINATION',
-        tier: 'founder',
-        category: 'complete_bridal',
-        tagline: 'Dedicated Artist Travel Across India & Worldwide',
-        description: 'For outstation weddings, we dedicate our team solely to your event, ensuring undivided personal attention and the highest level of luxury service.',
-        startingPrice: 100000,
-        duration: 'Full Day Dedication',
-        badge: 'Destination Travel',
+        title: 'PARTY & EVENT MAKEUP',
+        tier: 'team' as const,
+        category: 'groom_family' as const,
+        tagline: 'Elevated styling for mothers, sisters & bridesmaids',
+        description:
+          'Cohesive luxury styling for the bridal party so mothers, sisters, and bridesmaids look immaculate.',
+        startingPrice: 7500,
+        duration: '1.5 Hours / Person',
+        badge: 'Add-On Service',
         inclusions: [
-          { item: 'Full Day Dedicated Artist Team' },
-          { item: 'Muhurtham, Reception, & Sangeet Looks' },
-          { item: 'Touch-up Assistance throughout rituals' },
+          { item: 'Party Makeup: INR 7,500/- per person' },
+          { item: 'Hairstyling of Choice (Curls, Braid, or Bun)' },
+          { item: 'Saree / Lehenga Draping & Pinning' },
         ],
-        termsNote: '+ 5% GST apply. Flights and accommodation to be arranged by client.',
+        termsNote: '+ 5% GST apply.',
         order: 3,
       },
       {
         title: 'THE GROOM COVERED',
-        tier: 'team',
-        category: 'groom_family',
-        tagline: '..King fit for His Queen..',
-        description: 'Camera-ready matte HD complexion, shine reduction, beard grooming and hair styling for the groom.',
-        startingPrice: 10000,
+        tier: 'team' as const,
+        category: 'groom_family' as const,
+        tagline: 'Camera-ready grooming for the groom',
+        description:
+          'Camera-ready matte HD complexion, shine reduction, beard grooming and hair styling for the groom.',
+        startingPrice: 8000,
         duration: '45 Minutes',
+        badge: 'Groom Suite',
         inclusions: [
-          { item: 'Matte Invisible HD Skin Prep (INR 10,000/-)' },
-          { item: 'Hairstyling & Beard Setting (INR 5,000/-)' },
+          { item: 'Matte Invisible HD Skin Prep' },
+          { item: 'Hairstyling & Beard Setting' },
+          { item: 'Angavastram / Dhoti Draping Support' },
         ],
         termsNote: '+ 5% GST apply.',
         order: 4,
       },
       {
-        title: 'WEDDING CREW & BRIDAL PARTY',
-        tier: 'team',
-        category: 'groom_family',
-        tagline: '..Bridesmaids, Parents, Sisters..',
-        description: 'Cohesive luxury styling for the bridal party so mothers, sisters, and bridesmaids look immaculate.',
-        startingPrice: 7500,
-        duration: '1.5 Hours / Person',
+        title: 'SAREE PRE-PLEATING',
+        tier: 'team' as const,
+        category: 'groom_family' as const,
+        tagline: 'Precision 48-hour heirloom saree box pleating',
+        description:
+          'Expert steam pressing and precision box-pleating for Kanjeevaram, banarasi, and organza sarees for seamless 5-minute wedding draping.',
+        startingPrice: 1500,
+        duration: 'Advance Service',
+        badge: 'A La Carte Add-On',
         inclusions: [
-          { item: 'Party Makeup: INR 7,500/- per person' },
-          { item: 'Hairstyling: INR 3,500/- per person' },
-          { item: 'Saree / Lehenga Draping: INR 1,000/- per person' },
+          { item: 'Heirloom Silk Steam Pressing' },
+          { item: 'Precision Box-Pleat Folding' },
+          { item: 'Crease-Proof Hanger Packaging' },
         ],
         termsNote: '+ 5% GST apply.',
         order: 5,
@@ -178,150 +119,34 @@ async function seed() {
     for (const item of packagesData) {
       await payload.create({
         collection: 'service-packages',
-        data: item as any,
-      })
-    }
-  }
-
-  // 3. Seed Portfolio Items
-  const existingPortfolio = await payload.find({ collection: 'portfolio-items', limit: 1 })
-  if (existingPortfolio.totalDocs === 0) {
-    console.log('Seeding portfolio items...')
-    const portfolioData = [
-      {
-        title: 'The Sacred Muhurtham in Crimson Silk',
-        brideName: 'Editorial Look I',
-        category: 'muhurtham',
-        imageUrl: '/images/portfolio/bridal_story_1.webp',
-        location: 'Wedding Ceremony, Chennai',
-        artistryDetails: 'Waterproof HD complexion, antique gold temple jewellery, fresh Madurai Malli poola jada.',
-        featured: true,
-        order: 1,
-      },
-      {
-        title: 'Contemporary Glass-Skin Reception',
-        brideName: 'Editorial Look II',
-        category: 'reception',
-        imageUrl: '/images/portfolio/couple_photo_red_and_sandal_1.jpg',
-        location: 'Evening Reception, Chennai',
-        artistryDetails: 'Sculpted airbrush base, champagne shimmer lids, voluminous Hollywood waves.',
-        featured: true,
-        order: 2,
-      },
-      {
-        title: 'Pastel Organza Nichayathartham',
-        brideName: 'Editorial Look III',
-        category: 'engagement',
-        imageUrl: '/images/portfolio/bridal_story_4.webp',
-        location: 'Engagement Ceremony, Chennai',
-        artistryDetails: 'Soft peach monochromatic blush, fluttery lash clusters, romantic floral hair.',
-        featured: true,
-        order: 3,
-      },
-      {
-        title: 'Couture Editorial in Emerald Velvet',
-        brideName: 'Editorial Look IV',
-        category: 'editorial',
-        imageUrl: '/images/portfolio/bridal_story_5.webp',
-        location: 'Fashion Campaign',
-        artistryDetails: 'Sculpted cheekbones, high-gloss nude pout, modern architectural low bun.',
-        featured: true,
-        order: 4,
-      },
-      {
-        title: 'Minimalist Monochromatic Silk Campaign',
-        brideName: 'Editorial Look V',
-        category: 'editorial',
-        imageUrl: '/images/portfolio/bridal_story_3.webp',
-        location: 'Silk Saree Editorial',
-        artistryDetails: 'Feathered natural brows, glass skin glaze, subtle earth tones.',
-        featured: true,
-        order: 5,
-      },
-      {
-        title: 'Luxury Jewellery Campaign',
-        brideName: 'Editorial Look VI',
-        category: 'editorial',
-        imageUrl: '/images/portfolio/bridal_story_2.webp',
-        location: 'Commercial Campaign',
-        artistryDetails: 'High-contrast definition, camera-perfect skin setting under intense studio lighting.',
-        featured: true,
-        order: 6,
-      },
-    ]
-
-    for (const item of portfolioData) {
-      await payload.create({
-        collection: 'portfolio-items',
-        data: item as any,
-      })
-    }
-  }
-
-  // 4. Seed Team Members
-  const existingTeam = await payload.find({ collection: 'team-members', limit: 1 })
-  if (existingTeam.totalDocs === 0) {
-    console.log('Seeding team members...')
-    const teamData = [
-      {
-        name: 'Shwetha Mohan',
-        role: 'Founder & Master Bridal Artist',
-        specialization: 'High-Definition Bridal Complexion, Airbrush & Heritage South Indian Artistry',
-        bio: 'With over 9 years of luxury wedding experience across South India, our Lead Artist has styled over 650+ brides with signature skin-realism.',
-        yearsExperience: 9,
-        photoUrl: '/images/shwetha-mohan.jpg',
-        order: 1,
-      },
-      {
-        name: 'Senior Hair Stylist',
-        role: 'Senior Hair & Floral Architect',
-        specialization: 'Traditional Poola Jada, Modern Textured Buns & Hollywood Waves',
-        bio: 'Specializing in intricate South Indian bridal braids, poola jada floral settings, and voluminous Hollywood waves that remain immaculate.',
-        yearsExperience: 7,
-        photoUrl: '/images/founder-hero.png',
-        order: 2,
-      },
-      {
-        name: 'Senior Saree Stylist',
-        role: 'Senior Saree & Silhouette Stylist',
-        specialization: 'Kanjeevaram Box Pleating, Saree Pre-Draping & Precision Pleating',
-        bio: 'Expert in razor-sharp Kanjeevaram box pleating, weight distribution pinning for heavy silk sarees, and contemporary lehenga draping.',
-        yearsExperience: 8,
-        photoUrl: '/images/portfolio/bridal_story_3.webp',
-        order: 3,
-      },
-    ]
-
-    for (const item of teamData) {
-      await payload.create({
-        collection: 'team-members',
         data: item,
       })
     }
-  }
 
-  // 5. Seed SiteSettings
+  // 2. Seed SiteSettings global
   try {
     await payload.updateGlobal({
       slug: 'site-settings',
       data: {
-        studioName: 'Mugashra Bridal Atelier',
-        tagline: 'Timeless Grace. Flawless Skin. Luxury South Indian Bridal Artistry.',
-        primaryPhone: '+91 (0) 73388 38669',
-        primaryEmail: 'appointments@mugashra.com',
-        studioAddress: 'Atelier Studio • Chennai, Tamil Nadu, India',
-        instagramHandle: '@mugaashra_makeover',
-      } as any,
+        studioName: 'Mugaashra Bridal Studio',
+        studioAddress: '5/Anna first cross street, 2nd floor, Pethaniyapuram, Madurai - 625016, Tamil Nadu, India',
+        contactEmail: 'Mugaashra@gmail.com',
+        contactPhone: '+91 8610597490',
+        instagramUrl: 'https://www.instagram.com/mugaashra_makeover',
+        facebookUrl: 'https://facebook.com/mugashra',
+        openingHours: 'Monday - Sunday: 11:00 AM - 8:00 PM (By Appointment)',
+      },
     })
   } catch (e) {
-    // Globals might already exist
+    console.log('SiteSettings update notice (ignoring if already up to date):', e)
   }
 
-  console.log('✅ Payload CMS database successfully seeded with all live website content!')
-  process.exit(0)
+  console.log('✅ Payload CMS database successfully seeded with active collections!')
 }
 
-seed().catch((err) => {
-  console.error('Seeding error:', err)
-  process.exit(1)
-})
+seed()
+  .then(() => process.exit(0))
+  .catch((err) => {
+    console.error('Seeding error:', err)
+    process.exit(1)
+  })

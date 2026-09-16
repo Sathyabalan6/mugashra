@@ -4,14 +4,14 @@ import { EnquiryForm } from '@/components/EnquiryForm'
 import { PageTransition } from '@/components/PageTransition'
 
 export const metadata: Metadata = {
-  title: 'Contact & Bridal Enquiries | Mugashra Bridal Artistry',
-  description: 'Get in touch for bridal makeup consultation, availability, and bookings in Chennai and worldwide.',
+  title: 'Contact & Bridal Enquiries | Mugaashra Bridal Studio',
+  description: 'Get in touch for bridal makeup consultation, availability, and bookings in Madurai, Chennai and worldwide.',
   alternates: { canonical: 'https://mugashra.com/contact' },
 }
 
 export default function ContactPage() {
-  const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919840000000'
-  const defaultMessage = encodeURIComponent("Hi Mugashra Artistry, I'd like to enquire about bridal makeup availability.")
+  const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '918610597490'
+  const defaultMessage = encodeURIComponent("Hi Mugaashra Bridal Studio, I'd like to enquire about bridal makeup availability.")
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${defaultMessage}`
 
   return (
@@ -22,7 +22,7 @@ export default function ContactPage() {
           {/* Left Column: Heading & Studio Details */}
           <div className="lg:col-span-6 space-y-10 text-left">
             <div className="space-y-2">
-              <span className="font-eyebrow block">Bridal Atelier • Chennai</span>
+              <span className="font-eyebrow block">Bridal Atelier • Madurai</span>
               <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl tracking-[0.1em] uppercase text-[var(--color-accent-text)] font-normal leading-[1.05]">
                 CONTACT US
               </h1>
@@ -31,33 +31,36 @@ export default function ContactPage() {
             {/* Opening Hours */}
             <div className="space-y-2">
               <span className="font-eyebrow block">
-                Opening Hours
+                Appointment Hours
               </span>
               <div className="font-serif text-sm sm:text-base text-[var(--color-text-body)] space-y-1 leading-relaxed">
-                <p>Monday - Friday: 10:00 AM - 6:00 PM</p>
-                <p>Saturday: 10:00 AM - 2:00 PM</p>
-                <p className="caption-text">Sunday: By Bridal Appointment Only</p>
+                <p>Monday - Sunday: 11:00 AM - 8:00 PM</p>
+                <p className="caption-text">By Bridal Appointment Only</p>
               </div>
             </div>
 
             {/* Studio Address */}
             <div className="space-y-2">
               <span className="font-eyebrow block">
-                Studio Atelier
+                Studio Atelier Address
               </span>
               <div className="font-serif text-sm sm:text-base text-[var(--color-text-body)] leading-relaxed">
-                <p>Atelier Studio</p>
-                <p>Chennai, Tamil Nadu 600028, India</p>
+                <p>5/Anna first cross street, 2nd floor</p>
+                <p>Pethaniyapuram, Madurai - 625016</p>
+                <p className="caption-text">Tamil Nadu, India</p>
               </div>
             </div>
 
-            {/* Telephone */}
+            {/* Telephone & Email */}
             <div className="space-y-2">
               <span className="font-eyebrow block">
-                Enquiries Desk
+                Enquiries Desk &amp; Booking
               </span>
               <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)]">
-                Dates confirmed upon form enquiry or WhatsApp
+                WhatsApp / Call: <a href="tel:+918610597490" className="hover:text-[var(--color-accent-text)] underline">+91 8610597490</a>
+              </p>
+              <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)]">
+                Email: <a href="mailto:Mugaashra@gmail.com" className="hover:text-[var(--color-accent-text)] underline">Mugaashra@gmail.com</a>
               </p>
             </div>
           </div>
@@ -104,13 +107,13 @@ export default function ContactPage() {
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] [background-size:16px_16px]" />
         <div className="relative z-10 text-center space-y-3 px-6">
           <span className="font-sans text-[11px] uppercase tracking-[3px] text-[var(--color-accent)] font-medium block">
-            CHENNAI ATELIER • DESTINATION TRAVEL WORLDWIDE
+            MADURAI ATELIER • DESTINATION TRAVEL WORLDWIDE
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl text-white font-normal">
             Serving South India &amp; Global Weddings
           </h2>
           <p className="caption-text text-xs text-white/70">
-            Available across Chennai, Coimbatore, Bangalore, Hyderabad, Sri Lanka, Singapore &amp; Worldwide
+            Available across Madurai, Chennai, Coimbatore, Bangalore, Hyderabad, Sri Lanka, Singapore &amp; Worldwide
           </p>
         </div>
       </section>

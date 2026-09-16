@@ -1,200 +1,109 @@
-export interface ServicePackage {
-  id: string
-  title: string
-  tier: 'founder' | 'team'
-  category: 'muhurtham' | 'reception' | 'engagement' | 'haldi_sangeet' | 'complete_bridal' | 'groom_family'
-  tagline: string
-  description: string
-  startingPrice: number
-  duration: string
-  badge?: string
-  inclusions: string[]
-  termsNote?: string
-}
+import type {
+  ServicePackage,
+  PortfolioItem,
+  TeamMember,
+  Testimonial,
+} from '@/types'
 
-export interface PortfolioItem {
-  id: string
-  title: string
-  brideName?: string
-  category: 'muhurtham' | 'reception' | 'engagement' | 'haldi' | 'editorial'
-  imageUrl: string
-  location: string
-  artistryDetails: string
-  featured?: boolean
-}
-
-export interface TeamMember {
-  id: string
-  name: string
-  role: string
-  specialization: string
-  bio: string
-  yearsExperience: number
-  photoUrl: string
-}
-
-export interface Testimonial {
-  id: string
-  clientName: string
-  eventType: string
-  location: string
-  quote: string
-  rating: number
-  photoUrl?: string
-  featured: boolean
-}
+export type { ServicePackage, PortfolioItem, TeamMember, Testimonial }
 
 export const INITIAL_PACKAGES: ServicePackage[] = [
   // ── FOUNDER SIGNATURE PACKAGES ──
   {
-    id: 'founder-muhurtham',
-    title: 'The Sacred Muhurtham — Signature Artistry',
+    id: 'founder-signature-airbrush',
+    title: 'Signature Airbrush Bridal Artistry',
     tier: 'founder',
     category: 'muhurtham',
-    tagline: 'Traditional South Indian bridal perfection for early morning muhurthams & rituals.',
-    description: 'Personal artistry by Lead Master Artist. Customized skin preparation, sweat-resistant ultra-longwear HD complexion, traditional gold & bronze eye makeup, customized lashes, signature jasmine-entwined floral braid architecture, and couture Kanjeevaram silk saree draping with box pleating.',
-    startingPrice: 45000,
-    duration: '3.5 - 4.0 Hours',
+    tagline: 'Lush, skin-like, and transfer-proof airbrush perfection by Lead Master Artist Shwetha Mohan.',
+    description: 'Personal bridal artistry by Lead Master Artist Shwetha Mohan. Customized skin preparation, ultra-longwear transfer-proof airbrush complexion, premium false eyelashes, eye enhancement lenses, traditional or contemporary hair styling, signature saree draping & box pleating, and end-to-end personal styling.',
+    startingPrice: 35000,
+    duration: '3.0 - 3.5 Hours',
     badge: 'Founder Signature',
     inclusions: [
-      'Personal artistry by Lead Master Artist',
-      'High-Definition waterproof & sweat-resistant bridal complexion',
-      'Customized premium silk lashes & eye enhancement',
-      'Traditional jasmine poola jada / floral architectural hair styling',
-      'Signature Kanjeevaram saree draping & precise box-pleating',
-      'Jewellery placement & secure pinning',
-      'Complimentary bridal touch-up kit for the mandapam',
+      'Personal artistry by Lead Master Artist Shwetha Mohan',
+      'Skin preparation & hydrating base',
+      'Eye enhancement lenses & premium false lashes',
+      'Hair styling & floral architecture',
+      'Saree draping with precision box pleating',
+      'Personal bridal styling & jewellery securing',
+      'Waterproof, sweat-resistant & transfer-proof finish',
     ],
-    termsNote: 'Early morning call-time (from 3:00 AM) included. Travel outside city billed at actuals.',
+    termsNote: 'Travel outside Madurai billed at actuals. + 5% GST apply.',
   },
   {
-    id: 'founder-reception',
-    title: 'High-Glam Reception & Sangeet',
-    tier: 'founder',
-    category: 'reception',
-    tagline: 'Couture evening glamour with glass-skin airbrush radiance and modern red-carpet styling.',
-    description: 'Designed for grandeur under stage lighting. Full airbrush flawless base, soft smokey or shimmer lids, sculpted contouring, luxury velvet lips, and contemporary hair design (Hollywood waves, textured romantic updos, or sleek modern styles).',
-    startingPrice: 40000,
-    duration: '3.0 - 3.5 Hours',
-    badge: 'Red Carpet Finish',
-    inclusions: [
-      'Flawless Airbrush / silicone-based foundation',
-      'Custom high-definition shimmer & smokey eye artistry',
-      '3D luxury lash application',
-      'Contemporary textured updo or glamorous Hollywood waves',
-      'Lehenga dupatta draping or contemporary reception saree styling',
-      'Full body glow & décolletage illumination',
-      'On-stage longevity guarantee (up to 14 hours)',
-    ],
-    termsNote: 'Touch-up assistant available on request for on-stage ceremonies.',
-  },
-  {
-    id: 'founder-complete-bridal',
-    title: 'The Grand Tamil Bridal Suite (2 or 3 Events)',
+    id: 'founder-muhurtham-reception',
+    title: 'Muhurtham + Reception Bridal Suite',
     tier: 'founder',
     category: 'complete_bridal',
-    tagline: 'Our ultimate end-to-end luxury journey covering Muhurtham, Reception & Engagement.',
-    description: 'The definitive bridal experience. Master Artist personally curates and executes distinct, non-repetitive aesthetic transformations for each ceremonial event, perfectly coordinated with your jewellery and outfits.',
-    startingPrice: 115000,
-    duration: 'Multi-Event Experience',
+    tagline: 'The ultimate dual-event luxury journey covering sacred Muhurtham and evening Reception.',
+    description: 'Comprehensive bridal transformation across morning and evening events. Distinct, tailored aesthetics for each function: traditional sacred Muhurtham styling with temple silk draping & floral jada, followed by a red-carpet airbrush glow for the reception stage.',
+    startingPrice: 70000,
+    duration: 'Dual Event Experience',
     badge: 'Most Requested Suite',
     inclusions: [
-      'Comprehensive artistry by Lead Master Artist for ceremonial functions',
-      'Pre-wedding bespoke bridal consultation & look-board mapping',
-      'Tailored Airbrush & Ultra-HD luxury formulations',
-      'Distinct hairstyles: Traditional braid, Textured updo, and Hollywood waves',
-      'Precision saree & lehenga draping for all events',
-      'Complimentary Groom grooming touch-up on Reception evening',
-      'Dedicated styling assistant attending throughout the rituals',
+      'Comprehensive artistry for Sacred Muhurtham & Reception',
+      'Custom Airbrush & Ultra-HD luxury formulations',
+      'Contact lenses & 3D premium silk lashes for both functions',
+      'Distinct hairstyles: Traditional floral braid & modern textured updo / waves',
+      'Precision saree & reception lehenga draping',
+      'Jewellery pinning & personal bridal styling support',
+      'Complimentary bridal touch-up kit',
     ],
-    termsNote: 'Includes priority date booking and destination travel readiness.',
-  },
-  {
-    id: 'founder-engagement',
-    title: 'Nichayathartham (Engagement) Elegance',
-    tier: 'founder',
-    category: 'engagement',
-    tagline: 'Fresh, luminous skin with romantic soft styling for rings & auspicious beginnings.',
-    description: 'Subtle sophistication. Soft-focus radiant skin, glowing tones, delicately pinned floral half-updos or soft curls, and traditional silk or organza saree styling.',
-    startingPrice: 35000,
-    duration: '3.0 Hours',
-    inclusions: [
-      'Signature dewy HD skin with featherlight texture',
-      'Custom soft-glam eyeshadow & individual cluster lashes',
-      'Floral half-updo, romantic textured braid, or soft curls',
-      'Saree or half-saree / lehenga draping with styling',
-      'Jewellery securing & finishing spray',
-    ],
+    termsNote: 'Priority date booking. Travel outside Madurai billed at actuals. + 5% GST apply.',
   },
 
-  // ── SENIOR STUDIO TEAM PACKAGES ──
+  // ── A LA CARTE ADD-ONS & EXTRA SERVICES ──
   {
-    id: 'team-muhurtham',
-    title: 'Senior Artist — Sacred Muhurtham',
-    tier: 'team',
-    category: 'muhurtham',
-    tagline: 'Delivering flawless traditional South Indian bridal styling.',
-    description: 'Executed by our certified Senior Makeup Artist and Hair Stylist team using our studio’s signature luxury product kit.',
-    startingPrice: 28000,
-    duration: '3.0 - 3.5 Hours',
-    badge: 'Atelier Value',
-    inclusions: [
-      'Full HD waterproof bridal makeup by Certified Senior Artist',
-      'Premium false eyelashes & eye definition',
-      'Traditional South Indian bridal braid with floral styling',
-      'Kanjeevaram silk saree draping & pin-up',
-      'Jewellery placement & tikka fixing',
-    ],
-    termsNote: 'Standard travel within city included.',
-  },
-  {
-    id: 'team-reception',
-    title: 'Senior Artist — Reception Glam',
-    tier: 'team',
-    category: 'reception',
-    tagline: 'Luminous evening looks tailored for reception stages and celebrations.',
-    description: 'Flawless longwear base, statement eye artistry, contemporary textured hairstyle, and lehenga/saree draping by senior atelier talent.',
-    startingPrice: 25000,
-    duration: '2.5 - 3.0 Hours',
-    inclusions: [
-      'Full HD long-wear complexion & contouring',
-      'Dramatic or soft-glam eye makeup with lashes',
-      'Modern hairstyle (curls, textured bun, or Hollywood waves)',
-      'Lehenga or evening saree draping',
-    ],
-  },
-  {
-    id: 'team-family-guest',
-    title: 'Bridal Party & Family Styling (Per Person)',
+    id: 'team-party-makeup',
+    title: 'Party & Event Makeup (Per Person)',
     tier: 'team',
     category: 'groom_family',
     tagline: 'Elevated styling for mothers, sisters, and bridesmaids.',
     description: 'Complete party makeup, hair styling (blowdry, curls, or traditional updo), and saree draping for the bridal party so the entire family looks cohesive and stunning.',
-    startingPrice: 8500,
+    startingPrice: 7500,
     duration: '1.5 Hours / Person',
-    badge: 'Family Package',
+    badge: 'Add-On Service',
     inclusions: [
       'HD party makeup suited for photography and stage',
       'Hairstyling of choice (traditional bun with flowers, curls, or braid)',
       'Silk saree, half-saree, or lehenga draping',
-      'Minimum booking of 2 persons or alongside a bridal package',
     ],
+    termsNote: '+ 5% GST apply.',
   },
   {
-    id: 'team-groom',
-    title: 'Groom Luxury Grooming & Styling',
+    id: 'team-groom-makeup',
+    title: 'Groom Luxury Grooming & Makeup',
     tier: 'team',
     category: 'groom_family',
     tagline: 'Natural matte camera-ready skin and sharp hair styling for the groom.',
     description: 'Undetectable skin enhancement, shine reduction for camera flashes, beard grooming, and hair setting for traditional dhoti / sherwani looks.',
     startingPrice: 8000,
     duration: '45 Minutes',
+    badge: 'Groom Suite',
     inclusions: [
       'Invisible matte HD skin prep & tone correction',
-      'Beard line definition & taming',
+      'Beard line definition & grooming',
       'Hair grooming and hold styling',
       'Veshti / Dhoti angavastram draping support',
     ],
+    termsNote: '+ 5% GST apply.',
+  },
+  {
+    id: 'service-saree-prepleating',
+    title: 'Saree Pre-Pleating & Draping Prep',
+    tier: 'team',
+    category: 'groom_family',
+    tagline: 'Precision 48-hour heirloom saree box pleating for effortless mandapam dressing.',
+    description: 'Expert steam pressing and precision box-pleating for Kanjeevaram, banarasi, and organza sarees for flawless 5-minute wedding draping.',
+    startingPrice: 1500,
+    duration: 'Advance Service',
+    badge: 'A La Carte Add-On',
+    inclusions: [
+      'Heirloom silk gentle steam pressing',
+      'Precision box-pleating according to bride height & pallu length',
+      'Pinpoint pleat securing & crease-free hanger packing',
+    ],
+    termsNote: '+ 5% GST apply.',
   },
 ]
 
@@ -266,9 +175,9 @@ export const INITIAL_TEAM: TeamMember[] = [
     id: 'team-1',
     name: 'Shwetha Mohan',
     role: 'Founder & Master Bridal Artist',
-    specialization: 'High-Definition Bridal Complexion, Airbrush & Heritage South Indian Artistry',
-    bio: 'With over 9 years of luxury wedding experience across South India and destination weddings, our Lead Artist has styled over 650+ brides. Trained in London and Mumbai, the signature aesthetic honors sacred Tamil bridal customs with modern editorial sophistication.',
-    yearsExperience: 9,
+    specialization: 'Airbrush Makeup, HD Ultra, Skin-Like & Transfer-Proof Makeup, Soft Glam to Full Glam, South & North Indian Bridal Looks',
+    bio: 'With over 10 years of professional bridal artistry experience, Shwetha Mohan specializes in airbrush makeup, HD ultra complexions, skin-like transfer-proof finishes, soft-glam, and full-glam editorial transformations for South Indian and North Indian brides.',
+    yearsExperience: 10,
     photoUrl: '/images/shwetha-mohan.jpg',
   },
   {
@@ -291,38 +200,64 @@ export const INITIAL_TEAM: TeamMember[] = [
   },
 ]
 
-export const INITIAL_TESTIMONIALS: Testimonial[] = [
+export const CLIENT_REVIEWS: Testimonial[] = [
   {
-    id: 't-1',
-    clientName: 'Verified Bride S.',
-    eventType: 'Muhurtham & Reception',
-    location: 'Wedding Ceremony',
-    quote: 'The team made me feel like royalty for my early morning Muhurtham. My skin looked so luminous in person and on the 4K video without looking caked or heavy. The saree pleating did not budge all day!',
+    id: 'rev-1',
+    clientName: 'PREETHA LAWRENCE',
+    quote: "I've been following her work for a long time and I wanted her to do my makeup on my big day. What can I say... Class is the only word we need to say. Not too much, not too less, just Perfect! Her makeup was flawless and long lasting, it stood for more than 8 hours. Her calm and caring personality keeps all her brides cool.",
+    eventType: 'Bridal Muhurtham',
+    location: 'Chennai',
     rating: 5,
-    photoUrl: '/images/portfolio/bridal_story_1.webp',
     featured: true,
   },
   {
-    id: 't-2',
-    clientName: 'Verified Bride K.',
-    eventType: 'Destination Wedding',
-    location: 'Beach Resort Wedding',
-    quote: 'Booking the Grand Bridal Suite was the single best decision of our wedding planning. From the dewy morning look to the glamorous reception airbrush, every single guest praised the artistry.',
+    id: 'rev-2',
+    clientName: 'SWEATHA BALA',
+    quote: "Absolutely recommended for bridal makeup! The team exactly delivered what I wanted on my big day! From a person who wears no more than a kajal to someone who wore professional makeup for the first time, I don’t think I have felt so confident about myself. The best part: you look extremely natural post makeup!",
+    eventType: 'Wedding Ceremony',
+    location: 'Chennai',
     rating: 5,
-    photoUrl: '/images/portfolio/couple_photo_red_and_sandal_1.jpg',
     featured: true,
   },
   {
-    id: 't-3',
-    clientName: 'Verified Bride A.',
-    eventType: 'Nichayathartham & Sangeet',
-    location: 'Grand Ballroom Celebration',
-    quote: 'The team arrived right on time with incredible warmth and calm energy. The eye makeup was so detailed and matched my silk borders flawlessly. Truly world-class artistry.',
+    id: 'rev-3',
+    clientName: 'SUZANNE',
+    quote: "I cannot say enough about Mugashra and her very talented atelier team! Everything she did was FLAWLESS. She worked quickly but efficiently. I had booked her AIRBRUSH package and it was worth EVERY penny. Everything stayed pristine on camera and under the sacred morning lights.",
+    eventType: 'Airbrush Bridal Suite',
+    location: 'Chennai',
     rating: 5,
-    photoUrl: '/images/portfolio/bridal_story_4.webp',
+    featured: true,
+  },
+  {
+    id: 'rev-4',
+    clientName: 'DAMINI CHATRANI',
+    quote: "She works with the client's preference and really makes the client comfortable and at ease. She's a perfectionist when it comes to her work. Her makeup did not budge and is very creative. I really loved getting dolled up by her!",
+    eventType: 'Reception Glam',
+    location: 'Chennai',
+    rating: 5,
+    featured: true,
+  },
+  {
+    id: 'rev-5',
+    clientName: 'PRIYA & SANGEETHA',
+    quote: "We never regretted choosing the atelier for my sister's wedding. They were on time to the venue, very professional and friendly. The bride looked like a model with the hair & makeup in her reception look. Everyone in the family appreciated the looks!",
+    eventType: 'Sister & Bride Styling',
+    location: 'Chennai',
+    rating: 5,
+    featured: true,
+  },
+  {
+    id: 'rev-6',
+    clientName: 'PRIYANKA SURESH',
+    quote: "I'm a person who wears no makeup at all and I was overwhelmed with the idea of bridal makeup. On my wedding day, I mentioned all my concerns to the artist. She did her magic. I was so happy with the fact that I looked like myself. She kept it so natural and minimal.",
+    eventType: 'Minimalist Bridal Glow',
+    location: 'Chennai',
+    rating: 5,
     featured: true,
   },
 ]
+
+export const INITIAL_TESTIMONIALS: Testimonial[] = CLIENT_REVIEWS
 
 export const LUXURY_BRANDS_USED = [
   'Charlotte Tilbury',

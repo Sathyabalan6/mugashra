@@ -84,7 +84,7 @@ export const Enquiries: CollectionConfig = {
       required: true,
       label: 'Wedding City & Hall / Resort Name',
       admin: {
-        description: 'e.g. Mayor Ramanathan Hall, Chennai or InterContinental Resort, Mahabalipuram',
+        description: 'e.g. Madurai, Chennai, or Destination Resort',
       },
     },
     {

@@ -9,7 +9,7 @@ export const DashboardWelcome: React.FC = () => {
         <div className="mugashra-hero-content">
           <div className="mugashra-hero-badge">
             <span className="mugashra-badge-dot"></span>
-            <span>Atelier Systems Active • Chennai Base</span>
+            <span>Atelier Systems Active • Madurai Base</span>
           </div>
 
           <h1 className="mugashra-hero-title">
@@ -133,7 +133,7 @@ export const DashboardWelcome: React.FC = () => {
             <div className="mugashra-card-tag">Studio Info</div>
             <h3 className="mugashra-card-title">Studio Settings</h3>
             <p className="mugashra-card-desc">
-              Studio base address in Chennai, consultation hours, Instagram handles, and contact emails.
+              Studio base address in Madurai, consultation hours, Instagram handles, and contact emails.
             </p>
           </div>
           <div className="mugashra-card-footer">
