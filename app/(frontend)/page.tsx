@@ -121,7 +121,126 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── 2. Vision & Mission Section ── */}
+      {/* ── 2. Curated Editorial Looks Showcase ── */}
+      <section className="py-24 sm:py-32 px-6 sm:px-12 max-w-[1400px] mx-auto w-full">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+          <div className="space-y-3 max-w-xl text-left">
+            <span className="font-eyebrow block">Signature Transformations</span>
+            <h2 className="font-serif text-3xl sm:text-5xl tracking-[0.1em] uppercase text-[var(--color-text)] font-normal">
+              CURATED BRIDAL LOOKS
+            </h2>
+            <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)] leading-relaxed font-light">
+              A bespoke aesthetic designed for each ceremonial event — synchronized with your heirloom jewellery, silk weave, and stage lighting.
+            </p>
+          </div>
+          <Link
+            href="/portfolio"
+            className="font-sans text-xs uppercase tracking-[2px] text-[var(--color-accent-text)] hover:text-[var(--color-text)] border-b border-[var(--color-accent)] pb-1 transition-colors w-fit shrink-0 font-semibold"
+          >
+            Explore Complete Portfolio (20+ Looks) ↗
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+          {/* Card 1: Muhurtham */}
+          <div className="group relative flex flex-col bg-[var(--color-bg-white)] border border-[var(--color-border)] overflow-hidden shadow-xs hover:shadow-md transition-all duration-300">
+            <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#EAE1D5]">
+              <Image
+                src="/images/portfolio/red.jpg"
+                alt="Sacred Muhurtham Bridal Styling"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-[10px] uppercase tracking-[2px] font-semibold">
+                Sacred Muhurtham
+              </div>
+            </div>
+            <div className="p-6 space-y-2 text-left">
+              <h3 className="font-serif text-xl text-[var(--color-text)] font-normal">
+                The Royal Crimson Muhurtham
+              </h3>
+              <p className="font-serif text-xs text-[var(--color-text-body)] leading-relaxed">
+                Sweat-resistant 4:00 AM HD complexion, antique gold temple jewellery, and fresh Madurai Malli architectural braid.
+              </p>
+              <div className="pt-2">
+                <Link
+                  href="/contact?look=The%20Royal%20Crimson%20Muhurtham"
+                  className="font-sans text-[11px] uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline"
+                >
+                  Enquire This Look ↗
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Reception */}
+          <div className="group relative flex flex-col bg-[var(--color-bg-white)] border border-[var(--color-border)] overflow-hidden shadow-xs hover:shadow-md transition-all duration-300">
+            <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#EAE1D5]">
+              <Image
+                src="/images/portfolio/couple_photo_red_and_sandal_1.jpg"
+                alt="Glass-Skin Reception Bridal Artistry"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-[10px] uppercase tracking-[2px] font-semibold">
+                Evening Reception
+              </div>
+            </div>
+            <div className="p-6 space-y-2 text-left">
+              <h3 className="font-serif text-xl text-[var(--color-text)] font-normal">
+                Glass-Skin Airbrush Glamour
+              </h3>
+              <p className="font-serif text-xs text-[var(--color-text-body)] leading-relaxed">
+                Stage-lighting sculpted base, champagne shimmer lids, 3D luxury lashes, and contemporary Hollywood waves.
+              </p>
+              <div className="pt-2">
+                <Link
+                  href="/contact?look=Glass-Skin%20Airbrush%20Glamour"
+                  className="font-sans text-[11px] uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline"
+                >
+                  Enquire This Look ↗
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: Engagement */}
+          <div className="group relative flex flex-col bg-[var(--color-bg-white)] border border-[var(--color-border)] overflow-hidden shadow-xs hover:shadow-md transition-all duration-300">
+            <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#EAE1D5]">
+              <Image
+                src="/images/portfolio/blue.jpg"
+                alt="Nichayathartham Pastel Elegance"
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-[10px] uppercase tracking-[2px] font-semibold">
+                Nichayathartham
+              </div>
+            </div>
+            <div className="p-6 space-y-2 text-left">
+              <h3 className="font-serif text-xl text-[var(--color-text)] font-normal">
+                Pastel Organza &amp; Soft Glam
+              </h3>
+              <p className="font-serif text-xs text-[var(--color-text-body)] leading-relaxed">
+                Featherlight dewy skin, soft monochromatic peach blush, lash clusters, and romantic floral half-updo.
+              </p>
+              <div className="pt-2">
+                <Link
+                  href="/contact?look=Pastel%20Organza%20Soft%20Glam"
+                  className="font-sans text-[11px] uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline"
+                >
+                  Enquire This Look ↗
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 3. Vision & Mission Section ── */}
       <VisionMissionSection />
 
       {/* ── 6. Feedback Section ── */}

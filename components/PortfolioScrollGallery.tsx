@@ -17,10 +17,30 @@ interface Props {
   slides: SlideItem[]
 }
 
+const CATEGORIES = [
+  'All Looks',
+  'Muhurtham & Silk',
+  'Reception & Glam',
+  'Engagement & Pastel',
+  'Bridal Stories',
+  'Couple Portraits',
+]
+
 export function PortfolioScrollGallery({ slides }: Props) {
+  const [selectedCategory, setSelectedCategory] = useState('All Looks')
   const [activeIndex, setActiveIndex] = useState(0)
+
+  const displaySlides = selectedCategory === 'All Looks'
+    ? slides
+    : slides.filter((s) => s.category === selectedCategory)
+
   const [revealed, setRevealed] = useState<boolean[]>(() => slides.map(() => false))
   const slideRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  useEffect(() => {
+    setActiveIndex(0)
+    setRevealed(displaySlides.map(() => false))
+  }, [selectedCategory, displaySlides.length])
 
   useEffect(() => {
     const observers: IntersectionObserver[] = []
@@ -41,20 +61,42 @@ export function PortfolioScrollGallery({ slides }: Props) {
       observers.push(obs)
     })
     return () => observers.forEach((o) => o.disconnect())
-  }, [slides.length])
+  }, [displaySlides.length, selectedCategory])
 
   const scrollTo = (i: number) => {
     slideRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
-  const active = slides[activeIndex]
-  const total = String(slides.length).padStart(2, '0')
+  const active = displaySlides[activeIndex] || displaySlides[0]
+  const total = String(displaySlides.length).padStart(2, '0')
 
   return (
-    <div className="relative flex flex-col md:flex-row w-full bg-[#181514]">
-      {/* ── Image column ── */}
-      <div className="w-full md:w-[62%]">
-        {slides.map((slide, i) => (
+    <div className="w-full flex flex-col bg-[#181514]">
+      {/* ── Category Filter Bar ── */}
+      <div className="w-full bg-[#181514] border-b border-white/10 px-4 sm:px-10 py-3.5 flex items-center justify-start md:justify-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar sticky top-20 z-30 backdrop-blur-md bg-[#181514]/90">
+        {CATEGORIES.map((cat) => (
+          <button
+            key={cat}
+            type="button"
+            onClick={() => {
+              setSelectedCategory(cat)
+              setActiveIndex(0)
+            }}
+            className={`px-4 py-2 rounded-full font-sans text-[11px] sm:text-xs uppercase tracking-[1.5px] transition-all whitespace-nowrap min-h-[40px] cursor-pointer ${
+              selectedCategory === cat
+                ? 'bg-[var(--color-accent)] text-[#181514] font-semibold shadow-md'
+                : 'text-white/70 hover:text-white border border-white/15 hover:border-white/40 hover:bg-white/5'
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <div className="relative flex flex-col md:flex-row w-full bg-[#181514]">
+        {/* ── Image column ── */}
+        <div className="w-full md:w-[62%]">
+          {displaySlides.map((slide, i) => (
           <div
             key={slide.url}
             ref={(el) => { slideRefs.current[i] = el }}
@@ -147,7 +189,7 @@ export function PortfolioScrollGallery({ slides }: Props) {
         {/* Thumbnail carousel */}
         <div className="h-40 w-full shrink-0">
           <PerspectiveCarousel
-            items={slides.map((s) => ({ src: s.url, title: s.title }))}
+            items={displaySlides.map((s) => ({ src: s.url, title: s.title }))}
             activeIndex={activeIndex}
             onActiveIndexChange={scrollTo}
             loop
@@ -167,7 +209,7 @@ export function PortfolioScrollGallery({ slides }: Props) {
             {String(activeIndex + 1).padStart(2, '0')}
           </span>
           <div className="flex-1 flex items-center gap-1.5">
-            {slides.map((slide, i) => (
+            {displaySlides.map((slide, i) => (
               <button
                 key={i}
                 onClick={() => scrollTo(i)}
@@ -187,5 +229,6 @@ export function PortfolioScrollGallery({ slides }: Props) {
         </div>
       </div>
     </div>
+  </div>
   )
 }
