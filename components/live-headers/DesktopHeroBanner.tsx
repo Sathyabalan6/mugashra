@@ -221,7 +221,9 @@ export function DesktopHeroBanner({ heroImage, children }: DesktopHeroBannerProp
     )
 
     observer.observe(container)
-    animId = requestAnimationFrame(renderFlow)
+    const startDelayId = setTimeout(() => {
+      animId = requestAnimationFrame(renderFlow)
+    }, 150)
 
     // 5. Natural Air Currents on Mouse Move
     const handleMouseMove = (e: MouseEvent) => {
@@ -245,6 +247,7 @@ export function DesktopHeroBanner({ heroImage, children }: DesktopHeroBannerProp
     container.addEventListener('mousemove', handleMouseMove)
 
     return () => {
+      clearTimeout(startDelayId)
       window.removeEventListener('resize', resizeCanvas)
       container.removeEventListener('mousemove', handleMouseMove)
       observer.disconnect()
@@ -283,25 +286,25 @@ export function DesktopHeroBanner({ heroImage, children }: DesktopHeroBannerProp
             className="desktop-bride object-cover object-[right_center]"
           />
           {/* Swinging Brass Temple Bells */}
-          <Image
-            src="/images/bells-overlay.png"
-            aria-hidden="true"
-            alt=""
-            width={300}
-            height={300}
+          <div
+            className="absolute top-0 right-0 w-[14vw] aspect-[270/260] pointer-events-none"
             style={{
-              position: 'absolute',
-              top: 0,
-              right: 0,
-              width: '14vw',
-              height: 'auto',
               transformOrigin: '50% 6%',
               animationName: 'bell-swing',
               animationDuration: '3.2s',
               animationTimingFunction: 'ease-in-out',
               animationIterationCount: 'infinite',
             }}
-          />
+          >
+            <Image
+              src="/images/bells-overlay.png"
+              aria-hidden="true"
+              alt=""
+              fill
+              sizes="14vw"
+              className="object-contain"
+            />
+          </div>
         </div>
         {/* Scrim Gradient for Text Legibility on the Left */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/35 to-transparent pointer-events-none" />

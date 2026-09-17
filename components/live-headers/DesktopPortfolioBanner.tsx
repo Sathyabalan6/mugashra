@@ -191,9 +191,12 @@ export function DesktopPortfolioBanner({ heroImage, children }: DesktopPortfolio
     )
 
     observer.observe(container)
-    animId = requestAnimationFrame(renderFlow)
+    const startDelayId = setTimeout(() => {
+      animId = requestAnimationFrame(renderFlow)
+    }, 150)
 
     return () => {
+      clearTimeout(startDelayId)
       window.removeEventListener('resize', resizeCanvas)
       observer.disconnect()
       if (animId) cancelAnimationFrame(animId)

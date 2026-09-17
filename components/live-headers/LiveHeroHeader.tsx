@@ -223,7 +223,9 @@ export function LiveHeroHeader({ children }: LiveHeroHeaderProps) {
     )
 
     observer.observe(header)
-    animId = requestAnimationFrame(renderDrift)
+    const startDelayId = setTimeout(() => {
+      animId = requestAnimationFrame(renderDrift)
+    }, 150)
 
     // 5. Gentle Breeze on Pointer Drag (Natural atmospheric air displacement)
     const handlePointerMove = (e: PointerEvent) => {
@@ -248,6 +250,7 @@ export function LiveHeroHeader({ children }: LiveHeroHeaderProps) {
     header.addEventListener('pointermove', handlePointerMove)
 
     return () => {
+      clearTimeout(startDelayId)
       window.removeEventListener('resize', resizeCanvas)
       header.removeEventListener('pointermove', handlePointerMove)
       observer.disconnect()
@@ -284,7 +287,7 @@ export function LiveHeroHeader({ children }: LiveHeroHeaderProps) {
             alt="Mugaashra Bridal Artistry Master Portrait"
             fill
             priority
-            sizes="480px"
+            sizes="(max-width: 480px) 100vw, 480px"
             className="bride-bg object-cover object-center"
           />
         </div>

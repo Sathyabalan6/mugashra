@@ -138,7 +138,7 @@ export default async function HomePage() {
                 src="/images/portfolio/red.jpg"
                 alt="Sacred Muhurtham Bridal Styling"
                 fill
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-[10px] uppercase tracking-[2px] font-semibold">
@@ -170,7 +170,7 @@ export default async function HomePage() {
                 src="/images/portfolio/couple_photo_red_and_sandal_1.jpg"
                 alt="Glass-Skin Reception Bridal Artistry"
                 fill
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-[10px] uppercase tracking-[2px] font-semibold">
@@ -202,7 +202,7 @@ export default async function HomePage() {
                 src="/images/portfolio/blue.jpg"
                 alt="Nichayathartham Pastel Elegance"
                 fill
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-[10px] uppercase tracking-[2px] font-semibold">

@@ -3,7 +3,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { PerspectiveCarousel } from '@/components/ui/perspective-carousel'
+import dynamic from 'next/dynamic'
+
+const PerspectiveCarousel = dynamic(
+  () => import('@/components/ui/perspective-carousel').then((mod) => mod.PerspectiveCarousel),
+  { ssr: false }
+)
 
 interface SlideItem {
   url: string
@@ -40,24 +45,54 @@ export function PortfolioScrollGallery({ slides }: Props) {
   const touchStartX = useRef<number | null>(null)
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = []
-    slideRefs.current.forEach((el, i) => {
-      if (!el) return
-      const obs = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setRevealed((prev) => (prev[i] ? prev : prev.map((v, idx) => (idx === i ? true : v))))
-              if (entry.intersectionRatio >= 0.6) setActiveIndex(i)
+    if (typeof window === 'undefined') return
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        let bestIndex = -1
+        let maxRatio = 0
+        const toReveal: number[] = []
+
+        entries.forEach((entry) => {
+          const indexStr = entry.target.getAttribute('data-index')
+          if (indexStr === null) return
+          const i = parseInt(indexStr, 10)
+
+          if (entry.isIntersecting) {
+            toReveal.push(i)
+            if (entry.intersectionRatio > maxRatio && entry.intersectionRatio >= 0.5) {
+              maxRatio = entry.intersectionRatio
+              bestIndex = i
             }
+          }
+        })
+
+        if (toReveal.length > 0) {
+          setRevealed((prev) => {
+            let changed = false
+            const next = [...prev]
+            for (const idx of toReveal) {
+              if (!next[idx]) {
+                next[idx] = true
+                changed = true
+              }
+            }
+            return changed ? next : prev
           })
-        },
-        { threshold: [0.1, 0.6] }
-      )
-      obs.observe(el)
-      observers.push(obs)
+        }
+
+        if (bestIndex !== -1) {
+          setActiveIndex((prev) => (prev === bestIndex ? prev : bestIndex))
+        }
+      },
+      { threshold: [0.15, 0.55] }
+    )
+
+    slideRefs.current.forEach((el) => {
+      if (el) obs.observe(el)
     })
-    return () => observers.forEach((o) => o.disconnect())
+
+    return () => obs.disconnect()
   }, [displaySlides.length, selectedCategory])
 
   // Keyboard navigation & body scroll locking for Lightbox
@@ -122,6 +157,7 @@ export function PortfolioScrollGallery({ slides }: Props) {
             <div
               key={slide.url}
               ref={(el) => { slideRefs.current[i] = el }}
+              data-index={i}
               className="relative w-full h-[78vh] md:h-screen overflow-hidden group"
             >
               <div
@@ -141,7 +177,7 @@ export function PortfolioScrollGallery({ slides }: Props) {
                   src={slide.url}
                   alt={`${slide.title} — ${slide.desc}`}
                   fill
-                  sizes="(min-width: 768px) 62vw, 100vw"
+                  sizes="(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 55vw"
                   className="object-contain transition-transform duration-700 group-hover:scale-[1.02]"
                   style={{ objectPosition: slide.focalPosition ?? 'center center' }}
                   priority={i < 2}

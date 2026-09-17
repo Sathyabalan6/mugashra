@@ -182,7 +182,9 @@ export function LiveFounderHeader({ children }: LiveFounderHeaderProps) {
     )
 
     observer.observe(header)
-    animId = requestAnimationFrame(renderMist)
+    const startDelayId = setTimeout(() => {
+      animId = requestAnimationFrame(renderMist)
+    }, 150)
 
     // 5. Fragrance Air Currents on Pointer Movement
     const handlePointerMove = (e: PointerEvent) => {
@@ -205,6 +207,7 @@ export function LiveFounderHeader({ children }: LiveFounderHeaderProps) {
     header.addEventListener('pointermove', handlePointerMove)
 
     return () => {
+      clearTimeout(startDelayId)
       window.removeEventListener('resize', resizeCanvas)
       header.removeEventListener('pointermove', handlePointerMove)
       observer.disconnect()
@@ -303,7 +306,7 @@ export function LiveFounderHeader({ children }: LiveFounderHeaderProps) {
             alt="Cosmetics & Floral Watercolor Artistry Header"
             fill
             priority
-            sizes="480px"
+            sizes="(max-width: 480px) 100vw, 480px"
             className="object-cover object-center"
           />
         </div>

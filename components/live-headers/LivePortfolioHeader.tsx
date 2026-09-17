@@ -195,7 +195,9 @@ export function LivePortfolioHeader({ children }: LivePortfolioHeaderProps) {
     )
 
     observer.observe(header)
-    animId = requestAnimationFrame(renderParticles)
+    const startDelayId = setTimeout(() => {
+      animId = requestAnimationFrame(renderParticles)
+    }, 150)
 
     // 5. Atmospheric Air Currents on Pointer Move
     const handlePointerMove = (e: PointerEvent) => {
@@ -218,6 +220,7 @@ export function LivePortfolioHeader({ children }: LivePortfolioHeaderProps) {
     header.addEventListener('pointermove', handlePointerMove)
 
     return () => {
+      clearTimeout(startDelayId)
       window.removeEventListener('resize', resizeCanvas)
       header.removeEventListener('pointermove', handlePointerMove)
       observer.disconnect()
@@ -368,7 +371,7 @@ export function LivePortfolioHeader({ children }: LivePortfolioHeaderProps) {
             alt="Traditional South Indian Wedding Mandap Header"
             fill
             priority
-            sizes="480px"
+            sizes="(max-width: 480px) 100vw, 480px"
             className="mandap-bg object-cover object-center"
           />
         </div>

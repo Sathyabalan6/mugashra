@@ -86,7 +86,7 @@ export function Header() {
           <Link
             href="/"
             className="group flex items-center gap-3 sm:gap-4 py-1 min-h-[56px] justify-center whitespace-nowrap"
-            aria-label="Mugaashra Bridal Studio — Home"
+            aria-label="Mugaashra Bridal Studio"
           >
             <div className="relative w-13 h-13 sm:w-16 sm:h-16 md:w-20 md:h-20 shrink-0 filter drop-shadow-[0_2px_14px_rgba(197,160,120,0.45)] transition-transform duration-300 group-hover:scale-105">
               <Image
@@ -218,7 +218,7 @@ export function Header() {
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-4 group"
-                aria-label="Mugaashra Bridal Studio — Home"
+                aria-label="Mugaashra Bridal Studio"
               >
                 <div className="relative w-20 h-20 shrink-0 filter drop-shadow-[0_2px_16px_rgba(197,160,120,0.45)] transition-transform duration-300 group-hover:scale-105">
                   <Image
