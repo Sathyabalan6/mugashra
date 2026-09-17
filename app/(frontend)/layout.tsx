@@ -8,15 +8,17 @@ import { PowderBurst } from '@/components/PowderBurst'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+  weight: ['400', '300', '500', '600', '700'],
+  style: ['normal'],
   variable: '--font-cormorant',
   display: 'swap',
+  preload: false,
 })
 
 const montserrat = Montserrat({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '300', '500', '600', '700'],
+  style: ['normal'],
   variable: '--font-montserrat',
   display: 'swap',
 })
