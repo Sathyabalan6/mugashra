@@ -305,7 +305,7 @@ export function LiveHeroHeader({ children }: LiveHeroHeaderProps) {
         />
 
         {/* 4. Content Slot (Top-Left Anchored Title with Buttons directly below) */}
-        <div className="absolute inset-0 z-[10] flex flex-col justify-start p-6 pt-7 pb-7 pointer-events-auto">
+        <div className="absolute inset-0 z-[10] flex flex-col justify-start p-4 min-[390px]:p-6 pt-5 min-[390px]:pt-7 pb-5 min-[390px]:pb-7 pointer-events-auto">
           {children}
         </div>
       </header>
