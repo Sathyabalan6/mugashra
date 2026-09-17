@@ -48,24 +48,6 @@ export default async function HomePage() {
             <p className="font-serif text-[14px] text-white/95 font-light leading-snug drop-shadow-xs max-w-[340px]">
               {heroSubtitle}
             </p>
-
-            {/* Action Buttons: Stacked vertically with Explore Packages below Book Consultation */}
-            <div className="pt-2 flex flex-col gap-2.5 items-start justify-start w-fit">
-              <Link
-                href="/contact"
-                transitionTypes={['nav-forward']}
-                className="group relative px-5 py-2.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[11px] uppercase tracking-[1.5px] font-semibold transition-all duration-300 shadow-lg min-h-[42px] flex items-center justify-center overflow-hidden active:scale-[0.98] w-fit"
-              >
-                <span>Book Consultation</span>
-                <span className="inline-block ml-1.5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">↗</span>
-              </Link>
-              <Link
-                href="/services"
-                className="px-5 py-2.5 bg-black/45 hover:bg-white/10 border border-white/40 hover:border-white text-white font-sans text-[11px] uppercase tracking-[1.5px] font-medium transition-all duration-300 backdrop-blur-xs min-h-[42px] flex items-center justify-center active:scale-[0.98] w-fit"
-              >
-                Explore Packages
-              </Link>
-            </div>
           </div>
         </LiveHeroHeader>
       </section>
@@ -90,23 +72,6 @@ export default async function HomePage() {
           <p className="font-sans text-[12px] uppercase tracking-[2.5px] text-white/90 font-light max-w-lg leading-relaxed animate-hero-subtitle">
             {heroSubtitle}
           </p>
-
-          <div className="pt-4 flex flex-row gap-4 items-start justify-start animate-hero-actions w-fit">
-            <Link
-              href="/contact"
-              transitionTypes={['nav-forward']}
-              className="group relative px-8 py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[12px] uppercase tracking-[2px] font-semibold transition-all duration-300 shadow-lg min-h-[44px] flex items-center justify-start overflow-hidden active:scale-[0.98] w-fit shrink-0"
-            >
-              <span>Book Consultation</span>
-              <span className="inline-block ml-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">↗</span>
-            </Link>
-            <Link
-              href="/services"
-              className="px-8 py-3.5 bg-transparent hover:bg-white/10 border border-white/40 hover:border-white text-white font-sans text-[12px] uppercase tracking-[2px] font-medium transition-all duration-300 backdrop-blur-xs min-h-[44px] flex items-center justify-start active:scale-[0.98] w-fit shrink-0"
-            >
-              Explore Packages
-            </Link>
-          </div>
         </div>
       </DesktopHeroBanner>
 
