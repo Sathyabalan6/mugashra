@@ -37,9 +37,9 @@ export default async function HomePage() {
               <span className="font-sans text-[12.5px] uppercase tracking-[3px] text-[var(--color-accent)] font-bold block animate-hero-eyebrow drop-shadow-sm">
                 {heroEyebrow}
               </span>
-              <h1 className="font-serif text-[56px] min-[390px]:text-[64px] min-[430px]:text-[70px] font-normal tracking-[0.02em] uppercase text-white leading-[0.88] drop-shadow-xl animate-hero-title">
+              <h1 className="font-serif text-[48px] min-[360px]:text-[56px] min-[390px]:text-[64px] min-[430px]:text-[70px] font-normal tracking-[0.02em] uppercase text-white leading-[0.88] drop-shadow-xl animate-hero-title">
                 MUGAASHRA
-                <span className="block text-[15px] min-[390px]:text-[16.5px] font-sans tracking-[0.25em] text-[#F3ECE4] font-semibold mt-2 uppercase drop-shadow-md">
+                <span className="block text-[13.5px] min-[360px]:text-[15px] min-[390px]:text-[16.5px] font-sans tracking-[0.22em] min-[360px]:tracking-[0.25em] text-[#F3ECE4] font-semibold mt-2 uppercase drop-shadow-md">
                   BRIDAL MAKEUP ATELIER
                 </span>
               </h1>
