@@ -58,7 +58,7 @@ export function BridalJourney() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-        {JOURNEY_STEPS.map((item, idx) => (
+        {JOURNEY_STEPS.map((item) => (
           <div
             key={item.step}
             className="group relative bg-[var(--color-bg-white)] border border-[var(--color-border)] p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-[var(--color-accent)] hover:shadow-md rounded-xs"

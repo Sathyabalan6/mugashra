@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export function Footer() {
   return (
@@ -10,15 +11,17 @@ export function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-16">
           {/* Left: Brand monogram + tagline + Instagram */}
           <div className="lg:col-span-4 flex flex-col justify-between space-y-6">
-            {/* Decorative large serif monogram */}
+            {/* Brand Logo Emblem & Tagline */}
             <div>
-              <p
-                aria-hidden="true"
-                className="font-serif leading-none text-[var(--color-accent)] select-none"
-                style={{ fontSize: 'clamp(4rem, 6vw, 7rem)', opacity: 0.18, letterSpacing: '0.04em' }}
-              >
-                M
-              </p>
+              <div className="relative w-32 h-32 sm:w-40 sm:h-40 mb-4 opacity-95 filter drop-shadow-[0_4px_20px_rgba(197,160,120,0.35)]">
+                <Image
+                  src="/images/logo-transparent.png"
+                  alt="Mugaashra Bridal Studio Logo"
+                  fill
+                  sizes="(max-width: 640px) 128px, 160px"
+                  className="object-contain"
+                />
+              </div>
               <div className="w-10 h-[1px] bg-[var(--color-accent)] mt-2 mb-6 opacity-40" />
               <h3 className="font-serif text-lg text-[var(--color-text)] font-normal leading-relaxed max-w-xs">
                 Luxury South Indian bridal artistry, by appointment only.

@@ -4,6 +4,7 @@ import './globals.css'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { WhatsAppButton } from '@/components/WhatsAppButton'
+import { PowderBurst } from '@/components/PowderBurst'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -49,6 +50,17 @@ export const metadata: Metadata = {
       },
     ],
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
 }
 
 const jsonLd = {
@@ -109,6 +121,7 @@ export default function FrontendLayout({
         </main>
         <Footer />
         <WhatsAppButton />
+        <PowderBurst />
       </body>
     </html>
   )

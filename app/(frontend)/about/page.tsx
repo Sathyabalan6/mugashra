@@ -2,6 +2,8 @@ import React from 'react'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import { PageTransition } from '@/components/PageTransition'
+import { LiveFounderHeader } from '@/components/live-headers/LiveFounderHeader'
+import { DesktopFounderBanner } from '@/components/live-headers/DesktopFounderBanner'
 
 export const metadata: Metadata = {
   title: 'Founder & Artist | Mugaashra Bridal Studio',
@@ -13,49 +15,38 @@ export const revalidate = 60
 export default function AboutPage() {
   return (
     <PageTransition className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
-      {/* ── 1. Editorial Hero Banner ── */}
-      <section className="relative w-full min-h-[60vh] sm:min-h-[75vh] flex items-center justify-center px-8 sm:px-16 pt-24 bg-[#181514] overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          {/* Mobile Dedicated Header */}
-          <div className="block md:hidden absolute inset-0">
-            <Image
-              src="/images/founder_header_mobile.png"
-              alt="Lead Master Artist at Work"
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 1px"
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/75" />
+      {/* ── 1. Editorial Hero Banner (Live Mobile on <768px, Cinematic Cover on >=768px) ── */}
+      {/* Mobile Live Animated Header */}
+      <section className="block md:hidden w-full pt-20 pb-4 px-3 bg-[#181514]">
+        <LiveFounderHeader>
+          <div className="flex flex-col items-center justify-center text-center space-y-4 pt-12 pb-8 h-full">
+            <span className="font-sans text-[11px] min-[390px]:text-xs uppercase tracking-[3.5px] text-[#8B0000] font-bold block drop-shadow-sm">
+              THE ATELIER STORY
+            </span>
+            <h1 className="font-serif text-[42px] min-[390px]:text-[50px] min-[430px]:text-[56px] leading-[0.96] tracking-[0.03em] uppercase text-white font-normal drop-shadow-lg">
+              THE ARTIST &amp;<br />
+              PHILOSOPHY
+            </h1>
+            <p className="font-serif text-xs min-[390px]:text-[13px] text-white/95 max-w-[280px] leading-relaxed drop-shadow-xs font-light">
+              Founded by Lead Master Artist <span className="text-white font-semibold underline underline-offset-4 decoration-[var(--color-accent)]">Shwetha Mohan</span>, Mugaashra Bridal Studio is a sanctuary of South Indian bridal artistry.
+            </p>
           </div>
-
-          {/* Desktop Hero */}
-          <div className="hidden md:block absolute inset-0">
-            <Image
-              src="/images/founder-hero.png"
-              alt="Lead Master Artist at Work"
-              fill
-              priority
-              sizes="(min-width: 769px) 100vw, 1px"
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/85" />
-          </div>
-        </div>
-
-        <div className="relative z-10 max-w-xl text-center space-y-4">
-          <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[3px] text-[#E2C4A8] font-semibold block">
-            THE ATELIER STORY
-          </span>
-          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-[0.05em] uppercase text-white font-normal drop-shadow-md">
-            THE ARTIST &<br />
-            PHILOSOPHY
-          </h1>
-          <p className="font-serif text-sm sm:text-base text-[#F0E8E1] leading-relaxed pt-2 font-light drop-shadow-xs">
-            Founded by Lead Master Artist <span className="text-white font-semibold underline underline-offset-4 decoration-[#E2C4A8]">Shwetha Mohan</span>, Mugaashra Bridal Studio is a sanctuary of bridal beauty nestled in Madurai, dedicated to curating transcendent South Indian wedding looks.
-          </p>
-        </div>
+        </LiveFounderHeader>
       </section>
+
+      {/* Desktop Hero with Fragrance Mist & Drifting Rose Petals (>= 768px) */}
+      <DesktopFounderBanner heroImage="/images/founder-hero.webp">
+        <span className="font-sans text-xs sm:text-sm uppercase tracking-[3.5px] text-[#8B0000] font-bold block drop-shadow-sm">
+          THE ATELIER STORY
+        </span>
+        <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl leading-[0.95] tracking-[0.03em] uppercase text-white font-normal drop-shadow-lg">
+          THE ARTIST &amp;<br />
+          PHILOSOPHY
+        </h1>
+        <p className="font-serif text-sm sm:text-base text-[#F0E8E1] leading-relaxed pt-2 font-light drop-shadow-xs">
+          Founded by Lead Master Artist <span className="text-white font-semibold underline underline-offset-4 decoration-[#E2C4A8]">Shwetha Mohan</span>, Mugaashra Bridal Studio is a sanctuary of bridal beauty nestled in Madurai, dedicated to curating transcendent South Indian wedding looks.
+        </p>
+      </DesktopFounderBanner>
 
       {/* ── 2. Philosophy & Craft ── */}
       <section className="py-24 md:py-36 px-6 sm:px-12 max-w-[1300px] mx-auto">
@@ -64,7 +55,7 @@ export default function AboutPage() {
           <div className="space-y-6 text-left">
             <div className="space-y-2">
               <span className="font-sans text-xs uppercase tracking-[2.5px] text-[#9E6D47] font-semibold block">Our Approach</span>
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl tracking-[0.15em] uppercase text-[#181514] font-normal">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.12em] uppercase text-[#181514] font-normal leading-tight">
                 PHILOSOPHY
               </h2>
             </div>
@@ -78,7 +69,7 @@ export default function AboutPage() {
           <div className="space-y-6 text-left">
             <div className="space-y-2">
               <span className="font-sans text-xs uppercase tracking-[2.5px] text-[#9E6D47] font-semibold block">Atelier Technique</span>
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl tracking-[0.15em] uppercase text-[#181514] font-normal">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.12em] uppercase text-[#181514] font-normal leading-tight">
                 THE CRAFT
               </h2>
             </div>
@@ -97,7 +88,7 @@ export default function AboutPage() {
             <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[3px] !text-[#E2C4A8] font-semibold block">
               Pure Luxury Formulations
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.15em] uppercase !text-white font-normal drop-shadow-sm">
+            <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl tracking-[0.12em] uppercase !text-white font-normal drop-shadow-sm leading-tight">
               THE MASTER PRODUCT KIT
             </h2>
             <p className="font-serif text-sm sm:text-base !text-[#E5DCD5] leading-relaxed font-light">
@@ -141,7 +132,7 @@ export default function AboutPage() {
             </div>
             <div className="space-y-5">
               <span className="font-sans text-xs uppercase tracking-[2.5px] text-[#9E6D47] font-semibold block">Founder & Lead Master Artist</span>
-              <h2 className="font-serif text-3xl sm:text-4xl tracking-[0.1em] uppercase text-[#181514] font-normal">
+              <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl tracking-[0.08em] uppercase text-[#181514] font-normal leading-tight">
                 Shwetha Mohan
               </h2>
               <div className="w-10 h-[1px] bg-[#9E6D47]" />

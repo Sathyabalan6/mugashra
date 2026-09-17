@@ -4,14 +4,16 @@ import Image from 'next/image'
 import { VisionMissionSection } from '@/components/VisionMissionSection'
 import { FeedbackSection } from '@/components/FeedbackSection'
 import { PageTransition } from '@/components/PageTransition'
+import { LiveHeroHeader } from '@/components/live-headers/LiveHeroHeader'
+import { DesktopHeroBanner } from '@/components/live-headers/DesktopHeroBanner'
 import { CLIENT_REVIEWS } from '@/data/seedData'
 
 const DEFAULT_HERO = {
   eyebrow: 'Editorial Bridal Atelier • Madurai',
   title: 'MUGAASHRA BRIDAL STUDIO',
   subtitle: 'WHERE A DECADE OF EXCELLENCE MEETS THE ARTISTRY OF YOUR DREAMS.',
-  desktopImage: '/images/hero-bride.png',
-  mobileImage: '/images/hero-bride-mobile.png',
+  desktopImage: '/images/hero-bride.webp',
+  mobileImage: '/images/hero-bride-mobile.webp',
 }
 
 export const revalidate = 3600
@@ -22,106 +24,91 @@ export default async function HomePage() {
   const heroTitle = DEFAULT_HERO.title
   const heroSubtitle = DEFAULT_HERO.subtitle
   const heroDesktopImage = DEFAULT_HERO.desktopImage
-  const heroMobileImage = DEFAULT_HERO.mobileImage
 
   return (
     <PageTransition className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
-      {/* ── 1. Full-Bleed Cinematic Hero Section ── */}
-      <section className="relative min-h-[100svh] sm:min-h-screen w-full flex items-start sm:items-center justify-start px-4 sm:px-12 lg:px-16 pt-20 sm:pt-24 pb-12 sm:pb-16 bg-[#181514]">
-        {/* Background Visual (Responsive) */}
-        <div className="absolute inset-0 z-0">
-          {/* Mobile Dedicated Portrait */}
-          <div className="block md:hidden absolute inset-0">
-            <Image
-              src={heroMobileImage}
-              alt="Mugashra South Indian Bride"
-              fill
-              priority
-              quality={85}
-              sizes="(max-width: 768px) 100vw, 1px"
-              className="object-cover object-[75%_32%]"
-            />
-            {/* Scrim: dark left for text, completely transparent on right over model's head */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-transparent to-transparent pointer-events-none" />
-          </div>
-
-          {/* Desktop Wide Cinematic Cover */}
-          <div className="hidden md:block absolute inset-0">
-            <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-              <Image
-                src={heroDesktopImage}
-                alt="Mugashra Bridal Artistry Visual"
-                fill
-                priority
-                sizes="(min-width: 769px) 100vw, 1px"
-                className="object-cover object-[right_center]"
-              />
-              <Image
-                src="/images/bells-overlay.png"
-                aria-hidden="true"
-                alt=""
-                width={300}
-                height={300}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  width: '14vw',
-                  height: 'auto',
-                  transformOrigin: '50% 6%',
-                  animationName: 'bell-swing',
-                  animationDuration: '3.2s',
-                  animationTimingFunction: 'ease-in-out',
-                  animationIterationCount: 'infinite',
-                }}
-              />
-            </div>
-            {/* Scrim gradient: dark left for text contrast, fading out to transparent over the bride on the right */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/35 to-transparent pointer-events-none" />
-          </div>
-        </div>
-
-        {/* Content Container */}
-        <div className="relative z-10 max-w-[1400px] w-full mx-auto flex items-center pt-2 sm:pt-0">
-          <div className="max-w-[240px] sm:max-w-2xl space-y-3 sm:space-y-8 text-left">
-            <div className="space-y-1">
-              <span className="font-sans text-[10px] sm:text-xs uppercase tracking-[2.5px] sm:tracking-[3px] text-[var(--color-accent)] font-medium block animate-hero-eyebrow">
+      {/* ── 1. Hero Section (Live Mobile Header on <768px, Cinematic Cover on >=768px) ── */}
+      {/* Mobile Live Animated Header */}
+      <section className="block md:hidden w-full pt-20 pb-4 px-3 bg-[#181514]">
+        <LiveHeroHeader>
+          {/* Top-Left Title Block with Buttons directly below the title end */}
+          <div className="space-y-3.5 text-left max-w-[380px]">
+            <div className="space-y-1.5">
+              <span className="font-sans text-[12.5px] uppercase tracking-[3px] text-[var(--color-accent)] font-bold block animate-hero-eyebrow drop-shadow-sm">
                 {heroEyebrow}
               </span>
-              <h1 className="display-heading text-[var(--color-accent)] drop-shadow-md whitespace-pre-line animate-hero-title">
-                {heroTitle.includes(' ') ? (
-                  <>
-                    {heroTitle.split(' ')[0]}<br />
-                    {heroTitle.split(' ').slice(1).join(' ')}
-                  </>
-                ) : heroTitle}
+              <h1 className="font-serif text-[56px] min-[390px]:text-[64px] min-[430px]:text-[70px] font-normal tracking-[0.02em] uppercase text-white leading-[0.88] drop-shadow-xl animate-hero-title">
+                MUGAASHRA
+                <span className="block text-[15px] min-[390px]:text-[16.5px] font-sans tracking-[0.25em] text-[#F3ECE4] font-semibold mt-2 uppercase drop-shadow-md">
+                  BRIDAL MAKEUP ATELIER
+                </span>
               </h1>
             </div>
 
-            <p className="font-sans text-[10.5px] sm:text-[12px] uppercase tracking-[1.5px] sm:tracking-[2.5px] text-white/90 font-normal sm:font-light max-w-[220px] sm:max-w-lg leading-relaxed animate-hero-subtitle">
+            <p className="font-serif text-[14px] text-white/95 font-light leading-snug drop-shadow-xs max-w-[340px]">
               {heroSubtitle}
             </p>
 
-            <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row gap-2 sm:gap-4 items-start justify-start animate-hero-actions w-fit">
+            {/* Action Buttons right below the title end */}
+            <div className="pt-2 flex flex-row gap-2.5 items-center justify-start w-fit">
               <Link
                 href="/contact"
                 transitionTypes={['nav-forward']}
-                className="group relative px-3.5 sm:px-8 py-2 sm:py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[10.5px] sm:text-[12px] uppercase tracking-[1.2px] sm:tracking-[2px] font-semibold transition-all duration-300 shadow-lg min-h-[40px] sm:min-h-[44px] flex items-center justify-start overflow-hidden active:scale-[0.98] w-fit shrink-0"
+                className="group relative px-4 sm:px-5 py-2.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[11px] uppercase tracking-[1.5px] font-semibold transition-all duration-300 shadow-lg min-h-[40px] flex items-center justify-start overflow-hidden active:scale-[0.98] w-fit shrink-0"
               >
                 <span>Book Consultation</span>
                 <span className="inline-block ml-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">↗</span>
               </Link>
               <Link
                 href="/services"
-                className="px-3.5 sm:px-8 py-2 sm:py-3.5 bg-transparent hover:bg-white/10 border border-white/40 hover:border-white text-white font-sans text-[10.5px] sm:text-[12px] uppercase tracking-[1.2px] sm:tracking-[2px] font-medium transition-all duration-300 backdrop-blur-xs min-h-[40px] sm:min-h-[44px] flex items-center justify-start active:scale-[0.98] w-fit shrink-0"
+                className="px-4 sm:px-5 py-2.5 bg-black/45 hover:bg-white/10 border border-white/40 hover:border-white text-white font-sans text-[11px] uppercase tracking-[1.5px] font-medium transition-all duration-300 backdrop-blur-xs min-h-[40px] flex items-center justify-start active:scale-[0.98] w-fit shrink-0"
               >
                 Explore Packages
               </Link>
             </div>
           </div>
-        </div>
+        </LiveHeroHeader>
       </section>
+
+      {/* Desktop Cinematic Hero with Flowing Jasmine & Rose Petal Drift (>= 768px) */}
+      <DesktopHeroBanner heroImage={heroDesktopImage}>
+        <div className="max-w-2xl space-y-8 text-left">
+          <div className="space-y-1">
+            <span className="font-sans text-xs uppercase tracking-[3px] text-[var(--color-accent)] font-medium block animate-hero-eyebrow">
+              {heroEyebrow}
+            </span>
+            <h1 className="display-heading text-[var(--color-accent)] drop-shadow-md whitespace-pre-line animate-hero-title">
+              {heroTitle.includes(' ') ? (
+                <>
+                  {heroTitle.split(' ')[0]}<br />
+                  {heroTitle.split(' ').slice(1).join(' ')}
+                </>
+              ) : heroTitle}
+            </h1>
+          </div>
+
+          <p className="font-sans text-[12px] uppercase tracking-[2.5px] text-white/90 font-light max-w-lg leading-relaxed animate-hero-subtitle">
+            {heroSubtitle}
+          </p>
+
+          <div className="pt-4 flex flex-row gap-4 items-start justify-start animate-hero-actions w-fit">
+            <Link
+              href="/contact"
+              transitionTypes={['nav-forward']}
+              className="group relative px-8 py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[12px] uppercase tracking-[2px] font-semibold transition-all duration-300 shadow-lg min-h-[44px] flex items-center justify-start overflow-hidden active:scale-[0.98] w-fit shrink-0"
+            >
+              <span>Book Consultation</span>
+              <span className="inline-block ml-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5">↗</span>
+            </Link>
+            <Link
+              href="/services"
+              className="px-8 py-3.5 bg-transparent hover:bg-white/10 border border-white/40 hover:border-white text-white font-sans text-[12px] uppercase tracking-[2px] font-medium transition-all duration-300 backdrop-blur-xs min-h-[44px] flex items-center justify-start active:scale-[0.98] w-fit shrink-0"
+            >
+              Explore Packages
+            </Link>
+          </div>
+        </div>
+      </DesktopHeroBanner>
 
       {/* ── 2. Curated Editorial Looks Showcase ── */}
       <section className="py-24 sm:py-32 px-6 sm:px-12 max-w-[1400px] mx-auto w-full">

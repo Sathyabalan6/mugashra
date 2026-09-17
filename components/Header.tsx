@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 export function Header() {
@@ -54,6 +55,11 @@ export function Header() {
     { label: 'Contact', href: '/contact' },
   ]
 
+  const mobileNavLinks = [
+    { label: 'Home', href: '/' },
+    ...navLinks,
+  ]
+
   const isDarkHeroPage = pathname === '/' || pathname === '/about' || pathname === '/portfolio'
 
   const headerBg = isDarkHeroPage
@@ -75,16 +81,33 @@ export function Header() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-transparent pointer-events-none" />
         )}
 
-        <div className="max-w-[1100px] mx-auto px-4 sm:px-10 h-16 sm:h-20 flex items-center justify-between relative z-10">
-          {/* Brand Wordmark (Left) */}
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-10 h-20 sm:h-24 flex items-center justify-between relative z-10">
+          {/* Brand Logo & Wordmark (Left) */}
           <Link
             href="/"
-            className={`group flex flex-col items-start py-2 tracking-[0.14em] sm:tracking-[0.22em] uppercase font-sans text-xs sm:text-sm md:text-base font-semibold hover:text-[var(--color-accent)] transition-colors min-h-[44px] justify-center whitespace-nowrap ${
-              isDarkHeroPage ? 'text-white' : 'text-[#181514]'
-            }`}
+            className="group flex items-center gap-3 sm:gap-4 py-1 min-h-[56px] justify-center whitespace-nowrap"
             aria-label="Mugaashra Bridal Studio — Home"
           >
-            <span>MUGAASHRA BRIDAL STUDIO</span>
+            <div className="relative w-13 h-13 sm:w-16 sm:h-16 md:w-20 md:h-20 shrink-0 filter drop-shadow-[0_2px_14px_rgba(197,160,120,0.45)] transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/images/logo-transparent.png"
+                alt="Mugaashra Logo Emblem"
+                fill
+                sizes="(max-width: 640px) 52px, (max-width: 768px) 64px, 80px"
+                className="object-contain"
+                priority
+              />
+            </div>
+            <div className="flex flex-col items-start justify-center">
+              <span className={`tracking-[0.14em] sm:tracking-[0.20em] uppercase font-sans text-sm sm:text-base md:text-lg lg:text-xl font-semibold transition-colors group-hover:text-[var(--color-accent)] leading-tight ${
+                isDarkHeroPage ? 'text-white' : 'text-[#181514]'
+              }`}>
+                MUGAASHRA
+              </span>
+              <span className="font-sans text-[9px] sm:text-[10px] md:text-[11px] lg:text-xs tracking-[0.26em] uppercase text-[#C5A078] font-medium leading-none mt-1">
+                BRIDAL STUDIO
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation (Right Aligned Minimalist Links) */}
@@ -112,41 +135,62 @@ export function Header() {
               )
             })}
 
-            {/* Social Icon */}
+            {/* Social Icon (Desktop: Bright, High-Contrast Pill) */}
             <a
               href="https://www.instagram.com/mugaashra_makeover"
               target="_blank"
               rel="noopener noreferrer"
-              className={`hover:text-[var(--color-accent)] transition-colors w-11 h-11 flex items-center justify-center ${
-                isDarkHeroPage ? 'text-[var(--color-accent)]' : 'text-[#181514]'
+              className={`transition-all duration-300 px-3.5 py-1.5 rounded-full flex items-center justify-center gap-2 border shadow-sm group min-h-[42px] ${
+                isDarkHeroPage
+                  ? 'border-white/35 bg-white/15 text-white hover:bg-white/25 hover:border-white drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]'
+                  : 'border-black/20 bg-black/5 text-[#181514] hover:bg-black/10 hover:text-[var(--color-accent)]'
               }`}
               aria-label="Visit Mugashra Artistry on Instagram (opens in new window)"
             >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 fill-current transition-transform duration-300 group-hover:scale-110 drop-shadow-md" viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
+              <span className="font-sans text-[11px] uppercase tracking-[1.5px] font-semibold">Instagram</span>
             </a>
           </nav>
 
-          {/* Mobile Hamburger Trigger */}
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`md:hidden min-w-[44px] min-h-[44px] w-11 h-11 flex items-center justify-end hover:text-[var(--color-accent)] transition-colors ${
-              isDarkHeroPage ? 'text-white' : 'text-[#181514]'
-            }`}
-            aria-label="Toggle navigation menu"
-            aria-expanded={mobileMenuOpen}
-            style={{ touchAction: 'manipulation' }}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.75 7.5h16.5M3.75 12h16.5M3.75 16.5h16.5" />
-              )}
-            </svg>
-          </button>
+          {/* Mobile Right Controls: Direct Instagram Link + Hamburger */}
+          <div className="flex md:hidden items-center gap-2">
+            <a
+              href="https://www.instagram.com/mugaashra_makeover"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`w-11 h-11 rounded-full flex items-center justify-center border transition-all duration-300 active:scale-95 ${
+                isDarkHeroPage
+                  ? 'border-white/35 bg-white/15 text-white hover:bg-white/25 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]'
+                  : 'border-black/20 bg-black/5 text-[#181514] hover:bg-black/10'
+              }`}
+              aria-label="Direct Instagram Access (opens in new window)"
+            >
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className={`min-w-[44px] min-h-[44px] w-11 h-11 flex items-center justify-end hover:text-[var(--color-accent)] transition-colors ${
+                isDarkHeroPage ? 'text-white' : 'text-[#181514]'
+              }`}
+              aria-label="Toggle navigation menu"
+              aria-expanded={mobileMenuOpen}
+              style={{ touchAction: 'manipulation' }}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.75 7.5h16.5M3.75 12h16.5M3.75 16.5h16.5" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -170,9 +214,30 @@ export function Header() {
         >
           <div>
             <div className="flex items-center justify-between pb-5 border-b border-white/10">
-              <span className="font-sans text-xs sm:text-sm font-semibold tracking-[0.14em] sm:tracking-[0.2em] text-white uppercase whitespace-nowrap">
-                MUGAASHRA BRIDAL STUDIO
-              </span>
+              <Link
+                href="/"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-4 group"
+                aria-label="Mugaashra Bridal Studio — Home"
+              >
+                <div className="relative w-20 h-20 shrink-0 filter drop-shadow-[0_2px_16px_rgba(197,160,120,0.45)] transition-transform duration-300 group-hover:scale-105">
+                  <Image
+                    src="/images/logo-transparent.png"
+                    alt="Mugaashra Logo"
+                    fill
+                    sizes="80px"
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex flex-col items-start justify-center">
+                  <span className="font-sans text-base sm:text-lg font-semibold tracking-[0.16em] text-white uppercase whitespace-nowrap group-hover:text-[var(--color-accent)] transition-colors">
+                    MUGAASHRA
+                  </span>
+                  <span className="font-sans text-[10px] tracking-[0.24em] text-[#C5A078] uppercase font-medium mt-1">
+                    BRIDAL STUDIO
+                  </span>
+                </div>
+              </Link>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
@@ -187,7 +252,7 @@ export function Header() {
             </div>
 
             <nav className="flex flex-col gap-2 mt-6" aria-label="Mobile Navigation Links">
-              {navLinks.map((link) => {
+              {mobileNavLinks.map((link) => {
                 const isActive = pathname === link.href
                 return (
                   <Link

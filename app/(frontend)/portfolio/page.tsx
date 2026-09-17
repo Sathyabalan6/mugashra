@@ -1,8 +1,9 @@
 import React from 'react'
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import { PageTransition } from '@/components/PageTransition'
 import { PortfolioScrollGallery } from '@/components/PortfolioScrollGallery'
+import { LivePortfolioHeader } from '@/components/live-headers/LivePortfolioHeader'
+import { DesktopPortfolioBanner } from '@/components/live-headers/DesktopPortfolioBanner'
 
 export const metadata: Metadata = {
   title: 'Bridal Portfolio | Mugashra Artistry — South Indian Bridal Looks',
@@ -36,44 +37,39 @@ const slides = [
 export default function PortfolioPage() {
   return (
     <PageTransition className="flex flex-col min-h-screen bg-[#181514] text-[var(--color-text)]">
-      {/* ── Hero Banner ── */}
-      <section className="relative w-full min-h-[60vh] sm:min-h-[75vh] flex items-center justify-center px-8 sm:px-16 pt-24 bg-[#181514] overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          {/* Mobile Dedicated Header */}
-          <div className="block md:hidden absolute inset-0">
-            <Image
-              src="/images/portfolio-mobile-header.png"
-              alt="A glimpse of what I love to do"
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 1px"
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/60" />
+      {/* ── Hero Banner (Live Mobile on <768px, Cinematic Cover on >=768px) ── */}
+      {/* Mobile Live Animated Header */}
+      <section className="block md:hidden w-full pt-20 pb-4 px-3 bg-[#181514]">
+        <LivePortfolioHeader>
+          <div className="flex flex-col items-center justify-center text-center space-y-4 pt-12 pb-8 h-full">
+            <span className="font-sans text-[11px] min-[390px]:text-xs uppercase tracking-[3.5px] text-[#8B0000] font-bold block drop-shadow-sm">
+              Sacred Muhurtham &amp; Artistry
+            </span>
+            <h1 className="font-serif text-[40px] min-[390px]:text-[48px] min-[430px]:text-[54px] leading-[0.96] tracking-[0.03em] uppercase text-white font-normal drop-shadow-lg">
+              A GLIMPSE<br />
+              OF WHAT<br />
+              I LOVE<br />
+              TO DO
+            </h1>
+            <p className="font-serif text-xs min-[390px]:text-[13px] text-white/95 max-w-[260px] leading-relaxed drop-shadow-xs font-light">
+              Explore our signature Tamil Muhurtham, Airbrush, and Reception bride transformations.
+            </p>
           </div>
-
-          {/* Desktop Hero */}
-          <div className="hidden md:block absolute inset-0">
-            <Image
-              src="/images/portfolio-hero.jpg"
-              alt="A glimpse of what I love to do"
-              fill
-              priority
-              sizes="(min-width: 769px) 100vw, 1px"
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
-          </div>
-        </div>
-        <div className="relative z-10 max-w-xl text-center space-y-4">
-          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl leading-[1.08] tracking-[0.05em] uppercase text-white font-normal">
-            A GLIMPSE<br />
-            OF WHAT<br />
-            I LOVE<br />
-            TO DO
-          </h1>
-        </div>
+        </LivePortfolioHeader>
       </section>
+
+      {/* Desktop Hero with Flowing Marigold & Jasmine Courtyard Breeze (>= 768px) */}
+      <DesktopPortfolioBanner heroImage="/images/portfolio-hero.webp">
+        <span className="font-sans text-xs sm:text-sm uppercase tracking-[3.5px] text-[#8B0000] font-bold block drop-shadow-sm">
+          Sacred Muhurtham &amp; Artistry
+        </span>
+        <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl leading-[0.96] tracking-[0.03em] uppercase text-white font-normal drop-shadow-lg">
+          A GLIMPSE<br />
+          OF WHAT<br />
+          I LOVE<br />
+          TO DO
+        </h1>
+      </DesktopPortfolioBanner>
 
       {/* ── Scroll Gallery ── */}
       <PortfolioScrollGallery slides={slides} />

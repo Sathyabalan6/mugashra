@@ -40,11 +40,6 @@ export function PortfolioScrollGallery({ slides }: Props) {
   const touchStartX = useRef<number | null>(null)
 
   useEffect(() => {
-    setActiveIndex(0)
-    setRevealed(displaySlides.map(() => false))
-  }, [selectedCategory, displaySlides.length])
-
-  useEffect(() => {
     const observers: IntersectionObserver[] = []
     slideRefs.current.forEach((el, i) => {
       if (!el) return
@@ -107,6 +102,7 @@ export function PortfolioScrollGallery({ slides }: Props) {
             onClick={() => {
               setSelectedCategory(cat)
               setActiveIndex(0)
+              setRevealed(slides.filter((s) => cat === 'All Looks' || s.category === cat).map(() => false))
             }}
             className={`px-4 py-2 rounded-full font-sans text-[11px] sm:text-xs uppercase tracking-[1.5px] transition-all whitespace-nowrap min-h-[40px] cursor-pointer ${
               selectedCategory === cat
