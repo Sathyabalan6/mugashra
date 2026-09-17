@@ -1,10 +1,9 @@
 'use server'
 
-import { getPayloadClient } from '@/lib/payload'
-
 export interface EnquirySubmissionResult {
   success: boolean
   message: string
+  whatsappUrl?: string
 }
 
 type ServiceTier = 'founder' | 'team' | 'consultation'
@@ -12,7 +11,7 @@ type EventType = 'muhurtham' | 'reception' | 'engagement' | 'haldi_mehendi' | 's
 type BudgetRange = '35k-60k' | '60k-100k' | '100k+'
 
 const submissionWindowMs = 15 * 60 * 1000
-const maxSubmissionsPerWindow = 3
+const maxSubmissionsPerWindow = 5
 const submissionAttempts = new Map<string, number[]>()
 
 function isRateLimited(key: string) {
@@ -65,6 +64,7 @@ export async function submitEnquiry(formData: FormData): Promise<EnquirySubmissi
     }
   }
 
+  // Honeypot spam trap
   if (website) {
     return {
       success: false,
@@ -88,34 +88,38 @@ export async function submitEnquiry(formData: FormData): Promise<EnquirySubmissi
     ? (budgetRangeRaw as BudgetRange)
     : undefined
 
-  try {
-    const payload = await getPayloadClient()
-    await payload.create({
-      collection: 'enquiries',
-      overrideAccess: true,
-      data: {
-        name,
-        phone,
-        email: email || `${normalizedPhone}@lead.mugashra.com`,
-        eventDate,
-        eventTypes: eventTypes.length > 0 ? eventTypes : ['muhurtham'],
-        serviceTier,
-        venueLocation,
-        budgetRange,
-        message,
-        status: 'new',
-      },
-    })
+  // Log enquiry in server runtime logs
+  console.log('[Mugaashra Bridal Enquiry]', {
+    name,
+    phone: normalizedPhone,
+    email: email || `${normalizedPhone}@lead.mugashra.com`,
+    eventDate,
+    eventTypes: eventTypes.length > 0 ? eventTypes : ['muhurtham'],
+    serviceTier,
+    venueLocation,
+    budgetRange,
+    message,
+    receivedAt: new Date().toISOString(),
+  })
 
-    return {
-      success: true,
-      message: `Thank you, ${name}! Your bridal enquiry has been received. Our booking coordinator will reach out to you via WhatsApp at ${phone} within 4 hours to verify date availability and share our detailed lookbook.`,
-    }
-  } catch (error: unknown) {
-    console.error('Payload CMS Enquiry Submission error:', error)
-    return {
-      success: false,
-      message: 'We could not save your enquiry. Please try again in a few minutes or contact us through Instagram.',
-    }
+  // Construct direct WhatsApp link with pre-filled message
+  const whatsAppNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '918610597490'
+  const waText = encodeURIComponent(
+    `*Bridal Enquiry — Mugaashra Bridal Studio*\n\n` +
+    `*Bride / Client:* ${name}\n` +
+    `*WhatsApp Phone:* ${phone}\n` +
+    `*Wedding Date:* ${eventDate}\n` +
+    `*Venue / City:* ${venueLocation}\n` +
+    `*Events:* ${eventTypes.length > 0 ? eventTypes.join(', ') : 'Muhurtham'}\n` +
+    (serviceTier ? `*Tier:* ${serviceTier.toUpperCase()}\n` : '') +
+    (budgetRange ? `*Budget Range:* ${budgetRange}\n` : '') +
+    (message ? `*Notes:* ${message}\n` : '')
+  )
+  const whatsappUrl = `https://wa.me/${whatsAppNumber}?text=${waText}`
+
+  return {
+    success: true,
+    message: `Thank you, ${name}! Your bridal enquiry has been received. Our booking coordinator will reach out to you via WhatsApp at ${phone} to verify date availability and share our detailed lookbook.`,
+    whatsappUrl,
   }
 }

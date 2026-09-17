@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useTransition } from 'react'
-import { submitEnquiry } from '@/app/actions/submitEnquiry'
+import { submitEnquiry, type EnquirySubmissionResult } from '@/app/actions/submitEnquiry'
 
 const CEREMONY_OPTIONS = [
   { id: 'muhurtham', label: 'Sacred Muhurtham', tag: 'Traditional Silk' },
@@ -15,7 +15,7 @@ const CEREMONY_OPTIONS = [
 
 export function EnquiryForm() {
   const [isPending, startTransition] = useTransition()
-  const [result, setResult] = useState<{ success: boolean; message: string } | null>(null)
+  const [result, setResult] = useState<EnquirySubmissionResult | null>(null)
   const [selectedTier, setSelectedTier] = useState('founder')
   const [selectedEvents, setSelectedEvents] = useState<string[]>(['muhurtham'])
   const [budgetRange, setBudgetRange] = useState<string>('')
@@ -83,13 +83,25 @@ export function EnquiryForm() {
         <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed max-w-md mx-auto">
           {result.message}
         </p>
-        <button
-          type="button"
-          onClick={() => setResult(null)}
-          className="mt-4 px-6 py-3 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors min-h-[44px]"
-        >
-          Send Another Message ↗
-        </button>
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          {result.whatsappUrl && (
+            <a
+              href={result.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-6 py-3 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2 min-h-[44px]"
+            >
+              <span>Connect on WhatsApp ↗</span>
+            </a>
+          )}
+          <button
+            type="button"
+            onClick={() => setResult(null)}
+            className="w-full sm:w-auto px-6 py-3 border border-[var(--color-border)] hover:border-[var(--color-accent)] text-[var(--color-text)] font-sans text-xs uppercase tracking-[2px] transition-colors min-h-[44px]"
+          >
+            Send Another Message
+          </button>
+        </div>
       </div>
     )
   }

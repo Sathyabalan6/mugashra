@@ -46,3 +46,6 @@ mugashra.db
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# backups
+_cms_backup/
