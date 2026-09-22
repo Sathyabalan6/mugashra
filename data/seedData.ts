@@ -222,7 +222,7 @@ export const CLIENT_REVIEWS: Testimonial[] = [
   {
     id: 'rev-3',
     clientName: 'SUZANNE',
-    quote: "I cannot say enough about Mugashra and her very talented atelier team! Everything she did was FLAWLESS. She worked quickly but efficiently. I had booked her AIRBRUSH package and it was worth EVERY penny. Everything stayed pristine on camera and under the sacred morning lights.",
+    quote: "I cannot say enough about Mugaashra and her very talented atelier team! Everything she did was FLAWLESS. She worked quickly but efficiently. I had booked her AIRBRUSH package and it was worth EVERY penny. Everything stayed pristine on camera and under the sacred morning lights.",
     eventType: 'Airbrush Bridal Suite',
     location: 'Chennai',
     rating: 5,

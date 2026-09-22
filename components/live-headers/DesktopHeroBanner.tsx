@@ -280,7 +280,7 @@ export function DesktopHeroBanner({ heroImage, children }: DesktopHeroBannerProp
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
           <Image
             src={heroImage}
-            alt="Mugashra Bridal Artistry Visual"
+            alt="Mugaashra Bridal Studio Visual"
             fill
             sizes="(min-width: 769px) 100vw, 1px"
             className="desktop-bride object-cover object-[right_center]"

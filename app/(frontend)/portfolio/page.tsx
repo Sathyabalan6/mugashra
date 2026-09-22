@@ -6,9 +6,9 @@ import { LivePortfolioHeader } from '@/components/live-headers/LivePortfolioHead
 import { DesktopPortfolioBanner } from '@/components/live-headers/DesktopPortfolioBanner'
 
 export const metadata: Metadata = {
-  title: 'Bridal Portfolio | Mugashra Artistry — South Indian Bridal Looks',
+  title: 'Bridal Portfolio | Mugaashra Bridal Studio — South Indian Bridal Looks',
   description: 'Browse editorial Tamil Muhurtham, airbrush bridal, and reception looks by Lead Master Artist Shwetha Mohan. Crimson silk, blue organza, and gold Kanjeevaram styles.',
-  alternates: { canonical: 'https://mugashra.com/portfolio' },
+  alternates: { canonical: 'https://mugaashra.com/portfolio' },
 }
 
 const slides = [

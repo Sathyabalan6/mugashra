@@ -153,7 +153,7 @@ export function TransformationShowcase() {
                 alt={current.title}
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
-                className="object-cover transition-transform duration-700 hover:scale-105"
+                className="object-cover object-center transition-transform duration-700 hover:scale-105"
                 priority
               />
               <div className="absolute top-4 left-4 z-10">

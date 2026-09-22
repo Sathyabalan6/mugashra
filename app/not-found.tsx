@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Page Not Found · Mugashra Bridal Artistry',
+  title: 'Page Not Found · Mugaashra Bridal Studio',
   robots: { index: false, follow: false },
 }
 

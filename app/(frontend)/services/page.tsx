@@ -9,7 +9,7 @@ import { PageTransition } from '@/components/PageTransition'
 export const metadata: Metadata = {
   title: 'Bridal Packages | Mugaashra Bridal Studio',
   description: 'Signature Airbrush, Sacred Muhurtham, and Reception bridal packages by Lead Master Artist Shwetha Mohan, Madurai. Pricing strictly upon consultation.',
-  alternates: { canonical: 'https://mugashra.com/services' },
+  alternates: { canonical: 'https://mugaashra.com/services' },
 }
 
 export const revalidate = 60

@@ -11,9 +11,9 @@ interface VisionMissionProps {
 
 export function VisionMissionSection({
   visionTitle = 'VISION',
-  visionText = 'At Mugashra Artistry, we envision a world where every bride feels radiantly confident, embodying timeless elegance on one of the most cherished days of her life. Our vision is to be the premier destination for bridal styling services, where each stroke of our artistry enhances natural beauty and creates lasting memories.',
+  visionText = 'At Mugaashra Bridal Studio, we envision a world where every bride feels radiantly confident, embodying timeless elegance on one of the most cherished days of her life. Our vision is to be the premier destination for bridal styling services, where each stroke of our artistry enhances natural beauty and creates lasting memories.',
   missionTitle = 'MISSION',
-  missionText = "Our mission at Mugashra Artistry is to curate unparalleled bridal experiences through the art of makeup. We are dedicated to providing exceptional, personalized services that capture the essence of each bride's individual style and personality. With a commitment to creativity, precision, and a touch of magic, we strive to make every bride feel authentically herself as she walks down the aisle.",
+  missionText = "Our mission at Mugaashra Bridal Studio is to curate unparalleled bridal experiences through the art of makeup. We are dedicated to providing exceptional, personalized services that capture the essence of each bride's individual style and personality. With a commitment to creativity, precision, and a touch of magic, we strive to make every bride feel authentically herself as she walks down the aisle.",
 }: VisionMissionProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -56,7 +56,7 @@ export function VisionMissionSection({
               </h2>
             </div>
 
-            <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)] leading-[1.9] font-light">
+            <p className="font-serif text-base sm:text-lg lg:text-xl text-[var(--color-text-body)] leading-[1.85] font-light">
               {visionText}
             </p>
           </div>
@@ -80,7 +80,7 @@ export function VisionMissionSection({
               </h2>
             </div>
 
-            <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)] leading-[1.9] font-light">
+            <p className="font-serif text-base sm:text-lg lg:text-xl text-[var(--color-text-body)] leading-[1.85] font-light">
               {missionText}
             </p>
           </div>

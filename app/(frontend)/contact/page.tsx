@@ -6,7 +6,7 @@ import { PageTransition } from '@/components/PageTransition'
 export const metadata: Metadata = {
   title: 'Contact & Bridal Enquiries | Mugaashra Bridal Studio',
   description: 'Get in touch for bridal makeup consultation, availability, and bookings in Madurai, Chennai and worldwide.',
-  alternates: { canonical: 'https://mugashra.com/contact' },
+  alternates: { canonical: 'https://mugaashra.com/contact' },
 }
 
 export default function ContactPage() {

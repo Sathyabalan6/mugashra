@@ -88,11 +88,10 @@ export async function submitEnquiry(formData: FormData): Promise<EnquirySubmissi
     ? (budgetRangeRaw as BudgetRange)
     : undefined
 
-  // Log enquiry in server runtime logs
-  console.log('[Mugaashra Bridal Enquiry]', {
+  const leadData = {
     name,
     phone: normalizedPhone,
-    email: email || `${normalizedPhone}@lead.mugashra.com`,
+    email: email || `${normalizedPhone}@lead.mugaashra.com`,
     eventDate,
     eventTypes: eventTypes.length > 0 ? eventTypes : ['muhurtham'],
     serviceTier,
@@ -100,7 +99,24 @@ export async function submitEnquiry(formData: FormData): Promise<EnquirySubmissi
     budgetRange,
     message,
     receivedAt: new Date().toISOString(),
-  })
+  }
+
+  // Log enquiry in server runtime logs
+  console.log('[Mugaashra Bridal Enquiry]', leadData)
+
+  // Dispatch to optional webhook if configured (Slack/Discord/Zapier/CRM)
+  const webhookUrl = process.env.LEAD_WEBHOOK_URL
+  if (webhookUrl) {
+    try {
+      await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(leadData),
+      })
+    } catch (err) {
+      console.error('[Mugaashra Lead Webhook Error]', err)
+    }
+  }
 
   // Construct direct WhatsApp link with pre-filled message
   const whatsAppNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '918610597490'

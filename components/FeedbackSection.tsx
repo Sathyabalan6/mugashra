@@ -32,7 +32,7 @@ export function FeedbackSection({ testimonials }: { testimonials: Testimonial[] 
                   <span className="text-3xl font-serif text-[var(--color-accent-text)] block mb-2 leading-none">
                     “
                   </span>
-                  <p className="font-serif text-sm sm:text-[15px] text-[var(--color-text-body)] leading-[1.8] font-light">
+                  <p className="font-serif text-base sm:text-lg text-[var(--color-text-body)] leading-[1.8] font-light">
                     {item.quote}
                   </p>
                 </div>
@@ -51,7 +51,7 @@ export function FeedbackSection({ testimonials }: { testimonials: Testimonial[] 
                   <span className="text-3xl font-serif text-[var(--color-accent-text)] block mb-2 leading-none">
                     “
                   </span>
-                  <p className="font-serif text-sm sm:text-[15px] text-[var(--color-text-body)] leading-[1.8] font-light">
+                  <p className="font-serif text-base sm:text-lg text-[var(--color-text-body)] leading-[1.8] font-light">
                     {item.quote}
                   </p>
                 </div>

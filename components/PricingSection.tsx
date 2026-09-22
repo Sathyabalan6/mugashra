@@ -24,13 +24,13 @@ export function PricingSection() {
       <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-5 sm:p-10 lg:p-16 rounded-xs">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Visual on top on mobile, right on desktop */}
-          <div className="lg:col-span-6 order-1 lg:order-2 relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
+          <div className="lg:col-span-6 order-1 lg:order-2 relative aspect-[4/5] w-full bg-[#EAE1D5] overflow-hidden shadow-sm rounded-xs">
             <Image
               src="/images/portfolio/bridal_story_1.webp"
               alt="Signature Airbrush Bridal Makeup"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+              className="object-cover object-center"
             />
           </div>
 
@@ -89,7 +89,6 @@ export function PricingSection() {
               </div>
               <Link
                 href="/contact?package=Signature%20Airbrush"
-                transitionTypes={['nav-forward']}
                 className="w-full sm:w-auto px-7 py-3 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors text-center min-h-[44px] flex items-center justify-center font-semibold"
               >
                 Enquire Package ↗
@@ -103,13 +102,13 @@ export function PricingSection() {
       <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-5 sm:p-10 lg:p-16 rounded-xs">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Visual on top on mobile */}
-          <div className="lg:col-span-6 order-1 lg:order-1 relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
+          <div className="lg:col-span-6 order-1 lg:order-1 relative aspect-[3/4] w-full bg-[#EAE1D5] overflow-hidden shadow-sm rounded-xs">
             <Image
               src="/images/portfolio/couple_photo_red_and_sandal_1.jpg"
               alt="Muhurtham and Reception Bridal Styling"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+              className="object-cover object-[center_top]"
             />
           </div>
 
@@ -164,7 +163,6 @@ export function PricingSection() {
               </div>
               <Link
                 href="/contact?package=Muhurtham%20%2B%20Reception"
-                transitionTypes={['nav-forward']}
                 className="w-full sm:w-auto px-7 py-3 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors text-center min-h-[44px] flex items-center justify-center font-semibold"
               >
                 Enquire Package ↗
@@ -177,17 +175,19 @@ export function PricingSection() {
       {/* ── 3. Card 3: OUTSTATION & DESTINATION WEDDINGS ── */}
       <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-5 sm:p-10 lg:p-16 rounded-xs">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          <div className="lg:col-span-6 relative aspect-[4/3] w-full bg-[#EAE1D5] overflow-hidden shadow-sm">
+          {/* Visual on top on mobile, right on desktop */}
+          <div className="lg:col-span-6 order-1 lg:order-2 relative aspect-[4/5] w-full bg-[#EAE1D5] overflow-hidden shadow-sm rounded-xs">
             <Image
               src="/images/portfolio/bridal_story_4.webp"
               alt="Destination Wedding Bridal Artistry"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+              className="object-cover object-center"
             />
           </div>
 
-          <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
+          {/* Details below on mobile, left on desktop */}
+          <div className="lg:col-span-6 order-2 lg:order-1 space-y-6 text-center lg:text-left">
             <div className="space-y-2">
               <span className="font-eyebrow block">Worldwide Travel</span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.15em] uppercase text-[var(--color-text)] font-normal">
@@ -213,7 +213,6 @@ export function PricingSection() {
               </div>
               <Link
                 href="/contact?package=Outstation%20Wedding"
-                transitionTypes={['nav-forward']}
                 className="w-full sm:w-auto px-7 py-3 bg-[var(--color-text)] hover:bg-[var(--color-accent)] text-white font-sans text-xs uppercase tracking-[2px] transition-colors text-center min-h-[44px] flex items-center justify-center font-semibold"
               >
                 Enquire Package ↗
