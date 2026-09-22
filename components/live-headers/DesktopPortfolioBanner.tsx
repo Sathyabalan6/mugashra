@@ -229,6 +229,8 @@ export function DesktopPortfolioBanner({ heroImage, children }: DesktopPortfolio
           src={heroImage}
           alt="South Indian Bridal Mandap Artistry"
           fill
+          priority
+          loading="eager"
           sizes="(min-width: 769px) 100vw, 1px"
           className="mandap-widescreen object-cover object-center"
         />

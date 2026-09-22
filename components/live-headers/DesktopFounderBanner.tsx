@@ -206,6 +206,8 @@ export function DesktopFounderBanner({ heroImage, children }: DesktopFounderBann
           src={heroImage}
           alt="Lead Master Artist at Work"
           fill
+          priority
+          loading="eager"
           sizes="(min-width: 769px) 100vw, 1px"
           className="object-cover object-center"
         />

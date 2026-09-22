@@ -96,6 +96,7 @@ export function Header() {
                 sizes="(max-width: 640px) 52px, (max-width: 768px) 64px, 80px"
                 className="object-contain"
                 priority
+                loading="eager"
               />
             </div>
             <div className="flex flex-col items-start justify-center">

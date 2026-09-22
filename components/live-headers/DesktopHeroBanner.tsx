@@ -282,6 +282,8 @@ export function DesktopHeroBanner({ heroImage, children }: DesktopHeroBannerProp
             src={heroImage}
             alt="Mugaashra Bridal Studio Visual"
             fill
+            priority
+            loading="eager"
             sizes="(min-width: 769px) 100vw, 1px"
             className="desktop-bride object-cover object-[right_center]"
           />
@@ -301,6 +303,8 @@ export function DesktopHeroBanner({ heroImage, children }: DesktopHeroBannerProp
               aria-hidden="true"
               alt=""
               fill
+              priority
+              loading="eager"
               sizes="14vw"
               className="object-contain"
             />
