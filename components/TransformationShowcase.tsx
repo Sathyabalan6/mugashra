@@ -113,37 +113,53 @@ export function TransformationShowcase() {
   return (
     <section className="border-t border-[var(--color-border)] pt-20 pb-16">
       <div className="text-center space-y-3 max-w-2xl mx-auto mb-12">
-        <span className="font-sans text-[11px] uppercase tracking-[3px] text-[var(--color-accent-text)] font-semibold block">
+        <span className="font-sans text-xs uppercase tracking-[3px] text-[var(--color-accent-text)] font-semibold block">
           Skin-First Philosophy
         </span>
         <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.1em] uppercase text-[var(--color-text)] font-normal">
           ARTISTRY SPOTLIGHT
         </h2>
-        <p className="font-serif text-sm sm:text-base text-[var(--color-muted)] leading-relaxed">
+        <p className="font-serif text-[15px] sm:text-base text-[var(--color-muted)] leading-relaxed">
           Explore how our signature airbrush technique and heirloom styling adapt seamlessly across every ceremony of your wedding celebration.
         </p>
       </div>
 
       {/* Look Selector Tabs (scrolls smoothly from start on mobile without cutoff) */}
-      <div className="flex items-center justify-start sm:justify-center gap-2 sm:gap-4 mb-10 sm:mb-12 overflow-x-auto no-scrollbar pb-2 px-4 sm:px-0">
-        {TRANSFORMATION_LOOKS.map((look) => (
-          <button
-            key={look.id}
-            type="button"
-            onClick={() => setActiveLookId(look.id)}
-            className={`px-4 sm:px-5 py-2.5 rounded-full font-sans text-xs uppercase tracking-[1.5px] sm:tracking-[2px] transition-all cursor-pointer whitespace-nowrap min-h-[44px] shrink-0 ${
-              activeLookId === look.id
-                ? 'bg-[var(--color-accent)] text-[#181514] font-semibold shadow-md'
-                : 'bg-transparent text-[var(--color-text-body)] border border-[var(--color-border)] hover:border-[var(--color-accent)]'
-            }`}
-          >
-            {look.label}
-          </button>
-        ))}
+      <div
+        role="tablist"
+        aria-label="Ceremony Look Selector"
+        className="flex items-center justify-start sm:justify-center gap-2 sm:gap-4 mb-10 sm:mb-12 overflow-x-auto no-scrollbar pb-2 px-4 sm:px-0"
+      >
+        {TRANSFORMATION_LOOKS.map((look) => {
+          const isSelected = activeLookId === look.id
+          return (
+            <button
+              key={look.id}
+              type="button"
+              role="tab"
+              id={`look-tab-${look.id}`}
+              aria-selected={isSelected}
+              aria-controls="look-spotlight-panel"
+              onClick={() => setActiveLookId(look.id)}
+              className={`px-4 sm:px-5 py-2.5 rounded-full font-sans text-xs uppercase tracking-[1.5px] sm:tracking-[2px] transition-all cursor-pointer whitespace-nowrap min-h-[44px] shrink-0 focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] ${
+                isSelected
+                  ? 'bg-[var(--color-accent)] text-[#181514] font-semibold shadow-md'
+                  : 'bg-transparent text-[var(--color-text-body)] border border-[var(--color-border)] hover:border-[var(--color-accent)]'
+              }`}
+            >
+              {look.label}
+            </button>
+          )
+        })}
       </div>
 
       {/* Main Spotlight Card */}
-      <div className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-4 sm:p-8 lg:p-12 rounded-xs shadow-xs">
+      <div
+        id="look-spotlight-panel"
+        role="tabpanel"
+        aria-labelledby={`look-tab-${activeLookId}`}
+        className="border border-[var(--color-border)] bg-[var(--color-bg-white)] p-4 sm:p-8 lg:p-12 rounded-xs shadow-xs"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           {/* Left Column: Image Showcase */}
           <div className="lg:col-span-5 relative">
@@ -157,7 +173,7 @@ export function TransformationShowcase() {
                 priority
               />
               <div className="absolute top-4 left-4 z-10">
-                <span className="px-3 py-1 bg-black/70 backdrop-blur-sm text-white font-sans text-[10px] uppercase tracking-[2px] rounded-full border border-white/20">
+                <span className="px-3 py-1 bg-black/70 backdrop-blur-sm text-white font-sans text-xs uppercase tracking-[2px] rounded-full border border-white/20">
                   {current.ceremony}
                 </span>
               </div>
@@ -167,13 +183,13 @@ export function TransformationShowcase() {
           {/* Right Column: Breakdown */}
           <div className="lg:col-span-7 space-y-6 text-left">
             <div className="space-y-1.5">
-              <span className="font-sans text-[11px] uppercase tracking-[2.5px] text-[var(--color-accent-text)] font-semibold block">
+              <span className="font-sans text-xs sm:text-[13px] uppercase tracking-[2.5px] text-[var(--color-accent-text)] font-semibold block">
                 {current.finish}
               </span>
               <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[var(--color-text)] font-normal leading-snug">
                 {current.title}
               </h3>
-              <p className="font-serif text-xs sm:text-sm text-[var(--color-muted)]">
+              <p className="font-serif text-sm sm:text-base text-[var(--color-muted)]">
                 {current.subtitle}
               </p>
             </div>
@@ -185,10 +201,10 @@ export function TransformationShowcase() {
                   key={feat.label}
                   className="p-3.5 sm:p-4 border border-[var(--color-border)] bg-[var(--color-bg-alt)]/30 rounded-xs space-y-1"
                 >
-                  <h4 className="font-sans text-xs font-semibold text-[var(--color-text)] tracking-wide uppercase">
+                  <h4 className="font-sans text-xs sm:text-[13px] font-semibold text-[var(--color-text)] tracking-wide uppercase">
                     ✓ {feat.label}
                   </h4>
-                  <p className="font-serif text-xs text-[var(--color-text-body)] leading-relaxed">
+                  <p className="font-serif text-[13px] sm:text-sm text-[var(--color-text-body)] leading-relaxed">
                     {feat.desc}
                   </p>
                 </div>
@@ -196,7 +212,7 @@ export function TransformationShowcase() {
             </div>
 
             {/* Testimonial Quote */}
-            <div className="p-4 border-l-2 border-[var(--color-accent)] bg-[var(--color-bg-alt)]/40 italic font-serif text-xs sm:text-sm text-[var(--color-text-body)] leading-relaxed">
+            <div className="p-4 border-l-2 border-[var(--color-accent)] bg-[var(--color-bg-alt)]/40 italic font-serif text-sm sm:text-[15px] text-[var(--color-text-body)] leading-relaxed">
               {current.quote}
             </div>
 
@@ -204,13 +220,13 @@ export function TransformationShowcase() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
               <Link
                 href={`/contact?look=${encodeURIComponent(current.title)}`}
-                className="px-6 py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-colors rounded-xs text-center min-h-[44px] flex items-center justify-center"
+                className="px-6 py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs sm:text-[13px] uppercase tracking-[2px] font-semibold transition-colors rounded-xs text-center min-h-[44px] flex items-center justify-center"
               >
                 Inquire for this Look ↗
               </Link>
               <Link
                 href="/portfolio"
-                className="px-6 py-3.5 border border-[var(--color-border)] hover:border-[var(--color-text)] text-[var(--color-text)] font-sans text-xs uppercase tracking-[2px] transition-colors rounded-xs text-center min-h-[44px] flex items-center justify-center"
+                className="px-6 py-3.5 border border-[var(--color-border)] hover:border-[var(--color-text)] text-[var(--color-text)] font-sans text-xs sm:text-[13px] uppercase tracking-[2px] transition-colors rounded-xs text-center min-h-[44px] flex items-center justify-center"
               >
                 View Full Gallery ↗
               </Link>

@@ -20,6 +20,10 @@ export function DesktopHeroBanner({ heroImage, children }: DesktopHeroBannerProp
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
+
     let animId: number | null = null
     let isVisible = true
     let width = 0
@@ -237,7 +241,8 @@ export function DesktopHeroBanner({ heroImage, children }: DesktopHeroBannerProp
         const dy = p.y - mouseY
         const dist = Math.sqrt(dx * dx + dy * dy)
         if (dist < 120) {
-          p.vx += (dx / dist) * 0.75
+          const safeDist = Math.max(dist, 0.001)
+          p.vx += (dx / safeDist) * 0.75
           p.vy -= 0.5
           p.rotSpeedX += (Math.random() - 0.5) * 0.025
         }

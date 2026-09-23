@@ -3,12 +3,15 @@
 import React, { useState, useTransition } from 'react'
 import { submitEnquiry, type EnquirySubmissionResult } from '@/app/actions/submitEnquiry'
 
-const CEREMONY_OPTIONS = [
+const BRIDAL_CEREMONIES = [
   { id: 'muhurtham', label: 'Sacred Muhurtham', tag: 'Traditional Silk' },
   { id: 'reception', label: 'Evening Reception', tag: 'High-Glam' },
   { id: 'engagement', label: 'Engagement / Ring', tag: 'Soft Pastel' },
   { id: 'haldi_mehendi', label: 'Haldi & Mehendi', tag: 'Sun-kissed' },
   { id: 'sangeet', label: 'Sangeet & Cocktail', tag: 'Evening Radiance' },
+]
+
+const ENTOURAGE_OPTIONS = [
   { id: 'family', label: 'Bridal Party / Family', tag: 'Saree & Hair' },
   { id: 'groom', label: 'Groom Styling', tag: 'Matte & Natural' },
 ]
@@ -107,7 +110,7 @@ export function EnquiryForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 text-left">
+    <form onSubmit={handleSubmit} className="space-y-7 sm:space-y-8 text-left">
       {result && !result.success && (
         <div
           className="p-3 bg-rose-50 border border-rose-200 text-rose-900 text-xs"
@@ -130,47 +133,93 @@ export function EnquiryForm() {
       </div>
 
       {/* Ceremony Selection Chips */}
-      <div>
-        <label className="block text-xs font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-2.5">
-          Select Planned Ceremonies * <span className="text-[10px] normal-case tracking-normal opacity-70">(Tap to select multiple)</span>
+      <div className="space-y-4">
+        <label className="block text-xs sm:text-[13px] font-sans uppercase tracking-[1.5px] text-[var(--color-muted)]">
+          Select Planned Ceremonies * <span className="text-xs normal-case tracking-normal opacity-70">(Tap all that apply)</span>
         </label>
-        <div className="flex flex-wrap gap-2">
-          {CEREMONY_OPTIONS.map((ceremony) => {
-            const isSelected = selectedEvents.includes(ceremony.id)
-            return (
-              <button
-                key={ceremony.id}
-                type="button"
-                onClick={() => toggleEvent(ceremony.id)}
-                className={`group text-left px-3.5 py-2 border transition-all duration-200 rounded-xs flex items-center gap-2 ${
-                  isSelected
-                    ? 'border-[var(--color-accent)] bg-[var(--color-accent)]/10 text-[var(--color-accent-text)] font-medium shadow-xs'
-                    : 'border-[var(--color-border)] bg-transparent text-[var(--color-text-body)] hover:border-[var(--color-accent)]/60'
-                }`}
-                aria-pressed={isSelected}
-              >
-                <span
-                  className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center text-[9px] transition-colors ${
+
+        {/* Primary Ceremonies */}
+        <div className="space-y-2">
+          <span className="block font-sans text-xs uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold">
+            Bridal Ceremonies (Primary)
+          </span>
+          <div className="flex flex-wrap gap-2.5">
+            {BRIDAL_CEREMONIES.map((ceremony) => {
+              const isSelected = selectedEvents.includes(ceremony.id)
+              return (
+                <button
+                  key={ceremony.id}
+                  type="button"
+                  onClick={() => toggleEvent(ceremony.id)}
+                  className={`group text-left px-3.5 py-2.5 border transition-all duration-200 rounded-xs flex items-center gap-2.5 ${
                     isSelected
-                      ? 'border-[var(--color-accent)] bg-[var(--color-accent)] text-white'
-                      : 'border-[var(--color-border)] text-transparent group-hover:border-[var(--color-accent)]'
+                      ? 'border-[var(--color-accent)] bg-[var(--color-accent)]/10 text-[var(--color-accent-text)] font-medium shadow-xs'
+                      : 'border-[var(--color-border)] bg-transparent text-[var(--color-text-body)] hover:border-[var(--color-accent)]/60'
                   }`}
+                  aria-pressed={isSelected}
                 >
-                  ✓
-                </span>
-                <div className="flex flex-col">
-                  <span className="font-sans text-xs tracking-wide">{ceremony.label}</span>
-                  <span className="font-serif text-[10px] text-[var(--color-muted)] leading-tight">{ceremony.tag}</span>
-                </div>
-              </button>
-            )
-          })}
+                  <span
+                    className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center text-[9px] transition-colors ${
+                      isSelected
+                        ? 'border-[var(--color-accent)] bg-[var(--color-accent)] text-white'
+                        : 'border-[var(--color-border)] text-transparent group-hover:border-[var(--color-accent)]'
+                    }`}
+                  >
+                    ✓
+                  </span>
+                  <div className="flex flex-col">
+                    <span className="font-sans text-xs sm:text-[13px] tracking-wide">{ceremony.label}</span>
+                    <span className="font-serif text-xs text-[var(--color-muted)] leading-tight">{ceremony.tag}</span>
+                  </div>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Entourage Services */}
+        <div className="space-y-2 pt-2">
+          <span className="block font-sans text-xs uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold">
+            Entourage &amp; Family Services
+          </span>
+          <div className="flex flex-wrap gap-2.5">
+            {ENTOURAGE_OPTIONS.map((ceremony) => {
+              const isSelected = selectedEvents.includes(ceremony.id)
+              return (
+                <button
+                  key={ceremony.id}
+                  type="button"
+                  onClick={() => toggleEvent(ceremony.id)}
+                  className={`group text-left px-3.5 py-2 border transition-all duration-200 rounded-xs flex items-center gap-2 ${
+                    isSelected
+                      ? 'border-[var(--color-accent)] bg-[var(--color-accent)]/10 text-[var(--color-accent-text)] font-medium shadow-xs'
+                      : 'border-[var(--color-border)] bg-transparent text-[var(--color-text-body)] hover:border-[var(--color-accent)]/60'
+                  }`}
+                  aria-pressed={isSelected}
+                >
+                  <span
+                    className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center text-[9px] transition-colors ${
+                      isSelected
+                        ? 'border-[var(--color-accent)] bg-[var(--color-accent)] text-white'
+                        : 'border-[var(--color-border)] text-transparent group-hover:border-[var(--color-accent)]'
+                    }`}
+                  >
+                    ✓
+                  </span>
+                  <div className="flex flex-col">
+                    <span className="font-sans text-xs sm:text-[13px] tracking-wide">{ceremony.label}</span>
+                    <span className="font-serif text-xs text-[var(--color-muted)] leading-tight">{ceremony.tag}</span>
+                  </div>
+                </button>
+              )
+            })}
+          </div>
         </div>
       </div>
 
       {/* Name */}
       <div>
-        <label htmlFor="contact-name" className="block text-xs font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
+        <label htmlFor="contact-name" className="block text-xs sm:text-[13px] font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
           Bride / Client Name *
         </label>
         <input
@@ -180,14 +229,14 @@ export function EnquiryForm() {
           required
           autoComplete="name"
           placeholder="e.g. Priyadarshini"
-          className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
+          className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-[15px] focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
         />
       </div>
 
       {/* WhatsApp & Email (2-column on tablet/desktop) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="contact-phone" className="block text-xs font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
+          <label htmlFor="contact-phone" className="block text-xs sm:text-[13px] font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
             WhatsApp Phone *
           </label>
           <input
@@ -197,12 +246,12 @@ export function EnquiryForm() {
             required
             autoComplete="tel"
             placeholder="+91 98765 43210"
-            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
+            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-[15px] focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
           />
         </div>
 
         <div>
-          <label htmlFor="contact-email" className="block text-xs font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
+          <label htmlFor="contact-email" className="block text-xs sm:text-[13px] font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
             Email Address
           </label>
           <input
@@ -211,7 +260,7 @@ export function EnquiryForm() {
             name="email"
             autoComplete="email"
             placeholder="bride@example.com"
-            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
+            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-[15px] focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
           />
         </div>
       </div>
@@ -219,7 +268,7 @@ export function EnquiryForm() {
       {/* Wedding Date & Venue (2-column on tablet/desktop) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="contact-date" className="block text-xs font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
+          <label htmlFor="contact-date" className="block text-xs sm:text-[13px] font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
             Wedding / Event Date *
           </label>
           <input
@@ -228,12 +277,12 @@ export function EnquiryForm() {
             name="eventDate"
             required
             min={new Date().toISOString().split('T')[0]}
-            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none text-[var(--color-text)] min-h-[44px]"
+            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-[15px] focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none text-[var(--color-text)] min-h-[44px]"
           />
         </div>
 
         <div>
-          <label htmlFor="contact-venue" className="block text-xs font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
+          <label htmlFor="contact-venue" className="block text-xs sm:text-[13px] font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
             Wedding City &amp; Venue *
           </label>
           <input
@@ -242,7 +291,7 @@ export function EnquiryForm() {
             name="venueLocation"
             required
             placeholder="e.g. Madurai / Chennai / Destination"
-            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
+            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-[15px] focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] min-h-[44px]"
           />
         </div>
       </div>
@@ -250,7 +299,7 @@ export function EnquiryForm() {
       {/* Service Tier & Budget Range (2-column) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="contact-tier" className="block text-xs font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
+          <label htmlFor="contact-tier" className="block text-xs sm:text-[13px] font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
             Artist Preference / Service Tier
           </label>
           <select
@@ -258,7 +307,7 @@ export function EnquiryForm() {
             name="serviceTier"
             value={selectedTier}
             onChange={(e) => setSelectedTier(e.target.value)}
-            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none text-[var(--color-text)] cursor-pointer min-h-[44px] [&>option]:bg-[#FAFAF8] [&>option]:text-[#181514]"
+            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-[15px] focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none text-[var(--color-text)] cursor-pointer min-h-[44px] [&>option]:bg-[#FAFAF8] [&>option]:text-[#181514]"
           >
             <option value="founder">Signature Master Artist (Shwetha Mohan)</option>
             <option value="team">Senior Studio Atelier Team</option>
@@ -267,7 +316,7 @@ export function EnquiryForm() {
         </div>
 
         <div>
-          <label htmlFor="contact-budget" className="block text-xs font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
+          <label htmlFor="contact-budget" className="block text-xs sm:text-[13px] font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
             Estimated Budget Range (Optional)
           </label>
           <select
@@ -275,7 +324,7 @@ export function EnquiryForm() {
             name="budgetRange"
             value={budgetRange}
             onChange={(e) => setBudgetRange(e.target.value)}
-            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none text-[var(--color-text)] cursor-pointer min-h-[44px] [&>option]:bg-[#FAFAF8] [&>option]:text-[#181514]"
+            className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-[15px] focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none text-[var(--color-text)] cursor-pointer min-h-[44px] [&>option]:bg-[#FAFAF8] [&>option]:text-[#181514]"
           >
             <option value="">Flexible / To Be Discussed</option>
             <option value="35k-60k">₹35,000 – ₹60,000 (Single Ceremony / Airbrush)</option>
@@ -287,7 +336,7 @@ export function EnquiryForm() {
 
       {/* Message */}
       <div>
-        <label htmlFor="contact-message" className="block text-xs font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
+        <label htmlFor="contact-message" className="block text-xs sm:text-[13px] font-sans uppercase tracking-[1.5px] text-[var(--color-muted)] mb-1">
           Special Requests &amp; Notes
         </label>
         <textarea
@@ -296,7 +345,7 @@ export function EnquiryForm() {
           rows={3}
           defaultValue={defaultMessage}
           placeholder="e.g. Saree pre-pleating required, travel accommodations, timing schedule..."
-          className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-sm focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)]"
+          className="w-full py-2.5 bg-transparent border-b border-[var(--color-border)] text-base sm:text-[15px] focus:outline-none focus:border-[var(--color-accent-text)] transition-colors rounded-none placeholder:text-[var(--color-muted)]/60 text-[var(--color-text)] resize-y"
         />
       </div>
 
@@ -304,35 +353,20 @@ export function EnquiryForm() {
         <button
           type="submit"
           disabled={isPending}
-          className="w-full py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-all duration-300 rounded-xs shadow-md disabled:opacity-50 min-h-[48px] active:scale-[0.98] cursor-pointer flex items-center justify-center"
+          className="w-full py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs sm:text-[13px] uppercase tracking-[2px] font-semibold transition-all duration-300 rounded-xs shadow-md disabled:opacity-50 min-h-[48px] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
         >
-          {isPending ? 'Submitting Bridal Enquiry…' : 'Submit Bridal Enquiry ↗'}
+          {isPending ? (
+            <>
+              <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-[#181514]" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+              </svg>
+              <span>Submitting Bridal Enquiry…</span>
+            </>
+          ) : (
+            'Submit Bridal Enquiry ↗'
+          )}
         </button>
-      </div>
-
-      {/* Luxury Trust Badges */}
-      <div className="pt-4 border-t border-[var(--color-border)]/60 grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <div className="flex items-center sm:flex-col gap-2 p-2.5 rounded-xs bg-[var(--color-bg-alt)]/40 border border-[var(--color-border)]/40 text-left sm:text-center">
-          <span className="text-base" aria-hidden="true">💎</span>
-          <div>
-            <div className="font-sans text-[11px] font-semibold text-[var(--color-text)] tracking-wider uppercase">Single Bride Policy</div>
-            <p className="font-serif text-[11px] text-[var(--color-muted)] leading-tight mt-0.5">Strictly 1 bride per date for our Master Artist</p>
-          </div>
-        </div>
-        <div className="flex items-center sm:flex-col gap-2 p-2.5 rounded-xs bg-[var(--color-bg-alt)]/40 border border-[var(--color-border)]/40 text-left sm:text-center">
-          <span className="text-base" aria-hidden="true">⚡</span>
-          <div>
-            <div className="font-sans text-[11px] font-semibold text-[var(--color-text)] tracking-wider uppercase">Rapid Verification</div>
-            <p className="font-serif text-[11px] text-[var(--color-muted)] leading-tight mt-0.5">WhatsApp availability confirmation within 4 hours</p>
-          </div>
-        </div>
-        <div className="flex items-center sm:flex-col gap-2 p-2.5 rounded-xs bg-[var(--color-bg-alt)]/40 border border-[var(--color-border)]/40 text-left sm:text-center">
-          <span className="text-base" aria-hidden="true">✈️</span>
-          <div>
-            <div className="font-sans text-[11px] font-semibold text-[var(--color-text)] tracking-wider uppercase">Destination Travel</div>
-            <p className="font-serif text-[11px] text-[var(--color-muted)] leading-tight mt-0.5">Madurai studio + Pan-India &amp; Global bookings</p>
-          </div>
-        </div>
       </div>
     </form>
   )

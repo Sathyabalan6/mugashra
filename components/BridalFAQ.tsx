@@ -46,13 +46,13 @@ export function BridalFAQ() {
   return (
     <section className="border-t border-[var(--color-border)] pt-20 pb-16">
       <div className="text-center space-y-3 max-w-2xl mx-auto mb-14">
-        <span className="font-sans text-[11px] uppercase tracking-[3px] text-[var(--color-accent-text)] font-semibold block">
+        <span className="font-sans text-xs uppercase tracking-[3px] text-[var(--color-accent-text)] font-semibold block">
           Client Inquiries
         </span>
         <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.1em] uppercase text-[var(--color-text)] font-normal">
           FREQUENTLY ASKED QUESTIONS
         </h2>
-        <p className="font-serif text-sm sm:text-base text-[var(--color-muted)] leading-relaxed">
+        <p className="font-serif text-[15px] sm:text-base text-[var(--color-muted)] leading-relaxed">
           Everything you need to know about our atelier bookings, airbrush technology, and on-location services.
         </p>
       </div>
@@ -69,11 +69,13 @@ export function BridalFAQ() {
             >
               <button
                 type="button"
+                id={`faq-btn-${index}`}
+                aria-controls={`faq-panel-${index}`}
                 onClick={() => toggle(index)}
                 aria-expanded={isOpen}
-                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 cursor-pointer"
+                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--color-accent)]"
               >
-                <span className="font-serif text-base sm:text-lg text-[var(--color-text)] font-medium leading-snug">
+                <span className="font-serif text-[17px] sm:text-xl text-[var(--color-text)] font-medium leading-snug">
                   {faq.question}
                 </span>
                 <span
@@ -82,14 +84,20 @@ export function BridalFAQ() {
                       ? 'border-[var(--color-accent)] bg-[var(--color-accent)] text-white rotate-45'
                       : 'border-[var(--color-border)] text-[var(--color-muted)]'
                   }`}
+                  aria-hidden="true"
                 >
                   +
                 </span>
               </button>
 
               {isOpen && (
-                <div className="px-6 pb-6 pt-1 text-left border-t border-[var(--color-border)]/40 animate-in fade-in duration-200">
-                  <p className="font-serif text-sm text-[var(--color-text-body)] leading-relaxed">
+                <div
+                  id={`faq-panel-${index}`}
+                  role="region"
+                  aria-labelledby={`faq-btn-${index}`}
+                  className="px-6 pb-6 pt-1 text-left border-t border-[var(--color-border)]/40 animate-in fade-in duration-200"
+                >
+                  <p className="font-serif text-[15px] sm:text-base text-[var(--color-text-body)] leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>
@@ -101,14 +109,14 @@ export function BridalFAQ() {
 
       {/* Still Have Questions Box */}
       <div className="mt-12 p-8 max-w-2xl mx-auto bg-[var(--color-bg-alt)]/50 border border-[var(--color-border)] text-center space-y-4 rounded-xs">
-        <h4 className="font-serif text-xl text-[var(--color-text)]">Have a Specific Wedding Query?</h4>
-        <p className="font-serif text-xs sm:text-sm text-[var(--color-muted)] max-w-md mx-auto">
+        <h4 className="font-serif text-xl sm:text-2xl text-[var(--color-text)]">Have a Specific Wedding Query?</h4>
+        <p className="font-serif text-sm sm:text-base text-[var(--color-muted)] max-w-md mx-auto">
           Every wedding is unique. Speak directly with our bridal coordinator for custom multi-day schedules or outstation travel itineraries.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
           <Link
             href="/contact"
-            className="px-6 py-3 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-colors rounded-xs w-full sm:w-auto text-center"
+            className="px-6 py-3 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs sm:text-[13px] uppercase tracking-[2px] font-semibold transition-colors rounded-xs w-full sm:w-auto text-center"
           >
             Submit Enquiry ↗
           </Link>
@@ -116,7 +124,7 @@ export function BridalFAQ() {
             href="https://wa.me/918610597490?text=Hello%20Shwetha%2C%20I%20have%20a%20question%20regarding%20bridal%20services%20at%20Mugaashra."
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 border border-[var(--color-border)] hover:border-[var(--color-text)] text-[var(--color-text)] font-sans text-xs uppercase tracking-[2px] transition-colors rounded-xs w-full sm:w-auto text-center"
+            className="px-6 py-3 border border-[var(--color-border)] hover:border-[var(--color-text)] text-[var(--color-text)] font-sans text-xs sm:text-[13px] uppercase tracking-[2px] transition-colors rounded-xs w-full sm:w-auto text-center"
           >
             WhatsApp Coordinator ↗
           </a>

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { motion, type Transition } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -156,16 +157,17 @@ export function PerspectiveCarousel({
                     type="button"
                     aria-label={`Show ${item.title}`}
                     aria-current={isActive ? "true" : undefined}
-                    className="aspect-[3/4] w-full cursor-pointer"
+                    className="relative aspect-[3/4] w-full cursor-pointer overflow-hidden rounded-lg"
                     onClick={() => selectSlide(index)}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={item.src}
                       alt={item.alt ?? item.title}
+                      fill
+                      sizes={`${safeSlideWidth}px`}
                       draggable={false}
                       className={cn(
-                        "h-full w-full select-none rounded-lg object-cover shadow-xl",
+                        "select-none rounded-lg object-cover shadow-xl",
                         imageClassName
                       )}
                     />
@@ -206,19 +208,23 @@ export function PerspectiveCarousel({
           </button>
 
           {showDots && (
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-1">
               {items.map((item, index) => (
                 <button
                   key={`${item.title}-${index}`}
                   type="button"
                   aria-label={`Show slide ${index + 1}: ${item.title}`}
                   aria-current={currentIndex === index ? "true" : undefined}
-                  className={cn(
-                    "h-2 rounded-full bg-current transition-[width,opacity] duration-300",
-                    currentIndex === index ? "w-7 opacity-100" : "w-2 opacity-30"
-                  )}
+                  className="flex items-center justify-center min-w-[24px] min-h-[24px] p-1 cursor-pointer rounded-full focus-visible:outline-2 focus-visible:outline-current"
                   onClick={() => selectSlide(index)}
-                />
+                >
+                  <span
+                    className={cn(
+                      "block h-2 rounded-full bg-current transition-[width,opacity] duration-300",
+                      currentIndex === index ? "w-7 opacity-100" : "w-2 opacity-30"
+                    )}
+                  />
+                </button>
               ))}
             </div>
           )}

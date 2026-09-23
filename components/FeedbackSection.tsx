@@ -17,7 +17,7 @@ export function FeedbackSection({ testimonials }: { testimonials: Testimonial[] 
           <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl tracking-[0.15em] uppercase text-[var(--color-text)] font-normal">
             FEEDBACK
           </h2>
-          <p className="caption-text text-xs tracking-wider uppercase font-sans">
+          <p className="caption-text text-sm tracking-wider uppercase font-sans">
             Unfiltered words of love &amp; praise from our South Indian brides
           </p>
         </div>
@@ -36,7 +36,7 @@ export function FeedbackSection({ testimonials }: { testimonials: Testimonial[] 
                     {item.quote}
                   </p>
                 </div>
-                <p className="font-sans text-[11px] uppercase tracking-[2.5px] text-[var(--color-text)] font-semibold text-right pr-2">
+                <p className="font-sans text-xs uppercase tracking-[2.5px] text-[var(--color-text)] font-semibold text-right pr-2">
                   — {item.clientName}
                 </p>
               </div>
@@ -55,7 +55,7 @@ export function FeedbackSection({ testimonials }: { testimonials: Testimonial[] 
                     {item.quote}
                   </p>
                 </div>
-                <p className="font-sans text-[11px] uppercase tracking-[2.5px] text-[var(--color-text)] font-semibold text-right pr-2">
+                <p className="font-sans text-xs uppercase tracking-[2.5px] text-[var(--color-text)] font-semibold text-right pr-2">
                   — {item.clientName}
                 </p>
               </div>

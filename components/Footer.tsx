@@ -4,6 +4,9 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
+const GOOGLE_MAPS_URL =
+  'https://www.google.com/maps/dir//MUGAASHRA+Bridal+Studio+-+Wedding+makeup+artist,+Bridal+makeup+artist+madurai,+2nd+Floor,+Anna+1st,+No.5,+Jeyaseelan+Cross+St,+Bethaniapuram,+Madurai,+Tamil+Nadu+625016/@11.1077453,79.6614369,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3b00cf03a9ce8369:0x1dd85da260b1e612!2m2!1d78.0965057!2d9.9359998?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D'
+
 export function Footer() {
   return (
     <footer className="bg-[var(--color-bg-white)] text-[var(--color-text)] border-t border-[var(--color-border)] pt-20 pb-16">
@@ -31,7 +34,7 @@ export function Footer() {
               href="https://www.instagram.com/mugaashra_makeover"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 font-sans text-[11px] uppercase tracking-[2px] text-[var(--color-accent-text)] hover:text-[var(--color-accent)] transition-colors w-fit"
+              className="inline-flex items-center gap-2.5 font-sans text-xs uppercase tracking-[2px] text-[var(--color-accent-text)] hover:text-[var(--color-accent)] transition-colors w-fit"
               aria-label="Follow on Instagram (opens in new window)"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -48,60 +51,73 @@ export function Footer() {
             </h2>
             <p className="font-sans text-xs uppercase tracking-[1.5px] sm:tracking-[2px] text-[var(--color-muted)] leading-relaxed">
               ATELIER STUDIO • FOUNDED BY SHWETHA MOHAN<br />
-              5/ANNA FIRST CROSS STREET, 2ND FLOOR, PETHANIYAPURAM, MADURAI - 625016
+              <a
+                href={GOOGLE_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--color-accent-text)] transition-colors underline decoration-dotted"
+                aria-label="Get directions to Mugaashra Bridal Studio on Google Maps (opens in new window)"
+              >
+                2ND FLOOR, ANNA 1ST, NO. 5, JEYASEELAN CROSS ST, BETHANIYAPURAM, MADURAI - 625016 ↗
+              </a>
             </p>
-            <p className="font-serif text-xs text-[var(--color-text-body)] leading-relaxed pt-2">
+            <p className="font-serif text-[15px] sm:text-base text-[var(--color-text-body)] leading-relaxed pt-2">
               Founded by Lead Master Artist Shwetha Mohan with 10 years of luxury bridal experience, Mugaashra Bridal Studio is celebrated for radiant skin-like airbrush complexions, transfer-proof finishes, and personalized bridal styling.
             </p>
-            <p className="caption-text text-xs pt-1">
+            <p className="caption-text text-sm pt-1">
               Hours: 11:00 AM – 8:00 PM (By Appointment) • Madurai &amp; Worldwide Travel
             </p>
           </div>
 
           {/* Right: Navigation & Contact Links */}
           <div className="lg:col-span-3 space-y-6 flex flex-col justify-between text-left lg:text-right">
-            <div className="space-y-1 text-sm text-[var(--color-text-body)]">
+            <div className="space-y-1 text-[15px] sm:text-base text-[var(--color-text-body)]">
               <p>
                 <a
                   href="https://www.instagram.com/mugaashra_makeover"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[var(--color-accent-text)] transition-colors inline-flex items-center min-h-[40px] py-1"
+                  className="hover:text-[var(--color-accent-text)] transition-colors inline-flex items-center min-h-[44px] py-1"
                 >
                   Instagram ↗
                 </a>
               </p>
               <p>
-                <Link href="/portfolio" className="hover:text-[var(--color-accent-text)] transition-colors inline-flex items-center min-h-[40px] py-1">
+                <Link href="/portfolio" className="hover:text-[var(--color-accent-text)] transition-colors inline-flex items-center min-h-[44px] py-1">
                   Bridal Portfolio
                 </Link>
               </p>
               <p>
-                <Link href="/services" className="hover:text-[var(--color-accent-text)] transition-colors inline-flex items-center min-h-[40px] py-1">
+                <Link href="/services" className="hover:text-[var(--color-accent-text)] transition-colors inline-flex items-center min-h-[44px] py-1">
                   Bridal Packages
                 </Link>
               </p>
             </div>
 
-            <div className="space-y-1">
-              <p className="font-sans text-xs text-[var(--color-muted)] uppercase tracking-[1.5px]">
+            <div className="space-y-1.5">
+              <p className="font-sans text-xs sm:text-sm text-[var(--color-muted)] uppercase tracking-[1.5px]">
                 WhatsApp &amp; Bookings
               </p>
               <a
                 href="https://wa.me/918610597490"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-serif text-sm hover:text-[var(--color-accent-text)] transition-colors block py-1"
+                className="font-serif text-lg sm:text-xl text-[var(--color-accent-text)] hover:text-[var(--color-accent-hover)] font-medium transition-colors block py-1"
+                aria-label="Call or WhatsApp +91 8610597490 (opens in new window)"
               >
                 +91 8610597490 ↗
               </a>
-              <p className="font-serif text-xs text-[var(--color-muted)]">
-                Mugaashra@gmail.com
-              </p>
+              <a
+                href="mailto:Mugaashra@gmail.com"
+                className="font-serif text-[15px] sm:text-base text-[var(--color-accent-text)] hover:text-[var(--color-accent-hover)] transition-colors block py-0.5"
+                aria-label="Email Mugaashra@gmail.com"
+              >
+                Mugaashra@gmail.com ↗
+              </a>
             </div>
 
             <div className="pt-4">
-              <p className="caption-text text-xs text-[var(--color-muted)]">
+              <p className="caption-text text-xs sm:text-sm text-[var(--color-muted)]">
                 Mugaashra Bridal Studio © 2026/27
               </p>
             </div>

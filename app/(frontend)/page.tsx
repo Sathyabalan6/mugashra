@@ -37,9 +37,9 @@ export default async function HomePage() {
               <span className="font-sans text-[12.5px] uppercase tracking-[3px] text-[var(--color-accent)] font-bold block animate-hero-eyebrow drop-shadow-sm">
                 {heroEyebrow}
               </span>
-              <h1 className="font-serif text-[48px] min-[360px]:text-[56px] min-[390px]:text-[64px] min-[430px]:text-[70px] font-normal tracking-[0.02em] uppercase text-white leading-[0.88] drop-shadow-xl animate-hero-title">
+              <h1 className="font-serif text-[36px] min-[360px]:text-[42px] min-[390px]:text-[48px] min-[430px]:text-[52px] font-normal tracking-[0.03em] uppercase text-white leading-[0.92] drop-shadow-xl animate-hero-title">
                 MUGAASHRA
-                <span className="block text-[13.5px] min-[360px]:text-[15px] min-[390px]:text-[16.5px] font-sans tracking-[0.22em] min-[360px]:tracking-[0.25em] text-[#F3ECE4] font-semibold mt-2 uppercase drop-shadow-md">
+                <span className="block text-[12px] min-[360px]:text-[13px] min-[390px]:text-[14px] font-sans tracking-[0.22em] text-[#F3ECE4] font-semibold mt-1.5 uppercase drop-shadow-md">
                   BRIDAL MAKEUP ATELIER
                 </span>
               </h1>
@@ -106,7 +106,7 @@ export default async function HomePage() {
                 sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
-              <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-[10px] uppercase tracking-[2px] font-semibold">
+              <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-xs uppercase tracking-[2px] font-semibold">
                 Sacred Muhurtham
               </div>
             </div>
@@ -114,13 +114,13 @@ export default async function HomePage() {
               <h3 className="font-serif text-xl text-[var(--color-text)] font-normal">
                 The Royal Crimson Muhurtham
               </h3>
-              <p className="font-serif text-xs text-[var(--color-text-body)] leading-relaxed">
+              <p className="font-serif text-[15px] sm:text-base text-[var(--color-text-body)] leading-relaxed">
                 Sweat-resistant 4:00 AM HD complexion, antique gold temple jewellery, and fresh Madurai Malli architectural braid.
               </p>
               <div className="pt-2">
                 <Link
                   href="/contact?look=The%20Royal%20Crimson%20Muhurtham"
-                  className="font-sans text-[11px] uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline min-h-[44px] py-1"
+                  className="font-sans text-xs uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline min-h-[44px] py-1"
                 >
                   Enquire This Look ↗
                 </Link>
@@ -138,7 +138,7 @@ export default async function HomePage() {
                 sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
-              <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-[10px] uppercase tracking-[2px] font-semibold">
+              <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-xs uppercase tracking-[2px] font-semibold">
                 Evening Reception
               </div>
             </div>
@@ -146,13 +146,13 @@ export default async function HomePage() {
               <h3 className="font-serif text-xl text-[var(--color-text)] font-normal">
                 Glass-Skin Airbrush Glamour
               </h3>
-              <p className="font-serif text-xs text-[var(--color-text-body)] leading-relaxed">
+              <p className="font-serif text-[15px] sm:text-base text-[var(--color-text-body)] leading-relaxed">
                 Stage-lighting sculpted base, champagne shimmer lids, 3D luxury lashes, and contemporary Hollywood waves.
               </p>
               <div className="pt-2">
                 <Link
                   href="/contact?look=Glass-Skin%20Airbrush%20Glamour"
-                  className="font-sans text-[11px] uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline min-h-[44px] py-1"
+                  className="font-sans text-xs uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline min-h-[44px] py-1"
                 >
                   Enquire This Look ↗
                 </Link>
@@ -170,7 +170,7 @@ export default async function HomePage() {
                 sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
-              <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-[10px] uppercase tracking-[2px] font-semibold">
+              <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-xs uppercase tracking-[2px] font-semibold">
                 Nichayathartham
               </div>
             </div>
@@ -178,13 +178,13 @@ export default async function HomePage() {
               <h3 className="font-serif text-xl text-[var(--color-text)] font-normal">
                 Pastel Organza &amp; Soft Glam
               </h3>
-              <p className="font-serif text-xs text-[var(--color-text-body)] leading-relaxed">
+              <p className="font-serif text-[15px] sm:text-base text-[var(--color-text-body)] leading-relaxed">
                 Featherlight dewy skin, soft monochromatic peach blush, lash clusters, and romantic floral half-updo.
               </p>
               <div className="pt-2">
                 <Link
                   href="/contact?look=Pastel%20Organza%20Soft%20Glam"
-                  className="font-sans text-[11px] uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline min-h-[44px] py-1"
+                  className="font-sans text-xs uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline min-h-[44px] py-1"
                 >
                   Enquire This Look ↗
                 </Link>

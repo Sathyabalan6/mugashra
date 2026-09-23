@@ -19,6 +19,10 @@ export function LivePortfolioHeader({ children }: LivePortfolioHeaderProps) {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
+
     let animId: number | null = null
     let isVisible = true
     let width = 0
@@ -211,7 +215,8 @@ export function LivePortfolioHeader({ children }: LivePortfolioHeaderProps) {
         const dy = p.y - touchY
         const dist = Math.sqrt(dx * dx + dy * dy)
         if (dist < 80) {
-          p.vx += (dx / dist) * 0.5
+          const safeDist = Math.max(dist, 0.001)
+          p.vx += (dx / safeDist) * 0.5
           p.vy -= 0.3
         }
       }

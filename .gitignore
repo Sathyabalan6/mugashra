@@ -49,3 +49,6 @@ next-env.d.ts
 
 # backups
 _cms_backup/
+
+# agent workspace skills
+.agents/

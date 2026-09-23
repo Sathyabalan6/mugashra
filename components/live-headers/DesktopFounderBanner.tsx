@@ -20,6 +20,10 @@ export function DesktopFounderBanner({ heroImage, children }: DesktopFounderBann
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
+
     let animId: number | null = null
     let isVisible = true
     let width = 0

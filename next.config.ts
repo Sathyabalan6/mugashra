@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  devIndicators: false,
   allowedDevOrigins: [
     '10.134.224.223',
     '10.134.224.223:3000',
@@ -11,6 +12,7 @@ const nextConfig: NextConfig = {
     'localhost:3000',
     '127.0.0.1:3000',
     '10.21.216.223',
+    '10.231.237.223',
     '*.local',
   ],
   images: {

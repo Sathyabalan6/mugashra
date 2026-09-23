@@ -13,7 +13,7 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       style={{ viewTransitionName: 'floating-cta' }}
-      className="fixed bottom-[calc(1.25rem+env(safe-area-inset-bottom))] right-4 sm:right-6 z-40 flex items-center justify-center gap-2.5 p-3.5 sm:px-5 sm:py-3 min-h-[48px] min-w-[48px] bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] shadow-[0_8px_30px_rgba(0,0,0,0.3)] border border-[var(--color-accent)] transition-all duration-300 rounded-full group font-sans text-xs font-semibold uppercase tracking-[1.5px] active:scale-95"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-40 flex items-center justify-center gap-2.5 p-3.5 sm:px-5 sm:py-3 min-h-[48px] min-w-[48px] bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] shadow-[0_12px_36px_rgba(0,0,0,0.32)] border border-[var(--color-accent)] transition-all duration-300 rounded-full group font-sans text-xs font-semibold uppercase tracking-[1.5px] active:scale-95"
       aria-label="Chat on WhatsApp — Direct consultation with Mugaashra Bridal Studio (opens in new window)"
     >
       <svg className="w-5 h-5 fill-current text-[#181514] shrink-0" viewBox="0 0 24 24" aria-hidden="true">

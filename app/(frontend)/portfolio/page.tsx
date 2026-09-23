@@ -42,7 +42,7 @@ export default function PortfolioPage() {
       <section className="block md:hidden w-full pt-20 pb-4 px-3 bg-[#181514]">
         <LivePortfolioHeader>
           <div className="flex flex-col items-center justify-center text-center space-y-4 pt-12 pb-8 h-full">
-            <span className="font-sans text-[11px] min-[390px]:text-xs uppercase tracking-[3.5px] text-[#8B0000] font-bold block drop-shadow-sm">
+            <span className="font-sans text-[11px] min-[390px]:text-xs uppercase tracking-[3.5px] text-[var(--color-accent)] font-bold block drop-shadow-sm">
               Sacred Muhurtham &amp; Artistry
             </span>
             <h1 className="font-serif text-[40px] min-[390px]:text-[48px] min-[430px]:text-[54px] leading-[0.96] tracking-[0.03em] uppercase text-white font-normal drop-shadow-lg">
@@ -60,7 +60,7 @@ export default function PortfolioPage() {
 
       {/* Desktop Hero with Flowing Marigold & Jasmine Courtyard Breeze (>= 768px) */}
       <DesktopPortfolioBanner heroImage="/images/portfolio-hero.webp">
-        <span className="font-sans text-xs sm:text-sm uppercase tracking-[3.5px] text-[#8B0000] font-bold block drop-shadow-sm">
+        <span className="font-sans text-xs sm:text-sm uppercase tracking-[3.5px] text-[var(--color-accent)] font-bold block drop-shadow-sm">
           Sacred Muhurtham &amp; Artistry
         </span>
         <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl leading-[0.96] tracking-[0.03em] uppercase text-white font-normal drop-shadow-lg">

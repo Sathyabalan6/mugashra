@@ -13,7 +13,7 @@ export default function NotFound() {
     <main
       style={{
         position: 'relative',
-        minHeight: '100vh',
+        minHeight: '100svh',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

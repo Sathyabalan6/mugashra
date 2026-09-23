@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
@@ -37,15 +37,49 @@ export function Header() {
     }
   }, [mobileMenuOpen])
 
-  // Close drawer on Escape
+  const drawerRef = useRef<HTMLDivElement>(null)
+  const toggleButtonRef = useRef<HTMLButtonElement>(null)
+
+  // Close drawer on Escape and trap Tab focus
   useEffect(() => {
+    if (!mobileMenuOpen) return
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMobileMenuOpen(false)
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false)
+        toggleButtonRef.current?.focus()
+      } else if (e.key === 'Tab') {
+        if (!drawerRef.current) return
+        const focusable = drawerRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+        if (focusable.length === 0) return
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
     }
-    if (mobileMenuOpen) {
-      window.addEventListener('keydown', handleKeyDown)
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    // Focus close button or first element inside drawer
+    const focusTimer = setTimeout(() => {
+      const first = drawerRef.current?.querySelector<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+      first?.focus()
+    }, 50)
+
+    return () => {
+      clearTimeout(focusTimer)
+      window.removeEventListener('keydown', handleKeyDown)
     }
-    return () => window.removeEventListener('keydown', handleKeyDown)
   }, [mobileMenuOpen])
 
   const navLinks = [
@@ -65,16 +99,14 @@ export function Header() {
   const headerBg = isDarkHeroPage
     ? (!isScrolled
         ? 'bg-transparent border-b border-white/10 text-white'
-        : 'bg-[#181514]/95 backdrop-blur-md border-b border-white/10 text-[#FAFAF8] shadow-[0_4px_20px_rgba(0,0,0,0.15)]')
-    : (!isScrolled
-        ? 'bg-white/95 backdrop-blur-md border-b border-black/10 text-[#181514]'
-        : 'bg-white/95 backdrop-blur-md border-b border-black/10 text-[#181514] shadow-[0_4px_20px_rgba(0,0,0,0.08)]')
+        : 'bg-[#181514] border-b border-white/10 text-[#FAFAF8] shadow-[0_4px_20px_rgba(0,0,0,0.25)]')
+    : 'bg-[#FAFAF8] border-b border-[var(--color-border)] text-[#181514] shadow-[0_2px_12px_rgba(0,0,0,0.06)]'
 
   return (
     <>
       <header
         style={{ viewTransitionName: 'site-header' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${headerBg}`}
+        className={`fixed top-0 left-0 right-0 z-[100] transition-colors duration-300 ${headerBg}`}
       >
         {/* Subtle gradient overlay for readability on light backgrounds */}
         {isDarkHeroPage && !isScrolled && (
@@ -105,7 +137,7 @@ export function Header() {
               }`}>
                 MUGAASHRA
               </span>
-              <span className="font-sans text-[9px] sm:text-[10px] md:text-[11px] lg:text-xs tracking-[0.26em] uppercase text-[#C5A078] font-medium leading-none mt-1">
+              <span className="font-sans text-[10.5px] sm:text-[11.5px] md:text-xs tracking-[0.26em] uppercase text-[#C5A078] font-medium leading-none mt-1">
                 BRIDAL STUDIO
               </span>
             </div>
@@ -151,7 +183,7 @@ export function Header() {
               <svg className="w-5 h-5 fill-current transition-transform duration-300 group-hover:scale-110 drop-shadow-md" viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
-              <span className="font-sans text-[11px] uppercase tracking-[1.5px] font-semibold">Instagram</span>
+              <span className="font-sans text-xs uppercase tracking-[1.5px] font-semibold">Instagram</span>
             </a>
           </nav>
 
@@ -174,9 +206,10 @@ export function Header() {
             </a>
 
             <button
+              ref={toggleButtonRef}
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`min-w-[44px] min-h-[44px] w-11 h-11 flex items-center justify-end hover:text-[var(--color-accent)] transition-colors ${
+              className={`min-w-[48px] min-h-[48px] w-12 h-12 flex items-center justify-end hover:text-[var(--color-accent)] transition-colors ${
                 isDarkHeroPage ? 'text-white' : 'text-[#181514]'
               }`}
               aria-label="Toggle navigation menu"
@@ -208,6 +241,7 @@ export function Header() {
         onClick={() => setMobileMenuOpen(false)}
       >
         <div
+          ref={drawerRef}
           className={`fixed right-0 top-0 bottom-0 w-[85%] max-w-sm bg-[#181514] p-6 sm:p-8 shadow-2xl flex flex-col justify-between overflow-y-auto border-l border-white/10 transition-transform duration-300 ease-out pb-[calc(1.5rem+env(safe-area-inset-bottom))] ${
             mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
@@ -234,7 +268,7 @@ export function Header() {
                   <span className="font-sans text-base sm:text-lg font-semibold tracking-[0.16em] text-white uppercase whitespace-nowrap group-hover:text-[var(--color-accent)] transition-colors">
                     MUGAASHRA
                   </span>
-                  <span className="font-sans text-[10px] tracking-[0.24em] text-[#C5A078] uppercase font-medium mt-1">
+                  <span className="font-sans text-xs tracking-[0.24em] text-[#C5A078] uppercase font-medium mt-1">
                     BRIDAL STUDIO
                   </span>
                 </div>
@@ -242,7 +276,7 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-11 h-11 flex items-center justify-center text-white hover:text-[var(--color-accent)] transition-colors active:scale-95"
+                className="w-12 h-12 min-w-[48px] min-h-[48px] flex items-center justify-center text-white hover:text-[var(--color-accent)] transition-colors active:scale-95"
                 aria-label="Close menu"
                 style={{ touchAction: 'manipulation' }}
               >
@@ -281,13 +315,13 @@ export function Header() {
                 href="https://wa.me/918610597490?text=Hi%20Mugaashra%20Bridal%20Studio%2C%20I'd%20like%20to%20enquire%20about%20bridal%20makeup%20availability."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 px-2 text-center bg-white/10 hover:bg-white/15 text-white font-sans text-[11px] uppercase tracking-[1.5px] font-medium border border-white/20 active:scale-95 transition-all flex items-center justify-center gap-1.5 min-h-[44px]"
+                className="py-3 px-2 text-center bg-white/10 hover:bg-white/15 text-white font-sans text-xs uppercase tracking-[1.5px] font-medium border border-white/20 active:scale-95 transition-all flex items-center justify-center gap-1.5 min-h-[44px]"
               >
                 <span>WhatsApp ↗</span>
               </a>
               <a
                 href="tel:+918610597490"
-                className="py-3 px-2 text-center bg-white/10 hover:bg-white/15 text-white font-sans text-[11px] uppercase tracking-[1.5px] font-medium border border-white/20 active:scale-95 transition-all flex items-center justify-center gap-1.5 min-h-[44px]"
+                className="py-3 px-2 text-center bg-white/10 hover:bg-white/15 text-white font-sans text-xs uppercase tracking-[1.5px] font-medium border border-white/20 active:scale-95 transition-all flex items-center justify-center gap-1.5 min-h-[44px]"
               >
                 <span>Call Studio ✆</span>
               </a>
@@ -296,11 +330,11 @@ export function Header() {
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-center py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[12px] uppercase tracking-[2px] font-semibold transition-colors shadow-lg active:scale-[0.98] min-h-[44px] flex items-center justify-center"
+              className="block w-full text-center py-3.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-[13px] uppercase tracking-[2px] font-semibold transition-colors shadow-lg active:scale-[0.98] min-h-[44px] flex items-center justify-center"
             >
               Book Bridal Consultation ↗
             </Link>
-            <p className="caption-text text-center text-[11px] text-white/70">
+            <p className="caption-text text-center text-xs text-white/70">
               Bridal Atelier • Madurai &amp; Worldwide Travel
             </p>
           </div>

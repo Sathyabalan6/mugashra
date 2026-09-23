@@ -46,13 +46,13 @@ export function BridalJourney() {
   return (
     <section className="border-t border-[var(--color-border)] pt-20 pb-16">
       <div className="text-center space-y-3 max-w-2xl mx-auto mb-16">
-        <span className="font-sans text-[11px] uppercase tracking-[3px] text-[var(--color-accent-text)] font-semibold block">
+        <span className="font-sans text-xs uppercase tracking-[3px] text-[var(--color-accent-text)] font-semibold block">
           The Atelier Experience
         </span>
         <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-[0.1em] uppercase text-[var(--color-text)] font-normal">
           THE BRIDAL JOURNEY
         </h2>
-        <p className="font-serif text-sm sm:text-base text-[var(--color-muted)] leading-relaxed">
+        <p className="font-serif text-[15px] sm:text-base text-[var(--color-muted)] leading-relaxed">
           From your initial consultation to your sacred wedding moments, our four-step couture roadmap ensures absolute serenity, precision, and timeless radiance.
         </p>
       </div>
@@ -69,7 +69,7 @@ export function BridalJourney() {
                 <span className="font-serif text-4xl text-[var(--color-accent)] font-light select-none">
                   {item.step}
                 </span>
-                <span className="font-sans text-[10px] uppercase tracking-[2px] text-[var(--color-muted)] font-medium">
+                <span className="font-sans text-xs uppercase tracking-[2px] text-[var(--color-muted)] font-medium">
                   {item.phase}
                 </span>
               </div>
@@ -79,7 +79,7 @@ export function BridalJourney() {
                 <h3 className="font-serif text-xl sm:text-2xl text-[var(--color-text)] font-normal leading-snug group-hover:text-[var(--color-accent-text)] transition-colors">
                   {item.title}
                 </h3>
-                <p className="font-serif text-xs sm:text-sm text-[var(--color-text-body)] leading-relaxed">
+                <p className="font-serif text-sm sm:text-[15px] text-[var(--color-text-body)] leading-relaxed">
                   {item.description}
                 </p>
               </div>
@@ -87,10 +87,10 @@ export function BridalJourney() {
 
             {/* Bottom Tag */}
             <div className="pt-6 mt-6 border-t border-[var(--color-border)]/50 flex flex-col gap-1">
-              <span className="font-sans text-[10px] uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold">
+              <span className="font-sans text-xs uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold">
                 ✓ {item.badge}
               </span>
-              <span className="font-serif text-[11px] text-[var(--color-muted)]">
+              <span className="font-serif text-xs text-[var(--color-muted)]">
                 {item.highlight}
               </span>
             </div>
@@ -102,7 +102,7 @@ export function BridalJourney() {
       <div className="mt-12 text-center">
         <Link
           href="/contact"
-          className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold transition-all duration-300 rounded-xs shadow-md min-h-[44px] w-full sm:w-auto active:scale-[0.98]"
+          className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-[#181514] font-sans text-xs sm:text-[13px] uppercase tracking-[2px] font-semibold transition-all duration-300 rounded-xs shadow-md min-h-[44px] w-full sm:w-auto active:scale-[0.98]"
         >
           <span>Reserve Your Auspicious Date ↗</span>
         </Link>
