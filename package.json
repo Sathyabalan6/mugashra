@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed": "payload run scripts/seed-db.ts"
+    "seed": "payload run scripts/seed-db.ts",
+    "postinstall": "node scripts/patch-payload.cjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
