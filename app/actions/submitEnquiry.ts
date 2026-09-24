@@ -1,5 +1,7 @@
 'use server'
 
+import { getPayloadClient } from '@/lib/payload'
+
 export interface EnquirySubmissionResult {
   success: boolean
   message: string
@@ -99,6 +101,29 @@ export async function submitEnquiry(formData: FormData): Promise<EnquirySubmissi
     budgetRange,
     message,
     receivedAt: new Date().toISOString(),
+  }
+
+  // Persist enquiry to Payload CMS database
+  try {
+    const payload = await getPayloadClient()
+    await payload.create({
+      collection: 'enquiries',
+      overrideAccess: true,
+      data: {
+        name,
+        phone,
+        email: email || `${normalizedPhone}@lead.mugaashra.com`,
+        eventDate,
+        eventTypes: eventTypes.length > 0 ? eventTypes : ['muhurtham'],
+        serviceTier,
+        venueLocation,
+        budgetRange,
+        message,
+        status: 'new',
+      },
+    })
+  } catch (err) {
+    console.error('[Payload CMS Enquiry Save Error]', err)
   }
 
   // Log enquiry in server runtime logs

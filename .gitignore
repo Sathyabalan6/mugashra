@@ -52,3 +52,5 @@ _cms_backup/
 
 # agent workspace skills
 .agents/
+AGENTS.md
+CLAUDE.md
