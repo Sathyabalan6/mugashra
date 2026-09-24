@@ -89,35 +89,13 @@ export const DashboardWelcome: React.FC = () => {
           </div>
           <div className="mugashra-card-body">
             <div className="mugashra-card-tag">Founder Page</div>
-            <h3 className="mugashra-card-title">Owner Photo & Profile</h3>
+            <h3 className="mugashra-card-title">Owner Photo & Name</h3>
             <p className="mugashra-card-desc">
-              Upload and update the owner portrait photo and biography text displayed on the live Founder (About) page.
+              Upload and update the owner portrait photo and name displayed on the live Founder (About) page.
             </p>
           </div>
           <div className="mugashra-card-footer">
             <span>Update Owner Photo</span>
-            <span className="mugashra-card-arrow">→</span>
-          </div>
-        </Link>
-
-        {/* Card 3: Media Library */}
-        <Link href="/admin/collections/media" className="mugashra-card">
-          <div className="mugashra-card-icon" style={{ background: 'rgba(140, 94, 58, 0.12)', color: '#8C5E3A' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-              <circle cx="8.5" cy="8.5" r="1.5" />
-              <polyline points="21 15 16 10 5 21" />
-            </svg>
-          </div>
-          <div className="mugashra-card-body">
-            <div className="mugashra-card-tag">Assets</div>
-            <h3 className="mugashra-card-title">Media Library</h3>
-            <p className="mugashra-card-desc">
-              Upload high-resolution photography, portrait shots, and studio imagery assets directly into the CMS.
-            </p>
-          </div>
-          <div className="mugashra-card-footer">
-            <span>Manage Media</span>
             <span className="mugashra-card-arrow">→</span>
           </div>
         </Link>

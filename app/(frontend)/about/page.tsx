@@ -25,12 +25,10 @@ export default async function AboutPage() {
     const data = await payload.findGlobal({ slug: 'founder-page' })
     if (data) {
       if (data.ownerPhoto && typeof data.ownerPhoto === 'object' && 'url' in data.ownerPhoto && data.ownerPhoto.url) {
-        ownerPhoto = data.ownerPhoto.url as string
+        const rawUrl = data.ownerPhoto.url as string
+        ownerPhoto = rawUrl.startsWith('/api/media/file/') ? rawUrl.replace('/api/media/file/', '/media/') : rawUrl
       }
       if (data.name) founderName = data.name
-      if (data.role) founderRole = data.role
-      if (data.bioParagraph1) bio1 = data.bioParagraph1
-      if (data.bioParagraph2) bio2 = data.bioParagraph2
     }
   } catch (err) {
     console.error('Error fetching founder page global from CMS:', err)

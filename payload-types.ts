@@ -163,18 +163,12 @@ export interface Enquiry {
   createdAt: string;
 }
 /**
- * Upload high-resolution photography, portrait photos, and media assets.
- *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
   id: number;
-  /**
-   * e.g. "Shwetha Mohan - Studio Founder & Lead Master Artist"
-   */
   alt: string;
-  caption?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -186,32 +180,6 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-  sizes?: {
-    thumbnail?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    portrait?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    hero?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
 }
 /**
  * Manage admin accounts, studio coordinators, and authentication credentials.
@@ -345,7 +313,6 @@ export interface EnquiriesSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
-  caption?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -357,40 +324,6 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
-  sizes?:
-    | T
-    | {
-        thumbnail?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        portrait?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        hero?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -458,7 +391,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
- * Upload and update the owner portrait photo displayed on the Founder (About) page.
+ * Update the founder name and photo displayed on the Founder (About) page.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "founder-page".
@@ -466,14 +399,10 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface FounderPage {
   id: number;
   /**
-   * Upload the owner photo for the About / Founder page. If left blank, the default atelier portrait is used.
+   * Upload or change the owner portrait photo displayed on the About / Founder page.
    */
   ownerPhoto?: (number | null) | Media;
   name?: string | null;
-  role?: string | null;
-  experience?: string | null;
-  bioParagraph1?: string | null;
-  bioParagraph2?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -484,10 +413,6 @@ export interface FounderPage {
 export interface FounderPageSelect<T extends boolean = true> {
   ownerPhoto?: T;
   name?: T;
-  role?: T;
-  experience?: T;
-  bioParagraph1?: T;
-  bioParagraph2?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
