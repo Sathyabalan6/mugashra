@@ -13,7 +13,7 @@ export const Enquiries: CollectionConfig = {
     description: 'Track client wedding dates, WhatsApp leads, ceremony requirements, and booking statuses.',
   },
   access: {
-    create: () => false,
+    create: ({ req: { user } }) => Boolean(user),
     read: ({ req: { user } }) => Boolean(user),
     update: ({ req: { user } }) => Boolean(user),
     delete: ({ req: { user } }) => Boolean(user),

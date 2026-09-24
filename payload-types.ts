@@ -68,7 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     enquiries: Enquiry;
-    'service-packages': ServicePackage;
+    media: Media;
     users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -78,7 +78,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
-    'service-packages': ServicePackagesSelect<false> | ServicePackagesSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -90,10 +90,10 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
-    'site-settings': SiteSetting;
+    'founder-page': FounderPage;
   };
   globalsSelect: {
-    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    'founder-page': FounderPageSelect<false> | FounderPageSelect<true>;
   };
   locale: null;
   widgets: {
@@ -163,52 +163,55 @@ export interface Enquiry {
   createdAt: string;
 }
 /**
- * Configure bespoke bridal pricing tiers, session durations, inclusions, and highlight badges.
+ * Upload high-resolution photography, portrait photos, and media assets.
  *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "service-packages".
+ * via the `definition` "media".
  */
-export interface ServicePackage {
+export interface Media {
   id: number;
   /**
-   * e.g. "Muhurtham Master Artistry", "The Complete Royal Bridal Suite"
+   * e.g. "Shwetha Mohan - Studio Founder & Lead Master Artist"
    */
-  title: string;
-  /**
-   * Select whether this package is styled personally by the Founder or Senior Studio Stylists.
-   */
-  tier: 'founder' | 'team';
-  category: 'muhurtham' | 'reception' | 'engagement' | 'haldi_sangeet' | 'complete_bridal' | 'groom_family';
-  /**
-   * A brief luxury phrase summarizing the experience.
-   */
-  tagline?: string | null;
-  /**
-   * Describe the makeup base, skin prep ritual, draping, and jewelry setting involved.
-   */
-  description?: string | null;
-  /**
-   * Base pricing in INR (e.g. 45000).
-   */
-  startingPrice: number;
-  duration?: string | null;
-  badge?: string | null;
-  /**
-   * Bullet points detailing what is included in this bridal service package.
-   */
-  inclusions?:
-    | {
-        item: string;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * e.g. "Travel & accommodation for outstation weddings billed separately at actuals."
-   */
-  termsNote?: string | null;
-  order?: number | null;
+  alt: string;
+  caption?: string | null;
   updatedAt: string;
   createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    portrait?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    hero?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * Manage admin accounts, studio coordinators, and authentication credentials.
@@ -269,8 +272,8 @@ export interface PayloadLockedDocument {
         value: number | Enquiry;
       } | null)
     | ({
-        relationTo: 'service-packages';
-        value: number | ServicePackage;
+        relationTo: 'media';
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'users';
@@ -338,27 +341,56 @@ export interface EnquiriesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "service-packages_select".
+ * via the `definition` "media_select".
  */
-export interface ServicePackagesSelect<T extends boolean = true> {
-  title?: T;
-  tier?: T;
-  category?: T;
-  tagline?: T;
-  description?: T;
-  startingPrice?: T;
-  duration?: T;
-  badge?: T;
-  inclusions?:
-    | T
-    | {
-        item?: T;
-        id?: T;
-      };
-  termsNote?: T;
-  order?: T;
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  caption?: T;
   updatedAt?: T;
   createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        portrait?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        hero?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -426,35 +458,36 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
- * Studio contact details, Madurai address, Instagram / Facebook links, and bridal appointment hours.
+ * Upload and update the owner portrait photo displayed on the Founder (About) page.
  *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "site-settings".
+ * via the `definition` "founder-page".
  */
-export interface SiteSetting {
+export interface FounderPage {
   id: number;
-  studioName?: string | null;
-  studioAddress?: string | null;
-  openingHours?: string | null;
-  contactEmail?: string | null;
-  contactPhone?: string | null;
-  instagramUrl?: string | null;
-  facebookUrl?: string | null;
+  /**
+   * Upload the owner photo for the About / Founder page. If left blank, the default atelier portrait is used.
+   */
+  ownerPhoto?: (number | null) | Media;
+  name?: string | null;
+  role?: string | null;
+  experience?: string | null;
+  bioParagraph1?: string | null;
+  bioParagraph2?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "site-settings_select".
+ * via the `definition` "founder-page_select".
  */
-export interface SiteSettingsSelect<T extends boolean = true> {
-  studioName?: T;
-  studioAddress?: T;
-  openingHours?: T;
-  contactEmail?: T;
-  contactPhone?: T;
-  instagramUrl?: T;
-  facebookUrl?: T;
+export interface FounderPageSelect<T extends boolean = true> {
+  ownerPhoto?: T;
+  name?: T;
+  role?: T;
+  experience?: T;
+  bioParagraph1?: T;
+  bioParagraph2?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

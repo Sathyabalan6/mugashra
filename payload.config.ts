@@ -6,10 +6,10 @@ import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 import { Users } from './collections/Users'
-import { ServicePackages } from './collections/ServicePackages'
 import { Enquiries } from './collections/Enquiries'
+import { Media } from './collections/Media'
 
-import { SiteSettings } from './globals/SiteSettings'
+import { FounderPage } from './globals/FounderPage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -46,11 +46,11 @@ export default buildConfig({
   },
   collections: [
     Enquiries,
-    ServicePackages,
+    Media,
     Users,
   ],
   globals: [
-    SiteSettings,
+    FounderPage,
   ],
   editor: lexicalEditor(),
   secret: payloadSecret,

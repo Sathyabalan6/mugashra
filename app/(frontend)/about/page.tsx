@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { PageTransition } from '@/components/PageTransition'
 import { LiveFounderHeader } from '@/components/live-headers/LiveFounderHeader'
 import { DesktopFounderBanner } from '@/components/live-headers/DesktopFounderBanner'
+import { getPayloadClient } from '@/lib/payload'
 
 export const metadata: Metadata = {
   title: 'Founder & Artist | Mugaashra Bridal Studio',
@@ -12,7 +13,28 @@ export const metadata: Metadata = {
 
 export const revalidate = 60
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  let ownerPhoto = '/images/shwetha-mohan.jpg'
+  let founderName = 'Shwetha Mohan'
+  let founderRole = 'Founder & Lead Master Artist'
+  let bio1 = 'With over 10 years of luxury bridal artistry across South India, Shwetha Mohan founded Mugaashra Bridal Studio to bring a new standard of skin realism and editorial elegance to South Indian and North Indian brides.'
+  let bio2 = 'Specializing in flawless airbrush makeup, HD & HD ultra complexions, skin-like transfer-proof finishes, soft-glam looks, and full-glam makeovers, she personally oversees every bridal booking at the atelier.'
+
+  try {
+    const payload = await getPayloadClient()
+    const data = await payload.findGlobal({ slug: 'founder-page' })
+    if (data) {
+      if (data.ownerPhoto && typeof data.ownerPhoto === 'object' && 'url' in data.ownerPhoto && data.ownerPhoto.url) {
+        ownerPhoto = data.ownerPhoto.url as string
+      }
+      if (data.name) founderName = data.name
+      if (data.role) founderRole = data.role
+      if (data.bioParagraph1) bio1 = data.bioParagraph1
+      if (data.bioParagraph2) bio2 = data.bioParagraph2
+    }
+  } catch (err) {
+    console.error('Error fetching founder page global from CMS:', err)
+  }
   return (
     <PageTransition className="flex flex-col min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
       {/* ── 1. Editorial Hero Banner (Live Mobile on <768px, Cinematic Cover on >=768px) ── */}
@@ -28,7 +50,7 @@ export default function AboutPage() {
               PHILOSOPHY
             </h1>
             <p className="font-serif text-sm min-[390px]:text-[14.5px] text-white/95 max-w-[280px] leading-relaxed drop-shadow-xs font-light">
-              Founded by Lead Master Artist <span className="text-white font-semibold underline underline-offset-4 decoration-[var(--color-accent)]">Shwetha Mohan</span>, Mugaashra Bridal Studio is a sanctuary of South Indian bridal artistry.
+              Founded by Lead Master Artist <span className="text-white font-semibold underline underline-offset-4 decoration-[var(--color-accent)]">{founderName}</span>, Mugaashra Bridal Studio is a sanctuary of South Indian bridal artistry.
             </p>
           </div>
         </LiveFounderHeader>
@@ -44,7 +66,7 @@ export default function AboutPage() {
           PHILOSOPHY
         </h1>
         <p className="font-serif text-[15px] sm:text-base text-[#F0E8E1] leading-relaxed pt-2 font-light drop-shadow-xs">
-          Founded by Lead Master Artist <span className="text-white font-semibold underline underline-offset-4 decoration-[#E2C4A8]">Shwetha Mohan</span>, Mugaashra Bridal Studio is a sanctuary of bridal beauty nestled in Madurai, dedicated to curating transcendent South Indian wedding looks.
+          Founded by Lead Master Artist <span className="text-white font-semibold underline underline-offset-4 decoration-[#E2C4A8]">{founderName}</span>, Mugaashra Bridal Studio is a sanctuary of bridal beauty nestled in Madurai, dedicated to curating transcendent South Indian wedding looks.
         </p>
       </DesktopFounderBanner>
 
@@ -123,24 +145,24 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative aspect-[3/4] w-full overflow-hidden shadow-sm">
               <Image
-                src="/images/shwetha-mohan.jpg"
-                alt="Shwetha Mohan - Founder & Master Bridal Artist"
+                src={ownerPhoto}
+                alt={`${founderName} - ${founderRole}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover object-center"
               />
             </div>
             <div className="space-y-5">
-              <span className="font-sans text-xs uppercase tracking-[2.5px] text-[#9E6D47] font-semibold block">Founder & Lead Master Artist</span>
+              <span className="font-sans text-xs uppercase tracking-[2.5px] text-[#9E6D47] font-semibold block">{founderRole}</span>
               <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl tracking-[0.08em] uppercase text-[#181514] font-normal leading-tight">
-                Shwetha Mohan
+                {founderName}
               </h2>
               <div className="w-10 h-[1px] bg-[#9E6D47]" />
               <p className="font-serif text-[15px] sm:text-base text-[#332E2C] leading-[1.85] font-normal">
-                With over 10 years of luxury bridal artistry across South India, Shwetha Mohan founded Mugaashra Bridal Studio to bring a new standard of skin realism and editorial elegance to South Indian and North Indian brides.
+                {bio1}
               </p>
               <p className="font-serif text-[15px] sm:text-base text-[#332E2C] leading-[1.85] font-normal">
-                Specializing in flawless airbrush makeup, HD &amp; HD ultra complexions, skin-like transfer-proof finishes, soft-glam looks, and full-glam makeovers, she personally oversees every bridal booking at the atelier.
+                {bio2}
               </p>
             </div>
           </div>

@@ -59,7 +59,7 @@ export const DashboardWelcome: React.FC = () => {
 
       {/* Quick Launchpad Grid */}
       <div className="mugashra-grid">
-        {/* Card 1: Inquiries */}
+        {/* Card 1: Inquiries (Primary) */}
         <Link href="/admin/collections/enquiries" className="mugashra-card">
           <div className="mugashra-card-icon" style={{ background: 'rgba(181, 138, 105, 0.12)', color: '#B58A69' }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -67,21 +67,42 @@ export const DashboardWelcome: React.FC = () => {
             </svg>
           </div>
           <div className="mugashra-card-body">
-            <div className="mugashra-card-tag">Priority Leads</div>
+            <div className="mugashra-card-tag">Website Leads</div>
             <h3 className="mugashra-card-title">Bridal Inquiries</h3>
             <p className="mugashra-card-desc">
-              Manage incoming bride bookings, Muhurtham dates, venues & WhatsApp client communications.
+              All client inquiries submitted through the contact page appear here. View wedding dates, ceremony packages & client contact info.
             </p>
           </div>
           <div className="mugashra-card-footer">
-            <span>Open Inquiries</span>
+            <span>View Inquiries List</span>
             <span className="mugashra-card-arrow">→</span>
           </div>
         </Link>
 
-        {/* Card 2: Portfolio */}
-        <Link href="/admin/collections/portfolio-items" className="mugashra-card">
+        {/* Card 2: Founder Photo & Profile */}
+        <Link href="/admin/globals/founder-page" className="mugashra-card">
           <div className="mugashra-card-icon" style={{ background: 'rgba(212, 163, 115, 0.12)', color: '#D4A373' }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </div>
+          <div className="mugashra-card-body">
+            <div className="mugashra-card-tag">Founder Page</div>
+            <h3 className="mugashra-card-title">Owner Photo & Profile</h3>
+            <p className="mugashra-card-desc">
+              Upload and update the owner portrait photo and biography text displayed on the live Founder (About) page.
+            </p>
+          </div>
+          <div className="mugashra-card-footer">
+            <span>Update Owner Photo</span>
+            <span className="mugashra-card-arrow">→</span>
+          </div>
+        </Link>
+
+        {/* Card 3: Media Library */}
+        <Link href="/admin/collections/media" className="mugashra-card">
+          <div className="mugashra-card-icon" style={{ background: 'rgba(140, 94, 58, 0.12)', color: '#8C5E3A' }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
               <circle cx="8.5" cy="8.5" r="1.5" />
@@ -89,55 +110,14 @@ export const DashboardWelcome: React.FC = () => {
             </svg>
           </div>
           <div className="mugashra-card-body">
-            <div className="mugashra-card-tag">Artistry Gallery</div>
-            <h3 className="mugashra-card-title">Portfolio Items</h3>
+            <div className="mugashra-card-tag">Assets</div>
+            <h3 className="mugashra-card-title">Media Library</h3>
             <p className="mugashra-card-desc">
-              Curate Muhurtham heritage silks, Reception high-glam looks, Haldi & Editorial masterclasses.
+              Upload high-resolution photography, portrait shots, and studio imagery assets directly into the CMS.
             </p>
           </div>
           <div className="mugashra-card-footer">
-            <span>Manage Gallery</span>
-            <span className="mugashra-card-arrow">→</span>
-          </div>
-        </Link>
-
-        {/* Card 3: Packages */}
-        <Link href="/admin/collections/service-packages" className="mugashra-card">
-          <div className="mugashra-card-icon" style={{ background: 'rgba(140, 94, 58, 0.12)', color: '#8C5E3A' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-            </svg>
-          </div>
-          <div className="mugashra-card-body">
-            <div className="mugashra-card-tag">Pricing & Tiers</div>
-            <h3 className="mugashra-card-title">Service Packages</h3>
-            <p className="mugashra-card-desc">
-              Configure Founder Tier & Atelier Team pricing, session durations, inclusions, and special badges.
-            </p>
-          </div>
-          <div className="mugashra-card-footer">
-            <span>Edit Packages</span>
-            <span className="mugashra-card-arrow">→</span>
-          </div>
-        </Link>
-
-        {/* Card 4: Site Settings */}
-        <Link href="/admin/globals/site-settings" className="mugashra-card">
-          <div className="mugashra-card-icon" style={{ background: 'rgba(100, 116, 139, 0.12)', color: '#64748B' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="12" r="3" />
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-            </svg>
-          </div>
-          <div className="mugashra-card-body">
-            <div className="mugashra-card-tag">Studio Info</div>
-            <h3 className="mugashra-card-title">Studio Settings</h3>
-            <p className="mugashra-card-desc">
-              Studio base address in Madurai, consultation hours, Instagram handles, and contact emails.
-            </p>
-          </div>
-          <div className="mugashra-card-footer">
-            <span>Configure Studio</span>
+            <span>Manage Media</span>
             <span className="mugashra-card-arrow">→</span>
           </div>
         </Link>
