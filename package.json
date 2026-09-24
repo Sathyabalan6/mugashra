@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "seed": "payload run scripts/seed-db.ts",
+    "reset-password": "payload run scripts/reset-password.ts",
     "postinstall": "node scripts/patch-payload.cjs"
   },
   "dependencies": {
