@@ -27,9 +27,11 @@ async function resetPassword() {
       data: {
         email: updatedEmail,
         password: newPassword,
+        loginAttempts: 0,
+        lockUntil: null,
       },
     })
-    console.log(`✅ User updated: Email is now "${updatedEmail}" (Password reset to "${newPassword}")`)
+    console.log(`✅ User unlocked & updated: "${updatedEmail}" (New Password: "${newPassword}")`)
   }
 
   console.log(`\nNew password set to: ${newPassword}`)

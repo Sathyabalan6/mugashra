@@ -51,6 +51,9 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  routes: {
+    admin: '/studio-portal',
+  },
   collections: [
     Enquiries,
     Media,

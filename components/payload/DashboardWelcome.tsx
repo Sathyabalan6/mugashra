@@ -21,7 +21,7 @@ export const DashboardWelcome: React.FC = () => {
 
           <div className="mugashra-hero-actions">
             <Link
-              href="/admin/collections/enquiries"
+              href="/studio-portal/collections/enquiries"
               className="mugashra-btn mugashra-btn-primary"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -60,7 +60,7 @@ export const DashboardWelcome: React.FC = () => {
       {/* Quick Launchpad Grid */}
       <div className="mugashra-grid">
         {/* Card 1: Inquiries (Primary) */}
-        <Link href="/admin/collections/enquiries" className="mugashra-card">
+        <Link href="/studio-portal/collections/enquiries" className="mugashra-card">
           <div className="mugashra-card-icon" style={{ background: 'rgba(181, 138, 105, 0.12)', color: '#B58A69' }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -80,7 +80,7 @@ export const DashboardWelcome: React.FC = () => {
         </Link>
 
         {/* Card 2: Founder Photo & Profile */}
-        <Link href="/admin/globals/founder-page" className="mugashra-card">
+        <Link href="/studio-portal/globals/founder-page" className="mugashra-card">
           <div className="mugashra-card-icon" style={{ background: 'rgba(212, 163, 115, 0.12)', color: '#D4A373' }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />

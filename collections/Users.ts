@@ -12,7 +12,15 @@ export const Users: CollectionConfig = {
     group: '⚙️ Studio Settings & Admin',
     description: 'Manage admin accounts, studio coordinators, and authentication credentials.',
   },
-  auth: true,
+  auth: {
+    maxLoginAttempts: 5, // Lockout after 5 failed attempts (brute-force protection)
+    lockTime: 15 * 60 * 1000, // 15 minutes lockout duration
+    tokenExpiration: 7200, // 2-hour session
+    cookies: {
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'Lax',
+    },
+  },
   fields: [
     {
       name: 'name',
