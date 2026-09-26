@@ -10,6 +10,7 @@ import { Enquiries } from './collections/Enquiries'
 import { Media } from './collections/Media'
 
 import { FounderPage } from './globals/FounderPage'
+import { migrations } from './migrations'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -69,6 +70,7 @@ export default buildConfig({
           connectionString: databaseUri,
         },
         push: true,
+        prodMigrations: migrations,
       })
     : sqliteAdapter({
         client: {
