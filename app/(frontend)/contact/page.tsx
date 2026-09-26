@@ -44,9 +44,9 @@ export default function ContactPage() {
           <div className="lg:col-span-5 space-y-6 text-left">
             
             {/* Zone 1: Master Artist & Exclusivity Standards */}
-            <div className="bg-[var(--color-bg-white)] border border-[var(--color-border)] p-6 sm:p-7 rounded-xs shadow-xs space-y-5">
+            <div className="bg-[var(--color-bg-white)] border border-[var(--color-border)] p-6 sm:p-7 rounded-xs shadow-xs">
               {/* Artist Profile Header */}
-              <div className="flex items-center gap-4 pb-5 border-b border-[var(--color-border)]/60">
+              <div className="flex items-center gap-4">
                 <div className="relative w-16 h-16 sm:w-18 sm:h-18 shrink-0 rounded-full overflow-hidden border border-[var(--color-accent)]/50 shadow-sm bg-[#181514]">
                   <Image
                     src="/images/shwetha-mohan.jpg"
@@ -66,53 +66,6 @@ export default function ContactPage() {
                   <p className="font-serif text-xs sm:text-[13px] text-[var(--color-muted)]">
                     10 Years South Indian Bridal Artistry
                   </p>
-                </div>
-              </div>
-
-              {/* 3 Dedicated Luxury Trust Badges with Bespoke SVG Line Icons */}
-              <div className="grid grid-cols-3 gap-2.5">
-                {/* 1 Bride */}
-                <div className="p-3 bg-[var(--color-bg)]/80 border border-[var(--color-border)]/70 rounded-xs text-center flex flex-col items-center justify-center gap-1">
-                  <svg className="w-4 h-4 text-[var(--color-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <polygon points="6 3 18 3 22 9 12 22 2 9" />
-                    <line x1="2" y1="9" x2="22" y2="9" />
-                    <line x1="12" y1="22" x2="8" y2="9" />
-                    <line x1="12" y1="22" x2="16" y2="9" />
-                  </svg>
-                  <span className="block font-sans text-xs uppercase tracking-[1px] font-semibold text-[var(--color-text)] mt-0.5">
-                    1 Bride
-                  </span>
-                  <span className="block font-serif text-[11.5px] text-[var(--color-muted)] leading-tight">
-                    Per Date
-                  </span>
-                </div>
-
-                {/* 16-Hour */}
-                <div className="p-3 bg-[var(--color-bg)]/80 border border-[var(--color-border)]/70 rounded-xs text-center flex flex-col items-center justify-center gap-1">
-                  <svg className="w-4 h-4 text-[var(--color-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12 6 12 12 16 14" />
-                  </svg>
-                  <span className="block font-sans text-xs uppercase tracking-[1px] font-semibold text-[var(--color-text)] mt-0.5">
-                    16-Hour
-                  </span>
-                  <span className="block font-serif text-[11.5px] text-[var(--color-muted)] leading-tight">
-                    Sweatproof
-                  </span>
-                </div>
-
-                {/* Hospital UV */}
-                <div className="p-3 bg-[var(--color-bg)]/80 border border-[var(--color-border)]/70 rounded-xs text-center flex flex-col items-center justify-center gap-1">
-                  <svg className="w-4 h-4 text-[var(--color-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    <polyline points="9 12 11 14 15 10" />
-                  </svg>
-                  <span className="block font-sans text-xs uppercase tracking-[1px] font-semibold text-[var(--color-text)] mt-0.5">
-                    Hospital UV
-                  </span>
-                  <span className="block font-serif text-[11.5px] text-[var(--color-muted)] leading-tight">
-                    Sanitized Kit
-                  </span>
                 </div>
               </div>
             </div>
