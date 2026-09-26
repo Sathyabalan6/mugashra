@@ -14,7 +14,13 @@ import { FounderPage } from './globals/FounderPage'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const databaseUri = process.env.DATABASE_URI || process.env.POSTGRES_URL || ''
+const databaseUri =
+  process.env.DATABASE_URI ||
+  process.env.POSTGRES_URL ||
+  process.env.STORAGE_URL ||
+  process.env.STORAGE_POSTGRES_URL ||
+  process.env.NEON_DATABASE_URL ||
+  ''
 const isPostgres = databaseUri.startsWith('postgres://') || databaseUri.startsWith('postgresql://')
 const payloadSecret =
   process.env.PAYLOAD_SECRET ||
