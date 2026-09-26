@@ -565,19 +565,73 @@ html[data-theme='dark'] .mugashra-card-footer {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05) !important;
 }
 
-/* Table Polish */
+/* ── App Header & Breadcrumbs Polish ── */
+.app-header__wrapper {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+}
+
+.app-header__controls-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.step-nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.step-nav__home {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-right: 2px !important;
+}
+
+.step-nav__home svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* ── Table Polish & Overlap Prevention ── */
 .table {
   border-radius: var(--style-radius-m) !important;
-  overflow: hidden;
+  overflow-x: auto !important;
+  width: 100% !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table table {
+  width: 100% !important;
+  min-width: 760px !important;
+  border-collapse: separate;
 }
 
 .table th {
   font-size: 11px !important;
   font-weight: 700 !important;
-  letter-spacing: 1px !important;
+  letter-spacing: 0.8px !important;
   text-transform: uppercase !important;
   color: var(--theme-text-secondary) !important;
   background: var(--theme-elevation-50) !important;
+  white-space: nowrap !important;
+  padding: 12px 18px !important;
+  border-bottom: 1px solid var(--theme-border-color) !important;
+}
+
+.table td {
+  white-space: nowrap !important;
+  padding: 14px 18px !important;
+  vertical-align: middle !important;
+  font-size: 13.5px !important;
+  border-bottom: 1px solid var(--theme-border-color) !important;
 }
 
 .table tr:hover td {

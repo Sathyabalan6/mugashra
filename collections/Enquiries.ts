@@ -8,7 +8,7 @@ export const Enquiries: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'phone', 'eventDate', 'serviceTier', 'venueLocation', 'status', 'createdAt'],
+    defaultColumns: ['name', 'phone', 'eventDate', 'venueLocation', 'status'],
     group: '📥 Client Enquiries',
     description: 'Track client wedding dates, WhatsApp leads, ceremony requirements, and booking statuses.',
   },
@@ -23,7 +23,7 @@ export const Enquiries: CollectionConfig = {
       name: 'name',
       type: 'text',
       required: true,
-      label: 'Bride / Client Name',
+      label: 'Client Name',
       admin: {
         description: 'Full name of the bride or contact person.',
       },
@@ -32,7 +32,7 @@ export const Enquiries: CollectionConfig = {
       name: 'phone',
       type: 'text',
       required: true,
-      label: 'WhatsApp / Phone Number',
+      label: 'WhatsApp / Phone',
       admin: {
         description: 'Direct mobile or WhatsApp number for wedding consultation.',
       },
@@ -47,7 +47,7 @@ export const Enquiries: CollectionConfig = {
       name: 'eventDate',
       type: 'text',
       required: true,
-      label: 'Wedding / Event Date',
+      label: 'Event Date',
       admin: {
         description: 'Primary Muhurtham, Reception, or ceremony date (e.g. "Nov 24, 2026").',
       },
@@ -76,13 +76,13 @@ export const Enquiries: CollectionConfig = {
         { label: 'Senior Studio Team (Atelier Tier)', value: 'team' },
         { label: 'Open / Need Consultation', value: 'consultation' },
       ],
-      label: 'Artist Preference',
+      label: 'Artist Tier',
     },
     {
       name: 'venueLocation',
       type: 'text',
       required: true,
-      label: 'Wedding City & Hall / Resort Name',
+      label: 'Venue / City',
       admin: {
         description: 'e.g. Madurai, Chennai, or Destination Resort',
       },
@@ -115,7 +115,7 @@ export const Enquiries: CollectionConfig = {
         { label: '💍 Date Blocked / Advance Paid', value: 'booked' },
         { label: '📁 Archived / Unavailable', value: 'archived' },
       ],
-      label: 'Inquiry Status',
+      label: 'Status',
       admin: {
         position: 'sidebar',
         description: 'Update the pipeline status as you communicate with the bride.',

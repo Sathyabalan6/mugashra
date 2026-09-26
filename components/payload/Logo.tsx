@@ -2,36 +2,45 @@ import React from 'react'
 
 export const Logo: React.FC = () => {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '14px', padding: '6px 0' }}>
+    <div
+      className="mugashra-studio-logo"
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '12px',
+        padding: '2px 0',
+        maxWidth: '100%',
+      }}
+    >
       {/* Gold Crest Monogram */}
       <div
         style={{
-          width: '38px',
-          height: '38px',
-          borderRadius: '8px',
+          width: '32px',
+          height: '32px',
+          borderRadius: '7px',
           background: 'linear-gradient(135deg, #2A2118 0%, #15100B 100%)',
           border: '1px solid rgba(181, 138, 105, 0.45)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.15), inset 0 0 8px rgba(181, 138, 105, 0.2)',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.25), inset 0 0 6px rgba(181, 138, 105, 0.2)',
           flexShrink: 0,
         }}
       >
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           {/* Diamond Border */}
           <path
             d="M12 2L21.5 12L12 22L2.5 12L12 2Z"
             stroke="#B58A69"
-            strokeWidth="1.2"
+            strokeWidth="1.4"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
           {/* Elegant M Monogram */}
           <path
-            d="M7 16V8.5L12 13.5L17 8.5V16"
+            d="M7.5 15.5V9.5L12 14L16.5 9.5V15.5"
             stroke="#E8D8C8"
-            strokeWidth="1.6"
+            strokeWidth="1.8"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -44,29 +53,29 @@ export const Logo: React.FC = () => {
         <span
           style={{
             fontFamily: "'Playfair Display', 'Lora', 'Georgia', serif",
-            fontSize: '17px',
+            fontSize: '15px',
             fontWeight: 600,
-            letterSpacing: '3px',
-            color: 'var(--theme-text, #1E1B18)',
+            letterSpacing: '2.5px',
+            color: 'var(--theme-text, #F7F3EE)',
             lineHeight: 1.15,
             textTransform: 'uppercase',
           }}
         >
-          MUGASHRA
+          MUGAASHRA
         </span>
         <span
           style={{
             fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-            fontSize: '9.5px',
+            fontSize: '9px',
             fontWeight: 600,
-            letterSpacing: '2px',
+            letterSpacing: '1.5px',
             color: '#B58A69',
-            lineHeight: 1.4,
+            lineHeight: 1.3,
             textTransform: 'uppercase',
             marginTop: '2px',
           }}
         >
-          Artistry • Bridal Atelier CMS
+          Bridal Atelier CMS
         </span>
       </div>
     </div>
