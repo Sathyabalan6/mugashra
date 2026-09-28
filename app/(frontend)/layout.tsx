@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     siteName: 'Mugaashra Bridal Studio',
     images: [
       {
-        url: '/images/og-preview.jpg',
+        url: `${baseUrl}/images/og-preview.jpg`,
         width: 1200,
         height: 630,
         alt: 'Mugaashra Bridal Studio South Indian Bride',
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Mugaashra Bridal Studio | Luxury Bridal & HD Makeup Studio Madurai',
     description: 'Luxury bridal styling, sacred Tamil Muhurtham makeup, Reception airbrush artistry, and bespoke saree draping by Lead Master Artist Shwetha Mohan. Based in Madurai, traveling worldwide.',
-    images: ['/images/og-preview.jpg'],
+    images: [`${baseUrl}/images/og-preview.jpg`],
   },
   icons: {
     icon: [
