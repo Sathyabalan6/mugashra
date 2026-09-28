@@ -23,7 +23,7 @@ const montserrat = Montserrat({
   display: 'swap',
 })
 
-const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://mugaashra.com'
+const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://www.mugaashra.co.in'
 
 export const viewport: Viewport = {
   themeColor: '#181514',
