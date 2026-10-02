@@ -1,0 +1,315 @@
+{
+  "images": [
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.51 PM (1).jpeg",
+      "output": "/images/portfolio/client/bride_look_01.webp",
+      "width": 1280,
+      "height": 1600,
+      "sizeKb": 113
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.51 PM (2).jpeg",
+      "output": "/images/portfolio/client/bride_look_02.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 68
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.52 PM (3).jpeg",
+      "output": "/images/portfolio/client/bride_look_03.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 164
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.53 PM (1).jpeg",
+      "output": "/images/portfolio/client/bride_look_04.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 70
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.53 PM (2).jpeg",
+      "output": "/images/portfolio/client/bride_look_05.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 85
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.53 PM.jpeg",
+      "output": "/images/portfolio/client/bride_look_06.webp",
+      "width": 900,
+      "height": 1600,
+      "sizeKb": 213
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.54 PM (2).jpeg",
+      "output": "/images/portfolio/client/bride_look_07.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 170
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.54 PM.jpeg",
+      "output": "/images/portfolio/client/bride_look_08.webp",
+      "width": 900,
+      "height": 1600,
+      "sizeKb": 165
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.55 PM (1).jpeg",
+      "output": "/images/portfolio/client/bride_look_09.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 183
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.55 PM.jpeg",
+      "output": "/images/portfolio/client/bride_look_10.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 211
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.56 PM (1).jpeg",
+      "output": "/images/portfolio/client/bride_look_11.webp",
+      "width": 1200,
+      "height": 1600,
+      "sizeKb": 186
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.56 PM.jpeg",
+      "output": "/images/portfolio/client/bride_look_12.webp",
+      "width": 1200,
+      "height": 1600,
+      "sizeKb": 184
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.57 PM (1).jpeg",
+      "output": "/images/portfolio/client/bride_look_13.webp",
+      "width": 900,
+      "height": 1600,
+      "sizeKb": 213
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.57 PM (2).jpeg",
+      "output": "/images/portfolio/client/bride_look_14.webp",
+      "width": 1280,
+      "height": 1600,
+      "sizeKb": 83
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.57 PM.jpeg",
+      "output": "/images/portfolio/client/bride_look_15.webp",
+      "width": 900,
+      "height": 1600,
+      "sizeKb": 219
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.58 PM (1).jpeg",
+      "output": "/images/portfolio/client/bride_look_16.webp",
+      "width": 900,
+      "height": 1600,
+      "sizeKb": 239
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.58 PM (2).jpeg",
+      "output": "/images/portfolio/client/bride_look_17.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 102
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.58 PM.jpeg",
+      "output": "/images/portfolio/client/bride_look_18.webp",
+      "width": 900,
+      "height": 1600,
+      "sizeKb": 280
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.59 PM (2).jpeg",
+      "output": "/images/portfolio/client/bride_look_19.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 118
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.34.59 PM (3).jpeg",
+      "output": "/images/portfolio/client/bride_look_20.webp",
+      "width": 900,
+      "height": 1600,
+      "sizeKb": 132
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.00 PM (1).jpeg",
+      "output": "/images/portfolio/client/bride_look_21.webp",
+      "width": 900,
+      "height": 1600,
+      "sizeKb": 259
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.00 PM (2).jpeg",
+      "output": "/images/portfolio/client/bride_look_22.webp",
+      "width": 1280,
+      "height": 1600,
+      "sizeKb": 98
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.00 PM.jpeg",
+      "output": "/images/portfolio/client/bride_look_23.webp",
+      "width": 900,
+      "height": 1600,
+      "sizeKb": 144
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.01 PM (1).jpeg",
+      "output": "/images/portfolio/client/bride_look_24.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 142
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.01 PM (2).jpeg",
+      "output": "/images/portfolio/client/bride_look_25.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 133
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.01 PM.jpeg",
+      "output": "/images/portfolio/client/bride_look_26.webp",
+      "width": 1200,
+      "height": 1600,
+      "sizeKb": 145
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.02 PM (1).jpeg",
+      "output": "/images/portfolio/client/bride_look_27.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 154
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.02 PM (2).jpeg",
+      "output": "/images/portfolio/client/bride_look_28.webp",
+      "width": 1280,
+      "height": 1600,
+      "sizeKb": 100
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.02 PM (3).jpeg",
+      "output": "/images/portfolio/client/bride_look_29.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 195
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.02 PM.jpeg",
+      "output": "/images/portfolio/client/bride_look_30.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 166
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.03 PM (1).jpeg",
+      "output": "/images/portfolio/client/bride_look_31.webp",
+      "width": 1280,
+      "height": 1600,
+      "sizeKb": 123
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.03 PM (2).jpeg",
+      "output": "/images/portfolio/client/bride_look_32.webp",
+      "width": 1200,
+      "height": 1600,
+      "sizeKb": 123
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.03 PM.jpeg",
+      "output": "/images/portfolio/client/bride_look_33.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 146
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.04 PM (1).jpeg",
+      "output": "/images/portfolio/client/bride_look_34.webp",
+      "width": 1068,
+      "height": 1600,
+      "sizeKb": 123
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.04 PM (3).jpeg",
+      "output": "/images/portfolio/client/bride_look_35.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 87
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.05 PM (1).jpeg",
+      "output": "/images/portfolio/client/bride_look_36.webp",
+      "width": 1200,
+      "height": 1600,
+      "sizeKb": 119
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.05 PM (2).jpeg",
+      "output": "/images/portfolio/client/bride_look_37.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 76
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.06 PM (1).jpeg",
+      "output": "/images/portfolio/client/bride_look_38.webp",
+      "width": 1200,
+      "height": 1600,
+      "sizeKb": 154
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.06 PM (2).jpeg",
+      "output": "/images/portfolio/client/bride_look_39.webp",
+      "width": 1066,
+      "height": 1600,
+      "sizeKb": 95
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.06 PM (3).jpeg",
+      "output": "/images/portfolio/client/bride_look_40.webp",
+      "width": 1200,
+      "height": 1600,
+      "sizeKb": 166
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.06 PM.jpeg",
+      "output": "/images/portfolio/client/bride_look_41.webp",
+      "width": 1200,
+      "height": 1600,
+      "sizeKb": 120
+    },
+    {
+      "original": "WhatsApp Image 2026-10-02 at 3.35.07 PM.jpeg",
+      "output": "/images/portfolio/client/bride_look_42.webp",
+      "width": 1200,
+      "height": 1600,
+      "sizeKb": 113
+    }
+  ],
+  "videos": [
+    {
+      "original": "WhatsApp Video 2026-10-02 at 3.35.07 PM (2).mp4",
+      "output": "/images/portfolio/reels/reel_01.mp4",
+      "sizeMb": "2.40"
+    },
+    {
+      "original": "WhatsApp Video 2026-10-02 at 3.35.07 PM.mp4",
+      "output": "/images/portfolio/reels/reel_02.mp4",
+      "sizeMb": "4.01"
+    },
+    {
+      "original": "WhatsApp Video 2026-10-02 at 3.35.08 PM.mp4",
+      "output": "/images/portfolio/reels/reel_03.mp4",
+      "sizeMb": "6.00"
+    }
+  ]
+}

@@ -91,12 +91,12 @@ export default async function HomePage() {
             href="/portfolio"
             className="font-sans text-xs uppercase tracking-[2px] text-[var(--color-accent-text)] hover:text-[var(--color-text)] border-b border-[var(--color-accent)] pb-1 transition-colors w-fit shrink-0 font-semibold"
           >
-            Explore Complete Portfolio (20+ Looks) ↗
+            Explore Complete Portfolio (45+ Looks) ↗
           </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
-          {/* Card 1: Muhurtham */}
+          {/* Card 1: Sacred Muhurtham */}
           <div className="group relative flex flex-col bg-[var(--color-bg-white)] border border-[var(--color-border)] overflow-hidden shadow-xs hover:shadow-md transition-all duration-300">
             <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#EAE1D5]">
               <Image
@@ -105,6 +105,7 @@ export default async function HomePage() {
                 fill
                 sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                priority
               />
               <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-xs uppercase tracking-[2px] font-semibold">
                 Sacred Muhurtham
@@ -191,13 +192,109 @@ export default async function HomePage() {
               </div>
             </div>
           </div>
+
+          {/* Card 4: Heritage Muhurtham Suite (New Frontpage 01) */}
+          <div className="group relative flex flex-col bg-[var(--color-bg-white)] border border-[var(--color-border)] overflow-hidden shadow-xs hover:shadow-md transition-all duration-300">
+            <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#EAE1D5]">
+              <Image
+                src="/images/frontpage_01.webp"
+                alt="Traditional Heritage Bridal Artistry"
+                fill
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-xs uppercase tracking-[2px] font-semibold">
+                Signature Collection
+              </div>
+            </div>
+            <div className="p-6 space-y-2 text-left">
+              <h3 className="font-serif text-xl text-[var(--color-text)] font-normal">
+                Heritage Temple Muhurtham
+              </h3>
+              <p className="font-serif text-[15px] sm:text-base text-[var(--color-text-body)] leading-relaxed">
+                Classic vermilion accents, flawless silk drape alignment, and long-wear radiant warm gold finish.
+              </p>
+              <div className="pt-2">
+                <Link
+                  href="/contact?look=Heritage%20Temple%20Muhurtham"
+                  className="font-sans text-xs uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline min-h-[44px] py-1"
+                >
+                  Enquire This Look ↗
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 5: Modern Couture Glam (New Frontpage 02) */}
+          <div className="group relative flex flex-col bg-[var(--color-bg-white)] border border-[var(--color-border)] overflow-hidden shadow-xs hover:shadow-md transition-all duration-300">
+            <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#EAE1D5]">
+              <Image
+                src="/images/frontpage_02.webp"
+                alt="Editorial Reception Radiance"
+                fill
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-xs uppercase tracking-[2px] font-semibold">
+                Modern Couture
+              </div>
+            </div>
+            <div className="p-6 space-y-2 text-left">
+              <h3 className="font-serif text-xl text-[var(--color-text)] font-normal">
+                Editorial Reception Radiance
+              </h3>
+              <p className="font-serif text-[15px] sm:text-base text-[var(--color-text-body)] leading-relaxed">
+                High-definition contouring and luminous glow crafted to withstand intense evening photography flash.
+              </p>
+              <div className="pt-2">
+                <Link
+                  href="/contact?look=Editorial%20Reception%20Radiance"
+                  className="font-sans text-xs uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline min-h-[44px] py-1"
+                >
+                  Enquire This Look ↗
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 6: Contemporary Soft Elegance (New Frontpage 03) */}
+          <div className="group relative flex flex-col bg-[var(--color-bg-white)] border border-[var(--color-border)] overflow-hidden shadow-xs hover:shadow-md transition-all duration-300">
+            <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#EAE1D5]">
+              <Image
+                src="/images/frontpage_03.webp"
+                alt="Contemporary Soft Elegance"
+                fill
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-xs uppercase tracking-[2px] font-semibold">
+                Pre-Wedding Suite
+              </div>
+            </div>
+            <div className="p-6 space-y-2 text-left">
+              <h3 className="font-serif text-xl text-[var(--color-text)] font-normal">
+                Contemporary Soft Elegance
+              </h3>
+              <p className="font-serif text-[15px] sm:text-base text-[var(--color-text-body)] leading-relaxed">
+                Subtle eye sculpting, velvet matte lip artistry, and natural texture enhancement for intimate celebrations.
+              </p>
+              <div className="pt-2">
+                <Link
+                  href="/contact?look=Contemporary%20Soft%20Elegance"
+                  className="font-sans text-xs uppercase tracking-[1.5px] text-[var(--color-accent-text)] font-semibold inline-flex items-center gap-1 group-hover:underline min-h-[44px] py-1"
+                >
+                  Enquire This Look ↗
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ── 3. Vision & Mission Section ── */}
       <VisionMissionSection />
 
-      {/* ── 6. Feedback Section ── */}
+      {/* ── 4. Feedback Section ── */}
       <FeedbackSection testimonials={testimonials} />
     </PageTransition>
   )
