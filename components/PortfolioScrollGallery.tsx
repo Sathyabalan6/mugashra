@@ -36,6 +36,12 @@ export function PortfolioScrollGallery({ slides }: Props) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
+  // Derive categories dynamically from slides to prevent empty category tabs
+  const categories = React.useMemo(() => {
+    const set = new Set(slides.map((s) => s.category))
+    return ['All Looks', ...Array.from(set)]
+  }, [slides])
+
   const displaySlides = selectedCategory === 'All Looks'
     ? slides
     : slides.filter((s) => s.category === selectedCategory)
@@ -134,7 +140,7 @@ export function PortfolioScrollGallery({ slides }: Props) {
         aria-label="Portfolio Look Categories"
         className="w-full bg-[#181514] border-b border-white/10 px-4 sm:px-10 py-2.5 sm:py-3 flex items-center justify-start md:justify-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar sticky top-[80px] sm:top-[96px] z-30 bg-[#181514]"
       >
-        {CATEGORIES.map((cat) => {
+        {categories.map((cat) => {
           const isSelected = selectedCategory === cat
           return (
             <button
@@ -159,147 +165,162 @@ export function PortfolioScrollGallery({ slides }: Props) {
         })}
       </div>
 
-      <div className="relative flex flex-col md:flex-row w-full bg-[#181514]">
-        {/* ── Image column ── */}
-        <div className="w-full md:w-[60%] lg:w-[62%]">
-          {displaySlides.map((slide, i) => (
-            <div
-              key={slide.url}
-              ref={(el) => { slideRefs.current[i] = el }}
-              data-index={i}
-              className="relative w-full h-[70vh] sm:h-[75vh] md:h-[calc(100vh-152px)] overflow-hidden group border-b border-white/5"
-            >
-              <button
-                type="button"
-                onClick={() => setLightboxIndex(i)}
-                className={`look-image absolute inset-0 p-3 sm:p-6 md:p-8 flex items-center justify-center cursor-zoom-in w-full h-full border-none bg-transparent focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] ${revealed[i] ? 'is-revealed' : ''}`}
-                aria-label={`Open high-resolution inspection for ${slide.title}`}
+      {displaySlides.length === 0 ? (
+        <div className="w-full py-28 px-6 flex flex-col items-center justify-center text-center space-y-4 bg-[#181514] text-white">
+          <p className="font-serif text-xl text-white/90">No bridal looks found in this category.</p>
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedCategory('All Looks')
+              setActiveIndex(0)
+            }}
+            className="px-6 py-2.5 rounded-full bg-[var(--color-accent)] text-[#181514] font-sans text-xs uppercase tracking-[2px] font-semibold hover:opacity-90 transition-opacity cursor-pointer"
+          >
+            Show All Looks
+          </button>
+        </div>
+      ) : (
+        <div className="relative flex flex-col md:flex-row w-full bg-[#181514]">
+          {/* ── Image column ── */}
+          <div className="w-full md:w-[60%] lg:w-[62%]">
+            {displaySlides.map((slide, i) => (
+              <div
+                key={slide.url}
+                ref={(el) => { slideRefs.current[i] = el }}
+                data-index={i}
+                className="relative w-full h-[70vh] sm:h-[75vh] md:h-[calc(100vh-152px)] overflow-hidden group border-b border-white/5"
               >
-                {slide.url.endsWith('.mp4') ? (
-                  <video
-                    src={slide.url}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-contain pointer-events-none"
-                  />
-                ) : (
-                  <Image
-                    src={slide.url}
-                    alt={`${slide.title} — ${slide.desc}`}
-                    fill
-                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 55vw"
-                    className="object-contain transition-transform duration-700 group-hover:scale-[1.02]"
-                    style={{ objectPosition: slide.focalPosition ?? 'center center' }}
-                    priority={i < 2}
-                  />
-                )}
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setLightboxIndex(i)}
+                  className={`look-image absolute inset-0 p-3 sm:p-6 md:p-8 flex items-center justify-center cursor-zoom-in w-full h-full border-none bg-transparent focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] ${revealed[i] ? 'is-revealed' : ''}`}
+                  aria-label={`Open high-resolution inspection for ${slide.title}`}
+                >
+                  {slide.url.endsWith('.mp4') ? (
+                    <video
+                      src={slide.url}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-contain pointer-events-none"
+                    />
+                  ) : (
+                    <Image
+                      src={slide.url}
+                      alt={`${slide.title} — ${slide.desc}`}
+                      fill
+                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 55vw"
+                      className="object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                      style={{ objectPosition: slide.focalPosition ?? 'center center' }}
+                      priority={i < 2}
+                    />
+                  )}
+                </button>
 
-              {/* Desktop Hover Inspect Button */}
-              <button
-                type="button"
-                onClick={() => setLightboxIndex(i)}
-                aria-label={`Inspect high-res details of ${slide.title}`}
-                className="absolute bottom-6 right-6 z-20 hidden md:flex items-center gap-2 px-3.5 py-2 rounded-full bg-black/70 hover:bg-[var(--color-accent)] text-white hover:text-[#181514] font-sans text-xs uppercase tracking-[2px] backdrop-blur-md border border-white/20 transition-all duration-300 shadow-md cursor-pointer opacity-70 group-hover:opacity-100"
-              >
-                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-                </svg>
-                <span>Inspect HD ⛶</span>
-              </button>
+                {/* Desktop Hover Inspect Button */}
+                <button
+                  type="button"
+                  onClick={() => setLightboxIndex(i)}
+                  aria-label={`Inspect high-res details of ${slide.title}`}
+                  className="absolute bottom-6 right-6 z-20 hidden md:flex items-center gap-2 px-3.5 py-2 rounded-full bg-black/70 hover:bg-[var(--color-accent)] text-white hover:text-[#181514] font-sans text-xs uppercase tracking-[2px] backdrop-blur-md border border-white/20 transition-all duration-300 shadow-md cursor-pointer opacity-70 group-hover:opacity-100"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                  </svg>
+                  <span>Inspect HD ⛶</span>
+                </button>
 
-              {/* Mobile overlay copy */}
-              <div className="md:hidden absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
-              <div className="md:hidden absolute bottom-0 left-0 right-0 px-6 pb-8 space-y-1.5 z-10">
-                <span className="font-sans text-xs uppercase tracking-[3px] text-[var(--color-accent)] block font-semibold">
-                  {slide.category}
-                </span>
-                <h2 className="font-serif text-2xl text-white font-normal leading-snug">{slide.title}</h2>
-                <p className="font-serif text-sm sm:text-base text-white/80 leading-relaxed max-w-md line-clamp-2">{slide.desc}</p>
-                <div className="flex items-center gap-4 pt-1">
-                  <Link
-                    href={`/contact?look=${encodeURIComponent(slide.title)}`}
-                    className="inline-flex items-center gap-1.5 font-sans text-xs sm:text-[13px] uppercase tracking-[2px] text-white border-b border-white/40 pb-0.5 min-h-[44px]"
-                  >
-                    Enquire for this Look ↗
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() => setLightboxIndex(i)}
-                    className="font-sans text-xs sm:text-[13px] uppercase tracking-[2px] text-[var(--color-accent)] border-b border-[var(--color-accent)]/40 pb-0.5 min-h-[44px] flex items-center cursor-pointer"
-                  >
-                    View HD ⛶
-                  </button>
+                {/* Mobile overlay copy */}
+                <div className="md:hidden absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                <div className="md:hidden absolute bottom-0 left-0 right-0 px-6 pb-8 space-y-1.5 z-10">
+                  <span className="font-sans text-xs uppercase tracking-[3px] text-[var(--color-accent)] block font-semibold">
+                    {slide.category}
+                  </span>
+                  <h2 className="font-serif text-2xl text-white font-normal leading-snug">{slide.title}</h2>
+                  <p className="font-serif text-sm sm:text-base text-white/80 leading-relaxed max-w-md line-clamp-2">{slide.desc}</p>
+                  <div className="flex items-center gap-4 pt-1">
+                    <Link
+                      href={`/contact?look=${encodeURIComponent(slide.title)}`}
+                      className="inline-flex items-center gap-1.5 font-sans text-xs sm:text-[13px] uppercase tracking-[2px] text-white border-b border-white/40 pb-0.5 min-h-[44px]"
+                    >
+                      Enquire for this Look ↗
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setLightboxIndex(i)}
+                      className="font-sans text-xs sm:text-[13px] uppercase tracking-[2px] text-[var(--color-accent)] border-b border-[var(--color-accent)]/40 pb-0.5 min-h-[44px] flex items-center cursor-pointer"
+                    >
+                      View HD ⛶
+                    </button>
+                  </div>
+                </div>
+
+                {/* Slide counter */}
+                <div className="absolute top-6 right-6 md:right-8 z-10">
+                  <span className="font-sans text-xs uppercase tracking-[2px] text-white/60">
+                    {String(i + 1).padStart(2, '0')} / {total}
+                  </span>
                 </div>
               </div>
+            ))}
+          </div>
 
-              {/* Slide counter */}
-              <div className="absolute top-6 right-6 md:right-8 z-10">
-                <span className="font-sans text-xs uppercase tracking-[2px] text-white/60">
-                  {String(i + 1).padStart(2, '0')} / {total}
-                </span>
+          {/* ── Sticky editorial panel — desktop only ── */}
+          <div className="hidden md:flex md:w-[40%] lg:w-[38%] sticky top-[152px] h-[calc(100vh-152px)] flex-col justify-between bg-[var(--color-bg)] border-l border-[var(--color-border)] px-8 lg:px-12 py-8 relative overflow-hidden z-20">
+            {/* Background Watermark Ghost Numeral (Never overlaps text or header) */}
+            <div
+              key={`num-${activeIndex}`}
+              className="look-copy-fade absolute top-4 right-6 lg:right-8 font-serif select-none pointer-events-none opacity-20 z-0"
+              style={{
+                fontSize: 'clamp(3.5rem, 5.5vw, 5rem)',
+                WebkitTextStroke: '1px var(--color-accent)',
+                color: 'transparent',
+                lineHeight: 1,
+              }}
+              aria-hidden="true"
+            >
+              {String(activeIndex + 1).padStart(2, '0')}
+            </div>
+
+            <div className="flex-1 flex flex-col justify-center relative z-10 pr-4">
+              <span
+                key={`cat-${activeIndex}`}
+                className="look-copy-fade font-sans text-xs sm:text-[13px] uppercase tracking-[3px] text-[var(--color-accent-text)] font-semibold block mb-2"
+              >
+                {active?.category ?? ''}
+              </span>
+              <h2
+                key={`title-${activeIndex}`}
+                className="look-copy-fade font-serif text-[var(--fluid-h3)] text-[var(--color-text)] font-normal leading-snug mb-3 max-w-sm"
+              >
+                {active?.title ?? ''}
+              </h2>
+              <p
+                key={`desc-${activeIndex}`}
+                className="look-copy-fade font-serif text-[14.5px] sm:text-base text-[var(--color-muted)] leading-relaxed max-w-sm mb-5"
+              >
+                {active?.desc ?? ''}
+              </p>
+
+              <div className="flex items-center gap-5 pt-1">
+                <Link
+                  key={`cta-${activeIndex}`}
+                  href={`/contact?look=${encodeURIComponent(active?.title ?? '')}`}
+                  className="look-copy-fade inline-flex items-center gap-2 font-sans text-xs sm:text-[13px] uppercase tracking-[2px] text-[var(--color-text)] border-b border-[var(--color-border)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent-text)] transition-colors pb-0.5 w-fit"
+                >
+                  Enquire for this Look ↗
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setLightboxIndex(activeIndex)}
+                  className="inline-flex items-center gap-1.5 font-sans text-xs sm:text-[13px] uppercase tracking-[2px] text-[var(--color-accent-text)] hover:text-[var(--color-text)] transition-colors cursor-pointer"
+                >
+                  <span>Inspect HD</span>
+                  <span aria-hidden="true">⛶</span>
+                </button>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* ── Sticky editorial panel — desktop only ── */}
-        <div className="hidden md:flex md:w-[40%] lg:w-[38%] sticky top-[152px] h-[calc(100vh-152px)] flex-col justify-between bg-[var(--color-bg)] border-l border-[var(--color-border)] px-8 lg:px-12 py-8 relative overflow-hidden z-20">
-          {/* Background Watermark Ghost Numeral (Never overlaps text or header) */}
-          <div
-            key={`num-${activeIndex}`}
-            className="look-copy-fade absolute top-4 right-6 lg:right-8 font-serif select-none pointer-events-none opacity-20 z-0"
-            style={{
-              fontSize: 'clamp(3.5rem, 5.5vw, 5rem)',
-              WebkitTextStroke: '1px var(--color-accent)',
-              color: 'transparent',
-              lineHeight: 1,
-            }}
-            aria-hidden="true"
-          >
-            {String(activeIndex + 1).padStart(2, '0')}
-          </div>
-
-          <div className="flex-1 flex flex-col justify-center relative z-10 pr-4">
-            <span
-              key={`cat-${activeIndex}`}
-              className="look-copy-fade font-sans text-xs sm:text-[13px] uppercase tracking-[3px] text-[var(--color-accent-text)] font-semibold block mb-2"
-            >
-              {active.category}
-            </span>
-            <h2
-              key={`title-${activeIndex}`}
-              className="look-copy-fade font-serif text-[var(--fluid-h3)] text-[var(--color-text)] font-normal leading-snug mb-3 max-w-sm"
-            >
-              {active.title}
-            </h2>
-            <p
-              key={`desc-${activeIndex}`}
-              className="look-copy-fade font-serif text-[14.5px] sm:text-base text-[var(--color-muted)] leading-relaxed max-w-sm mb-5"
-            >
-              {active.desc}
-            </p>
-
-            <div className="flex items-center gap-5 pt-1">
-              <Link
-                key={`cta-${activeIndex}`}
-                href={`/contact?look=${encodeURIComponent(active.title)}`}
-                className="look-copy-fade inline-flex items-center gap-2 font-sans text-xs sm:text-[13px] uppercase tracking-[2px] text-[var(--color-text)] border-b border-[var(--color-border)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent-text)] transition-colors pb-0.5 w-fit"
-              >
-                Enquire for this Look ↗
-              </Link>
-              <button
-                type="button"
-                onClick={() => setLightboxIndex(activeIndex)}
-                className="inline-flex items-center gap-1.5 font-sans text-xs sm:text-[13px] uppercase tracking-[2px] text-[var(--color-accent-text)] hover:text-[var(--color-text)] transition-colors cursor-pointer"
-              >
-                <span>Inspect HD</span>
-                <span aria-hidden="true">⛶</span>
-              </button>
-            </div>
-          </div>
 
           {/* Thumbnail carousel */}
           <div className="h-32 lg:h-36 w-full shrink-0 relative z-10 pr-12 lg:pr-16">
@@ -344,6 +365,7 @@ export function PortfolioScrollGallery({ slides }: Props) {
           </div>
         </div>
       </div>
+      )}
 
       {/* ── High-Definition Lightbox Modal ── */}
       {lightboxIndex !== null && displaySlides[lightboxIndex] && (
