@@ -19,7 +19,7 @@ interface TransformationLook {
 const TRANSFORMATION_LOOKS: TransformationLook[] = [
   {
     id: 'muhurtham',
-    label: 'Sacred Muhurtham',
+    label: 'Marriage Ceremony',
     title: 'Crimson Heritage & Skin Realism',
     subtitle: 'High-Definition Tamil Muhurtham Artistry',
     image: '/images/portfolio/red.jpg',

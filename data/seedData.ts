@@ -41,7 +41,7 @@ export const INITIAL_PACKAGES: ServicePackage[] = [
     duration: 'Dual Event Experience',
     badge: 'Most Requested Suite',
     inclusions: [
-      'Comprehensive artistry for Sacred Muhurtham & Reception',
+      'Comprehensive artistry for Marriage & Reception',
       'Custom Airbrush & Ultra-HD luxury formulations',
       'Contact lenses & 3D premium silk lashes for both functions',
       'Distinct hairstyles: Traditional floral braid & modern textured updo / waves',

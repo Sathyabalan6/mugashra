@@ -101,14 +101,14 @@ export default async function HomePage() {
             <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#EAE1D5]">
               <Image
                 src="/images/portfolio/red.jpg"
-                alt="Sacred Muhurtham Bridal Styling"
+                alt="Marriage Bridal Styling"
                 fill
                 sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 priority
               />
               <div className="absolute top-4 left-4 px-3 py-1 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-xs uppercase tracking-[2px] font-semibold">
-                Sacred Muhurtham
+                Marriage Ceremony
               </div>
             </div>
             <div className="p-6 space-y-2 text-left">

@@ -4,7 +4,7 @@ import React, { useState, useTransition } from 'react'
 import { submitEnquiry, type EnquirySubmissionResult } from '@/app/actions/submitEnquiry'
 
 const BRIDAL_CEREMONIES = [
-  { id: 'muhurtham', label: 'Sacred Muhurtham', tag: 'Traditional Silk' },
+  { id: 'muhurtham', label: 'Marriage & Muhurtham', tag: 'Traditional Silk' },
   { id: 'reception', label: 'Evening Reception', tag: 'High-Glam' },
   { id: 'engagement', label: 'Engagement / Ring', tag: 'Soft Pastel' },
   { id: 'haldi_mehendi', label: 'Haldi & Mehendi', tag: 'Sun-kissed' },
