@@ -13,10 +13,10 @@ export function PricingSection() {
           Bespoke Atelier Policy
         </span>
         <h2 className="font-serif text-xl sm:text-2xl text-[var(--color-text)] font-normal uppercase tracking-wide">
-          Bespoke Bridal Inclusions • Pricing on Consultation
+          Bespoke Bridal Inclusions • Quotation on Consultation
         </h2>
         <p className="font-serif text-sm sm:text-base text-[var(--color-text-body)] max-w-2xl mx-auto leading-relaxed">
-          Every celebration is an individual artistic commission. With our strict single-bride-per-date policy, quotes are tailored directly to your wedding date, auspicious muhurtham schedule, and venue logistics. Our atelier pricing is fixed, transparent, and strictly non-negotiable.
+          Every celebration is an individual artistic commission. With our strict single-bride-per-date policy, quotes are tailored directly to your wedding date, auspicious muhurtham schedule, and venue location with complete reservation exclusivity.
         </p>
       </div>
 
@@ -25,10 +25,16 @@ export function PricingSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Visual on top on mobile, right on desktop */}
           <div className="lg:col-span-6 order-1 lg:order-2 relative aspect-[4/5] w-full bg-[#EAE1D5] overflow-hidden shadow-sm rounded-xs">
+            <div className="absolute top-4 left-4 px-3.5 py-1.5 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-xs uppercase tracking-[2px] font-semibold z-10 shadow-md">
+              Founder Signature
+            </div>
             <Image
               src="/images/portfolio/bridal_story_1.webp"
               alt="Signature Airbrush Bridal Makeup"
               fill
+              priority
+              fetchPriority="high"
+              loading="eager"
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-center"
             />
@@ -84,7 +90,7 @@ export function PricingSection() {
                   Pricing on Consultation
                 </span>
                 <p className="font-sans text-xs uppercase tracking-[1px] text-[var(--color-muted)]">
-                  Strictly Non-Negotiable • Single-Bride Exclusivity
+                  Bespoke Quotation • Single-Bride Exclusivity
                 </p>
               </div>
               <Link
@@ -103,10 +109,16 @@ export function PricingSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Visual on top on mobile */}
           <div className="lg:col-span-6 order-1 lg:order-1 relative aspect-[3/4] w-full bg-[#EAE1D5] overflow-hidden shadow-sm rounded-xs">
+            <div className="absolute top-4 left-4 px-3.5 py-1.5 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-xs uppercase tracking-[2px] font-semibold z-10 shadow-md">
+              Dual Event Suite
+            </div>
             <Image
               src="/images/portfolio/couple_photo_red_and_sandal_1.jpg"
               alt="Muhurtham and Reception Bridal Styling"
               fill
+              priority
+              fetchPriority="high"
+              loading="eager"
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-[center_top]"
             />
@@ -158,7 +170,7 @@ export function PricingSection() {
                   Pricing on Consultation
                 </span>
                 <p className="font-sans text-xs uppercase tracking-[1px] text-[var(--color-muted)]">
-                  Dual-Ceremony Suite • Strictly Non-Negotiable
+                  Dual-Ceremony Suite • Single-Bride Exclusivity
                 </p>
               </div>
               <Link
@@ -177,10 +189,16 @@ export function PricingSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Visual on top on mobile, right on desktop */}
           <div className="lg:col-span-6 order-1 lg:order-2 relative aspect-[4/5] w-full bg-[#EAE1D5] overflow-hidden shadow-sm rounded-xs">
+            <div className="absolute top-4 left-4 px-3.5 py-1.5 bg-[#181514]/85 backdrop-blur-xs text-[var(--color-accent)] font-sans text-xs uppercase tracking-[2px] font-semibold z-10 shadow-md">
+              Worldwide Travel
+            </div>
             <Image
               src="/images/portfolio/bridal_story_4.webp"
               alt="Destination Wedding Bridal Artistry"
               fill
+              priority
+              fetchPriority="high"
+              loading="eager"
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-center"
             />
@@ -208,7 +226,7 @@ export function PricingSection() {
                   Pricing on Consultation
                 </span>
                 <p className="font-sans text-xs uppercase tracking-[1px] text-[var(--color-muted)]">
-                  Worldwide &amp; Destination • Single-Date Reservation
+                  Worldwide &amp; Destination • Priority Date Reservation
                 </p>
               </div>
               <Link
@@ -241,7 +259,7 @@ export function PricingSection() {
             <span className="font-sans text-xs uppercase tracking-[1px] text-[var(--color-accent-text)] font-semibold">(Upon Request)</span>
           </p>
         </div>
-        <p className="caption-text text-sm">Available alongside bridal bookings • Non-negotiable fixed rates confirmed on date consultation</p>
+        <p className="caption-text text-sm">Available alongside bridal bookings • Bespoke rates confirmed on date consultation</p>
       </div>
 
       {/* ── 5. THE GROOM COVERED & WEDDING CREW (Split Frame) ── */}
@@ -304,7 +322,7 @@ export function PricingSection() {
           <li>Adherence to time slots mentioned during the time of booking is paramount.</li>
           <li>We require 2.5–3 hours to get our brides ready to ensure uncompromised quality of artistry.</li>
           <li>Bookings are confirmed on a 50% advance basis. This is a non-refundable, non-transferable amount.</li>
-          <li>All quoted rates are fixed, transparent, and strictly non-negotiable to maintain our master artistry standards.</li>
+          <li>Quoted rates are transparent and tailored based on date, timing, and venue location.</li>
           <li>Hair &amp; makeup consultation can be done at our studio or opted over a video call.</li>
           <li>Payment of the final amount is mandatory 7 days prior to the wedding date.</li>
           <li>Any fresh flowers for hairstyling and hair jewellery required needs to be arranged by the client.</li>
