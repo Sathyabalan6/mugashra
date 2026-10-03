@@ -292,6 +292,7 @@ export function LiveHeroHeader({ children }: LiveHeroHeaderProps) {
             alt="Mugaashra Bridal Artistry Master Portrait"
             fill
             priority
+            fetchPriority="high"
             loading="eager"
             sizes="(max-width: 480px) 100vw, 480px"
             className="bride-bg object-cover object-center"

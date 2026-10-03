@@ -27,6 +27,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      { source: '/founder', destination: '/about', permanent: true },
+      { source: '/packages', destination: '/services', permanent: true },
+      { source: '/gallery', destination: '/portfolio', permanent: true },
+      { source: '/reviews', destination: '/testimonials', permanent: true },
+    ]
+  },
   async headers() {
     return [
       {
